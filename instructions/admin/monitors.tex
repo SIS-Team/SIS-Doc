@@ -1,9 +1,9 @@
-Um in die Einstellungen für die Monitore zu gelangen, klicken Sie im \enquote{Data-Input-Menü} auf den Punkt \enquote{Monitore verwalten} (siehe Abbildung \ref{menu-data-input}).\\
+Um in die Einstellungen für die Monitore zu gelangen, klicken Sie im \enquote{Data-Input-Menü} auf den Punkt \enquote{Monitore verwalten} (siehe Abbildung \ref{instr_admin_monitors_dimenu}).\\
 \\
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=14cm]{images/screenshots/data-inputs.png}
-\label{menu-data-input}
+\label{instr_admin_monitors_dimenu}
 \caption{Data-Input-Menü}
 \end{figure}
 Nach dem Öffnen der Seite werden oben im Fenster die aktiven Monitore aufgelistet. Darunter sind die Einstellungen zu finden.\\
@@ -71,4 +71,35 @@ Die maximale Dateigröße ist limitiert durch:
 	\item das Upload-HTML-Tag auf 800 MB
 	\item die PHP-Konfiguration am Server (Stand: 2014-02-28) auf 128 MB
 \end{itemize}
- 
+Wird das Feld leer gelassen, so wird der alte Wert beibehalten.\\
+
+\subsection{Display-Modus verändern}
+
+Die Raspberry Pis verfügen über einen Mechanismus, um den angeschlossenen Monitor ein- bzw auszuschalten.\\
+Es sind folgende Modi möglich:
+\begin{itemize}
+	\item permanent Ein
+	\item permanent Aus
+	\item automatisch
+\end{itemize}
+Im automatischen Modus werden die Einstellungen von \ref{instr_admin_moni_time_on} und \ref{instr_admin_moni_time_off} verwendet.\\
+\\
+Wird das Feld leer gelassen, so wird der alte Wert beibehalten.\\
+
+\subsubsection{Einschalt-Zeit}
+\label{instr_admin_moni_time_on}
+
+Bestimmt die Zeit, an dem sich der angeschlossene Monitor einschalten soll.\\
+\textit{Beispiele:}
+\begin{tabbing}
+\hspace{2cm}\=\kill
+7 \> 7 Uhr früh\\ 
+6:35 \> 6:35 früh\\
+17:05:11 \> 5:05:11 nachmittags
+\end{tabbing}
+Wird das Feld leer gelassen, so wird der alte Wert beibehalten.\\
+
+\subsubsection{Ausschalt-Zeit}
+\label{instr_admin_moni_time_off}
+
+Analog zu \ref{instr_admin_moni_time_on}.

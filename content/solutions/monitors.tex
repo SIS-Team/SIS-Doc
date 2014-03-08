@@ -3,6 +3,12 @@
 Als Thin-Client für die Monitore werden Raspberry Pis verwendet.\\
 Die Kommunikation zum Server und die Art des Anzeigens der abgerufenen Informationen wird mithilfe eines Webbrowsers gelöst. Es wurde der Webbrowser Chromium ausgewählt, da dieser die neuesten HTML5 Standards implementiert hat und auf den Raspberry Pis laufen kann.
 
+\subsection{Laden der Daten}
+
+Für das Laden der Daten vom Webserver wird Javascript in Verbindung mit AJAX verwendet.\\
+Dies hat gegenüber dem Neuladen der Seiten den Vorteil, dass, im Falle dessen, dass der Webserver kurzzeitig nicht erreichbar ist, das System trotzdem ohne Probleme weiter laufen kann - sieht man davon ab, dass mit der zeit, die angezeigten Daten veralten.\\
+Der einzige Zeitpunkt, an dem der Server auf alle Fälle erreichbar sein muss, ist der Start der Raspberry Pis, da hier die Website vom Server geladen werden wird. Auch diese Bedingung hätte entfernt werden können, indem man die Seite lokal abgelegt hätte. Dies hat allerdings den Nachteil, dass die Seite über ein weiteres Script hätte immer auf dem aktuellen Stand gebracht werden.
+
 \subsection{Authentifizierung der Monitore}
 
 Es stellt sich die Frage, die die Monitore am Server registriert werden. Da alle Monitore über das Webinterface zentral administriert werden können, ist es äußerst kontraproduktiv, wenn eventuell Schüler - oder gar Außenstehende - die Datenbank-Tabelle für die registrierten Monitore fluten können.\\
