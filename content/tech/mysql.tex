@@ -100,7 +100,7 @@ Es gibt noch zahlreiche grafische Tools MySQL Server zu administrieren. Eines de
 Um über PHP auf einen MySQL Server zugreifen zu können benötigt man das PHP-Modul php5-mysql, welches einige MySQL Befehle zur Verfügung stellt um mit einem MySQL-Server zu kommunizieren.\\
 \subparagraph{Verbindung aufbauen}
 Um mit einem MySQL-Server eine Verbindung aufzubauen müssen diese PHP Befehle verwendet werden(siehe Programm-Code \ref{lst:content_mysql_connect}).
-\begin{lstlisting}[style=customPHP, caption={PHP-Tags},label={lst:content_mysql_connect}]
+\begin{lstlisting}[style=customPHP, caption={MySQL Connect},label={lst:content_mysql_connect}]
 <?php 
 	mysql_connect($host, $user, $passwd);
 	mysql_select_db($db);
@@ -108,4 +108,28 @@ Um mit einem MySQL-Server eine Verbindung aufzubauen müssen diese PHP Befehle v
 \end{lstlisting}
 Wobei in diesem Beispiel entspricht \textit{\$host} der Adresse des MySQL-Server, liegt der Webserver, von wo aus die Anfrage gesendet wird und er MySQL Server am selben Server so ist dies \textit{localhost}. \textit{\$user} ist der Usernamen zum anmelden auf dem MySQL Server und \textit{\$pass} ist das Passwort für die Anmeldung am MySQL Server. Mit \textit{\$db} wird die Datenbank angegeben mit der gearbeitet werden soll. Die Funktion \textit{mysql\_connect()} gibt im Fehlerfall FALSE zurück und im Erfolgsfall einen Ressource Wert. \textit{mysql\_select\_db()} gibt bei Erfolg TRUE zurück, sonst FALSE.
 \subparagraph{Anfragen}
-Um Anfragen an einen MySQL Server senden zu können muss man diesen Syntax verwenden(siehe Programm-Code)
+Um Anfragen an einen MySQL Server senden zu können muss man diesen Syntax verwenden(siehe Programm-Code \ref{lst:content_mysql_query})
+\begin{lstlisting}[style=customPHP, caption={MySQL Querys},label={lst:content_mysql_query}]
+<?php 
+	$sql="SELECT * FROM classes";
+	mysql_query($sql);
+?>
+\end{lstlisting}
+In der unter \ref{lst:content_mysql_query} gezeigtem Programmsequenz ist eine Anfrage an den MySQL Server gezeigt. Wichtig ist, dass zuvor die Zeilen von Punkt \ref{lst:content_mysql_connect} stehen, damit eine Anfrage an den Server gesendet werden kann. \textit{mysql\_query} gibt bei Datenbankabfragen(SELECT,SHOW,EXPLAIN,...) das Abfrageergebnis im Erfolgsfall zurück, bei Fehlerfall FALSE. Wird ein anderer Datenbankbefehl(INSERT,DELETE,UPDATE,...) ausgeführt, so gibt die Funktion bei Erfolg TRUE und bei Misserfolg FALSE zurück.\\
+Das Ergebnis ist in Zeilen aufgebaut, d.h. will man jede Zeile abarbeiten, muss man jede Zeile zum Beispiel mit einer do-while-Schleife durchlaufen. Ein interner Positionszeiger verweist auf die momentane Stelle. Die Funktionen zum Abfragen dieser Zeilen stellt den Zeiger immer eine Stelle weiter.\\
+Das Ergebnis bei einer Abfrage ist jedoch nicht in einem Format mit dem man arbeiten kann, deshalb muss dieses Ergebnis noch an weitere Funktionen weitergegeben werden. Hier die von uns am häufigsten verwendeten Funktionen:
+\begin{itemize}
+	\item \textit{mysql\_fetch\_array()}
+	\begin{itemize}
+		\item Mit dieser Funktion wird eine Zeile des Ergebnisses gelesen und in ein Array geschriebn. Zusätzlich wird der Positionszeiger eine Stelle weiter gestellt.\\
+		Die Indizes des Arrays werden nummerisch nummeriert und sind nochmals mit den Spaltennamen nummeriert. Das heißt, die Ergebnisse sind in diesem Array doppelt vorhanden 
+	\end{itemize}
+	\item \textit{mysql\_fetch\_object()}
+		\begin{itemize}
+			\item Mit dieser Funktion wird die aktuelle Zeile des Ergebnisses ausgelesen und als Objekt zurückgegeben. Iwederum wird der Positionszeiger eine Stelle weiter gestellt.
+		\end{itemize}
+	\item \textit{mysql\_fetch\_row()}
+		\begin{itemize}
+			\item Diese Funktion gibt eine Zeile des Ergebnisses als Array zurück das nummerisch nummerierte Indizes hat. Das heißt hier sind aus dem Array die Spaltennamen nicht ersichtlich. Auch hier wird der Datenzeiger um eine Stelle weiter gestellt.
+		\end{itemize}
+\end{itemize}
