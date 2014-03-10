@@ -56,12 +56,12 @@ Hier die wichtigisten Befehle die wir verwendet haben.\\
 			\item Mit DELETE können einzelne Datensätze oder auch mehrere Datensätze auf einmal gelöscht werden.
 			\begin{itemize}
 				\item \textit{DELETE FROM sections WHERE name = 'TestAbteilung123'}\\
-					Damit werden alle Datensätze mit name = TestAbteilung123 gelöscht. Ohne dem WHERE Parameter werden alle Dantensätze aus der Tabelle sections gelöscht.
+					Damit werden alle Datensätze mit name = TestAbteilung123 gelöscht. Ohne dem WHERE Parameter werden alle Datensätze aus der Tabelle sections gelöscht.
 			\end{itemize}
 		\end{itemize}
 	\item TRUNCATE
 		\begin{itemize}
-			\item Mit TRUNCATE können die ganzen Datensätze aus einer Tabelle gelöscht werden. Im unterschied zu DELETE wird hier auch der Index zurückgesetzt. Bei DELETE werden die neuen Datensätze fortlaufend weiter mit dem letzten Index nummeriert. Bei TRUNCATE beginnt die Nummerierung von vorne.
+			\item Mit TRUNCATE können alle Datensätze aus einer Tabelle gelöscht werden. Im unterschied zu DELETE wird hier auch der Index zurückgesetzt. Bei DELETE werden die neuen Datensätze fortlaufend weiter mit dem letzten Index nummeriert. Bei TRUNCATE beginnt die Nummerierung von vorne.
 			\begin{itemize}
 				\item \textit{TRUNCATE FROM classes}\\
 					Dabei wird die ganze Tabelle classes zurückgesetzt und damit auch alle Datensätze gelöscht. 
@@ -133,3 +133,38 @@ Das Ergebnis bei einer Abfrage ist jedoch nicht in einem Format mit dem man arbe
 			\item Diese Funktion gibt eine Zeile des Ergebnisses als Array zurück das nummerisch nummerierte Indizes hat. Das heißt hier sind aus dem Array die Spaltennamen nicht ersichtlich. Auch hier wird der Datenzeiger um eine Stelle weiter gestellt.
 		\end{itemize}
 \end{itemize}
+Im Programm Code \ref{lst:content_mysql_fetch_array} ist ein Ausschnitt einer Abarbeitung eines MySQL Results zu sehen. Hier wird zuerst ein Query an den Server gesendet und danach werden alle Ergebniszeilen durchlaufen und in ein Array gespeichert. Dazu wird \textit{mysql\_fetch\_array()}verwendet. Dies ist die Funktion die ich persönlich bevorzuge.\\
+\begin{lstlisting}[style=customPHP, caption={MySQL Query weiterverarbeiten},label={lst:content_mysql_fetch_array}]
+<?php 
+	$sql = "SELECT * FROM hours LIMIT 0,5"; //Mit LIMIT wird die Abfrage auf die ersten 5 Ergebnisse begrenzt
+	$result = mysql_query($sql); //Ergebnis wird in der Variable $result gespeichert
+	
+	while($row = mysql_fetch_array($result)){	//Jede Ergebniszeile wird durchlaufen
+		$ergebnis[] = $row;	//Hier wird die Zeile in einen Eintrag des Arrays geschrieben
+	}
+	
+	print_r($ergebnis);	//Relationale Ausgabe des Arrays mit allen Zeilen
+	
+?>
+\end{lstlisting}
+Öffnet man den Quelltext der oberen Seite, wiederum muss zuvor natürlich der Programm-Code \ref{lst:content_mysql_connect} in dem PHP Code eingefügt werden, um überhaupt eine Verbindung mit dem MySQL Server herstellen zu können, dann wird das Array \textit{\$ergebnis} schön dargestellt. Das Ergebnis ist in der Abb. \ref{fig:content_mysql_fetch_array} zu sehen.\\
+Hier ist gut zu sehen, dass bei \textit{mysql\_fetch\_array()} die Spalten nummerisch und laut Spaltenname indiziert werden. Dies kann durch dem zweiten Parameter in der Funktion \textit{mysql\_fetch\_array()} geämdert werden. Außerdem ist hier zu sehen, dass jede Ergebniszeile einen eigenen Index (nummerisch Nummeriert) in dem Array \textit{\$ergebnis} hat, daraus ergibt sich ein Mehrdimensionales Array.\\
+Auf die erste Zeile des Ergebnisses kann also mit \textit{\$ergebnis[0]} zugegriffen werden. Das Ergebnis dieses Codes ergibt Abb. \ref{fig:content_mysql_fetch_row}. Um dann auf die Start-Uhrzeit der Stunde von der ersten Zeile zugreifen zu können, kann man entweder den nummerischen Index oder die Spaltenbezeichnung verwenden. Also entweder \textit{\$ergebnis[0][4]} oder \textit{\$ergebnis[0]['startTime']}.\\ Das Ergebnis dieser Zeilen ist dasselbe, dieses ist in Abb. \ref{fig:content_mysql_fetch_column} zu sehen.\\
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=14cm]{images/screenshots/content_mysql_fetch_array.png}
+\caption{MySQL Fetch Array}
+\label{fig:content_mysql_fetch_array}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=14cm]{images/screenshots/content_mysql_fetch_row.png}
+\caption{MySQL Zeile}
+\label{fig:content_mysql_fetch_row}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=14cm]{images/screenshots/content_mysql_fetch_column.png}
+\caption{MySQL Spalte}
+\label{fig:content_mysql_fetch_column}
+\end{figure}
