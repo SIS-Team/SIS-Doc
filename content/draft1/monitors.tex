@@ -1,2 +1,21 @@
 \subsection{Monitorsystem}
 
+\subsubsection{Grundsätzlicher Seiten-Aufbau}
+
+Der Aufbau der, auf den Monitoren angezeigten, Seite wird folgendermaßen festgelegt.\\
+Rechts unten wird Platz für eine Uhrzeit- und Datumsanzeige vorgesehen. Links daneben werden später die raumspezifischen Beschriftungen angezeigt.\\
+Rechts oben soll der aktive Modus des Monitors am Hintergrund angezeigt werden. Horizontal und vertikal zentriert wird im Hintergrund das SIS-Logo platziert.\\
+Der Platz oberhalb der Uhr steht Inhalten zur Verfügung, auch wenn dieser das SIS-Logo oder den Text rechts oben verdecken sollte.
+
+\subsubsection{Initialisierung}
+
+Wird die Seite geöffnet, so wird die Seite grundsätzliche die Seite aufgebaut.\\
+Nun werden zwei Timer gestartet, von denen einer die Uhr aktualisiert (jede Sekunde) und der andere den Inhalt aktualisiert (10 Sekunden).
+
+\subsubsection{Verringerung des Traffics}
+Damit der Durchschnittliche Traffic möglichst gering gehalten werden kann, wird beim anfragen des Inhalts am Server ein Hash generiert, welcher eindeutig den aktuellen Inhalt identifiziert. Dieser Hash wird mitgesendet und am Client gespeichert. Nun wird mit jeder weiteren Anfrage der Hash des Clients mitgesendet, sollten der Client-Hash und der neu generierte Hash am Server übereinstimmen, so wird ein Flag gesendet, dass sich der Inhalt nicht geändert habe. Der eigentliche Inhalt aber wird nicht gesendet.\\
+Da sich die Inhalte relativ zum Aktualisierungszyklus des Clients sehr selten ändern, kann der Traffic um weit über 50 \% reduziert werden.
+
+\subsubsection{Multi-Modi}
+Für den Monitor-Modus \enquote{Supplierplan \& News} wird am Server ein Sonderfall vorgesehen.\\
+Es wird eine zusätzliche Variable mit gesendet, diese identifiziert den \enquote{Submode}, also quasi ob Supplierplan oder die News mitgesendet werden sollen. Wann sich der Submode ändert wird durch eine weitere Variable vorgegeben. Diese enthält den Timestamp der nächsten Änderung. Diese beiden Variablen werden vom Server generiert und vom Client zwar gespeichert, aber nicht mehr verändert, bis der Server neue Werte mitgibt.
