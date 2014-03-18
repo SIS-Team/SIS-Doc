@@ -1,0 +1,114 @@
+% Vorlage Laborbericht
+% Copyright (c) Jonas Juffinger 
+
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[german]{babel}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{mdframed}
+%\usepackage{eurosym}
+\usepackage{listings}
+
+\usepackage{color}
+
+%\usepackage[T1]{fontenc}
+\usepackage{titlesec, blindtext, color}
+
+%\definecolor{gray75}{gray}{0.75}
+%\newcommand{\hsp}{\hspace{20pt}}
+%\titleformat{\section}[hang]{\Huge\bfseries}{\thesection\hsp\textcolor{gray75}{||}\hsp}{0pt}{\Huge\bfseries}
+
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+\begin{document}
+
+
+\def \Titel 			{Monitorsteuerung}
+\def \Name				{-}
+\def \NameMitarbeiter	{Buchberger Florian, Handle Marco\\\hspace{2.6cm} Klotz Matthias, Weiland Mathias}
+\def \Betreuer			{Stecher}
+\def \Ausgefuehrt		{01. 01. 14}
+\def \Abgegeben			{02. 01. 14}
+\def \Jahrgang			{5YHELI}
+\def \Gruppe			{-}
+
+
+
+\begin{titlepage}
+~\\[0.5cm]
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+
+\emph{Name:} \Name
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{center}\large
+\emph{Jahrgang:} \Jahrgang
+\end{center}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}{0.2\textwidth}
+\begin{flushright} \large
+\emph{Gruppe:} \Gruppe
+\end{flushright}
+\end{minipage}
+~\\[0.6cm]
+\begin{minipage}{0.8\textwidth}
+\begin{flushleft} \large
+\emph{Mitarbeiter:} \NameMitarbeiter
+\end{flushleft}
+\end{minipage}
+\begin{center}
+\line(1,0){480}
+\end{center}
+\begin{center}
+\textsc{\LARGE HN5 - FTKL}\\
+\large Abteilung Elektronik\\[1cm]
+an der H\"oheren technischen Bundeslehranstalt 1\\
+Innsbruck, Anichstraße 16 - 28
+\end{center}
+\begin{center}
+\line(1,0){480}
+\end{center}
+\begin{minipage}{0.2\textwidth}
+\begin{flushleft} \large
+\emph{Betreuer:}\\
+\Betreuer
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.57\textwidth}
+\begin{center}
+\LARGE
+\textbf{\Titel}
+\end{center}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}{0.2\textwidth}
+\begin{flushright} \large
+\emph{Ausgef\"uhrt am} 
+\Ausgefuehrt\\[0.4cm]
+\emph{Abgegeben am} 
+\Abgegeben
+\end{flushright}
+\end{minipage}
+\begin{center}
+\line(1,0){480}
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\input{report/main}
+
+\end{document}
