@@ -1,23 +1,22 @@
+\usepackage{listings}
+
 \renewcommand{\lstlistingname}{Programm-Code} 
 \lstset{
 	extendedchars=\true,
 	inputencoding=utf8x,
 	belowcaptionskip=1\baselineskip,
 	breaklines=true,
-	frame=L,
+	%frame=L,
+	frame=single,
+	captionpos=b,
 	xleftmargin=\parindent,
-	showstringspaces=false,
+	%showstringspaces=false,
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\tiny\color{black},
 	basicstyle=\footnotesize\ttfamily
 }
-\lstdefinestyle{customPHP}{
-	language=PHP,
-	keywordstyle=\bfseries\color{green},
-	commentstyle=\itshape\color{red},
-	identifierstyle=\color{blue},
-	stringstyle=\color{cyan},
-}
-\lstdefinestyle{customHTML}{
-	language=PHP,
+\lstdefinestyle{custom}{
 	keywordstyle=\bfseries\color{green},
 	commentstyle=\itshape\color{red},
 	identifierstyle=\color{blue},

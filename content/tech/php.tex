@@ -4,7 +4,7 @@ Als PHP-Module wurden nur php5-mysql sowie php5-ldap verwendet.\\
 PHP ist seit Version 5 vollständig Objekt-orientiert, wurde aber imperativ/funktional verwendet.\\
 \\
 Ein PHP Programm kann im Gegensatz zu anderen serverseitigen Programmiersprachen direkt in den HTML-Quelltext der Website eingebunden werden. Gekennzeichnet werden diese eingebetteten Programme mit den PHP-Tags (siehe Programm-Code \ref{lst:content_php_Tags}).\\
-\begin{lstlisting}[style=customPHP, caption={PHP-Tags},label={lst:content_php_Tags}]
+\begin{lstlisting}[style=custom, language=PHP,  caption={PHP-Tags},label={lst:content_php_Tags}]
 <?php 
 	/* Programm-Code */
 ?>
@@ -21,7 +21,7 @@ Der Client fragt am Webserver eine Datei mit der Endung .php an. Anschließend l
 \end{figure}
 \paragraph{PHP Sessions}
 Mit PHP Sessions kann man einen Besucher einer Webseite über mehrere Aufrufe der Webseite hinweg genau identifizieren. Jedem Besucher auf der Webseite wird eine eindeutige Session-ID zugewiesen, diese wird in einem Cookie auf dem Server abgelegt. Eine PHP Seite, die die Session verwenden soll, muss als erstes des PHP-Dokuments diese Zeile stehen. (siehe Programm-Code \ref{lst:content_php_Session})
-\begin{lstlisting}[style=customPHP, caption={Session},label={lst:content_php_Session}]
+\begin{lstlisting}[style=custom, language=PHP, caption={Session},label={lst:content_php_Session}]
 <?php
 	session_start();
 ?>
@@ -40,7 +40,7 @@ Diese Funktion wird vor allem bei Formularen eingesetzt, um die User-Interaktion
 \subparagraph{POST}
 Bei POST werden die mitgegebenen Daten nicht an die URL angefügt, wie bei GET, aber dazu später, sondern werden im Body Teil der HTTP/S Anfrage an den Server. (siehe Programm-Code \ref{lst:content_php_HTTP_POST}) Dies hat den großen Vorteil, dass die mitgegebenen Daten praktisch eine unbegrenzte Größe haben können. Dadurch können auch lange Texte, Bilder, Dateien usw. an den Server gesendet werden. Ein weiterer Vorteil liegt darin, dass der User die eingegebenen Daten nicht sieht, d.h. gibt er ein Passwort ein so ist es für ihn nicht einsehbar. Dies schützt jedoch nicht vor Angreifer, die die HTTP Anfragen mitschneiden, deshalb verwendet man beim Senden von Passwörtern immer HTTPS.\\
 Im Beispiel Programm-Code \ref{lst:content_php_POST} ist ein kleine Eingabe von einem Text möglich. Bei drücken des Buttons Speichern wird an den Server eine Anfrage gestellt, dass die gleiche Seite nochmals aufgerufen werden sollte, jedoch werden POST Variablen mitgegeben. Diese wertet die Seite mit dem PHP Teil aus und gibt den eingegebenen Text aus. Da dieser Text beliebig lang sein kann, muss POST verwendet werden. Warm siehe Punkt GET.
-\begin{lstlisting}[style=CustomPHP, caption={Ausschnitt HTTP-Body},label={lst:content_php_HTTP_POST}]
+\begin{lstlisting}[style=custom, caption={Ausschnitt HTTP-Body},label={lst:content_php_HTTP_POST}]
 GET /login/index.php	//Angefragte Seite
 HOST sis.htlinn.ac.at	//Host
 .	//Weitere Informationen
@@ -48,7 +48,7 @@ HOST sis.htlinn.ac.at	//Host
 .	//Weitere Informationen
 user=20091234&password=passwort&send=1	//POST-Parameter
 \end{lstlisting}
-\begin{lstlisting}[style=CustomPHP, caption={Beispiel POST},label={lst:content_php_POST}]
+\begin{lstlisting}[style=custom, language=PHP, caption={Beispiel POST},label={lst:content_php_POST}]
 <html>
 <header>
 </header>
@@ -71,7 +71,7 @@ else	//Wenn sie leer ist
 \subparagraph{GET}
 Bei GET werden die mitgegebenen Parameter direkt an die URL angehängt, um dies trennen zu können, wird die Parameterliste mit einem ? eingeleitet. Einzelne Parameter werden mit einem \& getrennt. Diese Methode ist die Standardmethode wenn man ein HTML-Form erstellt. Dies wird bei kleinen Daten verwendet. Der Vorteil liegt darin, dass der User die Seite neu laden kann und die Parameter werden übernommen. Auch kann der User die URL samt den Parametern als Lesezeichen abspeichern, um beispielsweise bei einer Webseite, die die Parameter zur Navigation auf der Seite verwendet, genau die gewünschte Seite zu erhalten. Eine Beispiel-URL sieht wie folgt aus: \textit{sis.htlinn.ac.at/index.php?text=hallo\&send=Speichern}. Dies wäre die URL, die bei absenden des Beispiel Programm-Codes \ref{lst:content_php_GET} entstehen würde. Sofern die Datei des Programm-Codes index.php heißt. Im Prinzip läuft die Auswertung der mitgelieferten Parametern gleich ab, wie bei POST Parametern.\\
 Bei GET besteht die Grenze der Datenlänge darin, dass eine URL nur ca. 2000 lang sein darf, dies ist Browser und Server abhängig, aber 2000 Zeichen funktioniert bei allen Server-Client Kombinationen.
-\begin{lstlisting}[style=CustomPHP, caption={Beispiel GET},label={lst:content_php_GET}]
+\begin{lstlisting}[style=custom, language=PHP,  caption={Beispiel GET},label={lst:content_php_GET}]
 <html>
 <header>
 </header>
@@ -95,7 +95,7 @@ else	//Wenn sie leer ist
 \subparagraph{Typisierung} 
 Die Typisierung in PHP ist sehr flexible (dynamisch), so kann einer Variable, die zum Beispiel eine Zahl enthält, eine Zeichenkette, oder ein Array neu zugewiesen werden.\\
 Manche Standard-Funktionen in PHP haben numerische Rückgabewerte und geben den bool'schen Wert false zurück, wenn ein Fehler auftritt. Da alle Werte, die nicht 0 sind, laut Definition gleich dem bool'schen true sind, kann es zu Fehlinterpretation des Rückgabewertes kommen. Um solche Situationen so vermeiden, sollte statt auf Wertegleichheit (==) auf Äquivalenz (===), das bedeutet in diesem Zusammenhang Werte- und Typgleichheit (Bool != Integer, trotz dynamischer Typisierung), geprüft werden (Beispiel: siehe Programm-Code \ref{lst:content_php_false}).
-\begin{lstlisting}[style=customPHP, caption={false},label={lst:content_php_false}]
+\begin{lstlisting}[style=custom, language=PHP,  caption={false},label={lst:content_php_false}]
 <?php 
 	$string = "Hallo Welt";
 	$position = strpos("H", $string); 

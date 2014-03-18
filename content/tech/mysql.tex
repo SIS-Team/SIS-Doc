@@ -100,7 +100,7 @@ Es gibt noch zahlreiche grafische Tools MySQL Server zu administrieren. Eines de
 Um über PHP auf einen MySQL Server zugreifen zu können benötigt man das PHP-Modul php5-mysql, welches einige MySQL Befehle zur Verfügung stellt um mit einem MySQL-Server zu kommunizieren.\\
 \subparagraph{Verbindung aufbauen}
 Um mit einem MySQL-Server eine Verbindung aufzubauen müssen diese PHP Befehle verwendet werden(siehe Programm-Code \ref{lst:content_mysql_connect}).
-\begin{lstlisting}[style=customPHP, caption={MySQL Connect},label={lst:content_mysql_connect}]
+\begin{lstlisting}[style=custom, language=PHP, caption={MySQL Connect},label={lst:content_mysql_connect}]
 <?php 
 	mysql_connect($host, $user, $passwd);
 	mysql_select_db($db);
@@ -109,7 +109,7 @@ Um mit einem MySQL-Server eine Verbindung aufzubauen müssen diese PHP Befehle v
 Wobei in diesem Beispiel entspricht \textit{\$host} der Adresse des MySQL-Server, liegt der Webserver, von wo aus die Anfrage gesendet wird und er MySQL Server am selben Server so ist dies \textit{localhost}. \textit{\$user} ist der Usernamen zum anmelden auf dem MySQL Server und \textit{\$pass} ist das Passwort für die Anmeldung am MySQL Server. Mit \textit{\$db} wird die Datenbank angegeben mit der gearbeitet werden soll. Die Funktion \textit{mysql\_connect()} gibt im Fehlerfall FALSE zurück und im Erfolgsfall einen Ressource Wert. \textit{mysql\_select\_db()} gibt bei Erfolg TRUE zurück, sonst FALSE.
 \subparagraph{Anfragen}
 Um Anfragen an einen MySQL Server senden zu können muss man diesen Syntax verwenden(siehe Programm-Code \ref{lst:content_mysql_query})
-\begin{lstlisting}[style=customPHP, caption={MySQL Querys},label={lst:content_mysql_query}]
+\begin{lstlisting}[style=custom, language=PHP, caption={MySQL Querys},label={lst:content_mysql_query}]
 <?php 
 	$sql="SELECT * FROM classes";
 	mysql_query($sql);
@@ -134,7 +134,7 @@ Das Ergebnis bei einer Abfrage ist jedoch nicht in einem Format mit dem man arbe
 		\end{itemize}
 \end{itemize}
 Im Programm Code \ref{lst:content_mysql_fetch_array} ist ein Ausschnitt einer Abarbeitung eines MySQL Results zu sehen. Hier wird zuerst ein Query an den Server gesendet und danach werden alle Ergebniszeilen durchlaufen und in ein Array gespeichert. Dazu wird \textit{mysql\_fetch\_array()}verwendet. Dies ist die Funktion die ich persönlich bevorzuge.\\
-\begin{lstlisting}[style=customPHP, caption={MySQL Query weiterverarbeiten},label={lst:content_mysql_fetch_array}]
+\begin{lstlisting}[style=custom, language=PHP, caption={MySQL Query weiterverarbeiten},label={lst:content_mysql_fetch_array}]
 <?php 
 	$sql = "SELECT * FROM hours LIMIT 0,5"; //Mit LIMIT wird die Abfrage auf die ersten 5 Ergebnisse begrenzt
 	$result = mysql_query($sql); //Ergebnis wird in der Variable $result gespeichert
