@@ -18,11 +18,21 @@ Die Monitore, deren Einstellungen verändert werden sollen, müssen mit einem Kl
 \\
 \subsection{Hinzufügen}
 
-Ein neuer Monitor kann nicht über das Web-Interface hinzugefügt werden, die Monitore registrieren sich selbstständig am Server. Nach der Registrierung stehen sie zur Verwaltung zur Verfügung.
+Ein neuer Monitor kann nicht über das Web-Interface hinzugefügt werden, die Monitore registrieren sich selbstständig am Server. Nach der Registrierung stehen sie zur Verwaltung zur Verfügung.\\
+Damit sich die Monitore registrieren können, müssen sie ihre eigene Identität kennen. Diese wird in der Datei /etc/sis.conf definiert.\\
+
+\begin{lstlisting}[style=custom,  caption={/etc/sis.conf},label={lst:instr_admin_sisconf}]
+name=test-monitor
+\end{lstlisting}
+Die Form des Namenseintrags ist im Beispiel  \autoref{lst:instr_admin_sisconf} ersichtlich.\\
+Wenn der Name des Monitors geändert wird, sollte aus Gründen der Übersichtlichkeit und Nachvollziehbarkeit darauf geachtet werden, dass der Hostname des Raspberry Pis mit dem Namen übereinstimmt. Dazu wird die Datei /etc/hostname bearbeitet. Damit der Host nicht neu gestartet werden muss, kann mit dem Befehl \enquote{hostname test-monitor} der Hostname zusätzlich auch direkt geändert werden.\\
+\textit{Achtung:} Da es zu Problemen mit manchen Programmen (wie zum Beispiel \textit{sudo}) kommen kann, sollte in er Datei /etc/hosts ein Eintrag für den Hostnamen angelegt werden, welcher auf die lokale Adresse zeigt (üblicherweise die Loopback-Adresse 127.0.0.1).\\
+\textit{Achtung:} Die Software lässt es zu, dass mehrere Monitore den selben Namen tragen. Dies sollte allerdings vermieden werden.
 
 \subsection{Entfernen}
 
-Um einen Monitor aus der Liste der aktiven Monitore zu entfernen, wähle den jeweiligen Monitor über die Checkbox aus, setze die \enquote{Löschen?}-Checkbox und klicke auf \enquote{Änderungen anwenden}.
+Um einen Monitor aus der Liste der aktiven Monitore zu entfernen, wähle den jeweiligen Monitor über die Checkbox aus, setze die \enquote{Löschen?}-Checkbox und klicke auf \enquote{Änderungen anwenden}.\\
+\textit{Achtung:} Sollte der Monitor nach dem Entfernen noch eingeschalten sein, so wird sich dieser, sofern die Standard-Konfiguration eingestellt ist, wieder neu registrieren.
 
 \subsection{Text verändern}
 
@@ -52,8 +62,8 @@ Um die ausgewählten Monitore auf Supplierplan, Stundenplan, News etc. umzuschal
 Durch Doppelklick auf das Eingabefeld öffnet sich - sofern der verwendete Browser diese Funktion unterstützt - ein Menü mit den möglichen Werten. Wird das Feld leer gelassen, so wird der alte Wert beibehalten.\\
 \\
 Der Modus \enquote{Video} ist zwar implementiert, allerdings ist der Raspberry Pi nicht in der Lage, die Videos wiederzugeben.\\
-Der Modus \enquote{fallback} fährt den Monitor auf das FTKL-Schnitzel-Suppla-Projekt. 
-\textit{Beachte:} Es ist nicht über das Interface möglich, den Monitor wieder auf das SIS-Projekt zurückzuholen.
+Der Modus \enquote{fallback} fährt den Monitor auf das FTKL-Schnitzel-Suppla-Projekt.\\ 
+\textit{Achtung:} Es ist nicht über das Web-Interface möglich, den Monitor wieder auf das SIS-Projekt zurückzuholen.
 
 \subsection{Datei verändern}
 
@@ -68,7 +78,7 @@ Unterstützte Dateitypen sind:
 Die maximale Dateigröße ist limitiert durch:
 \begin{itemize}
 	\item das Upload-Script auf 800 MB
-	\item das Upload-HTML-Tag auf 800 MB
+	\item den Upload-HTML-Tag auf 800 MB
 	\item die PHP-Konfiguration am Server (Stand: 2014-02-28) auf 128 MB
 \end{itemize}
 Wird das Feld leer gelassen, so wird der alte Wert beibehalten.\\
