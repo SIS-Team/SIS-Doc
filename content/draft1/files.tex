@@ -1,0 +1,82 @@
+\subsection{Dateibaum}
+Der Aufbau der Ordnerstruktur für das Projekt wird folgendermaßen festgelegt.
+
+\begin{description}[style=nextline]
+	\item[/backend/]
+		Hier befindet sich das Menü für die Eingaben.\\
+		Dieses Menü ist für die Benutzergruppen \enquote{SIS-Admin-E}, \enquote{SIS-Admin-N}, \enquote{SIS-Admin-M}, \enquote{SIS-Admin-W}, \enquote{SIS-News} und \enquote{SIS-SuperUser} verfügbar.
+		\begin{description}[style=nextline]
+			\item[./absentees/]
+				Hier befindet sich das Menü für das Eintragen der Fehlenden.\\
+				Dieses Menü ist für die Benutzergruppen \enquote{SIS-Admin-E}, \enquote{SIS-Admin-N}, \enquote{SIS-Admin-M}, \enquote{SIS-Admin-W} und \enquote{SIS-SuperUser} verfügbar.
+				\begin{description}[style=nextline]
+					\item[./classes/]
+						Hier können fehlende Klassen eingetragen werden.\\
+						Dieses Formular ist für die für die Benutzergruppen \enquote{SIS-Admin-E}, \enquote{SIS-Admin-N}, \enquote{SIS-Admin-M}, \enquote{SIS-Admin-W} und \enquote{SIS-SuperUser} verfügbar.
+					\item[./teachers/]
+						Hier können fehlende Lehrer eingetragen werden.\\
+						Dieses Formular ist für die für die Benutzergruppen \enquote{SIS-Admin-E}, \enquote{SIS-Admin-N}, \enquote{SIS-Admin-M}, \enquote{SIS-Admin-W} und \enquote{SIS-SuperUser} verfügbar.
+				\end{description}
+				\item[./administration/]
+					Hier befindet sich das Administratoren-Menü.\\
+					Dieses Menü sowie alle Unterpunkte sind nur für die Benutzergruppe \enquote{SIS-SuperUser} verfügbar.
+					\begin{description}[style=nextline]
+						\item[./classes/]
+							In diesem Formular können die Klassen modifiziert werden.
+						\item[./hours/]
+							Hier können die zeitlichen Unterrichtsstunden verändert werden.
+						\item[./lessons/]
+							In diesem Formular können die Stundenpläne verändert werden.
+						\item[./rooms/]
+							Hier können die Räume eingetragen werden.
+						\item[./sections/]
+							Hier können die Abteilungen modifiziert werden.
+						\item[./subjects/]
+							Fächer können hier hinzugefügt werden.
+						\item[./teachers/]
+							In diesem Formular können die Lehrer modifiziert werden.
+					\end{description}
+				\item[./monitors/]
+					Alle Einstellungen für die Monitore ind hier zu finden.\\
+					Dieses Formular ist für die für die Benutzergruppen \enquote{SIS-Admin-E}, \enquote{SIS-Admin-N}, \enquote{SIS-Admin-M}, \enquote{SIS-Admin-W} und \enquote{SIS-SuperUser} verfügbar.
+				\item[./news/]
+					In diesem Punkt können News eingetragen werden.\\
+					Dieses Menü ist für die Benutzergruppen \enquote{SIS-Admin-E}, \enquote{SIS-Admin-N}, \enquote{SIS-Admin-M}, \enquote{SIS-Admin-W}, \enquote{SIS-News} und \enquote{SIS-SuperUser} verfügbar.
+				\item[./substitudes/]
+					Hier befindet sich das Menü für die Auswahl der Abteilung bei den Supplierungen.\\
+					Dieses Menü ist nur für die Benutzergruppe \enquote{SIS-SuperUser} verfügbar.
+					\begin{description}[style=nextline]
+						\item[./form/]
+							Hier können die Supplierungen eingetragen werden.\\
+							Dieses Formular ist nur für die Benutzergrupppen \enquote{SIS-Admin-E}, \enquote{SIS-Admin-N}, \enquote{SIS-Admin-M}, \enquote{SIS-Admin-W} und \enquote{SIS-SuperUser} verfügbar.
+					\end{description}
+		\end{description}	
+	\item[/cookies/]
+			Hier müssen vor dem Betreten der Seite die Cookies akzeptiert werden (siehe %\ref{sec_cookies}).\\
+		\item[/data/]
+			\begin{description}[style=nextline]
+				\item[./fonts/]
+					Alle Schriftart-Dateien liegen hier.
+				\item[./images/]
+					Hier befinden sich sämtliche Bilder.\\
+					Dateien, welche sich logisch gruppieren lassen, besitzen eigene Ordner.
+				\item[./scripts/]
+					Alle Javascripts, welche in Dateien extrahiert wurden, sind hier zu finden.
+				\item[./styles/]
+					Hier sind sämtliche Stylesheets.	
+			\end{description}
+		\item[/impressum/]
+			Wie der Name schon sagt, ist hier das Impressum zu finden.
+		\item[/login/]
+			Hier befindet sich der Login.
+		\item[/logout/]
+			Und hier ist der Logout.
+		\item[/logs/]
+			Hier sind spezielle Log-Dateien zu finden.
+		\item[/mobile/]
+			Die Mobil-Seite befindet sich hier.
+			\begin{description}
+				\item[./api/]
+					
+			\end{description}
+\end{description}
