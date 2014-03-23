@@ -19,7 +19,7 @@ Es wurde von den Betreuern vorgegeben, dass für sämtliche Verbindungen zum Ser
 
 Da zu anfangs nicht klar war, welches IP-Netz das W-LAN der Monitore bekommen sollte, konnte keine IP-Filterung verwendet werden.\\
 \\
-Das Problem wurde gelöst, indem in der Datenbank für die Monitore eine Spalte für die IP-Adresse vorgesehen wurde. Es Idee bestand darin, dass jede IP-Adresse nur maximal einen Monitor registrieren darf (Vgl. Alternative Lösungen / Registrierung).\\
+Das Problem wurde gelöst, indem in der Datenbank für die Monitore eine Spalte für die IP-Adresse vorgesehen wurde. Die Idee bestand darin, dass jede IP-Adresse nur maximal einen Monitor registrieren darf (Vgl. \autoref{sec:content_solutions_monitors_alt_reg}).\\
 \\
 Aufgrund dessen, dass für die verschlüsselte Verbindung die Packete nach außen geNATet werden und wieder durch die Firewall zurück kommen, haben alle Monitore die öffentliche IP-Adresse der Schule.\\
 Um dieses Problem zu umgehen wurde mit Betreuer Lassnig vereinbart, dass die Verbindung der Monitore unverschlüsselt sein darf, da keine sicherheitsrelavanten Daten übertragen werden, und da das W-LAN selbst schon verschlüsselt.\\
@@ -29,6 +29,7 @@ Als Ziel-Adresse wird also anstatt https://sis.htlinn.ac.at http://sis.clients.h
 \subsubsection{Alternative Lösungen}
 
 \paragraph{Registrierung}
+\label{sec:content_solutions_monitors_alt_reg}
 
 Die Registrierung der Monitor hätte manuell erfolgen können. Hier würden mehrere Möglichkeiten in Frage kommen:
 
