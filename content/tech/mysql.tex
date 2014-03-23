@@ -96,7 +96,7 @@ Ist die optimale Abfragereihenfolge gefunden wird der Query ausgeführt und das 
 MySQL liefert Standardmäßig einen Kommandozeilen-Client mit. Dieser kann in der Konsole mit \textit{mysql} aufgerufen werden. Damit können Datenbanken, Tabellen erstellt und bearbeitet werden, Datensätze können bearbeitet, verändert und gelöscht werden. Es können noch viele weitere Funktionen damit genutzt werden.\\
 \subparagraph{Grafische Tools}
 Es gibt noch zahlreiche grafische Tools MySQL Server zu administrieren. Eines der am weit Verbreitetsten grafischen Tools ist phpMyAdmin. Dies ist ein Tool, das auf einen Webserver kopiert wird und es erlaubt über ein Webinterface alle Einstellungen und Datenbankbefehle grafisch ausführen zu können. Dies erleichtert und vereinfacht das Erstellen, Bearbeiten und Verändern von Datenbanken und Tabellen. Damit können auch ungeübte Personen MySQL Datenbanken verwenden.
-\paragraph{MySQL -> PHP}
+\paragraph{MySQL $ \Rightarrow $ PHP}
 Um über PHP auf einen MySQL Server zugreifen zu können benötigt man das PHP-Modul php5-mysql, welches einige MySQL Befehle zur Verfügung stellt um mit einem MySQL-Server zu kommunizieren.\\
 \subparagraph{Verbindung aufbauen}
 Um mit einem MySQL-Server eine Verbindung aufzubauen müssen diese PHP Befehle verwendet werden(siehe Programm-Code \ref{lst:content_mysql_connect}).
@@ -115,7 +115,7 @@ Um Anfragen an einen MySQL Server senden zu können muss man diesen Syntax verwe
 	mysql_query($sql);
 ?>
 \end{lstlisting}
-In der unter \ref{lst:content_mysql_query} gezeigtem Programmsequenz ist eine Anfrage an den MySQL Server gezeigt. Wichtig ist, dass zuvor die Zeilen von Punkt \ref{lst:content_mysql_connect} stehen, damit eine Anfrage an den Server gesendet werden kann. \textit{mysql\_query} gibt bei Datenbankabfragen(SELECT,SHOW,EXPLAIN,...) das Abfrageergebnis im Erfolgsfall zurück, bei Fehlerfall FALSE. Wird ein anderer Datenbankbefehl(INSERT,DELETE,UPDATE,...) ausgeführt, so gibt die Funktion bei Erfolg TRUE und bei Misserfolg FALSE zurück.\\
+In der unter \ref{lst:content_mysql_query} gezeigtem Programmsequenz ist eine Anfrage an den MySQL Server gezeigt. Wichtig ist, dass zuvor die Zeilen von Punkt \ref{lst:content_mysql_connect} stehen, damit eine Anfrage an den Server gesendet werden kann. \textit{mysql\_query} gibt bei Datenbankabfragen(SELECT, SHOW, EXPLAIN, ...) das Abfrageergebnis im Erfolgsfall zurück, bei Fehlerfall FALSE. Wird ein anderer Datenbankbefehl(INSERT, DELETE, UPDATE, ...) ausgeführt, so gibt die Funktion bei Erfolg TRUE und bei Misserfolg FALSE zurück.\\
 Das Ergebnis ist in Zeilen aufgebaut, d.h. will man jede Zeile abarbeiten, muss man jede Zeile zum Beispiel mit einer do-while-Schleife durchlaufen. Ein interner Positionszeiger verweist auf die momentane Stelle. Die Funktionen zum Abfragen dieser Zeilen stellt den Zeiger immer eine Stelle weiter.\\
 Das Ergebnis bei einer Abfrage ist jedoch nicht in einem Format mit dem man arbeiten kann, deshalb muss dieses Ergebnis noch an weitere Funktionen weitergegeben werden. Hier die von uns am häufigsten verwendeten Funktionen:
 \begin{itemize}
@@ -199,7 +199,7 @@ Mit dieser Eingabe eines Angreifers bekommt man bei diesem Select Query immer ei
 	
 ?>
 \end{lstlisting}
-Geht man davon aus, dass die selben Werte vom Angreifer eingegeben werden, so kommt es jetzt nicht zu einem Ergebnis, da die Funktion alle nicht erlaubten Zeichen 'eliminiert'. Sie werden nicht direkt eliminiert, sondern die nicht erlaubten Zeichen werden nicht gelöscht, sondern mit einem \textbackslash maskiert. Also aus einem \textit{'} wird ein \textit{\textbackslash'}, aus einem \textit{"} wird ein \textit{\textbackslash"} usw. Dies wird mit den Zeichen ",',\textbackslash n,\textbackslash r,\textbackslash,\textbackslash x00,\textbackslash x1a gemacht.\\
+Geht man davon aus, dass die selben Werte vom Angreifer eingegeben werden, so kommt es jetzt nicht zu einem Ergebnis, da die Funktion alle nicht erlaubten Zeichen 'eliminiert'. Sie werden nicht direkt eliminiert, sondern die nicht erlaubten Zeichen werden nicht gelöscht, sondern mit einem \textbackslash maskiert. Also aus einem \textit{'} wird ein \textit{\textbackslash'}, aus einem \textit{"} wird ein \textit{\textbackslash"} usw. Die Zeichen, die mit einem Backslash maskiert werden, sind ",',\textbackslash n,\textbackslash r,\textbackslash,\textbackslash x00,\textbackslash x1a.\\
 Es können nicht nur wie oben gezeigt SELECT-Befehle verändert werden, sondern es können ganze Befehle in Befehle eingefügt werden. Dadurch kann ein Angreifer zum Beispiel einen neuen Datensatz anlegen, Datensätze löschen und so weiter.
 \begin{lstlisting}[style=custom, language=PHP, caption={MySQL Injection: Beispiel Query in Qeury},label={lst:content_mysql_sql_injection_3}]
 <?php 
