@@ -115,7 +115,7 @@ Um Anfragen an einen MySQL Server senden zu können muss man diesen Syntax verwe
 	mysql_query($sql);
 ?>
 \end{lstlisting}
-In der unter \ref{lst:content_mysql_query} gezeigtem Programmsequenz ist eine Anfrage an den MySQL Server gezeigt. Wichtig ist, dass zuvor die Zeilen von Punkt \ref{lst:content_mysql_connect} stehen, damit eine Anfrage an den Server gesendet werden kann. \textit{mysql\_query} gibt bei Datenbankabfragen(SELECT, SHOW, EXPLAIN, ...) das Abfrageergebnis im Erfolgsfall zurück, bei Fehlerfall FALSE. Wird ein anderer Datenbankbefehl(INSERT, DELETE, UPDATE, ...) ausgeführt, so gibt die Funktion bei Erfolg TRUE und bei Misserfolg FALSE zurück.\\
+In der unter \ref{lst:content_mysql_query} gezeigtem Programmsequenz ist eine Anfrage an den MySQL Server gezeigt. Wichtig ist, dass zuvor die Zeilen vom \autoref{lst:content_mysql_connect} stehen, damit eine Anfrage an den Server gesendet werden kann. \textit{mysql\_query} gibt bei Datenbankabfragen(SELECT, SHOW, EXPLAIN, ...) das Abfrageergebnis im Erfolgsfall zurück, bei Fehlerfall FALSE. Wird ein anderer Datenbankbefehl(INSERT, DELETE, UPDATE, ...) ausgeführt, so gibt die Funktion bei Erfolg TRUE und bei Misserfolg FALSE zurück.\\
 Das Ergebnis ist in Zeilen aufgebaut, d.h. will man jede Zeile abarbeiten, muss man jede Zeile zum Beispiel mit einer do-while-Schleife durchlaufen. Ein interner Positionszeiger verweist auf die momentane Stelle. Die Funktionen zum Abfragen dieser Zeilen stellt den Zeiger immer eine Stelle weiter.\\
 Das Ergebnis bei einer Abfrage ist jedoch nicht in einem Format mit dem man arbeiten kann, deshalb muss dieses Ergebnis noch an weitere Funktionen weitergegeben werden. Hier die von uns am häufigsten verwendeten Funktionen:
 \begin{itemize}
