@@ -99,8 +99,12 @@ Also wird die \# durch \%23 ausgetauscht, da die \# die Hexadezimale 23 im ASCII
 Als reserviert gelten die Zeichen ! \# \$ \% \& ' ( ) * + , / : ; = ? @ [ ]. Jedes Leerzeichen wird durch ein + ausgetauscht, welches dann jedoch nicht URL-Codiert wird.
 \paragraph{Probleme}
 \subparagraph{Typisierung} 
-Die Typisierung in PHP ist sehr flexible (dynamisch), so kann einer Variable, die zum Beispiel eine Zahl enthält, eine Zeichenkette, oder ein Array neu zugewiesen werden.\\
-Manche Standard-Funktionen in PHP haben numerische Rückgabewerte und geben den bool'schen Wert false zurück, wenn ein Fehler auftritt. Da alle Werte, die nicht 0 sind, laut Definition gleich dem bool'schen true sind, kann es zu Fehlinterpretation des Rückgabewertes kommen. Um solche Situationen so vermeiden, sollte statt auf Wertegleichheit (==) auf Äquivalenz (===), das bedeutet in diesem Zusammenhang Werte- und Typgleichheit (Bool != Integer, trotz dynamischer Typisierung), geprüft werden (Beispiel: siehe Programm-Code \ref{lst:content_php_false}).
+Die Typisierung in PHP ist sehr flexible (dynamisch), so kann einer Variable, die zum Beispiel eine Zahl enthält, 
+eine Zeichenkette, oder ein Array neu zugewiesen werden. \\
+% typwechsel einer variable ist ja eher ein horror (IMHO)
+Manche Standard-Funktionen in PHP haben numerische Rückgabewerte und geben den bool'schen Wert false zurück, 
+wenn ein Fehler auftritt. Da alle Werte, die nicht 0 sind, laut Definition gleich dem bool'schen true sind, 
+kann es zu Fehlinterpretation des Rückgabewertes kommen. Um solche Situationen so vermeiden, sollte statt auf Wertegleichheit (==) auf Äquivalenz (===), das bedeutet in diesem Zusammenhang Werte- und Typgleichheit (Bool != Integer, trotz dynamischer Typisierung), geprüft werden (Beispiel: siehe Programm-Code \ref{lst:content_php_false}).
 \begin{lstlisting}[style=custom, language=PHP,  caption={false},label={lst:content_php_false}]
 <?php 
 	$string = "Hallo Welt";
@@ -118,4 +122,15 @@ Manche Standard-Funktionen in PHP haben numerische Rückgabewerte und geben den 
 ?>
 \end{lstlisting}
 \subparagraph{Serverseitige Realisierung}
-Ein Problem und gleichzeitig auch ein Vorteil besteht darin, dass der Webserver die PHP-Datei compiliert und eine fertige HTML-Datei an den Client sendet. Der Vorteil liegt darin, dass keine Rechenleistung am Client nötig ist. Jedoch bedeutet dies auch, dass ohne neue Anfrage zum Server und daraus resultierendes Neu Laden der ganzen Seite kann sich nichts am Seitenaufbau ändern. Soll sich z.B. bei Auswählen einer Check Box etwas am Aufbau der Seite ändern, so muss entweder die Seite neu geladen werden oder man greift auf andere Technologien zurück. (siehe \ref{sec:content_js_Javascript} oder \ref{sec:content_js_AJAX})
+Ein Problem und gleichzeitig auch ein Vorteil besteht darin, dass der Webserver die PHP-Datei compiliert 
+und eine fertige HTML-Datei an den Client sendet. 
+% Das muss er weil der Browser nur HTML versteht.
+Der Vorteil liegt darin, dass keine Rechenleistung am Client nötig ist. 
+% ausser zum Rendern. Der Vorteil ist, dass Daten angezeigt werden diese aber am Client nicht vorliegen
+% z.B. Änderungszeitpunkt einer Datei oder Serveruhrzeit.
+Jedoch bedeutet dies auch, dass ohne neue Anfrage zum Server und 
+daraus resultierendes Neu Laden der ganzen Seite kann sich nichts am Seitenaufbau ändern. 
+% daraus resultierendem Neuladen 
+Soll sich z.B. bei Auswählen einer Check Box etwas am Aufbau der Seite ändern, 
+so muss entweder die Seite neu geladen werden oder man greift auf andere Technologien zurück. 
+(siehe \ref{sec:content_js_Javascript} oder \ref{sec:content_js_AJAX})
