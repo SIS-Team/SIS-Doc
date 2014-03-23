@@ -33,7 +33,7 @@ Die session-ID ist eine 128 Bit lange Zahl die zufällig generiert wird. Diese m
 \paragraph{Kommunikation mit Server}
 PHP hat auch eine Möglichkeit, um diverse Daten dem Server zu 
 senden, diese können von der zu empfangenden Webseite verarbeitet werden.\\\\
-Diese Funktion wird vor allem bei Formularen eingesetzt, um die User-Interaktion mit der Seite zu steuern. Es wird auch dazu verwendet um auf einer Seite zu navigieren oder ein Login bereitzustellen. Jedoch muss man im Bereich im wesentlichen in 2 Teile unterteilen:
+Diese Funktion wird vor allem bei Formularen eingesetzt, um die User-Interaktion mit der Seite zu steuern. Es wird auch dazu verwendet um auf einer Seite zu navigieren oder ein Login bereitzustellen. Jedoch muss man in diesem Bereich im wesentlichen zwischen 2 Teile unterscheiden:
 \begin{itemize}
     \item POST
     \item GET
@@ -41,18 +41,19 @@ Diese Funktion wird vor allem bei Formularen eingesetzt, um die User-Interaktion
 \subparagraph{POST}
 Bei POST werden die mitgegebenen Daten nicht an die URL angefügt, wie bei GET, aber dazu später, sondern werden im Body Teil der HTTP/S Anfrage an den Server. (siehe Programm-Code \ref{lst:content_php_HTTP_POST}) Dies hat den großen Vorteil, dass die mitgegebenen Daten praktisch eine unbegrenzte Größe haben können. Dadurch können auch lange Texte, Bilder, Dateien usw. an den Server gesendet werden. Ein weiterer Vorteil liegt darin, dass der User die eingegebenen Daten nicht sieht, d.h. gibt er ein Passwort ein so ist es für ihn nicht einsehbar. Dies schützt jedoch nicht vor Angreifer, die die HTTP Anfragen mitschneiden, deshalb verwendet man beim Senden von Passwörtern immer HTTPS.\\
 Im Beispiel Programm-Code \ref{lst:content_php_POST} ist ein kleine Eingabe von einem Text möglich. Bei drücken des Buttons Speichern wird an den Server eine Anfrage gestellt, dass die gleiche Seite nochmals aufgerufen werden sollte, jedoch werden POST Variablen mitgegeben. Diese wertet die Seite mit dem PHP Teil aus und gibt den eingegebenen Text aus. Da dieser Text beliebig lang sein kann, muss POST verwendet werden. Warm siehe Punkt GET.
-\begin{lstlisting}[style=custom, caption={Ausschnitt HTTP-Body},label={lst:content_php_HTTP_POST}]
-GET /login/index.php	//Angefragte Seite
+\begin{lstlisting}[style=custom, caption={Ausschnitt HTTP POST Request},label={lst:content_php_HTTP_POST}]
+POST /login/index.php	//Angefragte Seite
 HOST sis.htlinn.ac.at	//Host
-.	//Weitere Informationen
-.	//Weitere Informationen
-.	//Weitere Informationen
+	//Weitere Informationen
+	//Weitere Informationen
+	//Weitere Informationen
+	//leere Zeile - Trennt Header von Body ab
 user=20091234&password=passwort&send=1	//POST-Parameter
 \end{lstlisting}
 \begin{lstlisting}[style=custom, language=PHP, caption={Beispiel POST},label={lst:content_php_POST}]
 <html>
-<header>
-</header>
+<head>
+</head>
 <body>
 <?php
 
@@ -74,8 +75,8 @@ Bei GET werden die mitgegebenen Parameter direkt an die URL angehängt, um dies 
 Bei GET besteht die Grenze der Datenlänge darin, dass eine URL nur ca. 2000 lang sein darf, dies ist Browser und Server abhängig, aber 2000 Zeichen funktioniert bei allen Server-Client Kombinationen.
 \begin{lstlisting}[style=custom, language=PHP,  caption={Beispiel GET},label={lst:content_php_GET}]
 <html>
-<header>
-</header>
+<head>
+</head>
 <body>
 <?php
 
@@ -92,6 +93,10 @@ else	//Wenn sie leer ist
 </body>
 </html>
 \end{lstlisting}
+\subparagraph{URL-Encoding}
+Die POST und GET Daten die an den Webserver gesendet werden, werden nicht exakt mit den Zeichen übertragen, die man zum Beispiel in ein Textfeld eingibt. Dies hat den Hintergrund, dass einige Zeichen reserviert sind und deshalb nicht in den GET oder POST Daten vorkommen dürfen. Um dies zu verhindern werden diese Zeichen mit anderen ausgetauscht. Dazu wird die Darstellung mit einem \% verwendet. Dabei wird das Zeichen mit der im entsprechendem Hexadezimalen ASCII Code und einem \% ausgetauscht.\\
+Also wird die \# durch \%23 ausgetauscht, da die \# die Hexadezimale 23 im ASCII-Code darstellt.\\
+Als reserviert gelten die Zeichen ! \# \$ \% \& ' ( ) * + , / : ; = ? @ [ ]. Jedes Leerzeichen wird durch ein + ausgetauscht, welches dann jedoch nicht URL-Codiert wird.
 \paragraph{Probleme}
 \subparagraph{Typisierung} 
 Die Typisierung in PHP ist sehr flexible (dynamisch), so kann einer Variable, die zum Beispiel eine Zahl enthält, eine Zeichenkette, oder ein Array neu zugewiesen werden.\\
