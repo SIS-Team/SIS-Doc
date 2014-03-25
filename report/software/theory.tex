@@ -1,3 +1,6 @@
 Die GPIO-Pins lassen sich über virtuelle Dateien des Linux-Kernels ansteuern. Somit liegt hier kein Problem vor.\\
 \\
-Das größere Problem ist das Verteilen der Befehle auf alle Raspberry Pis. Da das Benutzerinterface sowieso in SIS integriert werden soll, liegt der Gedanke nahe, auch die Verteilung der Befehle über SIS zu managen.
+Das größere Problem ist das Verteilen der Befehle auf alle Raspberry Pis. Da das Benutzerinterface sowieso in SIS integriert werden soll, liegt der Gedanke nahe, auch die Verteilung der Befehle über SIS zu managen.\\
+Das Team entschied sich dafür, in einem vorbestimmten Zeitinterval am Server anzufragen, welchen Zustand der Monitor einnehmen soll (eingeschaltet oder ausgeschaltet). Sollte der Server nicht erreichbar sein, so soll der aktuelle Zustand beibehalten werden.\\
+\\
+Zwar gehört die Darstellungsfrage und Konfigurationsfrage von der Aufgabenstellung her nicht zu diesem Projekt. Allerdings passt es thematisch hierher und soll ebenfalls hier behandelt werden.\\
