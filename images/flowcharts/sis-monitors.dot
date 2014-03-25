@@ -1,0 +1,27 @@
+digraph flowchart {
+	rankdir=TB;
+
+	Start[shape="box", style=rounded];
+	"Monitor ein?"[shape="diamond", style=""];
+	"X11 restart?"[shape="diamond", style=""];
+	
+	node[shape="parallelogram", style=""]
+	
+	Start -> "Lese Monitornamen";
+	"Lese Monitornamen" -> "Lade Monitor-API (display)";
+	
+	"Lade Monitor-API (display)" -> "Monitor ein?";
+	"Monitor ein?" -> "exec monitorOff"[label="nein"];
+	"Monitor ein?" -> "exec monitorOn"[label="ja"];
+	"exec monitorOff" -> "Lade Monitor-API (restart)";
+	"exec monitorOn" -> "Lade Monitor-API (restart)";
+	
+	"Lade Monitor-API (restart)" -> "X11 restart?";
+	"X11 restart?" -> "Schlafe 10s"[label="nein"];
+	"X11 restart?" -> "Beende xinit"[label="ja"];
+	"Beende xinit" -> "exec sis-x";
+	"exec sis-x" -> "Schlafe 20s";
+	"Schlafe 20s" -> "Schlafe 10s";
+	"Schlafe 10s" -> "Lade Monitor-API (display)"[label="loop"];
+	
+}
