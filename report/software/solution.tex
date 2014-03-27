@@ -8,7 +8,7 @@ Damit kein Tool für den automatischen Login installiert werden muss, wird der D
 gesetzt (Dies kann durch Modifikation des Schlüssels \enquote{initdefault} in der Datei /etc/inittab erreicht werden. Siehe \autoref{lst:report_attachment_inittab}, Seite \pageref{lst:report_attachment_inittab}.) und der X-Server manuell gestartet.\\
 Das Starten des X-Servers wird durch das Script /usr/bin/sis-x initialisiert.
 
-\lstinputlisting[style=custom, language=sh, caption={/usr/bin/sis-x}, label={lst:report_software_sis-x}]{sources/raspberry/sis-x}
+\lstinputlisting[style=custom, language=sh, caption={/usr/bin/sis-x}, label={lst:report_software_sis-x}]{sources/raspberry/sis-x.x}
 
 Wie in \autoref{lst:report_software_sis-x} ersichtlich ist, wird überprüft, ob das Script als root gestartet wurde. Wenn dies der Fall sein sollte, dann startet das Script sich selbst mit Benutzerkennung \enquote{pi} neu, wechselt in das Heimverzeichnis des Benutzers (statisch eingetragen als /home/pi) und initialisiert mit dem Befehl \enquote{startx} einen neuen X-Server.\\
 \\
@@ -27,9 +27,9 @@ In dieser passiert folgendes:
 \subsubsection{GPIO}
 Für die Ansteuerung der GPIO Pins werden zwei Shell-Scripts verwendet.
 
-\lstinputlisting[style=custom, language=sh, caption={/usr/bin/monitorOn}, label={lst:report_software_monitorsOn}]{sources/raspberry/monitorOn}
+\lstinputlisting[style=custom, language=sh, caption={/usr/bin/monitorOn}, label={lst:report_software_monitorsOn}]{sources/raspberry/monitorOn.x}
 
-\lstinputlisting[style=custom, language=sh, caption={/usr/bin/monitorOff}, label={lst:report_software_monitorsOff}]{sources/raspberry/monitorOff}
+\lstinputlisting[style=custom, language=sh, caption={/usr/bin/monitorOff}, label={lst:report_software_monitorsOff}]{sources/raspberry/monitorOff.x}
 
 Zuerst wird geprüft, ob derausführende Benutzer root ist. Dies hat den Grund, dass nur root auf das GPIO-System schreiben darf.\\
 Danach wird mit der Zeile 8 der GPIO-Pin 4 aktiviert. Der Pipe-Operator \enquote{2>\&1} dient dazu, dass etwaige Fehlermeldungen nicht ausgegeben werden (diese entstehen, wenn der Pin bereits als GPIO-Pin verwendet wird).\\
