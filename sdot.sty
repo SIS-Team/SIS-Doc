@@ -18,7 +18,7 @@
 % 1 - parameters for tikzpicture (optional; default value is "scale=1")
 % 2 - filename of dot file (without extention)
 
-\newcommand{\fdot}[3][scale=1]{ 
+\newcommand{\fdot}[2][scale=1]{ 
 	\immediate\write18{dot2tex --figonly --graphstyle="#1" #2.dot > #2.tex}
 	\IfFileExists{#2.tex}{
 		% the tex exists: include it 
