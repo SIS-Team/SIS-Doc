@@ -1,0 +1,25 @@
+\subsection{Benutzermanagement}
+In der Schule sind im Wesentlichen 4 Berechtigungsstufen vorhanden.
+\begin{itemize}
+	\item Schüler
+	\item Lehrer
+	\item Abteilungs-Vorstände
+	\item Administratoren
+\end{itemize}
+Diese Gliederung wird 1:1 in SIS übertragen, allerdings wird zusätzlich eine Gruppe für die \enquote{Newsbeauftragten}, welche gegenüber den Schülern/Lehrern zusätzlich die Berechtigung haben, den Abteilungsvorständen News vorzuschlagen, vorgesehen.\\
+Da die Benutzer-Authentifizierung über den LDAP-Server läuft, liegt der Gedanke nahe, dass auch die Autorisierung über LDAP laufen könnte.\\
+Da alle Lehrer automatisch im eDirectory-Container ou=LEHRER,o=HTLinn und die Schüler automatisch im eDirectory-Container ou=STUDENTS,o=HTLinn liegen, lässt sich anhand des DN des Benutzers ausgelesen werden, ob es sich um einen Lehrer oder um einen Schüler handelt.\\
+\subsubsection{eDirectory-Gruppen}
+Für alle weiteren logischen Gruppen werden vom eDirectory-Administrator auch dementsprechende eDirectory-Gruppen erstellt:
+\begin{itemize}
+	\item cn=SIS-SuperUser,ou=SIS,o=HTL1
+	\item cn=SIS-News,ou=SIS,o=HTL1
+	\item cn=SIS-Admin-E,ou=SIS,o=HTL1
+	\item cn=SIS-Admin-M,ou=SIS,o=HTL1
+	\item cn=SIS-Admin-N,ou=SIS,o=HTL1
+	\item cn=SIS-Admin-W,ou=SIS,o=HTL1
+\end{itemize}
+Es ist prinzipiell möglich, dass ein Benutzer Mitglied mehrerer eDirectory-Gruppen ist.\\
+\subsubsection{Verwendung}
+Meldet sich ein Benutzer an, so werden seine Berechtigungen (sprich Gruppen-Zugehörigkeiten) am LDAP-Server abgefragt und in der PHP-Session gespeichert. Auch, ob es sich um einen Lehrer handelt, wird in der Session gespeichert. Dies hat den Vorteil, dass nur einmal die Berechtigungen abgefragt werden müssen.\\
+Jedes PHP-Script kann die Berechtigungen über die PHP-Session abfragen und mehr oder weniger autonom entscheiden, welche Berechtigungen der Benutzer erhält.
