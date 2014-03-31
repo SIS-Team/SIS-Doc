@@ -7,7 +7,7 @@ Alle im Folgendem beschriebenen Eingaben sind ausschließlich für den Super Use
 \end{figure}
 \subsection{Stunden}
 Sollte es aus irgendeinem Grund dazu kommen, dass es mehr Stunden gibt oder sich die Start- und End-Zeiten der Stunden ändern kann dies hier vorgenommen werden.\\
-Aus Sicherheitsgründen können Stunden nicht gelöscht werden, da es bei unabsichtlichem dazu kommt, dass die ganze Stundenpläne und Supplierpläne nicht mehr funktionieren. Deshalb eben diese Sicherheitsmaßnahme.\\
+Aus Sicherheitsgründen können Stunden nicht gelöscht werden, da es bei unabsichtlichem Löschen dazu kommt, dass die ganze Stundenpläne und Supplierpläne nicht mehr funktionieren. Deshalb eben diese Sicherheitsmaßnahme.\\
 Die Eingabe ist so aufgebaut, dass man mit den Buttons rechts und links den Wochentag auswählen kann. Hat mn den Wochentag ausgewählt, so sind die Stunden dieses Wochentages zu sehen. Alle Felder sind bei einer neuen Stunde einzutragen, d.h. es muss jedes Feld ausgefüllt werden. Die Eingabemaske (siehe \autoref{fig:instr_other_hours}) sieht so aus, dass das Erste Feld den Namen der Stunde, nummerisch nummeriert, angibt. Dann kommt die Start-Zeit und anschließend die End-Zeit. Zum Abschluss muss Übernehmen geklickt werden.\\
 Das löschen ist, wie oben beschrieben, nicht möglich, jedoch das verändern von vorhandenen Stunden ist möglich. 
 \begin{figure}[H]
@@ -67,7 +67,7 @@ Soll nun eine Teilung eingegeben werden, muss zuerst die Anzahl der Teilungen ei
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/timetables_input_divide7.png}
-\caption{Beispiel Mehrstündige Stunden}
+\caption{Beispiel Teilungen}
 \label{fig:instr_other_timetables_divide7}
 \end{figure}
 Jede eigene Zeile muss mit Übernehmen bestätigt werden. Gelöscht kann jedoch nur ein ganzer Block werden. Dies muss mit einem Hacken bei Löschen und anschließendem klicken auf Übernehmen erfolgen.
@@ -80,7 +80,7 @@ Es können prinzipiell ganze Stundenblöcke gelöscht werden, jedoch gibt es noc
 \label{fig:instr_other_timetables_delete}
 \end{figure}
 \subsection{Lehrer}
-Dieser Punkt ist dazu da, dass man Lehrer bearbeiten und hinzufügen kann. Auch hier ist es nicht möglich Lehrer zu löschen, da es wie bei Stunden zu großen Problemen kommen kann. Jedoch gibt es eine ähnliche Funktion, diese nennt sich Unsichtbar. Alle unsichtbar gemachten Lehrer werden in der Liste ganz unten gereiht und scheinen auch in den Dropdown Menüs nicht auf. Unsichtbar gemachte Lehrer können auch wieder reaktiviert werden. Dazu muss nur der Hacken bei unsichtbar entfernt werden und anschließend mit Übernehmen bestätige.\\
+Dieser Punkt ist dazu da, dass man Lehrer bearbeiten und hinzufügen kann. Auch hier ist es nicht möglich Lehrer zu löschen, da es wie bei Stunden zu großen Problemen kommen kann. (siehe \autoref{sec:instr_other_hidden})\\
 Im Feld Name muss der vollständige Name des Lehrers eingegeben werden, im Feld Kürzel wird das Lehrer-Kürzel eingetragen, im Feld Kurzname muss ein verkürzter Name eingegeben werden, dieser wird zum Beispiel bei den Supplierungen am Display angezeigt. Im Feld Stammabteilung kann eine Abteilung eingegeben werden, dies ist jedoch optional, da nicht jeder Lehrer eine Stammabteilung hat. Wie schon erwähnt ist der Hacken für unsichtbar zum stilllegen eines Lehrers gut. (Eingabemaske siehe \autoref{fig:instr_other_teacher}) Sollen vorhandene Daten geädert werden, so kann man den vorhandenen Lehrer abändern un mit Übernehmen speichern.
 \begin{figure}[H]
 \centering
@@ -89,7 +89,7 @@ Im Feld Name muss der vollständige Name des Lehrers eingegeben werden, im Feld 
 \label{fig:instr_other_teacher}
 \end{figure}
 \subsection{Fächer}
-Müssen Fächer abgeändert oder hinzugefügt werden, so ist dies mit diesem Punkt möglich. Hier gilt wieder, das Fach kann nur unsichtbar gemacht werden.\\
+Müssen Fächer abgeändert oder hinzugefügt werden, so ist dies mit diesem Punkt möglich. Hier gilt wieder, das Fach kann nur unsichtbar gemacht werden. (siehe \autoref{sec:instr_other_hidden})\\
 Im Feld Name wird der vollständige Name des Faches eingetragen, im Feld Kürzel wird die Kurzbezeichnung des Faches eingegeben, welche in den Stundenpläne, Supplierpläne und so weiter sichtbar sind. Die Eingabe kann jeweils mit Übernehmen gesichert werden. Wie bei allen Eingabemasken können auch vorhandene Einträge bearbeitet werden, die abgeänderte Daten müssen mit übernehmen gesichert werden. (Eingabemaske siehe \autoref{fig:instr_other_subjects})
 \begin{figure}[H]
 \centering
@@ -155,7 +155,7 @@ In dieser Statistik werden die Nutzer nach ihrer Abteilung aufgeteilt, dabei wer
 \label{fig:instr_other_statistics_sections}
 \end{figure}
 \subsubsection{Supplierunen}
-In dieser Statistik wird dargestellt welche Seite die User am häufigsten benützen, um die Supplierungen anzusehen. Dabei wird der Supplierplan im Web, Supplierplan in der App und der modifizierte Stundenplan im Web. (siehe \autoref{fig:instr_other_statistics_substitudes})
+In dieser Statistik wird dargestellt welche Seite die User am häufigsten benützen, um die Supplierungen anzusehen. Dabei wird der Supplierplan im Web, Supplierplan in der App , der modifizierte Stundenplan in der App und der modifizierte Stundenplan im Web analysiert. (siehe \autoref{fig:instr_other_statistics_substitudes})
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=8cm]{images/screenshots/statistics_substitudes.png}
@@ -209,8 +209,35 @@ In dieser Statistik wird dargestellt, wie viele Seitenaufrufe jeden Tag verursac
 \label{fig:instr_other_statistics_views_day_zoom}
 \end{figure}
 \subsection{Räume}
-asd
+Sollen neue Räume hinzugefügt werden oder bestehende geändert werden, dann kann dies in dieser Eingabe vorgenommen werden. Der unterschied zu den anderen Eingaben ist, dass man Räume nicht löschen oder unsichtbar machen kann, da ein Raum üblicherweise nicht entfernt wird. Sollte es jedoch doch einmal zu einem Fall kommen, dass ein Raum entfernt werden soll, so kann dies nicht gemacht werden. Dieser Raum scheint trotzdem in der Liste auf.\\
+Im Feld Name wird der Raumname eingetragen und im Feld zuständiger Lehrer kann ein für diesen Raum verantwortlicher Lehrer eingetragen werden, dieses Feld ist jedoch optional und muss nicht verwendet werden. Mit Übernehmen werden die Daten gespeichert. (Eingabemaske siehe \autoref{fig:instr_other_room_input})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=10cm]{images/screenshots/rooms_input.png}
+\caption{Eingabemaske Räume}
+\label{fig:instr_other_room_input}
+\end{figure}
 \subsection{Klassen}
-asd
+Sollen Klassen verändert oder neue hinzugefügt werden, so kann dies in dieser Eingabemaske vorgenommen werden. Klassen können auch nicht gelöscht werden, jedoch können diese unsichtbar gemacht werden. (siehe \autoref{sec:instr_other_hidden}) Da es vorkommen kann dass in einem Jahr eine Klasse nicht gibt, aber im nächsten Jahr.\\
+Im ersten Feld Name kann der Name der Klasse eingegeben werden, im Feld Abteilung wird der Klasse eine Abteilung zugewiesen, im Feld Klassenvorstand wird der Klasse ein Klassenvorstand zugewiesen. Hat die Klasse eine Stammklasse kann auch diese angegeben werden. Als Scheinklasse können den Wanderklassen der Raum WK zugewiesen werden, jedoch ist dieses Feld optional und muss nicht angegeben werden. Das Klassenvorstand Feld ist ebenfalls optional. (Eingabemaske siehe \autoref{fig:instr_other_classes_input})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/classes_input.png}
+\caption{Eingabemaske Klassen}
+\label{fig:instr_other_classes_input}
+\end{figure}
 \subsection{Abteilungen}
-ad
+Kommt es vor, dass sich ein Name einer Abteilung ändert oder es kommt eine neue Abteilung hinzu, so kann dies in dieser Eingabe vorgenommen werden. Abteilungen können weder gelöscht noch unsichtbar gemacht werden. (siehe \autoref{sec:instr_other_hidden})\\
+Im ersten Feld Name wird der Name der Abteilung eingegeben, im Feld Kürzel wird das Kürzel der Abteilung eingegeben und im Feld Abteilungsvorstand wird der Abteilungsvorstand eingegeben. Mit Übernehmen müssen die Daten gespeichert werden. (Eingabemaske siehe \autoref{fig:instr_other_sections_input})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/sections_input.png}
+\caption{Eingabemaske Abteilungen}
+\label{fig:instr_other_sections_input}
+\end{figure}
+\subsection{Unsichtbar}\label{sec:instr_other_hidden}
+Aus Sicherheitsgründen können manche Daten nicht gelöscht werden, da es bei unabsichtlichem Löschen dazu kommt, dass andere Daten nicht mehr vollständig sind und deshalb das ganze System zusammenbrechen kann.\\
+Deshalb gibt es in manchen Eingaben keine Lösch-Funktion, in manchen gibt es jedoch eine Unsichtbar-Funktion. Mit dieser Funktion werden die Daten in der Eingabe ganz nach unten gereiht und werden in den DropDown Menüs nicht mehr angezeigt.\\
+Unsichtbar gemachte Daten können auch wieder reaktiviert werden.
+\subsection{DropDown-Menüs}
+In den meisten Eingaben sind den Textfeldern Daten hinterlegt, welche bei beginn mit dem eintippen schon die möglichen Daten anzeigt. wird bei Ende der Eingabe kein Vorschlag angezeigt so kann man davon ausgehen, dass der Eingegebene Wert nicht vorhanden ist. Diese Funktion ist jedoch nicht bei jedem Textfeld verfügbar.
