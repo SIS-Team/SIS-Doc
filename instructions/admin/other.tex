@@ -76,15 +76,138 @@ Es können prinzipiell ganze Stundenblöcke gelöscht werden, jedoch gibt es noc
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=5cm]{images/screenshots/timetables_input_delete.png}
-\caption{Beispiel Mehrstündige Stunden}
+\caption{Löschen}
 \label{fig:instr_other_timetables_delete}
 \end{figure}
 \subsection{Lehrer}
-ad
+Dieser Punkt ist dazu da, dass man Lehrer bearbeiten und hinzufügen kann. Auch hier ist es nicht möglich Lehrer zu löschen, da es wie bei Stunden zu großen Problemen kommen kann. Jedoch gibt es eine ähnliche Funktion, diese nennt sich Unsichtbar. Alle unsichtbar gemachten Lehrer werden in der Liste ganz unten gereiht und scheinen auch in den Dropdown Menüs nicht auf. Unsichtbar gemachte Lehrer können auch wieder reaktiviert werden. Dazu muss nur der Hacken bei unsichtbar entfernt werden und anschließend mit Übernehmen bestätige.\\
+Im Feld Name muss der vollständige Name des Lehrers eingegeben werden, im Feld Kürzel wird das Lehrer-Kürzel eingetragen, im Feld Kurzname muss ein verkürzter Name eingegeben werden, dieser wird zum Beispiel bei den Supplierungen am Display angezeigt. Im Feld Stammabteilung kann eine Abteilung eingegeben werden, dies ist jedoch optional, da nicht jeder Lehrer eine Stammabteilung hat. Wie schon erwähnt ist der Hacken für unsichtbar zum stilllegen eines Lehrers gut. (Eingabemaske siehe \autoref{fig:instr_other_teacher}) Sollen vorhandene Daten geädert werden, so kann man den vorhandenen Lehrer abändern un mit Übernehmen speichern.
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/teachers_input.png}
+\caption{Eingabemaske Lehrer}
+\label{fig:instr_other_teacher}
+\end{figure}
 \subsection{Fächer}
-asd
+Müssen Fächer abgeändert oder hinzugefügt werden, so ist dies mit diesem Punkt möglich. Hier gilt wieder, das Fach kann nur unsichtbar gemacht werden.\\
+Im Feld Name wird der vollständige Name des Faches eingetragen, im Feld Kürzel wird die Kurzbezeichnung des Faches eingegeben, welche in den Stundenpläne, Supplierpläne und so weiter sichtbar sind. Die Eingabe kann jeweils mit Übernehmen gesichert werden. Wie bei allen Eingabemasken können auch vorhandene Einträge bearbeitet werden, die abgeänderte Daten müssen mit übernehmen gesichert werden. (Eingabemaske siehe \autoref{fig:instr_other_subjects})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/subjects_input.png}
+\caption{Eingabemaske Fächer}
+\label{fig:instr_other_subjects}
+\end{figure}
 \subsection{Statistiken}
-asd
+Um die Nutzung und um zu sehen, ob unser Service auch bei den Nutzern angenommen wird, haben wir uns beschlossen außerhalb des vorgegeben Pflichtenheftes eine Statistik anzulegen. Im Folgendem werden die einzelnen Diagramme beschrieben. Wichtig ist, dass wir, das Entwicklerteam ausgenommen sind, da dies die ganze Statistik verfälschen würde.\\
+Im linken oberen Bereich können die Statistiken mit einem Klick auf Reload neu geladen werden. (siehe \autoref{fig:instr_other_statistics_header})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/statistics_header.png}
+\caption{Statistiken Reload}
+\label{fig:instr_other_statistics_header}
+\end{figure}
+\subsubsection{Browser PC}
+In dieser Statistik sind die Browser der Geräte dargestellt, welche die PC Seiten aufrufen. (siehe \autoref{fig:instr_other_statistics_browser_PC})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=8cm]{images/screenshots/statistics_browser_PC.png}
+\caption{Browser PC}
+\label{fig:instr_other_statistics_browser_PC}
+\end{figure}
+\subsubsection{Geräte PC}
+In dieser Statistik sind die Geräte bzw. Betriebssysteme der Geräte dargestellt, welche die PC Seiten aufrufen. (siehe \autoref{fig:instr_other_statistics_os_PC})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=8cm]{images/screenshots/statistics_os_PC.png}
+\caption{Geräte PC}
+\label{fig:instr_other_statistics_os_PC}
+\end{figure}
+\subsubsection{Browser Mobil}
+In dieser Statistik sind die Browser der Geräte dargestellt, welche die App aufrufen. (siehe \autoref{fig:instr_other_statistics_browser_Mob})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=8cm]{images/screenshots/statistics_browser_Mob.png}
+\caption{Browser Mobil}
+\label{fig:instr_other_statistics_browser_Mob}
+\end{figure}
+\subsubsection{Geräte Mobil}
+In dieser Statistik sind die Geräte bzw. Betriebssysteme der Geräte dargestellt, welche die App Seiten aufrufen. (siehe \autoref{fig:instr_other_statistics_os_Mob})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=8cm]{images/screenshots/statistics_os_Mob.png}
+\caption{Browser PC}
+\label{fig:instr_other_statistics_os_Mob}
+\end{figure}
+\subsubsection{Nutzer}
+In dieser Statistik sind die Nutzer nach den Schulstufen und nach den Lehrern aufgeteilt. Hier kann herausgelesen werden welcher Jahrgang den Service am häufigsten nutzt. (siehe \autoref{fig:instr_other_statistics_user})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=8cm]{images/screenshots/statistics_user.png}
+\caption{Nutzer}
+\label{fig:instr_other_statistics_user}
+\end{figure}
+\subsubsection{Abteilungen}
+In dieser Statistik werden die Nutzer nach ihrer Abteilung aufgeteilt, dabei werden nur die Schüler gezählt. Hier kann herausgelesen werden welche Abteilung den Service am häufigsten nutzt. (siehe \autoref{fig:instr_other_statistics_sections})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=8cm]{images/screenshots/statistics_sections.png}
+\caption{Abteilungen}
+\label{fig:instr_other_statistics_sections}
+\end{figure}
+\subsubsection{Supplierunen}
+In dieser Statistik wird dargestellt welche Seite die User am häufigsten benützen, um die Supplierungen anzusehen. Dabei wird der Supplierplan im Web, Supplierplan in der App und der modifizierte Stundenplan im Web. (siehe \autoref{fig:instr_other_statistics_substitudes})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=8cm]{images/screenshots/statistics_substitudes.png}
+\caption{Supplierungen}
+\label{fig:instr_other_statistics_substitudes}
+\end{figure}
+\subsubsection{App/Web}
+In dieser Statistik wird die App und die Webseite gegenübergestellt und man kann auslesen welcher Dienst öfters genutzt wird. (siehe \autoref{fig:instr_other_statistics_app_web})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=8cm]{images/screenshots/statistics_app_web.png}
+\caption{App/Web}
+\label{fig:instr_other_statistics_app_web}
+\end{figure}
+\subsubsection{Seiten Web}
+In dieser Statistik wird dargestellt welche Seiten die User auf der Webseite am häufigsten besuchen. (siehe \autoref{fig:instr_other_statistics_sites_web})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=8cm]{images/screenshots/statistics_sites_web.png}
+\caption{Seiten Web}
+\label{fig:instr_other_statistics_sites_web}
+\end{figure}
+\subsubsection{Seiten App}
+In dieser Statistik wird dargestellt welche Seiten die User in der App am häufigsten besuchen. (siehe \autoref{fig:instr_other_statistics_sites_app})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=8cm]{images/screenshots/statistics_sites_app.png}
+\caption{Seiten App}
+\label{fig:instr_other_statistics_sites_app}
+\end{figure}
+\subsubsection{Seitenaufrufe Stunden}
+In dieser Statistik wird dargestellt, wie viele Seitenaufrufe im Durchschnitt in welcher Stunde am Tag auftreten. (siehe \autoref{fig:instr_other_statistics_view_day})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/statistics_views_hour.png}
+\caption{Seitenaufrufe Stunden}
+\label{fig:instr_other_statistics_view_day}
+\end{figure}
+\subsubsection{Seitenaufrufe täglich}
+In dieser Statistik wird dargestellt, wie viele Seitenaufrufe jeden Tag verursacht werden. (siehe \autoref{fig:instr_other_statistics_views_day}) Hier kann auch, um bei vielen Tagen den Überblick zu beschaffen, in die Tage hineingezoomt werden. Dies macht man in dem man mit der rechten Maustaste ein gewünschtes Fenster aufzieht. Heraus zoomen kann mit einem doppelten rechts Klick gemacht werden. (siehe \autoref{fig:instr_other_statistics_views_day_zoom})
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/statistics_views_day.png}
+\caption{Seitenaufrufe täglich}
+\label{fig:instr_other_statistics_views_day}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/statistics_views_day_zoom.png}
+\caption{Seitenaufrufe täglich zoomen}
+\label{fig:instr_other_statistics_views_day_zoom}
+\end{figure}
 \subsection{Räume}
 asd
 \subsection{Klassen}
