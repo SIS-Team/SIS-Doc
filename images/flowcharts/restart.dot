@@ -1,0 +1,16 @@
+digraph flowchart {
+	rankdir=TB;
+
+	Start[shape="box", style=rounded];
+	Exit[shape="box", style=rounded];
+	"Datei /tmp/restartx.ex existiert?"[shape="diamond", style=""];
+	
+	node[shape="parallelogram", style=""]
+	
+	Start -> "Datei /tmp/restartx.ex existiert?";
+	"Datei /tmp/restartx.ex existiert?" -> "echo kill"[label="ja"];
+	"Datei /tmp/restartx.ex existiert?" -> "echo false"[label="nein"];
+	"echo kill" -> Exit;
+	"echo false" -> Exit;
+	
+}
