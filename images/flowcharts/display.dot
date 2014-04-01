@@ -2,6 +2,7 @@ digraph flowchart {
 	rankdir=TB;
 
 	Start[shape="box", style=rounded];
+	"exit"[shape="box", style=rounded];
 	"Monitor existiert?"[shape="diamond", style=""];
 	"Displaymodus permantent ein?"[shape="diamond", style=""];
 	"Displaymodus permantent aus?"[shape="diamond", style=""];
@@ -16,11 +17,11 @@ digraph flowchart {
 	"Monitor existiert?" -> "echo none"[label="nein"];
 	"Monitor existiert?" -> "Displaymodus permantent ein?"[label="sonst"];
 	"Displaymodus permantent ein?" -> "echo true"[label="ja"];
-	"Displaymodus permantent ein?" -> "Displaymodus permantent aus?"[label="sonst"];
+	"Displaymodus permantent ein?" -> "Displaymodus permantent aus?"[label="nein"];
 	"Displaymodus permantent aus?" -> "echo false"[label="ja"];
-	"Displaymodus permantent aus?" -> "Wochentag >= 6 (Wochenende)?"[label="sonst"];
+	"Displaymodus permantent aus?" -> "Wochentag >= 6 (Wochenende)?"[label="nein"];
 	"Wochentag >= 6 (Wochenende)?" -> "echo false"[label="ja"];
-	"Wochentag >= 6 (Wochenende)?" -> "ein: Einschaltzeit von Datenbank"[label="sonst"];
+	"Wochentag >= 6 (Wochenende)?" -> "ein: Einschaltzeit von Datenbank"[label="nein"];
 	"ein: Einschaltzeit von Datenbank" -> "aus: Ausschaltzeit von Datenbank";
 	"aus: Ausschaltzeit von Datenbank" -> "jetzt: aktueller Timestamp";
 	"jetzt: aktueller Timestamp" -> "jetzt: wenn Sommerzeit: + 1 Tag";
