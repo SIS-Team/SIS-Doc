@@ -38,11 +38,11 @@ Diese Eingabe, kann dann gut verwendet werden, wenn in einer Klasse ein Lehrer f
 Prinzipiell funktioniert diese Eingabevariante nur wenn der Lehrer in dieser Stunde fehlt und dann eine Supplierung eingetragen werden soll. Mit dieser Eingabevariante kann jedoch nur eine Supplierung eingetragen werden, es ist nicht möglich die Stunde zu verschieben oder ausfallen zu lassen.\\\\
 Von den Eingabefeldern ist die Eingabe der Klasse und des Supplierlehrers verpflichtend. Weiteres muss die Start- und End-Stunde angegeben werden. Fach, Raum und Kommentar sind optionale Eingabefelder. (siehe \autoref{fig:instr_substitudes_subNoFree})
 \subsection{Freie Eingabe}\label{sec:instr_admin_sub_Free}
-Diese Eingabe ist dafür da, dass man auch eine Supplierung eintragen kann wenn der ursprüngliche Lehrer nicht fehlt. Diese Eingaben funktionieren immer. Um diese Methode zu wählen muss ein Hacken bei freie Eingabe setzen. Anschließend kommen neue Felder hinzu. Direkt unter der Check Box gibt es drei Radio Buttons. Diese werden zur Auswahl der Eingabemethode bei der Freien Eingabe verwendet. Wird ein Radio Button ausgewählt ändert sich die Konstellation der Eingabefelder.
+Diese Eingabe ist dafür da, dass man auch eine Supplierung eintragen kann, wenn der ursprüngliche Lehrer nicht fehlt. Diese Eingaben funktionieren immer. Um diese Methode zu wählen muss ein Hacken bei freie Eingabe gesetzt werden. Anschließend kommen neue Felder hinzu. Direkt unter der Check Box gibt es drei Radio Buttons. Diese werden zur Auswahl der Eingabemethode bei der Freien Eingabe verwendet. Wird ein Radio Button ausgewählt ändert sich die Konstellation der Eingabefelder.
 \subsubsection{Verschieben}\label{sec:instr_admin_sub_move}
-In dieser Eingabevariante können Stunden einer Klasse innerhalb eines Tages verschoben werden. Außerdem muss diese Variante auch verwendet werden, wenn zum Beispiel 2 oder mehr Lehrer in einer Klasse zur selben Zeit fehlen und genau geregelt ist, welcher Supplierlehrer welchen Lehrer vertritt. Da es jedoch keine Verschiebung ist, sondern eigentlich nur eine Vertretung, muss in diesem Fall die Start- und Endstunde und die Ursprüngliche Start- und End-Stunde gleich sein. Damit die Stunde wieder zur selben Zeit stattfindet. Sie kann auch dazu verwendet werden um eine vorhandene Stunde zu kürzen. Dann muss die ursprüngliche Stunde angegeben werden und kann dann mit der neuen Start- und End-Stunde hinzugefügt werden. So kann eine Stunde, die von der 1-4 dauert, in eine Stunde die von der 2-3 dauert, verkürzt werden.\\
-Die Form der Eingabemaske entspricht im wesentlichen, der Form der normalen Eingabe, jedoch sind 3 Felder hinzugekommen. (siehe \autoref{fig:instr_substitudes_subMove}) Diese dienen dazu die ursprüngliche Stunde festzulegen. Wird eine Verschiebung eingetragen wird diese von der ursprünglichen Position entfernt.\\
-Pflichtfelder sind die Klasse, Start- und End-Stunde, ursprüngliche Start- und End-Stunde und ursprüngliche Lehrer. Die restlichen Felder sind optional. Wird eines dieser optionalen Felder nicht eingetragen, dann werden die Daten der ursprünglichen Stunde verwendet. Sobald Verschiebung ausgewählt wurde, wird automatisch in das Kommentarfeld "Verschiebung von" eingetragen.
+In dieser Eingabevariante können Stunden einer Klasse innerhalb eines Tages verschoben werden. Außerdem muss diese Variante auch verwendet werden, wenn zum Beispiel: 2 oder mehr Lehrer in einer Klasse zur selben Zeit fehlen und genau geregelt ist, welcher Supplierlehrer welchen Lehrer vertritt. Da es jedoch keine Verschiebung ist, sondern eigentlich nur eine Vertretung, muss in diesem Fall die Start- und Endstunde und die Ursprüngliche Start- und End-Stunde gleich sein. Damit die Stunde wieder zur selben Zeit stattfindet. Sie kann auch dazu verwendet werden um eine vorhandene Stunde zu kürzen. Dann muss die ursprüngliche Stunde angegeben werden und kann dann mit der neuen Start- und End-Stunde hinzugefügt werden. So kann eine Stunde, die von der 1-4 dauert, in eine Stunde die von der 2-3 dauert, verkürzt werden.\\
+Die Form der Eingabemaske entspricht im wesentlichen der Form, der normalen Eingabe, jedoch sind 3 Felder hinzugekommen. (siehe \autoref{fig:instr_substitudes_subMove}) Diese dienen dazu die ursprüngliche Stunde festzulegen. Wird eine Verschiebung eingetragen wird diese von der ursprünglichen Position entfernt.\\
+Pflichtfelder sind die Klasse, Start- und End-Stunde, ursprüngliche Start- und End-Stunde und ursprüngliche Lehrer. Die restlichen Felder sind optional. Wird eines dieser optionalen Felder nicht eingetragen, dann werden die Daten der ursprünglichen Stunde verwendet. Sobald Verschiebung ausgewählt wurde, wird automatisch in das Kommentarfeld \enquote{Verschiebung von} eingetragen.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/substitudes_move.png}
@@ -50,8 +50,8 @@ Pflichtfelder sind die Klasse, Start- und End-Stunde, ursprüngliche Start- und 
 \label{fig:instr_substitudes_subMove}
 \end{figure}
 \subsubsection{Hinzufügen}\label{sec:instr_admin_sub_add}
-Diese Variante kann dazu verwendet werden, falls zum Beispiel eine Stunde von einem anderen Tag auf diesen Tag verschoben wird. Diese Variante kann auch einfach dazu verwendet werden irgendwo eine Stunde einzufügen. Wenn diese Eingabevariante gewählt wird, überschreibt der neue Eintrag den ursprünglichen Stundenplan der Klasse.\\
-Die Eingabemaske ist identisch mit, der der normalen Eingabe. (siehe \autoref{fig:instr_substitudes_subAdd} Pflichtfelder sind in dieser Variante Klasse,Fach,Supplierlehrer (in diesem Fall der Lehrer)und die Start- und End-Stunde. Raum und Kommentar sind optionale Felder.
+Diese Variante kann dazu verwendet werden, falls zum Beispiel eine Stunde von einem anderen Tag auf diesen Tag verschoben wird. Diese Variante kann auch dazu verwendet werden, irgendwo eine Stunde einzufügen. Wenn diese Eingabevariante gewählt wird, überschreibt der neue Eintrag den ursprünglichen Stundenplan der Klasse.\\
+Die Eingabemaske ist identisch mit der, der normalen Eingabe. (siehe \autoref{fig:instr_substitudes_subAdd}) Pflichtfelder sind in dieser Variante Klasse, Fach, Supplierlehrer (in diesem Fall der Lehrer) und die Start- und End-Stunde. Raum und Kommentar sind optionale Felder.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/substitudes_add.png}
@@ -73,10 +73,10 @@ Ein weiterer Fehler kann sein, dass bei der normalen Eingabe eine Supplierung an
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/substitudes_fail.png}
-\caption{Eingabemaske Entfallen}
+\caption{Fehleingabe}
 \label{fig:instr_substitudes_fail}
 \end{figure}
 \subsection{Verändern}
 Soll eine vorhandene Supplierung verändert werden, so kann das auf einfache weise gemacht werden. Dabei kann einfach der Eintrag verändert werden. Ist alles nach den neuen Wünschen angepasst, so muss auf Übernehmen geklickt werden um die Supplierung zu übernehmen.
 \subsection{Löschen}
-Soll eine Supplierung gelöscht werden, so muss der HAcken bei Löschen bei der gewünschten Supplierung gesetzt werden und anschließend muss auf Übernehmen geklickt werden. Anschließend wird die Supplierung unwiderruflich gelöscht.
+Soll eine Supplierung gelöscht werden, so muss der Hacken bei Löschen, bei der gewünschten Supplierung, gesetzt werden und anschließend muss auf Übernehmen geklickt werden. Anschließend wird die Supplierung \textbf{unwiderruflich} gelöscht.
