@@ -41,7 +41,11 @@ Also letztes wird nur noch der jeweilige Wert auf die Datei \enquote{value} gesc
 \paragraph{Clientseitig}
 wird für die Verteilung der Befehle ein Script erstellt, das beim Systemstart mitgestartet wird (über /etc/rc.local) und danach regelmäßig Anfragen an den Server schickt.
 Dieses Script wird unter /usr/bin/sis-monitors gespeichert.\\
-Für den Inhalt siehe \autoref{lst:report_attachment_sis-monitors}, Seite \pageref{lst:report_attachment_sis-monitors}.\\
+Für den Inhalt siehe \autoref{lst:report_attachment_sis-monitors}, Seite \pageref{lst:report_attachment_sis-monitors} (Flußdiagramm siehe \autoref{fig:report_software_sis-monitors}).\\
+
+\paragraph{Serverseitig} werden im API-Ordner der Monitore (/monitors/api/) zwei PHP-Scripts erstellt.\\
+Das Script display.php gibt \enquote{true}, für eingeschaltenen Monitor, beziehungsweise \enquote{false}, für ausgeschaltenen Monitor, zurück (siehe \autoref{fig:report_software_sis-display} und \autoref{lst:report_attachment_display}).\\
+Das Script restart.php dient dazu den X-Server des Raspberrys neuzustarten. Da dieses Verhalten nicht so häufig benötigt wird, wird dazu das Vorhandensein der Datei /tmp/restartx.ex geprüft (siehe \autoref{fig:report_software_sis-restart} und \autoref{lst:report_attachment_restart}). Für die Abarbeitung am Raspberry siehe \autoref{fig:report_software_sis-monitors}.
 \\
 \begin{figure}[H]
 \centering
@@ -52,9 +56,6 @@ Für den Inhalt siehe \autoref{lst:report_attachment_sis-monitors}, Seite \pager
 \label{fig:report_software_sis-monitors}
 \end{figure}
 
-\paragraph{Serverseitig}
-Werden im API-Ordner der Monitore (/monitors/api/) zwei Scripts erstellt.
-
 \begin{figure}[H]
 \centering
 \resizebox{17cm}{!}{
@@ -64,5 +65,9 @@ Werden im API-Ordner der Monitore (/monitors/api/) zwei Scripts erstellt.
 \label{fig:report_software_sis-display}
 \end{figure}
 
-
-% TODO
+\begin{figure}[H]
+\centering
+\fdot[scale=0.9]{images/flowcharts/restart}
+\caption{Programm-Ablauf restart.php}
+\label{fig:report_software_sis-restart}
+\end{figure}

@@ -1,0 +1,3 @@
+Bei den Überlegungen und bei der Implementierung der Software kam es nur zu einem nenneswerten Problem.\\
+\\
+Durch die Zeitumstellung am 30. März 2014 fiel auf, dass die Sommerzeit nicht berücksichtigt wurde. Die Lösung ist zu sehen in \autoref{lst:report_attachment_display} auf Zeile 27: Der Befehl \texttt{date("'I"')} gibt bei Daylight-Saving-Time den numerischen Wert 1 und sonst 0 zurück. Durch Multiplikation mit der Anzahl der Sekunden pro Tag und dem Addieren zum aktuellen GMT-Timestamp kann die Sommerzeit miteinbezogen werden.
