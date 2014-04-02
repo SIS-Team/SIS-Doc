@@ -1,11 +1,10 @@
 \subsubsection{Überlegungen}
 
-Die Software zum regelmäßigen Anfragen am Server muss bereits beim Systemstart mitgestartet werden. Es bietet sich an, die Scripts über die Datei /etc/rc.local zu starten, da diese Datei relativ unkompliziert verwendet werden kann (\autoref{siehe lst:report_attachment_rc-local}, Seite \pageref{lst:report_attachment_rc-local}).\\
+Die Software zum regelmäßigen Anfragen am Server muss bereits beim Systemstart mitgestartet werden. Es bietet sich an, die Scripts über die Datei /etc/rc.local zu starten, da diese Datei relativ unkompliziert verwendet werden kann (\autoref{siehe lst:report_attachment_rc-local} Zeilen 20 und 22, Seite \pageref{lst:report_attachment_rc-local}).\\
 
 \subsubsection{Darstellung}
 
-Damit kein Tool für den automatischen Login installiert werden muss, wird der Default-Runlevel auf % TOTO % 
-gesetzt (Dies kann durch Modifikation des Schlüssels \enquote{initdefault} in der Datei /etc/inittab erreicht werden. Siehe \autoref{lst:report_attachment_inittab}, Seite \pageref{lst:report_attachment_inittab}.) und der X-Server manuell gestartet.\\
+Damit kein Tool für den automatischen Login installiert werden muss, wird der Default-Runlevel auf 2 gesetzt (Dies kann durch Modifikation des Schlüssels \enquote{initdefault} in der Datei /etc/inittab erreicht werden. Siehe \autoref{lst:report_attachment_inittab} Zeile 5, Seite \pageref{lst:report_attachment_inittab}.) und der X-Server manuell gestartet.\\
 Das Starten des X-Servers wird durch das Script /usr/bin/sis-x initialisiert.
 
 \lstinputlisting[style=custom, language=sh, caption={/usr/bin/sis-x}, label={lst:report_software_sis-x}]{sources/raspberry/sis-x.x}
