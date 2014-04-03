@@ -30,7 +30,7 @@ Für die Ansteuerung der GPIO Pins werden zwei Shell-Scripts verwendet.
 
 \lstinputlisting[style=custom, language=sh, caption={/usr/bin/monitorOff}, label={lst:report_software_monitorsOff}]{sources/raspberry/monitorOff.x}
 
-Zuerst wird geprüft, ob derausführende Benutzer root ist. Dies hat den Grund, dass nur root auf das GPIO-System schreiben darf.\\
+Zuerst wird geprüft, ob der ausführende Benutzer root ist. Dies hat den Grund, dass nur root auf das GPIO-System schreiben darf.\\
 Danach wird mit der Zeile 8 der GPIO-Pin 4 aktiviert. Der Pipe-Operator \enquote{2>\&1} dient dazu, dass etwaige Fehlermeldungen nicht ausgegeben werden (diese entstehen, wenn der Pin bereits als GPIO-Pin verwendet wird).\\
 Nun (Zeile 9) wird der GPIO-Pin als Ausgang konfiguriert.\\
 Also letztes wird nur noch der jeweilige Wert auf die Datei \enquote{value} geschrieben. Hierbei symbolisiert 1 das logische \textit{true}, und damit das Verhandensein der Steuerspannung (3.3 V) am Pin, und 0 das logische \textit{false}, also 0 V.
