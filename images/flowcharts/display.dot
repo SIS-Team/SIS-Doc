@@ -24,8 +24,8 @@ digraph flowchart {
 	"Wochentag >= 6 (Wochenende)?" -> "ein: Einschaltzeit von Datenbank"[label="nein"];
 	"ein: Einschaltzeit von Datenbank" -> "aus: Ausschaltzeit von Datenbank";
 	"aus: Ausschaltzeit von Datenbank" -> "jetzt: aktueller Timestamp";
-	"jetzt: aktueller Timestamp" -> "jetzt: wenn Sommerzeit: + 1 Tag";
-	"jetzt: wenn Sommerzeit: + 1 Tag" -> "jetzt zwischen ein und aus?";
+	"jetzt: aktueller Timestamp" -> "jetzt: wenn Sommerzeit: + 1 h";
+	"jetzt: wenn Sommerzeit: + 1 h" -> "jetzt zwischen ein und aus?";
 	"jetzt zwischen ein und aus?" -> "echo true"[label="ja"];
 	"jetzt zwischen ein und aus?" -> "echo false"[label="nein"];
 	
