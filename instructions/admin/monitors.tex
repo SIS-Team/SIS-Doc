@@ -18,6 +18,8 @@ Die Monitore, deren Einstellungen verändert werden sollen, müssen mit einem Kl
 \\
 \subsection{Hinzufügen}
 
+\subsubsection{Software}
+\label{sec:instr_monitor_software}
 Für folgendes wird vorausgesetzt, dass das von uns zur Verfügung gestellte Image verwendet wird. Dieses kann unter folgender Adresse runtergeladen werden:\\ \href{https://sis.htlinn.ac.at/sis.img}{https://sis.htlinn.ac.at/sis.img}\\
 Das Image ist 4 GB groß, wir empfehlen deshalb, das Image ohne Proxy-Einstellung mit der Adresse \href{http://sis.clients.htlinn.ac.at/sis.img}{http://sis.clients.htlinn.ac.at/sis.img} im Schulnetz zu laden. Das Image sollte auf eine SD-Karte mit mindestens 3965190144 Bytes Speicherplatz gespielt werden (Getestet wurde mit \enquote{SanDisk Extreme 4GB}).\\
 Der vordefinierte Benutzer hat die Kennung \enquote{pi} und das Passwort \enquote{sis}.\\
@@ -35,6 +37,29 @@ Wenn der Name des Monitors geändert wird, sollte aus Gründen der Übersichtlic
 \textit{Achtung:} Da es zu Problemen mit manchen Programmen (wie zum Beispiel \textit{sudo}) kommen kann, sollte in er Datei /etc/hosts ein Eintrag für den Hostnamen angelegt werden, welcher auf die lokale Adresse zeigt (üblicherweise die Loopback-Adresse 127.0.1.1).\\
 \\
 \textit{Achtung:} Die Software lässt es zu, dass mehrere Monitore den selben Namen tragen. Dies sollte allerdings vermieden werden.
+
+\subsubsection{Hardware}
+Die Header Platine für den Raspberry Pi wird auf demselben aufgesteckt (siehe \autoref{fig:report_hardware_Headergesteckt}). Der Monitor wird über HDMI mit dem Raspberry verbunden, die Stromversorgung ist, wie beim Raspberry üblich, mit einem USB-zu-microUSB-Adapter und einem dementsprechenden Netzteil herzustellen.\\
+Als Netzwerkanbindung kann entweder die LAN-Buchse oder ein W-LAN-Stick verwendet werden. Hierbei ist zu beachten, dass der Computer, sofern er mit der unter  \autoref{sec:instr_monitor_software} beschriebenen Software betrieben wird, keine statische IP-Adresse eingetragen hat, es ist daher ein DHCP-Server notwendig. Bei Verwendung von W-LAN ist zusätzlich zu beachten, dass der Raspberry von sich aus das W-LAN \enquote{HTL-SIS} mit dem passenden WPA2-Pre-Shared-Key eingetragen hat, bei einer Änderung muss dieser angepasst werden.\\
+\\
+Die Verbindung zwischen dem Raspberry und der modifizierten Steckdose (siehe FTKL-Bericht) wird mit einem ausgekreuzten Mono-Klinke-Kabel hergestellt.\\
+\textit{Beachte:} Wenn der Computer an die modifizierte Steckdose angeschlossen wird, dann kann er sich logischerweise nicht selbst einschalten, deshalb sollte nur der entsprechende Monitor daran angeschlossen werden.\\
+\\
+Sollte sich nach dem ersten Start des Computers der Monitor nicht nach spätestens 5 Minuten selbstständig einschalten, so kann es sein, dass die nicht vorhandene HDMI-Daten-Sinke den Start blockiert. In diesem Fall sollte der Monitor während dem Starten auf eine normale Steckdose gesteckt werden, läuft in dem Fall der Raspberry, so sollte die Steckdose, die Platine, sowie die Kabel überprüft und gegebenenfalls getauscht werden.
+
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=10cm]{images/rpi/rpi_header_gesteckt.jpg}
+\caption{Aufbau Header}
+\label{fig:report_hardware_Headergesteckt}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=10cm]{images/rpi/rpi_gesamt.jpg}
+\caption{Gesamtaufbau}
+\label{fig:report_hardware_Gesamt}
+\end{figure}
 
 \subsection{Entfernen}
 
