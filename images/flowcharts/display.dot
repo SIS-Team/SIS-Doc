@@ -6,7 +6,7 @@ digraph flowchart {
 	"Monitor existiert?"[shape="diamond", style=""];
 	"Displaymodus permantent ein?"[shape="diamond", style=""];
 	"Displaymodus permantent aus?"[shape="diamond", style=""];
-	"Wochentag >= 6 (Wochenende)?"[shape="diamond", style=""];
+	"Wochentag $ \\geq $ 6 (Wochenende)?"[shape="diamond", style=""];
 	"jetzt zwischen ein und aus?"[shape="diamond", style=""];
 	
 	node[shape="parallelogram", style=""]
@@ -19,9 +19,9 @@ digraph flowchart {
 	"Displaymodus permantent ein?" -> "echo true"[label="ja"];
 	"Displaymodus permantent ein?" -> "Displaymodus permantent aus?"[label="nein"];
 	"Displaymodus permantent aus?" -> "echo false"[label="ja"];
-	"Displaymodus permantent aus?" -> "Wochentag >= 6 (Wochenende)?"[label="nein"];
-	"Wochentag >= 6 (Wochenende)?" -> "echo false"[label="ja"];
-	"Wochentag >= 6 (Wochenende)?" -> "ein: Einschaltzeit von Datenbank"[label="nein"];
+	"Displaymodus permantent aus?" -> "Wochentag $ \\geq $ 6 (Wochenende)?"[label="nein"];
+	"Wochentag $ \\geq $ 6 (Wochenende)?" -> "echo false"[label="ja"];
+	"Wochentag $ \\geq $ 6 (Wochenende)?" -> "ein: Einschaltzeit von Datenbank"[label="nein"];
 	"ein: Einschaltzeit von Datenbank" -> "aus: Ausschaltzeit von Datenbank";
 	"aus: Ausschaltzeit von Datenbank" -> "jetzt: aktueller Timestamp";
 	"jetzt: aktueller Timestamp" -> "jetzt: wenn Sommerzeit: + 1 h";
