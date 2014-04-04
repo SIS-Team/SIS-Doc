@@ -1,4 +1,6 @@
-Für die Umsetzung wurden handelsübliche Funksteckdosen verwendet, da diese relativ günstig in den meisten Geschäften zu haben sind. Diese erfüllen jedoch standardmäßig einen anderen Zweck, diese werden über eine Fernbedienung ein bzw. aus geschaltet. Da es uns nicht möglich ist, Steckdosen mit dem Raspberry über Funk zu steuern, musste eine andere Möglichkeit gefunden werden.\\
+\label{sec:report_hardware_th}
+
+Für die Umsetzung wurden handelsübliche Funksteckdosen verwendet, da diese relativ günstig in den meisten Geschäften zu haben sind. Diese erfüllen jedoch standardmäßig einen anderen Zweck, sie werden über eine Fernbedienung ein- bzw. ausgeschaltet. Da es uns nicht möglich ist, Steckdosen mit dem Raspberry über Funk zu steuern, musste eine andere Möglichkeit gefunden werden.\\
 Uns kam die Idee, dass in diesen Steckdosen eigentlich nur ein Relais vorhanden sein muss, welches die 230V schaltet. Diese Tatsache machten wir uns zu nutze und suchten auf der Platine nach diesem Schaltpunkt und entwickelten eine passende Schaltung, welche diese Relais schaltet.\\\\
 Um widerrechtliches Steuern der Steckdosen durch gefinkelte Schüler zu verhindern und da das Funkmodul nur auf die Platine aufgelötet war, bauten wir dieses aus. Somit ist es nicht mehr möglich die Steckdosen mit der passenden Fernbedienung zu steuern.\\\\
 Die Schaltung der Steckdose ist in keinster Weise dokumentiert, auch die auf der Schaltung vorhandenen ICs sind kaum bis gar nicht dokumentiert, weshalb es uns nicht möglich war die Funktionsweise der einzelnen Teile festzustellen. Durch Analysieren der Leiterbahnen konnten wir uns eine grobe Übersicht über die Schaltung verschaffen. Dieser Überblick reichte jedoch nicht aus, um den Schaltpunkt des Relais zu finden. Der eigentliche Schaltpin am Relais konnte identifiziert werden, jedoch schaltet dieses Relais erst bei 48V, welche nicht vom Raspberry zur Verfügung gestellt werden, deshalb musste eine andere Möglichkeit gefunden werden.\\
@@ -7,7 +9,7 @@ Für eine leichtere Montage wurden die vorhandenen Kontakte des Funkmoduls verwe
 Nun musste noch eine Lösung gefunden werden, wie diese 2 Punkte mit dem Raspberry Pi verbunden werden konnten. Dies wurde mit einer Transistorschaltung realisiert. Wenn der Raspberry an einem der GPIO-Pins digital 1 (analog 3,3V DC) anlegt, so schaltet der Transistor und verbindet somit die zwei Punkte. \\
 Dies war jedoch nicht genug, da noch eine Potentialtrennung zwischen Raspberry und Steckdose  notwendig war, wie ein Test ohne Potentialtrennung zeigt. (siehe \autoref{sec:report_hardware_pot}). Diese lösten wir mit einem Optokoppler, welcher den Raspberry von der Steckdose trennen soll. Dies erfolgte mit der Schaltung ordnungsgemäß. Jedoch packten wir die Potentialtrennung auf den Header, welcher auf den Raspberry aufgesteckt wird, dies stellte sich als fataler Fehler heraus. (siehe \autoref{sec:report_hardware_spannung})\\
 Der finale Aufbau war dann wie folgt:\\
-Auf die GPIO-Pins (siehe \autoref{fig:report_hardware_gpio1}) wird eine Platine (Header) gesteckt (siehe \autoref{fig:report_hardware_heTo}), welche die Transistorschaltung beinhaltet. Diese Schaltung schaltet die 5V Versorgung über einen Vorwiderstand den Optokoppler, welcher auf einer Platine in der Steckdose liegt. Die Verbindung wurde mit einem zweipoligen Draht, welcher auf beiden Seiten eine 3,5mm-Mono-Klinke-Stecker montiert hat, auf den beiden Endstücke wurden die dementsprechenden Buchsen montiert. (siehe \autoref{fig:report_hardware_heTo} Punkt 1 und \autoref{fig:report_hardware_plTo} Punkt 2) Auf der Platine in der Steckdose ist nur der Optokoppler (siehe \autoref{fig:report_hardware_plTo} Punkt 1), der das Ein- bzw. Ausschalten der Steckdose vornimmt.\\\\
+Auf die GPIO-Pins (siehe \autoref{fig:report_hardware_gpio1}) wird eine Platine (Header) gesteckt (siehe \autoref{fig:report_hardware_heTo}), welche die Transistorschaltung beinhaltet. Diese Schaltung erfüllt den Zweck, die 5 V Versorgungsspannung auf den Eingang des Optokopplers zu bringen, welcher auf einer Platine in der Steckdose liegt. Die Verbindung wurde mit einem zweipoligen Draht, welcher auf beiden Seiten eine 3,5mm-Mono-Klinke-Stecker montiert hat, auf den beiden Endstücke wurden die dementsprechenden Buchsen montiert. (siehe \autoref{fig:report_hardware_heTo} Punkt 1 und \autoref{fig:report_hardware_plTo} Punkt 2) Auf der Platine in der Steckdose ist nur der Optokoppler (siehe \autoref{fig:report_hardware_plTo} Punkt 1), der das Ein- bzw. Ausschalten der Steckdose vornimmt.\\\\
 Für die Kommunikation mit dem Raspberry wird der GPIO Pin 4 (Header Pin 7) verwendet. Die 5V Spannung und die Masse für das Schalten des Optokopplers wird der Pin 2 (5V) und der Pin 6 (0V) des Raspberrys verwendet. Wichtig: Hier ist anzumerken, dass die Rasperrys Revision 1 und Revision 2 verschiedene Pin-Anordnungen haben. Unsere Schaltung ist für Revision 2 entwickelt, es ist also nicht zu empfehlen, die Platine auf einem Revision 1 Raspberry zu verwenden, da er Schaden nehmen könnte.
 \\
 \begin{figure}[H]
@@ -27,25 +29,25 @@ Für die Kommunikation mit dem Raspberry wird der GPIO Pin 4 (Header Pin 7) verw
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=13cm]{images/rpi/rpi_header_top.jpg}
-\caption{Header unten}
+\caption{Header oben}
 \label{fig:report_hardware_heTo}
 \end{figure}
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=13cm]{images/rpi/rpi_header_bottom.jpg}
-\caption{Header oben}
+\caption{Header unten}
 \label{fig:report_hardware_heBo}
 \end{figure}
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=13cm]{images/rpi/rpi_platine_top.jpg}
-\caption{Platin unten}
+\caption{Platin oben}
 \label{fig:report_hardware_plTo}
 \end{figure}
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/rpi/rpi_platine_bottom.jpg}
-\caption{Platine oben}
+\caption{Platine unten}
 \label{fig:report_hardware_plBo}
 \end{figure}
 \paragraph{Transistorplatine}
