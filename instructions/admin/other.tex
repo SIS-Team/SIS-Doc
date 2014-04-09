@@ -1,4 +1,4 @@
-Alle im Folgendem beschriebenen Eingaben sind ausschließlich für den Super User sichtbar und können auch nur von ihm durchgeführt werden. Um zu diesen Eingaben zu gelangen muss im Data-Input Menü auf Administration geklickt werden. Im anschließend erscheinendem Menü stehen die nun folgenden Eingaben zur Auswahl zur Verfügung. (siehe \autoref{fig:instr_other_menu})
+Alle im folgendem beschriebenen Eingaben (siehe \autoref{fig:instr_other_menu}) sind ausschließlich für den Super-User sichtbar. Der Einstieg erfolgt über den Punkt Administrator im Menü „Data-Input“.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/admin_menu.png}
@@ -6,10 +6,9 @@ Alle im Folgendem beschriebenen Eingaben sind ausschließlich für den Super Use
 \label{fig:instr_other_menu}
 \end{figure}
 \subsection{Stunden}\label{sec:instr_other_hours}
-Sollte es aus irgendeinem Grund dazu kommen, dass es einmal mehr Stunden gibt oder sich die Start- und End-Zeiten der Stunden ändern, kann dies hier vorgenommen werden.\\
-Aus Sicherheitsgründen können Stunden nicht gelöscht werden, da es bei unabsichtlichem Löschen dazu kommt, dass die ganze Stundenpläne und Supplierpläne nicht mehr funktionieren. Deshalb eben diese Sicherheitsmaßnahme.\\
-Die Eingabe ist so aufgebaut, dass man mit den Buttons rechts und links den Wochentag auswählen kann. Hat man den Wochentag ausgewählt, so sind die Stunden dieses Wochentages zu sehen. Alle Felder sind bei einer neuen Stunde einzutragen, d.h. es muss jedes Feld ausgefüllt werden. Die Eingabemaske (siehe \autoref{fig:instr_other_hours}) sieht so aus, dass das Erste Feld den Namen der Stunde, nummerisch nummeriert, angibt. Dann kommt die Start-Zeit und anschließend die End-Zeit. Zum Abschluss muss Übernehmen geklickt werden.\\
-Das Löschen ist, wie oben beschrieben, nicht möglich, das verändern von vorhandenen Stunden ist möglich. 
+Standardmäßig sind 16 Schulstunden mit der jeweiligen Start- und Endzeit für jeden Wochentag (Montag bis Freitag) angelegt (siehe \autoref{fig:instr_other_hours}). Über die Schaltfläche am linken bzw. rechten Seitenrand kann zwischen den Wochentagen gewechselt werden. Die Anzeige der Stunden wird entsprechend angepasst.\\
+Die Änderungen können nun in den Eingabezeilen vorgenommen oder auch eine weitere Stunde angefügt werden. Alle Eingabefelder sind Pflichtfelder. Die Übernahme erfolgt mit der Schaltfläche Übernehmen in der jeweiligen Eingabezeile.\\
+Aus Gründen der Datenkonsistenz der Stunden- und Supplierpläne ist das Löschen von Stunden nicht möglich.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/hours_input.png}
@@ -17,53 +16,82 @@ Das Löschen ist, wie oben beschrieben, nicht möglich, das verändern von vorha
 \label{fig:instr_other_hours}
 \end{figure}
 \subsection{Stundenpläne}
-Stundenpläne können in dieser Eingabe eingegeben werden. Dazu muss im zuerst erscheinenden Menü die Klasse ausgewählt werden. Der Tag muss nicht ausgewählt werden, wird er nicht ausgewählt, so startet die Eingabe am Montag. Will man jedoch an einem spezifischen Tag die Eingabe beginnen, so muss man das Kürzel des Wochentages eingeben. Zum Bestätigen muss auf OK geklickt werden. (Menü siehe \autoref{fig:instr_other_timetables_menu})
+Für die Erfassung eines Stundenplanes muss zuerst die Klasse (Listenfeld) und der Wochentag (Listenfeld) ausgewählt werden. Die Auswahl des Wochentages ist mit der Schaltfläche OK zu bestätigen (siehe \autoref{fig:instr_other_timetables_menu}). Ist bereits ein Stundenplan für den Tag vorhanden, wird dieser geladen (siehe \autoref{fig:instr_other_timetables_layout}). Über die Schaltfläche am linken bzw. rechten Seitenrand kann zwischen den Wochentagen gewechselt werden. Die Anzeige der Stunden wird entsprechend angepasst (siehe \autoref{fig:instr_other_timetables_day}).
+Links oben werden die Klasse und der Wochentag angezeigt. Mit einem Klick auf die Klasse kehrt man ins Menü für die Auswahl der Klasse zurück (siehe \autoref{fig:instr_other_timetables_infos}).
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/timetables_input_menu.png}
 \caption{Stundenplan auswählen}
 \label{fig:instr_other_timetables_menu}
 \end{figure}
-Ist dies ausgewählt so gelangt man zur Eingabe der gewählten Klasse und des gewählten Tages. Im linken oberen Bereich des Fensters sind die gewählte Klasse und der gewählte Tag zu sehen. Mit einem Klick auf die Klasse gelangt man wieder ins Menü für die Klassenauswahl zurück. (siehe \autoref{fig:instr_other_timetables_infos})
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=6cm]{images/screenshots/timetables_input_infos.png}
 \caption{Klasse und Tag}
 \label{fig:instr_other_timetables_infos}
 \end{figure}
-Den Tag kann man mit den Buttons, welche links und rechts zu sehen sind, auswählen.  Mit einem Klick auf den Button wechselt man zu dem Tag, der auf dem Button zu sehen ist. (siehe \autoref{fig:instr_other_timetables_infos})
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/timetables_input_day.png}
 \caption{Tagauswahl}
-\label{fig:instr_other_timetables_infos}
+\label{fig:instr_other_timetables_day}
 \end{figure}
-Die Eingabemaske sieht wie in \autoref{fig:instr_other_timetables_layout} zu sehen ist aus. In den nächsten Abschnitten werden verschiedene Eintragungen beschrieben und somit auch die Eingabemaske beschrieben.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/timetables_input_layout.png}
-\caption{Tagauswahl}
+\caption{Eingabemaske}
 \label{fig:instr_other_timetables_layout}
 \end{figure}
-\subsubsection{Einzelstunde}
-Soll eine Stunde eingetragen werden, welche nur eine Stunde lang ist, so muss an der Standardeinstellung nichts geändert werden. Es muss nur das Fach und der Lehrer eingetragen werden. In der zweiten Spalte ist die Stunde zu sehen. Will man in der zweiten Stunde eine Stunde hinzufügen, so muss diese Zeile gewählt werden, in der bei Stunde 2 steht. Hat man die Stunde fertig eingetragen, so muss man auf Übernehmen klicken. (Siehe Beispiel in \autoref{fig:instr_other_timetables_singleHour})
+\subsubsection{Einstündiges Fach} \label{sec:instr_other_timetables_single}
+Über die Standardeinstellung können Einzelstunden erfasst werden. In der entsprechenden Schulstunde sind der Lehrer und das Fach anzugeben.
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3 cm}p{10 cm}}
+   \toprule
+   \textbf{Eingabefeld} & \textbf{Typ} \\
+   \midrule
+          Teilung & \textbf{1} \newline nicht ändern \\
+          \hline
+          OK & Schaltfläche \\
+          \hline
+          Stunde & Schulstunde \newline Kann nicht geändert werden\\
+          \hline
+          Länge & \textbf{1} \newline Nicht ändern \\
+          \hline
+          Raum & Listenfeld - optional \\
+          \hline
+          \textbf{Lehrer} & Listenfeld - Pflichtfeld \\
+		  \hline
+          \textbf{Fach} & Listenfeld - Pflichtfeld.\\
+          \hline
+          Kommentar & Textfeld - optional \\
+          \hline
+          Löschen & Checkbox - \textbf{nicht gesetzt}\\
+   \bottomrule
+\end{tabular}
+\caption{Eingabefelder Stundenplan}
+\end{table}
+Die Änderungen bzw. Ergänzungen sind mit der Schaltfläche Übernehmen in der jeweiligen Eingabezeile zu übernehmen (siehe \autoref{fig:instr_other_timetables_singleHour}).
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/timetables_input_singleHour.png}
 \caption{Beispiel Einzelstunde}
 \label{fig:instr_other_timetables_singleHour}
 \end{figure}
-\subsubsection{Mehrstündiger Unterricht}
-Wenn eine Stunde eingetragen werden soll, die mehr als eine Stunde andauert, so muss dies in der Eingabemaske dementsprechend vermerkt werden. Dies geschieht in der Textbox Länge. Beginnt die Stunde in der ersten Stunde und dauert 3 Stunden, so muss in der Zeile, in der bei Stunde 1 steht, bei Länge 3 eingefügt werden. Klickt man nun in eine andere Textbox, so werden die Stunden ausgeblendet, die durch die Länge nicht mehr benötigt werden. In diesem Beispiel wird die Stunde 2 und 3 ausgeblendet. Die restlichen Eingaben funktionieren nach dem selben Prinzip, wie bei der Einzelstunde. (Siehe Beispiel in \autoref{fig:instr_other_timetables_multiHour})
+\subsubsection{Mehrstündiges Fach}
+Die Eingabe erfolgt analog zu jener im \autoref{sec:instr_other_timetables_single} beschriebenen. Es ist aber im Eingabefeld Länge die Anzahl der zusammenhängenden Schulstunden anzugeben. Wird nun in ein anderes Eingabefeld gewechselt, werden die nachfolgenden Eingabezeilen ausgeblendet, welche durch das mehrstündige Fach abgedeckt werden (siehe \autoref{fig:instr_other_timetables_multiHour}).\\
+Wird zum Beispiel in der ersten Stunde ein Fach mit der Länge von 3 Stunden eingetragen, werden die Eingabezeilen der zweiten und dritte Stunde ausgeblendet.\\
+Eingaben und Änderungen müssen jeweils durch das Drücken auf die Schaltfläche Übernehmen übernommen werden.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/timetables_input_multiHour.png}
 \caption{Beispiel Mehrstündiger Unterricht}
 \label{fig:instr_other_timetables_multiHour}
 \end{figure}
-\subsubsection{Teilungen}
-Da es auch vorkommt, dass eine Klasse in sich geteilt wird, kann auch dies eingegeben werden. Dazu ist die Textbox Teilung zuständig. Dies funktioniert nur wenn die geteilten Fächer genau gleich lang sind. Sind sie unterschiedlich lang, so muss es anders eingegeben werden. Ist die Klasse in sich einmal geteilt und eine Hälfte hat 2 Stunden und die andere Hälfte 3 Stunden Unterricht, so muss die Teilung für die ersten 2 Stunden eingetragen werden und die andere Stunde kann als einzelne Stunde eingetragen werden.\\
-Soll nun eine Teilung eingegeben werden, muss zuerst die Anzahl der Teilungen eingegeben werden und anschließend auf OK geklickt werden. Anschließend erscheinen weitere Zeilen. Eine Klasse kann während einer Stunde maximal in 7 Teile aufgeteilt werden. (siehe \autoref{fig:instr_other_timetables_divide7}) Die Länge der Stunde kann gleich wie bei keiner Teilung eingestellt werden.
+\subsubsection{Teilung von Klassen}
+Wird eine Klasse im Unterricht geteilt, ist dies über das Eingabefeld Teilung zu erfassen. Es ist zu beachten, dass die geteilten Fächer gleich lang sein müssen. Sind die geteilten Fächer ungleich lang, so ist der Rest der längeren Teilung als Einzelstunde zu erfassen. Eine Klasse kann maximal in 7 Teile geteilt werden.\\
+Um eine Teilung erfassen zu können, ist im Eingabefeld Teilung die Anzahl der Teilungen einzugeben und mit der Schaltfläche OK zu bestätigen. Anschließend erscheinen weitere Eingabezeilen (siehe \autoref{fig:instr_other_timetables_divide7}).\\
+Die Eingabe erfolgt sinngemäß wie die Erfassung eines mehrstündigen Fachs. Jede einzelne Eingabezeile der Teilung ist mit der Schaltfläche Übernehmen zu bestätigen.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/timetables_input_divide7.png}
@@ -71,8 +99,8 @@ Soll nun eine Teilung eingegeben werden, muss zuerst die Anzahl der Teilungen ei
 \label{fig:instr_other_timetables_divide7}
 \end{figure}
 Jede eigene Zeile muss mit Übernehmen bestätigt werden. Gelöscht kann jedoch nur ein ganzer Block werden. Dies muss mit einem Hacken bei Löschen und anschließendem Klicken auf Übernehmen erfolgen.
-\subsubsection{Löschen}
-Es können prinzipiell ganze Stundenblöcke gelöscht werden, jedoch gibt es noch die Möglichkeit den ganzen Tag einer Klasse zu löschen. Dies geschieht mit dem Button links oben. (siehe \autoref{fig:instr_other_timetables_delete}) Klickt man auf diesen Button werden die Stunden dieser Klasse und dieses Tages \textbf{unwiderruflich} gelöscht.
+\subsubsection{Löschen von Unterrichtsstunden}
+Das Löschen von Einträgen kann einzeln über die Checkbox Löschen vorgenommen werden. Der Stundenplan eines Tages kann über die Schaltfläche \enquote{Stundenplan löschen} \textbf{unwiderruflich} gelöscht werden (siehe \autoref{fig:instr_other_timetables_delete}).
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=5cm]{images/screenshots/timetables_input_delete.png}
@@ -89,8 +117,28 @@ Im Feld Name muss der vollständige Name des Lehrers eingegeben werden, im Feld 
 \label{fig:instr_other_teacher}
 \end{figure}
 \subsection{Fächer}
-Müssen Fächer abgeändert oder hinzugefügt werden, so ist dies mit diesem Punkt möglich. Hier gilt wieder, das Fach kann nur unsichtbar gemacht werden. (siehe \autoref{sec:instr_other_hidden})\\
-Im Feld Name wird der vollständige Name des Faches eingetragen, im Feld Kürzel wird die Kurzbezeichnung des Faches eingegeben, welche in den Stundenpläne, Supplierpläne und so weiter sichtbar sind. Die Eingabe kann jeweils mit Übernehmen gespeichert werden. Wie bei allen Eingabemasken können auch vorhandene Einträge bearbeitet werden, die abgeänderte Daten müssen ebenfalls mit übernehmen gespeichert werden. (Eingabemaske siehe \autoref{fig:instr_other_subjects})
+Über diese Eingabemaske werden Lehrereinträge bearbeitet und hinzugefügt (siehe \autoref{fig:instr_other_subjects}). Aus Gründen der Datenkonsistenz der Stunden- und Supplierpläne ist das Löschen von Lehrern nicht möglich.
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3 cm}p{10 cm}}
+   \toprule
+   \textbf{Eingabefeld} & \textbf{Typ} \\
+   \midrule
+          \textbf{Name} & Textfeld - Pflichtfeld \newline vollständiger Name \\
+          \hline
+          \textbf{Kürzel} & Textfeld - Pflichtfeld \newline Lehrer-Kürzel \\
+          \hline
+          \textbf{Kurzname} & Textfeld - Pflichtfeld \newline Kurzname für die Anzeige am Display \\
+          \hline
+          Stammabteilung & Textfeld - optional \\
+          \hline
+          Unsichtbar & Checkbox \\
+   \bottomrule
+\end{tabular}
+\caption{Eingabefelder Fächer}
+\end{table}
+Wird die Checkbox Unsichtbar bei einem Lehrer gesetzt, wird dieser in den Listenfelder nicht mehr angezeigt. (siehe \autoref{sec:instr_other_hidden})\\
+Änderungen und Ergänzungen sind über die Schaltfläche Übernehmen in den Eingabezeilen zu bestätigen.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/subjects_input.png}
@@ -98,8 +146,7 @@ Im Feld Name wird der vollständige Name des Faches eingetragen, im Feld Kürzel
 \label{fig:instr_other_subjects}
 \end{figure}
 \subsection{Statistiken}
-Um die Nutzung und um zu sehen, ob unser Service auch bei den Nutzern angenommen wird, haben wir uns beschlossen außerhalb des vorgegeben Pflichtenheftes eine Statistik anzulegen. Im Folgendem werden die einzelnen Diagramme beschrieben. Wichtig ist, dass wir, das Entwicklerteam, ausgenommen sind, da dies die ganze Statistik verfälschen würde.\\
-Im linken oberen Bereich können die Statistiken mit einem Klick auf Reload neu geladen werden. (siehe \autoref{fig:instr_other_statistics_header})
+Um die Akzeptanz der Anwendung beurteilen zu können, wurde ein Statistikmodul implementiert, obwohl dies im vorgegebenen Pflichtenheft nicht vorgesehen ist. Es werden deshalb unter anderem anonymisiert die Zugriffe auf die verschiedenen Seiten, von welchen Endgeräten die Zugriffe erfolgen, welche Schulstufen, etc. registriert und in Grafiken ausgewertet.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/statistics_header.png}
@@ -195,7 +242,7 @@ In dieser Statistik wird dargestellt, wie viele Seitenaufrufe im Durchschnitt in
 \label{fig:instr_other_statistics_view_day}
 \end{figure}
 \subsubsection{Seitenaufrufe täglich}
-In dieser Statistik wird dargestellt, wie viele Seitenaufrufe jeden Tag verursacht werden. (siehe \autoref{fig:instr_other_statistics_views_day}) Hier kann auch, um bei vielen Tagen sich einen Überblick zu beschaffen, hineingezoomt werden. Dies macht man in dem man mit der rechten Maustaste ein gewünschtes Fenster aufzieht. Heraus zoomen kann mit einem doppelten rechts Klick gemacht werden. (siehe \autoref{fig:instr_other_statistics_views_day_zoom})
+In dieser Statistik wird dargestellt, wie viele Seitenaufrufe jeden Tag verursacht werden. (siehe \autoref{fig:instr_other_statistics_views_day}) Hier kann auch, um bei vielen Tagen sich einen Überblick zu beschaffen, hineingezoomt werden. Dies macht man in dem man mit der linken Maustaste ein gewünschtes Fenster aufzieht. Heraus zoomen kann mit einem doppelten rechts Klick gemacht werden. (siehe \autoref{fig:instr_other_statistics_views_day_zoom})
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/statistics_views_day.png}
@@ -209,8 +256,21 @@ In dieser Statistik wird dargestellt, wie viele Seitenaufrufe jeden Tag verursac
 \label{fig:instr_other_statistics_views_day_zoom}
 \end{figure}
 \subsection{Räume}
-Sollen neue Räume hinzugefügt werden oder bestehende geändert werden, dann kann dies in dieser Eingabe vorgenommen werden. Der Unterschied zu den anderen Eingaben ist, dass man Räume nicht löschen oder unsichtbar machen kann, da ein Raum üblicherweise nicht entfernt wird. Sollte es jedoch doch einmal zu einem Fall kommen, dass ein Raum entfernt werden soll, so kann dies nicht vorgenommen werden. Dieser Raum scheint trotzdem in der Liste auf.\\
-Im Feld Name wird der Raumname eingetragen und im Feld zuständiger Lehrer kann ein, für diesen Raum verantwortlicher Lehrer, eingetragen werden, dieses Feld ist jedoch optional und muss nicht verwendet werden. Mit Übernehmen werden die Daten gespeichert. (Eingabemaske siehe \autoref{fig:instr_other_room_input})
+Über diese Eingabemaske werden Räume bearbeitet und hinzugefügt (siehe \autoref{fig:instr_other_room_input}). Aus Gründen der Datenkonsistenz der Stunden- und Supplierpläne ist das Löschen von Räumen nicht möglich.
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3 cm}p{10 cm}}
+   \toprule
+   \textbf{Eingabefeld} & \textbf{Typ} \\
+   \midrule
+          \textbf{Name} & Textfeld - Pflichtfeld \newline Name des Raumes \\
+          \hline
+          Zuständiger Lehrer & Listenfeld - optional \newline Verantwortlicher Lehrer für den Raum\\
+   \bottomrule
+\end{tabular}
+\caption{Eingabefelder Räume}
+\end{table}
+Änderungen und Ergänzungen sind über die Schaltfläche Übernehmen in den Eingabezeilen zu bestätigen.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=10cm]{images/screenshots/rooms_input.png}
@@ -218,8 +278,28 @@ Im Feld Name wird der Raumname eingetragen und im Feld zuständiger Lehrer kann 
 \label{fig:instr_other_room_input}
 \end{figure}
 \subsection{Klassen}
-Sollen Klassen verändert oder neue hinzugefügt werden, so kann dies in dieser Eingabemaske vorgenommen werden. Klassen können auch nicht gelöscht werden, jedoch können diese unsichtbar gemacht werden. (siehe \autoref{sec:instr_other_hidden}) Da es vorkommen kann dass in einem Jahr eine Klasse nicht gibt, aber im nächsten Jahr schon.\\
-Im ersten Feld Name kann der Name der Klasse eingegeben werden, im Feld Abteilung wird der Klasse eine Abteilung zugewiesen, im Feld Klassenvorstand wird der Klasse ein Klassenvorstand zugewiesen. Hat die Klasse eine Stammklasse kann auch diese angegeben werden. Als Scheinklasse können den Wanderklassen der Raum WK zugewiesen werden, jedoch ist dieses Feld optional und muss nicht angegeben werden. Das Klassenvorstand Feld ist ebenfalls optional. (Eingabemaske siehe \autoref{fig:instr_other_classes_input})
+Über diese Eingabemaske werden Klassen bearbeitet und hinzugefügt (siehe \autoref{fig:instr_other_classes_input}). Aus Gründen der Datenkonsistenz der Stunden- und Supplierpläne ist das Löschen von Klassen nicht möglich. Jedoch können Klassen als unsichtbar gekennzeichnet werden (siehe \autoref{sec:instr_other_hidden}).
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3 cm}p{10 cm}}
+   \toprule
+   \textbf{Eingabefeld} & \textbf{Typ} \\
+   \midrule
+          \textbf{Name} & Textfeld - Pflichtfeld \newline Name der Klasse \\
+          \hline
+          \textbf{Abteilung} & Listenfeld - Pflichtfeld \\
+          \hline
+          Klassenvorstand & Listenfeld - optional \\
+          \hline
+          Stammklasse & Textfeld - optional \newline Zugeordneter Klassenraum \\
+          \hline
+          Unsichtbar & Checkbox \\
+   \bottomrule
+\end{tabular}
+\caption{Eingabe Klassen}
+\end{table}
+Wanderklassen kann der Raum WK als Scheinklassenraum zugewiesen werden. Wird die Checkbox Unsichtbar bei einer Klasse gesetzt, wird diese in den Listenfelder nicht mehr angezeigt.\\
+Änderungen und Ergänzungen sind über die Schaltfläche Übernehmen in den Eingabezeilen zu bestätigen.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/classes_input.png}
@@ -227,8 +307,22 @@ Im ersten Feld Name kann der Name der Klasse eingegeben werden, im Feld Abteilun
 \label{fig:instr_other_classes_input}
 \end{figure}
 \subsection{Abteilungen}
-Kommt es vor, dass sich ein Name einer Abteilung ändert oder es kommt eine neue Abteilung hinzu, so kann dies in dieser Eingabe vorgenommen werden. Abteilungen können weder gelöscht, noch unsichtbar gemacht werden. (siehe \autoref{sec:instr_other_hidden})\\
-Im ersten Feld Name wird der Name der Abteilung eingegeben, im Feld Kürzel wird das Kürzel der Abteilung eingegeben und im Feld Abteilungsvorstand wird der Abteilungsvorstand eingegeben. Mit Übernehmen werden die Daten gespeichert. (Eingabemaske siehe \autoref{fig:instr_other_sections_input})
+Über diese Eingabemaske werden Abteilungen bearbeitet und hinzugefügt (siehe \autoref{fig:instr_other_sections_input}). Aus Gründen der Datenkonsistenz der Stunden- und Supplierpläne ist das Löschen von Abteilungen nicht möglich.
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3 cm}p{10 cm}}
+   \toprule
+   \textbf{Eingabefeld} & \textbf{Typ} \\
+   \midrule
+          \textbf{Name} & Textfeld - Pflichtfeld \newline Vollständiger Bezeichnung der Abteilung \\
+          \hline
+          \textbf{Kürzel} & Listenfeld - Pflichtfeld \\
+          \hline
+          \textbf{Abteilungsleiter} & Listenfeld - Pflichtfeld \\
+   \bottomrule
+\end{tabular}
+\caption{Eingabe Abteilungen}
+\end{table}
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/sections_input.png}
@@ -236,8 +330,7 @@ Im ersten Feld Name wird der Name der Abteilung eingegeben, im Feld Kürzel wird
 \label{fig:instr_other_sections_input}
 \end{figure}
 \subsection{Unsichtbar}\label{sec:instr_other_hidden}
-Aus Sicherheitsgründen können manche Daten nicht gelöscht werden, da es bei unabsichtlichem Löschen dazu kommt, dass andere Daten nicht mehr vollständig sind und deshalb das ganze System zusammenbrechen kann.\\
-Deshalb gibt es in manchen Eingaben keine Lösch-Funktion, in manchen gibt es jedoch eine Unsichtbar-Funktion. Mit dieser Funktion werden die Daten in der Eingabe ganz nach unten gereiht und werden in den DropDown Menüs nicht mehr angezeigt.\\
-Unsichtbar gemachte Daten können auch wieder reaktiviert werden.
+Aus Sicherheitsgründen und Gründen der Datenkonsistenz dürfen manche Daten nicht gelöscht werden. Das Löschen ist nur dort möglich, wo explizit eine Checkbox Löschen vorhanden ist.\\
+Um dennoch unnötige Einträge in den Listenfeldern zu vermeiden, können über die Checkbox Unsichtbar Einträge deaktiviert werden. Über die gleiche Funktion können diese Einträge dann wenn notwendig wieder aktiviert werden.
 \subsection{DropDown-Menüs}
-In den meisten Eingaben sind den Textfeldern Daten hinterlegt, welche bei beginn mit dem eintippen schon die möglichen Daten anzeigt. Wird bei Ende der Eingabe kein Vorschlag angezeigt, so kann man davon ausgehen, dass der eingegebene Wert nicht vorhanden ist. Diese Funktion ist jedoch nicht bei jedem Textfeld verfügbar.
+In zahlreichen Eingabefeldern sind Listen der zulässigen Eingaben hinterlegt, welche bei Beginn der Eingabe angezeigt werden. In Abhängigkeit der eingegebenen Zeichen wird die angezeigte Liste eingeschränkt. Ist die angezeigte Liste leer, so wurde kein übereinstimmender Eintrag gefunden und liegt wahrscheinlich eine Fehleingabe vor.

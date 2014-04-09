@@ -1,4 +1,4 @@
-Im Menü Data-Inputs gibt es den Punkt Supplierungen anlegen, hier können, wie der Name schon sagt, neue Supplierungen angelegt werden. (siehe \autoref{fig:instr_substitudes_dataInput}) Klickt man auf diesen Punkt so erscheint die Eingabemaske.(siehe \autoref{fig:instr_substitudes_subNoFree}) Für den Super-User erscheint zuerst eine Auswahl zwischen den einzelnen Abteilungen. (siehe \autoref{fig:instr_substitudes_subSuUs}) Erst nach der Auswahl der Abteilungen kommt ein Super User zur Eingabemaske.\\
+Das Erfassen von Supplierungen kann im Menü \enquote{Data Input} gestartet werden (siehe \autoref{fig:instr_substitudes_dataInput}). Es wird die Eingabemaske für die Abteilung des Users geöffnet (siehe \autoref{fig:instr_substitudes_subNoFree}). Der Super-User muss zuerst die zu bearbeitende Abteilung auswählen (siehe \autoref{fig:instr_substitudes_subSuUs}).
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/data-inputs_substitudes.png}
@@ -17,8 +17,7 @@ Im Menü Data-Inputs gibt es den Punkt Supplierungen anlegen, hier können, wie 
 \caption{Super User Auswahl}
 \label{fig:instr_substitudes_subSuUs}
 \end{figure}
-Die Datumsauswahl funktioniert exakt auf die selbe Weise wie bei den fehlenden Lehrern/Schülern. Bei Unklarheiten siehe \autoref{sec:instr_admin_absentees}.\\
-Insgesamt gibt es 4 Grundlegende Eintragungsvarianten:
+Es gibt 4 grundlegende Eingabevarianten:
 \begin{itemize}
 	\item Normale Eingabe\\
 		siehe \autoref{sec:instr_admin_sub_noFree}
@@ -34,15 +33,79 @@ Insgesamt gibt es 4 Grundlegende Eintragungsvarianten:
 		\end{itemize}
 \end{itemize}
 \subsection{Normale Eingabe}\label{sec:instr_admin_sub_noFree}
-Diese Eingabe, kann dann gut verwendet werden, wenn in einer Klasse ein Lehrer fehlt, dieser muss jedoch als fehlend zuvor eingetragen werden. Fehlen mehrere Lehrer in der selben Klasse zur selben Zeit, dann wird diese Eingabe problematisch. Dann muss auf eine andere Eingabeform zurückgegriffen werden.\\
-Prinzipiell funktioniert diese Eingabevariante nur wenn der Lehrer in dieser Stunde fehlt und dann eine Supplierung eingetragen werden soll. Mit dieser Eingabevariante kann jedoch nur eine Supplierung eingetragen werden, es ist nicht möglich die Stunde zu verschieben oder ausfallen zu lassen.\\\\
-Von den Eingabefeldern ist die Eingabe der Klasse und des Supplierlehrers verpflichtend. Weiteres muss die Start- und End-Stunde angegeben werden. Fach, Raum und Kommentar sind optionale Eingabefelder. (siehe \autoref{fig:instr_substitudes_subNoFree})
-\subsection{Freie Eingabe}\label{sec:instr_admin_sub_Free}
-Diese Eingabe ist dafür da, dass man auch eine Supplierung eintragen kann, wenn der ursprüngliche Lehrer nicht fehlt. Diese Eingaben funktionieren immer. Um diese Methode zu wählen muss ein Hacken bei freie Eingabe gesetzt werden. Anschließend kommen neue Felder hinzu. Direkt unter der Check Box gibt es drei Radio Buttons. Diese werden zur Auswahl der Eingabemethode bei der Freien Eingabe verwendet. Wird ein Radio Button ausgewählt ändert sich die Konstellation der Eingabefelder.
-\subsubsection{Verschieben}\label{sec:instr_admin_sub_move}
-In dieser Eingabevariante können Stunden einer Klasse innerhalb eines Tages verschoben werden. Außerdem muss diese Variante auch verwendet werden, wenn zum Beispiel: 2 oder mehr Lehrer in einer Klasse zur selben Zeit fehlen und genau geregelt ist, welcher Supplierlehrer welchen Lehrer vertritt. Da es jedoch keine Verschiebung ist, sondern eigentlich nur eine Vertretung, muss in diesem Fall die Start- und Endstunde und die Ursprüngliche Start- und End-Stunde gleich sein. Damit die Stunde wieder zur selben Zeit stattfindet. Sie kann auch dazu verwendet werden um eine vorhandene Stunde zu kürzen. Dann muss die ursprüngliche Stunde angegeben werden und kann dann mit der neuen Start- und End-Stunde hinzugefügt werden. So kann eine Stunde, die von der 1-4 dauert, in eine Stunde die von der 2-3 dauert, verkürzt werden.\\
-Die Form der Eingabemaske entspricht im wesentlichen der Form, der normalen Eingabe, jedoch sind 3 Felder hinzugekommen. (siehe \autoref{fig:instr_substitudes_subMove}) Diese dienen dazu die ursprüngliche Stunde festzulegen. Wird eine Verschiebung eingetragen wird diese von der ursprünglichen Position entfernt.\\
-Pflichtfelder sind die Klasse, Start- und End-Stunde, ursprüngliche Start- und End-Stunde und ursprüngliche Lehrer. Die restlichen Felder sind optional. Wird eines dieser optionalen Felder nicht eingetragen, dann werden die Daten der ursprünglichen Stunde verwendet. Sobald Verschiebung ausgewählt wurde, wird automatisch in das Kommentarfeld \enquote{Verschiebung von} eingetragen.
+Diese Eingabemethode (siehe \autoref{fig:instr_substitudes_subNoFree}) dient zur Erfassung von Supplierstunden von Klassen, deren Lehrer vorher als fehlend definiert wurde. Fehlen mehrere Lehrer in einer Klasse zur selben Zeit (Labor, FTKL, ...) ist die Freie Eingabe (siehe \autoref{sec:instr_admin_sub_Free}) zu verwenden.
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3 cm}p{6 cm}p{5 cm}}
+   \toprule
+   \textbf{Eingabefeld} & \textbf{Typ} & \textbf{Wertebereich} \\
+   \midrule
+          Freie Eingabe & Checkbox \newline nicht genutzt & \\
+          \hline
+          \textbf{Klasse} & Listenfeld - Pflichtfeld & Abteilungs-abhängig \\
+          \hline
+          Fach & Listenfeld - optional & \\
+          \hline
+          \textbf{Supplierlehrer} & Listenfeld - Pflichtfeld & \\
+          \hline
+          Raum & Listenfeld - optional & \\
+          \hline
+          \textbf{Start-Std.} & Erste Schulstunde der Supplierung  -Pflichtfeld & 1-16 \\
+		  \hline
+          \textbf{End-Std.} & Letzte Schulstunde der Supplierung  -Pflichtfeld & 1-16 \newline größer oder gleich Start-Std.\\
+          \hline
+          Kommentar & Textfeld - optional & \\
+   \bottomrule
+\end{tabular}
+\caption{Eingabefelder normale Eingabe}
+\end{table}
+Mit der Schaltfläche Übernehmen wird eine Plausibilitätsüberprüfung vorgenommen und bei fehlerfreier Eingabe die Supplierstunde übernommen. Bei einer Fehleingabe wird der Fehler angezeigt und muss korrigiert werden. Nach der korrekten Übernahme wird die Checkbox Löschen in der erfassten Eingabezeile eingeblendet.
+\subsection{Freie Eingabe} \label{sec:instr_admin_sub_Free}
+Mit der Freien Eingabe können auch Supplierstunden erfasst werden, wenn der ursprüngliche Lehrer nicht fehlt. Um diese Methode auszuwählen muss in der Eingabemaske die Checkbox Freie Eingabe gesetzt werden. Es erscheinen zusätzliche Eingabefelder und drei Radio-Buttons zur Auswahl der Eingabemethode.\\
+Standardmäßig ist der Radio-Button Verschiebung ausgewählt. Bei einer anderen Wahl ändern sich die Eingabefelder.
+\subsubsection{Verschieben von Schulstunden} \label{sec:instr_admin_sub_move}
+Diese Eingabemethode dient dazu:
+\begin{itemize}
+	\item Schulstunden einer Klasse innerhalb eines Tages zu verschieben
+	\item Supplierstunden von 2 oder mehreren fehlenden Lehrern zu erfassen (Vertretung)
+	\item Mehrstündige Fächer zu kürzen
+\end{itemize}
+Zur normalen Eingabemaske sind 3 zusätzliche Felder zu erfassen (siehe \autoref{fig:instr_substitudes_subMove}).
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3 cm}p{6 cm}p{5 cm}}
+   \toprule
+   \textbf{Eingabefeld} & \textbf{Typ} & \textbf{Wertebereich} \\
+   \midrule
+          \textbf{Freie Eingabe} & Checkbox \newline gesetzt & \\
+          \hline
+          \textbf{Klasse} & Listenfeld - Pflichtfeld & Abteilungs-abhängig \\
+          \hline
+          Fach & Listenfeld - optional & \\
+          \hline
+          \textbf{Supplierlehrer} & Listenfeld - Pflichtfeld & \\
+          \hline
+          Raum & Listenfeld - optional & \\
+          \hline
+          \textbf{Start-Std.} & Erste Schulstunde der Supplierung  -Pflichtfeld & 1-16 \\
+		  \hline
+          \textbf{End-Std.} & Letzte Schulstunde der Supplierung  -Pflichtfeld & 1-16 \newline größer oder gleich Start-Std.\\
+          \hline
+          Kommentar & Wird automatisch mit \enquote{Verschiebung von} befüllt & \\
+          \hline
+          \textbf{Radio-Button} & \textbf{Verschiebung} - gesetzt\newline Hinzufügen - nicht gesetzt \newline Entfällt - nicht gesetzt & \\
+          \hline
+          \textbf{Urs. Start-Std.} & Erste ursprüngliche Schulstunde der Supplierung  -Pflichtfeld & 1-16 \\
+          \hline
+          \textbf{Urs. End-Std.} & Letzte ursprüngliche Schulstunde der Supplierung  -Pflichtfeld & 1-16 \newline größer oder gleich Urs. Start-Std.\\
+          \hline
+          \textbf{Urs. Lehrer} & Listenfeld - Pflichtfeld \newline ursprünglicher Lehrer der Supplierung\\
+   \bottomrule
+\end{tabular}
+\caption{Eingabefelder Verschiebung}
+\end{table}
+Einige der optionalen Informationen werden automatisch mit den Daten der ursprünglichen Stunde befüllt.
+Mit der Schaltfläche Übernehmen wird eine Plausibilitätsüberprüfung durchgeführt und bei fehlerfreier Eingabe übernommen. Bei einer Fehleingabe wird der Fehler angezeigt und muss korrigiert werden. Nach der korrekten Übernahme wird die Checkbox Löschen in der erfassten Eingabezeile eingeblendet.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/substitudes_move.png}
@@ -50,8 +113,37 @@ Pflichtfelder sind die Klasse, Start- und End-Stunde, ursprüngliche Start- und 
 \label{fig:instr_substitudes_subMove}
 \end{figure}
 \subsubsection{Hinzufügen}\label{sec:instr_admin_sub_add}
-Diese Variante kann dazu verwendet werden, falls zum Beispiel eine Stunde von einem anderen Tag auf diesen Tag verschoben wird. Diese Variante kann auch dazu verwendet werden, irgendwo eine Stunde einzufügen. Wenn diese Eingabevariante gewählt wird, überschreibt der neue Eintrag den ursprünglichen Stundenplan der Klasse.\\
-Die Eingabemaske ist identisch mit der, der normalen Eingabe. (siehe \autoref{fig:instr_substitudes_subAdd}) Pflichtfelder sind in dieser Variante Klasse, Fach, Supplierlehrer (in diesem Fall der Lehrer) und die Start- und End-Stunde. Raum und Kommentar sind optionale Felder.
+Diese Eingabemethode dient dazu, zusätzliche Schulstunden an einem Tag einzufügen. Der neue Eintrag überschreibt den ursprünglichen Stundenplan der Klasse für diesen Tag.\\
+Die Eingabemaske entspricht jener der Normalen Eingabe und enthält zusätzlich die Radio-Buttons (siehe \autoref{fig:instr_substitudes_subAdd}).
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3 cm}p{6 cm}p{5 cm}}
+   \toprule
+   \textbf{Eingabefeld} & \textbf{Typ} & \textbf{Wertebereich} \\
+   \midrule
+          \textbf{Freie Eingabe} & Checkbox \newline gesetzt & \\
+          \hline
+          \textbf{Klasse} & Listenfeld - Pflichtfeld & Abteilungs-abhängig \\
+          \hline
+          \textbf{Fach} & Listenfeld - optional & \\
+          \hline
+          \textbf{Supplierlehrer} & Listenfeld - Pflichtfeld & \\
+          \hline
+          Raum & Listenfeld - optional & \\
+          \hline
+          \textbf{Start-Std.} & Erste Schulstunde  -Pflichtfeld & 1-16 \\
+		  \hline
+          \textbf{End-Std.} & Letzte Schulstunde -Pflichtfeld & 1-16 \newline größer oder gleich Start-Std.\\
+          \hline
+          Kommentar & Textfeld - optional & \\
+          \hline
+          \textbf{Radio-Button} & Verschiebung - nicht gesetzt\newline 
+          \textbf{Hinzufügen} - gesetzt \newline Entfällt - nicht gesetzt & \\
+   \bottomrule
+\end{tabular}
+\caption{Eingabefelder Hinzufügen}
+\end{table}
+Mit der Schaltfläche Übernehmen wird eine Plausibilitätsüberprüfung durchgeführt und bei fehlerfreier Eingabe übernommen. Bei einer Fehleingabe wird der Fehler angezeigt und muss korrigiert werden. Nach der korrekten Übernahme wird die Checkbox Löschen in der erfassten Eingabezeile eingeblendet.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/substitudes_add.png}
@@ -59,8 +151,32 @@ Die Eingabemaske ist identisch mit der, der normalen Eingabe. (siehe \autoref{fi
 \label{fig:instr_substitudes_subAdd}
 \end{figure}
 \subsubsection{Entfallen}\label{sec:instr_admin_sub_remove}
-Diese Variante wird dazu benötigt eine vorhandene Stunde ausfallen zu lassen. Dabei wird die Stunde im Stundenplan der Schüler bzw. Lehrer nicht mehr angezeigt. Wird Entfällt ausgewählt, dann wird in das Kommentarfeld automatisch Entfällt eingefügt.\\
-Die Eingabemaske ist auf das nötigste reduziert. (siehe \autoref{fig:instr_substitudes_subRemove}) Die Pflichtfelder sind Klasse, ursprüngliche Start- und End-Stunde und der ursprüngliche Lehrer. Das Kommentarfeld ist optional.
+Entfällt eine Schulstunden ersatzlos, ist der Radio-Button Entfällt zu setzen. Die angegebene Stunde wird im Stundenplan der Schüler und Lehrer gelöscht.\\
+Die Eingabemaske wird auf die unbedingt notwendigen Felder reduziert (siehe \autoref{fig:instr_substitudes_subRemove}).
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3 cm}p{6 cm}p{5 cm}}
+   \toprule
+   \textbf{Eingabefeld} & \textbf{Typ} & \textbf{Wertebereich} \\
+   \midrule
+          \textbf{Freie Eingabe} & Checkbox \newline gesetzt & \\
+          \hline
+          \textbf{Klasse} & Listenfeld - Pflichtfeld & Abteilungs-abhängig \\
+          \hline
+          Kommentar & Wird automatisch mit \enquote{entfällt} befüllt & \\
+          \hline
+          \textbf{Radio-Button} & Verschiebung - nicht gesetzt\newline Hinzufügen - nicht gesetzt \newline \textbf{Entfällt} - gesetzt & \\
+          \hline
+          \textbf{Urs. Start-Std.} & Erste ursprüngliche Schulstunde die Entfällt  -Pflichtfeld & 1-16 \\
+          \hline
+          \textbf{Urs. End-Std.} & Letzte ursprüngliche Schulstunde die Entfällt  -Pflichtfeld & 1-16 \newline größer oder gleich Urs. Start-Std.\\
+          \hline
+          \textbf{Urs. Lehrer} & Listenfeld - Pflichtfeld \newline ursprünglicher Lehrer der entfallenen Schulstunde\\
+   \bottomrule
+\end{tabular}
+\caption{Eingabefelder Entfällt}
+\end{table}
+Mit der Schaltfläche Übernehmen wird eine Plausibilitätsüberprüfung durchgeführt und bei fehlerfreier Eingabe übernommen. Bei einer Fehleingabe wird der Fehler angezeigt und muss korrigiert werden. Nach der korrekten Übernahme wird die Checkbox Löschen in der erfassten Eingabezeile eingeblendet.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/substitudes_remove.png}
@@ -68,15 +184,15 @@ Die Eingabemaske ist auf das nötigste reduziert. (siehe \autoref{fig:instr_subs
 \label{fig:instr_substitudes_subRemove}
 \end{figure}
 \subsection{Fehler}
-Wenn in die Textboxen Werte eingegeben werden, welche nicht in unserer Datenbank vorhanden sind, dann wird ein Fehler zurückgegeben. Dazu erscheint ein Pop-Up indem der Name der Fehlerhaften Textbox geschrieben ist. Dieses Pop-Up muss mit OK bestätigt werden, anschließend muss die Eingabe erneut erfolgen.\\
-Ein weiterer Fehler kann sein, dass bei der normalen Eingabe eine Supplierung angelegt werden will, ohne dass der ursprüngliche Lehrer fehlt. Dabei wird ein Fehler zurückgegeben und der Trennstrich unter der Supplierung wird rot. Die zuvor eingegebenen Werte werden in die Textbox eingefügt. Dies kann auch bei einer freien Eingabe auftreten, zum Beispiel wenn die ursprüngliche Stunde nicht gefunden wird, dann wird auch dieser Fehler ausgegeben. (siehe \autoref{fig:instr_substitudes_fail})
+Wird in einem Eingabefeld ein Wert eingegeben, der nicht in der angezeigten Liste vorkommt oder nicht im Wertebereich liegt, wird ein Fehler zurückgegeben. In einem Pop-Up wird der Name des fehlerhaften Eingabefeldes angezeigt. Das Pop-Up ist mit der Schaltfläche Ok zu bestätigen. Anschließend muss die Eingabe erneut erfolgen.\\
+Eine weitere Fehlerquelle kann darin liegen, dass bei der Normalen Eingabe (siehe \autoref{sec:instr_admin_sub_noFree}) zur Erfassung einer Supplierung ein ursprünglicher Lehrer gewählt wird, der nicht als fehlend erfasst wurde oder wenn die ursprüngliche Stunde nicht gefunden wird. Diese Fehler werden unter der Seitenüberschrift angezeigt und die Trennlinie unter der Eingabezeile wird rot (siehe \autoref{fig:instr_substitudes_fail}).
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=17cm]{images/screenshots/substitudes_fail.png}
 \caption{Fehleingabe}
 \label{fig:instr_substitudes_fail}
 \end{figure}
-\subsection{Verändern}
-Soll eine vorhandene Supplierung verändert werden, so kann das auf einfache weise gemacht werden. Dabei kann einfach der Eintrag verändert werden. Ist alles nach den neuen Wünschen angepasst, so muss auf Übernehmen geklickt werden um die Supplierung zu übernehmen.
+\subsection{Einträge ändern}
+Bestehende Einträge können durch überschreiben geändert werden. Die Änderungen werden nach dem Drücken auf die Schaltfläche Übernehmen der Eingabezeile übernommen, sofern kein Fehler auftritt. Bei einer Fehlermeldung ist die Eingabe entsprechend zu korrigieren.
 \subsection{Löschen}
-Soll eine Supplierung gelöscht werden, so muss der Hacken bei Löschen, bei der gewünschten Supplierung, gesetzt werden und anschließend muss auf Übernehmen geklickt werden. Anschließend wird die Supplierung \textbf{unwiderruflich} gelöscht.
+Das Löschen eines Eintrages erfolgt über die Checkbox Löschen der entsprechenden Eingabezeile. Diese muss gesetzt und dann mit Übernehmen bestätigt werden. Es erfolgt keine weitere Sicherheitsabfrage und ist der Eintrag unwiderruflich gelöscht

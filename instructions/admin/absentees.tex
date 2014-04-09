@@ -1,4 +1,4 @@
-Im Punkt Fehlende im Menü "Data-Input" können fehlende Lehrer und fehlende Klassen eingegeben werden. Klickt man nun im Menü "Data-Input" (siehe \autoref{fig:instr_admin_absentees_dimenu}) auf Fehlende eintragen, dann gelangt man in ein weiteres Menü.(siehe \autoref{fig:instr_admin_absentees_menu}) In welchem man zwischen Klassen und Lehrer wählen kann. Wie der Name schon sagt, bei fehlende Lehrer werden die fehlenden Lehrer eingetragen und bei fehlenden Klassen werden die fehlenden Klassen eingetragen.
+Im Menü \enquote{Data-Input} (siehe \autoref{fig:instr_admin_absentees_dimenu}) können über den Auswahlpunkt \enquote{Fehlende eintragen}  fehlende Lehrer und fehlende Klassen eingegeben werden. Es öffnet sich ein weiteres Menü (siehe \autoref{fig:instr_admin_absentees_menu}) mit der Wahlmöglichkeit zwischen Lehrer und Klassen.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=14cm]{images/screenshots/data-inputs2.png}
@@ -12,15 +12,36 @@ Im Punkt Fehlende im Menü "Data-Input" können fehlende Lehrer und fehlende Kla
 \label{fig:instr_admin_absentees_menu}
 \end{figure}
 \subsection{Fehlende Lehrer}
-Hat man nun den Punkt fehlende Lehrer Ausgewählt, so gelangt man zur Eingabemaske, die wie in \autoref{fig:instr_admin_absentees_Lehrer} aufgebaut ist.
-\paragraph{Hinzufügen}
-Unter der Überschrift ist eine Auswahlmöglichkeit für das Datum, dieses Datum spiegelt den ersten Tag des Fehlens eines Lehrers wieder. Will man nun einen Lehrer als fehlend eintragen, so muss zuerst das Start-Datum gewählt werden. Dies kann entweder durch drücken der Pfeiltaste geschehen oder durch Eingabe des Datums in dem Textfeld zwischen den Pfeilen. Wird diese Möglichkeit genutzt, muss darauf geachtet werden, dass das Datum im Format yyyy-mm-dd eingegeben wird. Mit Enter muss diese Eingabe bestätigt werden.\\
-Hat man nun das gewünschte Datum erreicht, so kann mit der Eingabe begonnen werden. Im ersten Feld, das mit Lehrer Beschriftet ist, muss das Lehrer-Kürzel eingetragen werden. Wird ein Buchstabe eingegeben so erscheint eine Liste von Lehrern, die diesen Buchstaben enthalten. Nachdem der Lehrer eingegeben wurde, muss die Start-Stunde eingegeben werden. Das Feld Starttag kann nicht verändert werden, dies entspricht immer dem oben eingestellten Datum. Als Start-Stunde sind die Werte 1-16 erlaubt, es sei denn es wurden in der Eingabe der Stunden etwas anderes definiert. (Eingabe Stunde siehe \autoref{sec:instr_other_hours}) Für den Endtag ist standardmäßig auch das Start-Datum eingetragen, dieses kann jedoch in das gewünschte Datum geändert werden. Voraussetzung dafür ist, dass es größer oder gleich dem Startdatum ist und es muss im Format yyyy-mm-dd eingegeben werden. Außerdem muss beachtet werden, dass dieses Datum kein Wochenende sein darf. Also es muss ein Datum eingegeben werden, welches einem Wochentag zwischen Montag und Freitag entspricht. Im letzten Feld kann  ein Grund für das Fehlen eingetragen werden. Ist alles wie gewünscht ausgefüllt, (Bis auf den Grund müssen alle Felder ausgefüllt werden) so kann auf Übernehmen geklickt werden.\\
-Wird ein Lehrer oder eine Stunde nicht gefunden, so wird ein Pop-Up angezeigt, auf dem der Name der falschen Textbox steht, der beispielsweise, wie in \autoref{fig:instr_admin_absentees_fail} zu sehen ist, aussehen kann. Dieser muss mit OK bestätigt werden. Anschließend muss die Eingabe erneut erfolgen.\
-\subsection{Verändern}
-Soll ein vorhandener Eintrag verändert werden, so kann das auf einfache weise gemacht werden. Dabei kann einfach der Eintrag verändert werden. Ist alles nach den neuen Wünschen angepasst, so muss auf Übernehmen geklickt werden, um den Eintrag zu übernehmen.
-\subsection{Löschen}
-Ist ein Eintrag fehlerhaft oder muss er entfernt werden, so muss ein Hacken bei Löschen, in der Zeile des zu löschenden Eintrages, gesetzt werden und anschließend mit übernehmen bestätigen. (siehe \autoref{fig:instr_admin_absentees_Leherer_delete}) Nun ist dieser Eintrag \textbf{unwiderruflich} gelöscht.
+\label{sec:instr_admin_absentees_teacher}
+In der tabellarischen Eingabemaske (siehe \autoref{fig:instr_admin_absentees_Lehrer}) können nun fehlende Lehrer hinzugefügt, Einträge geändert oder gelöscht werden. Standardmäßig werden beim Öffnen der Eingabemaske die für den aktuellen Tag erfassten Fehlenden Lehrer angezeigt.
+\subsubsection{Fehlenden Lehrer Hinzufügen} \label{sec:instr_admin_absentees_teacher_insert}
+Als erster Schritt ist das Datum des Tages auszuwählen, für den fehlende Lehrer erfasst werden. Dies kann entweder durch das Vor- und Zurückblättern mit den Pfeiltasten erfolgen oder durch eine manuelle Eingabe (Format yyyy-mm-dd). Die manuelle Eingabe ist mit der Enter-Taste zu bestätigen. Dieses Datum wird in neuen Eingabezeilen automatisch in das Feld Starttag eingetragen. Dann sind die einzelnen Eingabefelder zu befüllen.\\
+\begin{table}
+\centering
+\begin{tabular}{p{3 cm}p{6 cm}p{5 cm}}
+   \toprule
+   \textbf{Eingabefeld} & \textbf{Typ} & \textbf{Wertebereich} \\
+   \midrule
+          \textbf{Lehrer} & Text \newline Kürzel des Lehrers -Auswahl aus Listenfeld & \\
+          \hline
+          \textbf{Starttag} & Datum \newline Wird automatisch eingetragen und kann nicht verändert werden &  \\
+          \hline
+          \textbf{Start-Stunde} & nummerisch & 1-16\\
+          \hline
+          \textbf{Endtag} & Datum \newline Standardmäßig wie Starttag ist auf gewünschtes Datum zu ändern & Größer oder gleich Starttag und kein Samstag oder Sonntag \\
+          \hline
+          \textbf{End-Stunde} & nummerisch & 1-16 \newline Wenn Starttag und Endtag gleich, dann größer als Start-Stunde\\
+          \hline
+          Grund & Text - optional \newline Freie Texteingabe für den Grund des Fehlens & \\
+   \bottomrule
+\end{tabular}
+\caption{Eingabefelder Fehlende}
+\end{table}
+Sind alle Pflicht-Eingabefelder befüllt, wird durch Drücken auf Übernehmen die Eingabezeile übernommen, wobei vorher eine Plausibilitätsüberprüfung vorgenommen wird. Sollte eine Fehleingabe bemerkt werden, wird in einem Popup-Fenster (siehe \autoref{fig:instr_admin_absentees_fail}) das fehlerhafte Feld angezeigt. Die Eingabefelder werden gelöscht und müssen neu erfasst werden. Bei einer fehlerfreien Übernahme wird in der Eingabezeile die Checkbox Löschen und eine weitere Eingabezeile angezeigt.
+\subsubsection{Eingabezeile verändern}
+Ein bereits übernommener Eintrag kann noch nachträglich verändert werden. Die Änderungen sind in den Feldern vorzunehmen und dann wie unter \autoref{sec:instr_admin_absentees_teacher_insert} für jede Eingabezeile zu übernehmen.
+\subsubsection{Eingabezeile löschen}
+Das Löschen eines fehlenden Lehrers erfolgt über die Checkbox \enquote{Löschen} der entsprechenden Eingabezeile. Diese muss ausgewählt werden und dann mit Übernehmen bestätigt werden. Es erfolgt keine weitere Sicherheitsabfrage und der Eintrag ist \textbf{unwiderruflich} gelöscht (siehe \autoref{fig:instr_admin_absentees_Leherer_delete}).
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=16cm]{images/screenshots/absentees_teacher.png}
@@ -39,5 +60,5 @@ Ist ein Eintrag fehlerhaft oder muss er entfernt werden, so muss ein Hacken bei 
 \caption{Fehlenden Lehrer löschen}
 \label{fig:instr_admin_absentees_Leherer_delete}
 \end{figure}
-\subsection{Fehlende Schüler}
-Die Eingabe der Fehleden Schüler läuft exakt nach dem gleichen Verfahren und Regeln ab wie die Eingabe der Fehlenden Lehrer. Deshalb werde ich hier nichts mehr zur Eingabe der fehlenden Klassen schreiben.
+\subsection{Fehlende Klassen}
+Die Erfassung von Fehlenden Klassen erfolgt analog jener der Fehlenden Lehrer. Die Eingabemenüs und Eingabefelder sind sinngemäß wie unter \autoref{sec:instr_admin_absentees_teacher} beschrieben zu verwenden.
