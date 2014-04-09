@@ -34,7 +34,7 @@ Die Form des Namenseintrags ist im Beispiel  \autoref{lst:instr_admin_sisconf} e
 Wenn der Name des Monitors geändert wird, sollte aus Gründen der Übersichtlichkeit und Nachvollziehbarkeit darauf geachtet werden, dass der Hostname des Raspberry Pis mit dem Namen übereinstimmt. Dazu wird die Datei /etc/hostname bearbeitet. Damit der Host nicht neu gestartet werden muss, kann mit dem Befehl \enquote{hostname} der Hostname zusätzlich auch direkt geändert werden. \\
 \textit{Beispiel}: hostname I386\\
 \\
-\textit{Achtung:} Da es zu Problemen mit manchen Programmen (wie zum Beispiel \textit{sudo}) kommen kann, sollte in er Datei /etc/hosts ein Eintrag für den Hostnamen angelegt werden, welcher auf die lokale Adresse zeigt (üblicherweise die Loopback-Adresse 127.0.1.1).\\
+\textit{Achtung:} Da es zu Problemen mit manchen Programmen (wie zum Beispiel \textit{sudo}) kommen kann, sollte in der Datei /etc/hosts ein Eintrag für den Hostnamen angelegt werden, welcher auf die lokale Adresse zeigt (üblicherweise die Loopback-Adresse 127.0.1.1).\\
 \\
 \textit{Achtung:} Die Software lässt es zu, dass mehrere Monitore den selben Namen tragen. Dies sollte allerdings vermieden werden.
 
@@ -141,7 +141,7 @@ Bestimmt die Zeit, an dem sich der angeschlossene Monitor einschalten soll.\\
 6:35 \> 6:35 früh\\
 17:05:11 \> 5:05:11 nachmittags
 \end{tabbing}
-Wird das Feld leer gelassen, so wird der alte Wert beibehalten.\\
+Wurde noch nie ein Wert eingestellt, so ist 1 Uhr Nachts der Standardwert. Wird das Feld leer gelassen, so wird der alte Wert beibehalten.\\
 
 \subsubsection{Ausschalt-Zeit}
 \label{instr_admin_moni_time_off}
