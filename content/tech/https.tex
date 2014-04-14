@@ -8,8 +8,10 @@ Zu Beginn wird die Zieladresse in eine IP-Adresse umgewandelt.
 Anschließend wird eine TCP-Verbindung  mit dem Server aufgebaut. 
 Dann wird eine Anfrage an den Port 80 des Server gesendet.
 \\
-\textcolor{blue}{GET /index.html HTTP/1.1}
-\\
+\begin{lstlisting}[style=custom, caption={HTTP-Request-Type},label={lst:content_http_request}]
+GET / HTTP/1.1
+\end{lstlisting}
+
 In diesem Fall würde die Datei "'index.html"' mittels HTTP1.1 angefordert werden.
 \\
 Im Header der Anfrage können außerdem Informationen, wie zum Beispiel der verwendete Webbrowser, enthalten sein.
