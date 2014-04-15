@@ -1,0 +1,7 @@
+\subsection{Wurzelverzeichnis}
+Das Projekt soll auch funktionsfähig sein, wenn es nicht dem Grundverzeichnis des virtuellen Hosts liegt. Das ist prinzipiell kein Problem, da alle Dateien relativ zum eigenen Standort referenziert werden können. Allerdings gibt es eine \enquote{Hauptdatei} (/modules/general/Main.php), die von allen Seiten includiert wird, da sie grundlegende Funktionen zur Verfügung stellt. Diese Datei includiert ihrerseits wiederum weitere Dateien, welche beispielsweise das Management der Sessions übernehmen. Werden diese Dateien relativ von der Hauptdatei  includiert, so werden sie in Wirklichkeit von der eigenen Datei includiert, da der Quellcode eingefügt wird. Das hat zur Folge, dass die referenzierten Dateien nicht existieren.
+
+\subsubsection{Gewählte Lösung}
+
+
+\subsubsection{Alternative Lösungen}
