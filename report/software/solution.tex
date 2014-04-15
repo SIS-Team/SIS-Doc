@@ -1,11 +1,10 @@
 \subsubsection{Überlegungen}
 
-Die Software zum regelmäßigen Anfragen am Server muss bereits beim Systemstart mitgestartet werden. Es bietet sich an, die Scripts über die Datei /etc/rc.local zu starten, da diese Datei relativ unkompliziert verwendet werden kann (\autoref{siehe lst:report_attachment_rc-local}, Seite \pageref{lst:report_attachment_rc-local}).\\
+Die Software zum regelmäßigen Anfragen am Server muss bereits beim Systemstart mitgestartet werden. Es bietet sich an, die Scripts über die Datei /etc/rc.local zu starten, da diese Datei relativ unkompliziert verwendet werden kann (siehe  \autoref{lst:report_attachment_rclocal} Zeilen 20 und 22, Seite \pageref{lst:report_attachment_rclocal}).\\
 
 \subsubsection{Darstellung}
 
-Damit kein Tool für den automatischen Login installiert werden muss, wird der Default-Runlevel auf % TOTO % 
-gesetzt (Dies kann durch Modifikation des Schlüssels \enquote{initdefault} in der Datei /etc/inittab erreicht werden. Siehe \autoref{lst:report_attachment_inittab}, Seite \pageref{lst:report_attachment_inittab}.) und der X-Server manuell gestartet.\\
+Damit kein Tool für den automatischen Login installiert werden muss, wird der Default-Runlevel auf 2 gesetzt (Dies kann durch Modifikation des Schlüssels \enquote{initdefault} in der Datei /etc/inittab erreicht werden. Siehe \autoref{lst:report_attachment_inittab} Zeile 5, Seite \pageref{lst:report_attachment_inittab}.) und der X-Server manuell gestartet.\\
 Das Starten des X-Servers wird durch das Script /usr/bin/sis-x initialisiert.
 
 \lstinputlisting[style=custom, language=sh, caption={/usr/bin/sis-x}, label={lst:report_software_sis-x}]{sources/raspberry/sis-x.x}
@@ -31,21 +30,43 @@ Für die Ansteuerung der GPIO Pins werden zwei Shell-Scripts verwendet.
 
 \lstinputlisting[style=custom, language=sh, caption={/usr/bin/monitorOff}, label={lst:report_software_monitorsOff}]{sources/raspberry/monitorOff.x}
 
-Zuerst wird geprüft, ob derausführende Benutzer root ist. Dies hat den Grund, dass nur root auf das GPIO-System schreiben darf.\\
+Zuerst wird geprüft, ob der ausführende Benutzer root ist. Dies hat den Grund, dass nur root auf das GPIO-System schreiben darf.\\
 Danach wird mit der Zeile 8 der GPIO-Pin 4 aktiviert. Der Pipe-Operator \enquote{2>\&1} dient dazu, dass etwaige Fehlermeldungen nicht ausgegeben werden (diese entstehen, wenn der Pin bereits als GPIO-Pin verwendet wird).\\
 Nun (Zeile 9) wird der GPIO-Pin als Ausgang konfiguriert.\\
 Also letztes wird nur noch der jeweilige Wert auf die Datei \enquote{value} geschrieben. Hierbei symbolisiert 1 das logische \textit{true}, und damit das Verhandensein der Steuerspannung (3.3 V) am Pin, und 0 das logische \textit{false}, also 0 V.
 
 \subsubsection{Verteilung}
 
-Für die Verteilung der Befehle wird ein Script erstellt, das beim Systemstart mitgestartet wird (über /etc/rc.local) und danach regelmäßig Anfragen an den Server schickt.
+\paragraph{Clientseitig}
+wird für die Verteilung der Befehle ein Script erstellt, das beim Systemstart mitgestartet wird (über /etc/rc.local) und danach regelmäßig Anfragen an den Server schickt.
 Dieses Script wird unter /usr/bin/sis-monitors gespeichert.\\
-Für den Inhalt siehe \autoref{lst:report_attachment_sis-monitors}, Seite \pageref{lst:report_attachment_sis-monitors}.\\
+Für den Inhalt siehe \autoref{lst:report_attachment_sis-monitors}, Seite \pageref{lst:report_attachment_sis-monitors} (Flußdiagramm siehe \autoref{fig:report_software_sis-monitors}).\\
+
+\paragraph{Serverseitig} werden im API-Ordner der Monitore (/monitors/api/) zwei PHP-Scripts erstellt.\\
+Das Script display.php gibt \enquote{true}, für eingeschaltenen Monitor, beziehungsweise \enquote{false}, für ausgeschaltenen Monitor, zurück (siehe \autoref{fig:report_software_sis-display} und \autoref{lst:report_attachment_display}).\\
+Das Script restart.php dient dazu den X-Server des Raspberrys neuzustarten. Da dieses Verhalten nicht so häufig benötigt wird, wird dazu das Vorhandensein der Datei /tmp/restartx.ex geprüft (siehe \autoref{fig:report_software_sis-restart} und \autoref{lst:report_attachment_restart}). Für die Abarbeitung am Raspberry siehe \autoref{fig:report_software_sis-monitors}.
 \\
 \begin{figure}[H]
 \centering
-\fdot[scale=0.6]{images/flowcharts/sis-monitors}
+\resizebox{16cm}{!}{
+	\fdot[scale=0.9]{images/flowcharts/sis-monitors}
+}
 \caption{Programm-Ablauf sis-monitors}
+\label{fig:report_software_sis-monitors}
 \end{figure}
 
-% TODO
+\begin{figure}[H]
+\centering
+\resizebox{17cm}{!}{
+	\fdot[scale=0.9]{images/flowcharts/display}
+}
+\caption{Programm-Ablauf display.php}
+\label{fig:report_software_sis-display}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\fdot[scale=0.9]{images/flowcharts/restart}
+\caption{Programm-Ablauf restart.php}
+\label{fig:report_software_sis-restart}
+\end{figure}

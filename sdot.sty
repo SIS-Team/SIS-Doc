@@ -19,17 +19,12 @@
 % 2 - filename of dot file (without extention)
 
 \newcommand{\fdot}[2][scale=1]{ 
-	\immediate\write18{dot2tex --figonly --graphstyle="#1" #2.dot > #2.tex}
+	\immediate\write18{dot2tex --figonly -t raw --graphstyle="#1" #2.dot > #2.tex}
 	\IfFileExists{#2.tex}{
 		% the tex exists: include it 
 		\input{#2.tex}
 	} {
-		The tex file displaying your dot graph could not be created. 
-		This usually means one of
-		two things:
-		\begin{itemize}
-			\item dot2tex is not in your path
-			\item write18 is not enabled
-		\end{itemize}
+		% an error
+		Datei nicht verfügbar.
 	} 
 }

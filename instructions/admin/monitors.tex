@@ -18,6 +18,8 @@ Die Monitore, deren Einstellungen verändert werden sollen, müssen mit einem Kl
 \\
 \subsection{Hinzufügen}
 
+\subsubsection{Software}
+\label{sec:instr_monitor_software}
 Für folgendes wird vorausgesetzt, dass das von uns zur Verfügung gestellte Image verwendet wird. Dieses kann unter folgender Adresse runtergeladen werden:\\ \href{https://sis.htlinn.ac.at/sis.img}{https://sis.htlinn.ac.at/sis.img}\\
 Das Image ist 4 GB groß, wir empfehlen deshalb, das Image ohne Proxy-Einstellung mit der Adresse \href{http://sis.clients.htlinn.ac.at/sis.img}{http://sis.clients.htlinn.ac.at/sis.img} im Schulnetz zu laden. Das Image sollte auf eine SD-Karte mit mindestens 3965190144 Bytes Speicherplatz gespielt werden (Getestet wurde mit \enquote{SanDisk Extreme 4GB}).\\
 Der vordefinierte Benutzer hat die Kennung \enquote{pi} und das Passwort \enquote{sis}.\\
@@ -32,9 +34,32 @@ Die Form des Namenseintrags ist im Beispiel  \autoref{lst:instr_admin_sisconf} e
 Wenn der Name des Monitors geändert wird, sollte aus Gründen der Übersichtlichkeit und Nachvollziehbarkeit darauf geachtet werden, dass der Hostname des Raspberry Pis mit dem Namen übereinstimmt. Dazu wird die Datei /etc/hostname bearbeitet. Damit der Host nicht neu gestartet werden muss, kann mit dem Befehl \enquote{hostname} der Hostname zusätzlich auch direkt geändert werden. \\
 \textit{Beispiel}: hostname I386\\
 \\
-\textit{Achtung:} Da es zu Problemen mit manchen Programmen (wie zum Beispiel \textit{sudo}) kommen kann, sollte in er Datei /etc/hosts ein Eintrag für den Hostnamen angelegt werden, welcher auf die lokale Adresse zeigt (üblicherweise die Loopback-Adresse 127.0.1.1).\\
+\textit{Achtung:} Da es zu Problemen mit manchen Programmen (wie zum Beispiel \textit{sudo}) kommen kann, sollte in der Datei /etc/hosts ein Eintrag für den Hostnamen angelegt werden, welcher auf die lokale Adresse zeigt (üblicherweise die Loopback-Adresse 127.0.1.1).\\
 \\
 \textit{Achtung:} Die Software lässt es zu, dass mehrere Monitore den selben Namen tragen. Dies sollte allerdings vermieden werden.
+
+\subsubsection{Hardware}
+Die Header Platine für den Raspberry Pi wird auf demselben aufgesteckt (siehe \autoref{fig:report_hardware_Headergesteckt}). Der Monitor wird über HDMI mit dem Raspberry verbunden, die Stromversorgung ist, wie beim Raspberry üblich, mit einem USB-zu-microUSB-Adapter und einem dementsprechenden Netzteil herzustellen.\\
+Als Netzwerkanbindung kann entweder die LAN-Buchse oder ein W-LAN-Stick verwendet werden. Hierbei ist zu beachten, dass der Computer, sofern er mit der unter  \autoref{sec:instr_monitor_software} beschriebenen Software betrieben wird, keine statische IP-Adresse eingetragen hat, es ist daher ein DHCP-Server notwendig. Bei Verwendung von W-LAN ist zusätzlich zu beachten, dass der Raspberry von sich aus das W-LAN \enquote{HTL-SIS} mit dem passenden WPA2-Pre-Shared-Key eingetragen hat, bei einer Änderung muss dieser angepasst werden.\\
+\\
+Die Verbindung zwischen dem Raspberry und der modifizierten Steckdose (siehe FTKL-Bericht) wird mit einem ausgekreuzten Mono-Klinke-Kabel hergestellt.\\
+\textit{Beachte:} Wenn der Computer an die modifizierte Steckdose angeschlossen wird, dann kann er sich logischerweise nicht selbst einschalten, deshalb sollte nur der entsprechende Monitor daran angeschlossen werden.\\
+\\
+Sollte sich nach dem ersten Start des Computers der Monitor nicht nach spätestens 5 Minuten selbstständig einschalten, so kann es sein, dass die nicht vorhandene HDMI-Daten-Sinke den Start blockiert. In diesem Fall sollte der Monitor während dem Starten auf eine normale Steckdose gesteckt werden, läuft in dem Fall der Raspberry, so kann möglicherweise ein Tausch des Netzkabel des Monitors das Problem lösen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=10cm]{images/rpi/rpi_header_gesteckt.jpg}
+\caption{Aufbau Header}
+\label{fig:report_hardware_Headergesteckt}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=10cm]{images/rpi/rpi_gesamt.jpg}
+\caption{Gesamtaufbau}
+\label{fig:report_hardware_Gesamt}
+\end{figure}
 
 \subsection{Entfernen}
 
@@ -64,6 +89,7 @@ Um die ausgewählten Monitore auf Supplierplan, Stundenplan, News etc. umzuschal
 	\item Stundenplan
 	\item Supplierplan
 	\item Supplierplan \& News
+	\item Supplierplan \& Bild
 	\item Bild
 	\item (Video)
 	%\item (fallback)
@@ -71,6 +97,7 @@ Um die ausgewählten Monitore auf Supplierplan, Stundenplan, News etc. umzuschal
 Durch Doppelklick auf das Eingabefeld öffnet sich - sofern der verwendete Browser diese Funktion unterstützt - ein Menü mit den möglichen Werten. Wird das Feld leer gelassen, so wird der alte Wert beibehalten.\\
 \\
 Der Modus \enquote{Video} ist zwar implementiert, allerdings ist der Raspberry Pi nicht in der Lage, die Videos wiederzugeben.\\
+In kombinierten Modi wird immer der erste Modus für 30 Sekunden und der zweite für 20 Sekunden gehalten.
 %Der Modus \enquote{fallback} fährt den Monitor auf das FTKL-Schnitzel-Suppla-Projekt.\\ 
 %\textit{Achtung:} Es ist nicht über das Web-Interface möglich, den Monitor wieder auf das SIS-Projekt zurückzuholen.
 
@@ -116,7 +143,7 @@ Bestimmt die Zeit, an dem sich der angeschlossene Monitor einschalten soll.\\
 6:35 \> 6:35 früh\\
 17:05:11 \> 5:05:11 nachmittags
 \end{tabbing}
-Wird das Feld leer gelassen, so wird der alte Wert beibehalten.\\
+Wurde noch nie ein Wert eingestellt, so ist 1 Uhr Nachts der Standardwert. Wird das Feld leer gelassen, so wird der alte Wert beibehalten.\\
 
 \subsubsection{Ausschalt-Zeit}
 \label{instr_admin_moni_time_off}

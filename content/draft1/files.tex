@@ -1,4 +1,5 @@
 \subsection{Dateibaum}
+\label{sec:files}
 Der Aufbau der Ordnerstruktur für das Projekt wird folgendermaßen festgelegt.
 
 \begin{description}[style=nextline]
@@ -75,8 +76,52 @@ Der Aufbau der Ordnerstruktur für das Projekt wird folgendermaßen festgelegt.
 			Hier sind spezielle Log-Dateien zu finden.
 		\item[/mobile/]
 			Die Mobil-Seite befindet sich hier.
-			\begin{description}
+			\begin{description}[style=nextline]
 				\item[./api/]
-					
+					Hier ist die API für die App hinterlegt.
 			\end{description}
+		\item[/modules/]
+			Hier sind die verschiedenen Module des Systems bzw. ihre Komponenten  gespeichert.
+			\begin{description}[style=nextline]
+				\item[./datebase/]
+					Dateien für den allgemeinen Zugriff auf die Datenbank werden hier gespeichert.
+				\item[./design/]
+					Die HTML-Dateien der Designs werden hier abgelegt.
+				\item[./external/]
+					Fremdmodule werden hierher kopiert.
+				\item[./form/]
+					Hier finden sich Dateien mit Funktionen für den Aufbau von HTML-Formularen.
+				\item[./general/]
+					Allgemeine wichtige Module sind hier untergebracht. U.a. findet man hier die Dateien für den Zugriff auf die Datenbank, das Session-Management oder den Zugriff auf LDAP.
+				\item[./menu/]
+					Die Dateien in diesem Ordner dienen zum Generieren der Haupt-Menüstruktur.
+				\item[./monitors/]
+					Dateien, die das Monitorsystem betreffen sind hier zu finden.
+				\item[./other/]
+					Alle Module, die sich nicht einordnen lassen, werden hier untergebracht.
+			\end{description}
+		\item[/monitors/]
+			Hier ist der Startpunkt für das Monitorsystem.
+			\begin{description}[style=nextline]
+				\item[./api/]
+					Hier befindet sich die API für die Monitore.
+				\item[./media/]
+					Inhaltbezogene Mediendateien (Bilder und Videos) für das Monitorsystem werden hier gespeichert.
+			\end{description}
+		\item[/news/]
+			Die Website für die News liegt hier.
+		\item[/pdf/]
+			Hier werden die Druckversionen als PDF zur Verfügung gestellt.
+		\item[/substitudes/]
+			Die Supplierpläne werden hier generiert.
+		\item[/timetables/]
+			Der eigene Stundenplan wird hier generiert.
+			\begin{description}
+				\item[./all/]
+					Lehrer können hier die Klassenstundenpläne ansehen.
+			\end{description}
+		\item[/tmp/]
+			Ordner für temporäre Dateien.
 \end{description}
+
+Zusätzlich gibt es im Projekt ein Verzeichnis /raspberryConfig/. Hier werden Konfigurationsdateien für die Raspberry Pis hinterlegt.

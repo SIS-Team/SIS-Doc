@@ -1,10 +1,15 @@
 \makeatletter
 
+\def\instructors{}
+
 \def\maketitle{
-\begin{center}+
+\begin{center}
 \includegraphics[keepaspectratio=true, width=3cm]{images/logo.png}\\[1cm]
-\Huge{\@title}\\[1cm]
-\Large{\@author}\\[8cm]
+\Huge{\@title}\\[2cm]
+\Large{Projektteam}\\[0.7cm]
+\large{\@author}\\[1.5cm]
+\Large{Betreuer}\\[0.7cm]
+\large{\instructors}\\[1.5cm]
 \large{HTL Anichstraße\\{\today}}\\[1cm]
 \small{made with \LaTeX}
 \end{center}

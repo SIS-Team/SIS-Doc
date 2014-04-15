@@ -9,11 +9,11 @@
 	\item[tabellarischer Supplierplan]
 		Auflistung aller Supplierungen, Ausfälle, etc
 	\item[Relevanz bei Ersatzlehrern]
-		Ist der Lehrer an diesem Tag nicht in der Schule, so ist er als Supplierlehrer nicht erste Wahl (kursiv oder grau hinterlegt darstellen). Ist er an diesem Tag in der Schule, hat jedoch Unterricht, so ist er nicht als Supplierlehrer einsetzbar, ist er jedoch als Zweitlehrer im selben Unterricht mit dem Absenzlehrer, dann kann er als "Klasse alleine" eingeteilt werden, etc.
+		Ist der Lehrer an diesem Tag nicht in der Schule, so ist er als Supplierlehrer nicht erste Wahl (kursiv oder grau hinterlegt darstellen). Ist er an diesem Tag in der Schule, hat jedoch Unterricht, so ist er nicht als Supplierlehrer einsetzbar, ist er jedoch als Zweitlehrer im selben Unterricht mit dem Absenzlehrer, dann kann er als \enquote{Klasse alleine} eingeteilt werden, etc.
 \end{description}
 
 \subsection{Supplierungssystem}
-Es soll ein System entwickelt werden, dass die Stundenpläne und Supplierungen in digitaler Form speichert. Dazu soll eine Ein­ und Ausgabe der Daten über eine Website und eine App zur Verfügung gestellt werden (siehe Punkt Ausgabe). Weiters wird ein Formular generiert (PDF), das ausgedruckt werden kann.\\
+Es soll ein System entwickelt werden, dass die Stundenpläne und Supplierungen in digitaler Form speichert. Dazu soll eine Ein- und Ausgabe der Daten über eine Website und eine App zur Verfügung gestellt werden (siehe Punkt Ausgabe). Weiters wird ein Formular generiert (PDF), das ausgedruckt werden kann.\\
 Eingabe über die App nur eingeschränkt und wenn zeitlich möglich.Die Supplierungen und Stundenpläne werden vom Administrator (AV, WL, ...) eingegeben (siehe Punkt Eingabe).
 
 \subsection{News}
@@ -39,7 +39,7 @@ Folgende Möglichkeiten:
 \end{itemize}
 
 \subsection{Authentifizierung}
-Authentifizierung erfolgt für die Schüler und Lehrer via LDAP, gilt auch für Monitore (diese müssen sich als Monitore identifizieren. Ohne erfolgreichen Login sind keine Informationen abrufbar.
+Authentifizierung erfolgt für die Schüler und Lehrer via LDAP, gilt auch für Monitore (diese müssen sich als Monitore identifizieren). Ohne erfolgreichen Login sind keine Informationen abrufbar.
 
 \subsection{Eingabe}
 Administratoren und AVs dürfen Eingaben tätigen. Damit einfache Eingaben auch delegiert werden können muss ein Berechtigungssystem hinterlegt werden.
@@ -66,13 +66,13 @@ Administratoren und AVs dürfen Eingaben tätigen. Damit einfache Eingaben auch 
 			\item[fehlende Klassen]
 				Klasse (Dropdown­-Menü), von­-bis, Grund
 			\item[Supplierungen]
-				Stunde (Dropdown­-Menü), Klasse (Dropdown-­Menü), ausblenden (Check­Box; wenn gesetzt, wird diese Stunde in den angepassten Stundenplänen nicht angezeigt), Supplierlehrer (Dropdown-­Menü; zeigt die Lehrer sortiert und markiert nach Relevanz), Kommentar (Hier wird eingetragen zb: "Mitbetreuung", "Stillbeschäftigung", "entfällt", etc), bestätigen (Check­Box; Eintrag ist erst wirksam, wenn gesetzt)\\
+				Stunde (Dropdown­-Menü), Klasse (Dropdown-­Menü), ausblenden (Check­Box; wenn gesetzt, wird diese Stunde in den angepassten Stundenplänen nicht angezeigt), Supplierlehrer (Dropdown-­Menü; zeigt die Lehrer sortiert und markiert nach Relevanz), Kommentar (Hier wird eingetragen zb: \enquote{Mitbetreuung}, \enquote{Stillbeschäftigung}, \enquote{entfällt}, etc), bestätigen (Check­Box; Eintrag ist erst wirksam, wenn gesetzt)\\
 			\\
 			Ein Supplierlehrer muss bei Mitbetreuung nicht angegeben werden, da alle anderen Lehrkräfte dieser Stunde, so­wie­so mit dieser verknüpft sind.\\
 			\\
-			Verschobene Stunden werden als 2 Einträge (einmal "ausgefallen" mit dem "ausblenden"-­Button) und einmal "neu eingefügt" (gekennzeichnet über Kommentar) eingegeben.\\
+			Verschobene Stunden werden als 2 Einträge (einmal \enquote{ausgefallen} mit dem \enquote{ausblenden}-­Button) und einmal \enquote{neu eingefügt} (gekennzeichnet über Kommentar) eingegeben.\\
 			\\
-			(ev. falls noch Zeit: Wenn ein fehlender Lehrer eingetragen wurde, so werden automatisch alle "Kollisionen" angezeigt.)
+			(ev. falls noch Zeit: Wenn ein fehlender Lehrer eingetragen wurde, so werden automatisch alle \enquote{Kollisionen} angezeigt.)
 		\end{description}
 	\item[News]
 		Name, Beschreibung, von­bis, Abteilung (Dropdown-­Menü; auch mit Auswahl für die ganze Schule), die News werden nach Ablauf (Bis­Datum) nicht mehr angezeigt, aber nicht gelöscht.

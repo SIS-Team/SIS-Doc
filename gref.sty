@@ -1,0 +1,14 @@
+% gref.sty 
+% Buchberger Florian
+%
+% \usepackage{gref}
+
+\ProvidesPackage{gref}
+
+% parameters to \fdot:
+% 1 - parameters for tikzpicture (optional; default value is "scale=1")
+% 2 - filename of dot file (without extention)
+
+\newcommand{\gref}[1]{ 
+	\autoref{#1} - \nameref{#1}
+}
