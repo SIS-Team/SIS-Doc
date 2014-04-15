@@ -1,2 +1,84 @@
 \subsubsection{Javascript (Klotz)}
 \label{sec:content_js_Javascript}
+JavaScript ist eine Skriptsprache welche für dynamische Erweiterungen im Webbrowser gedacht war. Es sollte helfen interaktive Websites, einfacher zu erstellen. Daher ist JavaScript auch nicht als alleinstehende Programmiersprache geeignet, und kommt fast immer in Kombination mit anderen Programmen oder Programmiersprachen zum Vorschein.\\
+JavaScript wird hauptsächlich Clientseitig, das heißt im Webbrowser des Nutzers, genutzt um für den Nutzer Extras einzubauen. Dadurch wird auch der Server entlastet, da die Rechenleistung des Anwender-PCs genutzt wird und nicht die des Servers.\\
+ Es gibt aber auch Serverseitiges-JavaScript(SSJS). Das kann dann, mit einem entsprechenden Interpreter (z.B.: Node.js), gleich wie andere Serverseitige Programmiersprachen verwendet werden.\\
+Da es sich bei JavaScript um eine Skriptsprache handelt ist sie sehr einfach gehalten und Variablendeklarationen und ähnliches fallen weg(Variablentypen können auch während Laufzeit einfach verändert werden).\\
+JavaScript ist eine Interpreter-Programmiersprache, das heißt, dass der Code erst im Webbrowser durch den integrierten Interpreter umgesetzt wird.\\
+Obwohl es sich bei JavaScript nur um eine Scriptsprache handelt sind trotzdem alle wichtigen Strukturelement, wie Schleifen, If-Klauseln, etc. welche auch in anderen Programmiersprachen wie zum Beispiel C oder Java existieren, enthalten.\\
+Weiters gibt es bei JavaScript die Möglichkeit Bibliotheken einzubinden. Dadurch kann man bereits vorgefertigte Funktionen einfach einbinden und anwenden. Ein Beispiel dafür ist JQuery.\\
+
+\textbf{Anwendung}\\
+Um JavaScript in einer Webseite zu nutzen gibt es zwei Möglichkeiten, entweder der Code wird direkt in das HTML-Dokument geschrieben(Variante1) oder man schreibt den JavaScript-Code in ein eigenes Dokument und bindet dieses dann ein(Variante2).\\
+Variante 1\\
+Wenn man den Code direkt in die HTML-Datei schreiben möchte, muss dieser Code dementsprechend markiert werden. Dazu verwendet man den Script-Tag (siehe Codebeispiel), dieser kann im Head oder im Body stehen, es ist jedoch üblich Funktionen in den Head zu schreiben.\\
+\begin{lstlisting}
+<html>
+  <head>
+    <script>
+	//Here comes JS
+    </script> 
+  </head>
+  
+  <body>
+  </body>
+</html>
+\end{lstlisting}
+
+
+Variante 2\\
+Im Gegensatz zur ersten Variante kommt in diesem Fall nur die Verlinkung zur JavaScript-Datei und nicht der ganze Code in das HTML-Dokument. Das eingebundene JavaScript-Dokument muss nicht auf dem gleichen Server oder Rechner gespeichert sein wie die Webseite, der Code kann sogar aus dem Internet geladen werden. Zum Einbinden einer JavaScript-Datei wird wieder ein Script-Tag verwendet, diesmal wird aber die URL der JavaScript-Datei als Attribut(„src = “) mitgegeben.\\
+\begin{lstlisting}
+<script src="js/jquery.js" type="text/javascript"></script>
+\end{lstlisting}
+
+\textbf{Funktionen}\\
+In JavaScript kann man auch Funktionen schreiben, welche dann bei eintreten bestimmter Ereignisse ausgeführt werden. Der Code für eine JavaScript-Funktion sieht wie folgt aus:\\
+\begin{lstlisting}
+function functionname()
+{
+some code to be executed
+}
+\end{lstlisting}
+Zwischen den geschwungenen Klammern wird der Code, der ausgeführt werden soll, geschrieben.\\
+Um eine Funktion aufzurufen schreibt man den Funktionsnamen mit Klammern dahinter. Der Funktionsaufruf kann zwischen zwei Script-Tags geschrieben werden oder als bestimmtes Attribut (z.B. „onClick“) in manchen anderen Tags.\\
+Bei einem Funktionsaufruf kann man der Funktion auch Werte mitgeben, dazu muss man in der Klammer hinter dem Funktionsnamen die Werte/Variablen eintragen. Die Mitgabe von Parametern muss natürlich in der Funktion vorgesehen werden, ansonsten werden die Werte einfach ignoriert.\\
+
+\textbf{Variablen}\\
+Bei JavaScript gibt es, wie auch bei anderen Programmiersprachen, Variablen. Diesen muss aber im Gegensatz zu Programmiersprachen wie C, Java oder ähnlichen, bei der Deklaration, kein eindeutiger Variablentyp zugewiesen werden. In JavaScript nur zwei Unterscheidungen bei den Variablentypen, nämlich in Zahlen und in Zeichen bzw. Zeichenketten. 
+Um in JavaScript eine Variable zu deklarieren, schreibt man var und dann den Variablennamen. Um ihr dann noch einen Wert zuzuweisen muss man nur den Variablennamen und ein = Symbol schreiben, danach wird der gewünschte Wert hingeschrieben, falls es sich um eine Zeichenkette handelt muss man den Wert zwischen Anführungszeichen setzen:\\
+\begin{lstlisting} 
+var name = “Peter”;
+var Anzahl;
+Anzahl = 3;
+name = "Hans";
+\end{lstlisting}
+
+Weiters muss man zwischen globalen und lokalen Variablen unterscheiden, während globale Variablen im gesamten Dokument definiert sind, sind lokale Variablen nur in der Funktion in der sie deklariert werden nutzbar. Um eine Variabel global zu definieren muss sie außerhalb jeglicher Funktionen definiert werden, wenn man eine Variabel aber innerhalb einer Funktion definiert handelt es sich um eine lokale Variable.\\
+
+\textbf{Arrays}\\
+In JavaSript gibt es auch Felder(Arrays). In diesen Feldern können sowohl Zahlen als auch Zeichen bzw. Zeichenketten gespeichert werden, es ist sogar möglich Zahlen und Zeichenketten in dasselbe Array zu speichern.\\
+Einen Wert in einem Array zu speichern funktioniert gleich, wie einer Variable einen Wert zuzuweisen, aber bei einem Array muss man zusätzlich zum Arraynamen noch die angeben welchen Arrayeintrag man verändern möchte.\\
+\begin{lstlisting}
+var cars = new Array();
+cars[0] = "Audi";
+cars[1] = "BMW";
+cars[2] = "Mercedes";
+\end{lstlisting}
+
+\textbf{JSON}\\
+JSON (JavaScript Object Notation) ist ein Datenaustauschformat welches so gestaltet ist, dass Menschen es leicht lesen können und der Computer es einfach parsen kann. Es basiert auf JavaScript.\\
+JSON wird sehr häufig in Verbindung mit JavaScript verwendet, kann aber auch mit anderen Programmiersprachen verwendet werden.\\
+Beispiel für ein JSON-Objekt:\\
+\begin{lstlisting}
+{
+  "Gerät": "Auto",
+  "Marke": "Audi",
+  "Farbe": "rot",
+  "Seriennummer": 02345032,
+}
+\end{lstlisting}
+
+Die Daten werden in Form von Daten-Wert Paaren gespeichert. Aus diesem Objekt kann man nur relativ einfach Daten auslesen. Der JavaScript-Code um die Marke auszulesen würde zum Beispiel wie folgt aussehen:
+var Marke = object.Marke;
+

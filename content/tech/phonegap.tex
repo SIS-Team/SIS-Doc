@@ -1,10 +1,49 @@
 \subsection{Mobil App (Klotz)}
 
 \subsubsection{PhoneGap}
+PhoneGap ist ein Framework, von Adobe Systems, um mobile Apps zu erstellen. Diese Apps sind jedoch weder Web-Apps noch native Apps. Hierbei handelt es sich um Hybrid-Apps. Das heißt die App verwendet nicht die nativen Userinterface Frameworks um das Layout zu gestalten, sondern Web-Technologien, aber die App arbeitet trotzdem vollkommen lokal auf dem Gerät.\\
+Das funktioniert indem die App praktisch im Webbrowser des eigenen Gerätes ausgeführt wird, aber alle browsertypischen Eigenschaften, wie zum Beispiel der Rahmen, die URL-Leiste oder die Einstellungen deaktiviert oder ausgeblendet werden.\\
+Im Gegensatz zu herkömmlichen Web-Applikationen, kann man mit PhoneGap-Apps auch auf Funktionen wie zum Beispiel den Beschleunigungssensor oder die Kamera zu nutzen. Das wird durch die PhoneGap API ermöglicht. Dabei handelt es sich um Java-Dateien die bei der Installation der App heruntergeladen werden. Mit JavaScript kann man dann über diese Java-Dateien auf die Geräteinternen Sensoren zugreifen. Es handelt sich hierbei also um einen Kompromiss aus Web-Entwicklung und nativer App-Entwicklung.\\
+Um PhoneGap zu nutzen muss man sich für alle Systeme, auf denen die App nach der Entwicklung betrieben werden soll, ein SDK installieren, zum Beispiel für Android Eclipse, für iOS XCode oder für WindowsPhone das Microsoft SDK. In dieses SDK muss nun PhoneGap als Plugin geladen werden und mit diesem Plugin kann man die App auch mit Webtechnologien (HTML, CSS, JS) anstatt gerätespezifischer Programmiersprachen (Java, ObjectiveC, VisualC) entwickeln.\\
+Unterstützte mobile Betriebssysteme bis Version(2.9):\\
+					Android\\
+					IOS\\
+					Windows Phone 7 \& 8\\
+					Blackberry\\
+					WebOS(HP)\\
+					Tizen\\
+					Symbian\\
+					Bada\\
+Ab PhoneGap-Version 3.0 werden nur noch Android, iOS und Windows Phone unterstützt.\\
+
+PhoneGap basiert auf dem Open-Source-Projekt Apache Cordova. Daher darf PhoneGap auch vollkommen kostenlos genutzt werden.\\
+\textbf{PhoneGapBuild}\\
+Für dieses Projekt wurde PhoneGapBuild verwendet.\\
+Bei PhoneGapBuild handelt es sich um eine Online-Variante von PhoneGap. Diese wird von AdobeSystems kostenlos zur Verfügung gestellt. Der Vorteil dieser Variante ist, dass nicht für jedes Betriebssystem, für das die App entwickelt werden soll, eine eigene SDK installiert werden muss, da die Applikation direkt online kompiliert wird.\\
+Den Code kann man entweder in Form einzelner HTML-, CSS-, und JS-Dateien verpackt als ZIP-Datei hochladen, oder ein GitHub Projekt angeben in dem sich der Code befindet.\\
+Nach dem Hochladen des Codes wird die App online sofort kompiliert und die Installationsdateien(APK, XPA, etc.) werden als Download zur Verfügung gestellt.\\
+
+Für die App-Entwicklung mit PhoneGapBuild benötigt man ausschließlich einen Editor und einen Webbrowser, da es sich ja eigentlich um Webentwicklung handelt. Die App besteht nur aus einer(oder mehreren) Webseite(n), welche mit CSS gestaltet wird. Um die Applikation interaktiv zu gestalten, kann man mit JavaScript-Skripts arbeiten und diese auch integrieren. Im Gegensatz zur Webentwicklung gibt es bei der App zusätzlich noch eine Datei mit dem Namen config.xml. In dieser Datei stehen alle Informationen, wie zum Beispiel die Versionsnummer oder der Name, zu der App und anhand dieser Datei können Berechtigungen für den Zugriff auf das Gerät vergeben werden.\\
 
 \subsubsection{iOS}
 
 \subsubsection{Android}
+Android ist ein Betriebssystem für Smartphones, welches von Google entwickelt wird. Es basiert auf einem Linux-Kernel.\\
+Bei Android handelt es sich um das am weitesten verbreitete mobile Betriebssystem, es hat einen Marktanteil von ca. 80\%. Es wird als freie Software gehandelt und wird als Open-Source entwickelt.\\
+\\
+\textbf{Architektur}\\
+Android baut wie bereits erwähnt auf einem Linux-Kernel auf.  Dieser stellt eine Schnittstelle zwischen der Hardware und der höher gelegenen Software dar.\\
+In der nächsthöheren Systemschicht sind Android-Klassenbibliotheken, durch welche man die Funktionen des Kernels nutzen kann. Zusätzlich befindet sich auf dieser Ebene eine Dalvik-Virtual-Machine, dabei handelt es sich um eine virtuelle Maschine in der die Applikationen ausgeführt werden.\\
+Diese virtuelle Maschine wurde von Google entwickelt und ähnelt in ihrer Funktionalität sehr der Java-VM. Die virtuellen Maschinen führen den Bytecode der Applikationen aus, aber die Dalvik Maschine arbeitet als Registermaschine, weshalb normaler Java-Bytecode auf Android nicht funktioniert.\\
+Android startet für jede gestartete Applikation eine eigene virtuelle Maschine, dadurch kann keine App direkt auf das System zugreifen sondern nur über die virtuelle Maschine und des weiteren können sich die Apps nicht gegenseitig stören oder beeinflussen, dadurch dass sie in verschiedenen virtuellen Maschinen betrieben werden.\\
+\\
+\textbf{Store}
+Im Google Play Store sind viele Apps für Android verfügbar. Dieser Store ist komplett kostenlos nutzbar, jedoch gibt es kostenpflichtige Applikationen. Um Apps aus dem Play-Store zu installieren muss man aber einen Google-Account besitzen welcher auch komplett kostenlos ist.\\
+Bei Android kann man den Store relativ einfach umgehen, denn bei Android kann man alle APK-Files(Android-Installationsdateien) einfach ausführen. Dazu muss man nur in den Einstellungen im Menü Anwendungen, den Punkt Unbekannte Quellen aktivieren. Damit erlaubt man das Installieren von Apps die nicht aus dem Play-Store heruntergeladen werden.\\
+Ist das erledigt muss man nur noch das gewünschte APK-File auf dem Smartphone speichern (downloaden oder über USB auf dem Smartphone speichern) und dieses dann öffnen. Dann wird die Applikation automatisch installiert und ist danach wie jede andere Applikation auf dem Gerät installiert.\\
+ Um Apps in den Play-Store hochzuladen muss man als Entwickler registriert sein. Eine Registrierung als Entwickler kostet einmalig(Registrierungsgebühren) 25\$. Nach dieser Registrierung kann man kostenlos so viele Apps hochladen wie man will, bei kostenpflichtigen Apps verlangt Google jedoch ca 30\% der Einnahmen.\\
+
+
 
 \subsubsection{Windows Phone}
 
