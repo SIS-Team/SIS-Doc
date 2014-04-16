@@ -13,13 +13,13 @@ Der einzige Zeitpunkt, an dem der Server auf alle Fälle erreichbar sein muss, i
 
 Es stellt sich die Frage, die die Monitore am Server registriert werden. Da alle Monitore über das Webinterface zentral administriert werden können, ist es äußerst kontraproduktiv, wenn eventuell Schüler - oder gar Außenstehende - die Datenbank-Tabelle für die registrierten Monitore fluten können.\\
 \\
-Es wurde von den Betreuern vorgegeben, dass für sämtliche Verbindungen zum Server HTTPS verwendet werden sollte (siehe Lösungswege/HTTPS). Dies führt bei der Registrierung der Monitore zu Problemen (siehe folgendes).
+Es wurde von den Betreuern vorgegeben, dass für sämtliche Verbindungen zum Server HTTPS verwendet werden sollte (siehe \gref{sec:content_tech_https}). Dies führt bei der Registrierung der Monitore zu Problemen (siehe folgendes).
 
 \subsubsection{Gewählte Lösung}
 
 Da zu anfangs nicht klar war, welches IP-Netz das W-LAN der Monitore bekommen sollte, konnte keine IP-Filterung verwendet werden.\\
 \\
-Das Problem wurde gelöst, indem in der Datenbank für die Monitore eine Spalte für die IP-Adresse vorgesehen wurde. Die Idee bestand darin, dass jede IP-Adresse nur maximal einen Monitor registrieren darf (Vgl. \autoref{sec:content_solutions_monitors_alt_reg}).\\
+Das Problem wurde gelöst, indem in der Datenbank für die Monitore eine Spalte für die IP-Adresse vorgesehen wurde. Die Idee bestand darin, dass jede IP-Adresse nur maximal einen Monitor registrieren darf (Vgl. \gref{sec:content_solutions_monitors_alt_reg}).\\
 \\
 Aufgrund dessen, dass für die verschlüsselte Verbindung die Packete nach außen geNATet werden und wieder durch die Firewall zurück kommen, haben alle Monitore die öffentliche IP-Adresse der Schule.\\
 Um dieses Problem zu umgehen wurde mit Betreuer Lassnig vereinbart, dass die Verbindung der Monitore unverschlüsselt sein darf, da keine sicherheitsrelavanten Daten übertragen werden, und da das W-LAN selbst schon verschlüsselt.\\
