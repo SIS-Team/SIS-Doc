@@ -65,6 +65,24 @@ Aktuell sind zwei verschiedene Versionen von HTTP im Einsatz, HTTP/1.0 und HTTP/
 \\
 Diese unterscheiden sich insofern, dass bei HTTP/1.0 für jede Anfrage eine neue Verbindung zum Server aufgebaut wird. Dies wirkt sich nachteilig auf die Geschwindigkeit aus, da z.B. auf einer Website mit vielen Bildern, für jedes Bild eine neue Verbindung hergestellt werden muss und diese Verbindungen durch die Eigenschaften von TCP-Verbindungen (z.B. Slow-start ) entsprechend langsam sind.
 
-\paragraph{HTTP/2.0}  HTTP/2.0 befindet sich in der Entwicklung und soll abwärtskompatibel sein.
+\paragraph{HTTP/2.0}  HTTP/2.0 befindet sich in der Entwicklung und basiert auf SPDY. Es wird von der \enquote{Hypertext Transfer Protocol Bis working group}, einer Arbeitsgruppe der \enquote{Internet Engineering Task Force} (IETF), entwickelt.
 
 \subsection{HTTPS (Weiland)}
+HTTPS (= Hypertext Transfer Protocol Secure) dient zur Verschlüsselung der Verbindung von Client zu Server. Dies geschieht mittels SSL/TLS.
+\subsubsection{Verbindungsaufbau}
+Zuerst wird eine Authentifizierung und eine Identifizierung der Kommunikationspartner durchgeführt. Dann wird ein symmetrischer Schlüssel \enquote{ausgemacht}. Für diesen Vorgang kann entweder eine asymmetrische Verschlüsselung oder der \enquote{Diffie-Hellman-Merkle-Schlüsselabtauch} verwendet werden. Dies soll gewährleisten, dass nur die beiden Kommunikationspartner die Verschlüsselung kennen.
+\subsubsection{Zertifikate}
+Für SSL wird ein digitales Zertifikat benötigt, welches von einer Zertifizierungsstelle ausgestellt wird.
+\paragraph{Erhalten eines Zertifikats}
+Um eine Zertifikat zu erhalten muss bei einer Zertifizierungsstelle darum angesucht werden. Zunächst wird eine E-Mail an den Betreiber der Domain gesendet.
+\begin{figure}[H]
+\centering
+\includegraphics[keepaspectratio=true, width=12cm]{images/screenshots/certificate.png}
+\caption{Allgemeine Zertifikatinforamtionen}
+\label{fig:certificate}
+
+Die meisten Browser haben standardmäßig eine Liste von Zertifizierungsstellen eingetragen, welchen sie vertrauen. Diese Liste kann vom User jederzeit erweitert werden, jedoch sollte der User sich bezüglich der Seriosität der Zertifizierungsstelle wirklich sicher sein. 
+\end{figure}
+\subsubsection{Sicherheitsprobleme}
+Eine Schwachstelle der oben genannten Arten des Schlüsseltausches ist jedoch ein Man-in-the-Middle. Dieser müsste vor Aufbau der Verbindung von Host1 und Host2 zwischen ihnen liegen. In folge würde er jeweils mit Host1 und Host2 eine Verschlüsselung ausmachen. Wenn er nun die gesendeten Daten von Host1 an Host2 weiterleitet und umgekehrt, können die beiden Hosts dies nicht bemerken.\\
+Jedoch benötigt der Man-in-the-Middle ebenso ein Zertifikat, in dem steht, dass er der Zielserver sei. Um dies zu bewerkstelligen muss der Angreifer Zugang zu einer Zertifizierungsstelle besitzen und sich ein Zertifikat ausstellen lassen.
