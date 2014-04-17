@@ -1,4 +1,17 @@
 \subsection{PDF-Generierung}
+Bei der Erstellung eines PDF mittels FPDF werden alle Ausgaben als sogenannte \enquote{Zellen} definiert.
+\subsubsection{Stundenplan-Ausgabe}
+Zuerst werden alle Stunden der ausgewählten Klasse bzw. Lehrkraft aus der Datenbank ausgelesen. Die daraus gewonnenen Stundeneinträge werden anschließend in ein zweidimensionales Array gespeichert, welches als \enquote{keys} einerseits den Wochentag und andererseits die Stunde besitzt. \\
+Dieses Array wird nun durchlaufen und der Inhalt mittels des Befehls MultiCell ausgegeben. Die Anzahl der Durchläufe wird zuvor ermittelt. Dieser Befehl erzeugt eine Zelle, welche, sollte der Inhalt nicht in einer Zelle platz haben, eine neue Zeile innerhalb der Zelle beginnt. Außerdem beginnt nach dem Erstellen einer MultiCell automatisch eine neue Zeile, was nicht gewünscht ist. Daraus ergibt sich einerseits das Problem, dass eine neue Zeile begonnen wird, und andererseits das Problem, dass nicht alle Zellen gleich hoch sind, wodurch die Ausgabe sehr verwirrend aussieht. \\\\
+Das Problem mit der neuen Zeile kann behoben werden, indem man vor der Erstellung der Zelle die aktuelle X- und Y-Position innerhalb der Seite abfragt und in einer Variable zwischenspeichert (\autoref{lst:content_imple_timetables_output} Zeile 135,136). Nach der Ausgabe der Zelle muss nun eingestellt werden, dass eine neue Zelle neben der soeben erstellten platziert werden soll. Dies geschieht in dem man die zuvor ausgelesene Y-Position und die um die Breite der Zelle korrigierte X-Position einstellt ( \autoref{lst:content_imple_timetables_output} Zeile 149,150).\\\\
+Das andere Problem lässt sich ebenso mit der Y-Position lösen. So darf bei der Erstellung der Zellen mit Eintrag nur ein Rahmen oben und auf den Seiten eingestellt werden. Nach jeder ausgegebenen Zelle wird ihre Höhe berechnet und gespeichert. ( \autoref{lst:content_imple_timetables_output} Zeile 154).)Wenn eine ganze Zeile ausgegeben wurde, muss nun die Y-Position dieser Zeile eingestellt werden und ebenso viel Zellen wie zuvor, mit der selben Breite wie zuvor erstellt werden, jedoch mit einem Rahmen unten und auf den Seiten, der Höhe der höchsten zu vor erstellten Zelle und keinem Inhalt.  ( \autoref{lst:content_imple_timetables_output} Zeile 156-159).)
+\\\\
+Anschließend muss das PDF nur noch ausgegeben werden ( \autoref{lst:content_imple_timetables_output} Zeile 168). 
+
+\lstinputlisting[style=custom, language=php, caption={/pdf/timetables/index.php}, label={lst:content_imple_timetables_output}, firstline =131, lastline = 168, firstnumber = 131 ]{sources/pdf/timetables/index.php}
+
+
+\subsubsection{Supplierplan-Ausgabe}
 % Wie funktioniert die PDF Generierung für Supplierplan und Stundenplan?
 % Vielleicht kannst du hier mit subsections weiter unterteilen in die zwei Unterpunkte.
 %
