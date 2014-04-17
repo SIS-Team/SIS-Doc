@@ -1,1 +1,19 @@
 \subsection{Menü-Generierung}
+Die Generierung des Hauptmenüs erfolgt nicht über das Design-Management, sondern erfolgt in einem mehr oder weniger autonomes System. Dieses System ist als eine Art Library zu verstehen, der man seine Parameter für jeden der 8 möglichen Menüpunkte übergibt (siehe \gref{sec:content_draft_design_web}).\\
+Mögliche Parameter sind:
+\begin{itemize}
+	\item Soll der Menüpunkt angezeigt werden?
+	\item Soll der Menüpunkt wählbar sein? (Dies wird benötigt, da manche Benutzer zwar ein Menü einsehen, jedoch nicht alle Punkte des Menüs verwenden dürfen.)
+	\item die Grafik, die auf dem Button abgebildet sein soll
+	\item der Text unterhalb des Buttons
+	\item die URL auf die bei Klick verwiesen werden soll, falls JavaScript aktiviert ist
+	\item die URL auf die bei Klick verwiesen werden soll, falls JavaScript deaktiviert ist
+\end{itemize}
+Zusätzlich wird noch angegeben:
+\begin{itemize}
+	\item der Name des Benutzers
+	\item der Name des aktuellen Menüs
+	\item die URL für den Zurück-Button
+\end{itemize}
+Aus diesen Parametern wird vom Menü-System das fertige Menü generiert.\\
+Die notwendigen Dateien sind unter /modules/menu/ abgelegt.
