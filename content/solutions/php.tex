@@ -1,2 +1,22 @@
 \subsection{PHP}
-% Warum PHP? Welche Alternativen gäbe es?
+Für die serverseitige Programmierung gibt es viele Lösungsansätze. 
+\subsubsection{Gewählte Lösung}
+Wir wählten für unser Projekt PHP, da diese Sprache quasi die Standard-Programmiersprache für serverseitige Webprogrammierung darstellt. Ein weiterer Grund ist, dass der Server, auf welchem unsere Seite laufen sollte, bereits Apache 2 als Webserver, mit dem dazugehörigen PHP-Modul und der MySQL-Datenbank-Server installiert waren. Es musste daher nur noch das LDAP-Modul für PHP installiert werden.
+\subsubsection{Alternative Lösungen}
+\paragraph{CGI} (Common Gateway Interface) ist eine Schnittstelle zwischen Webserver und dem eigentlich Programm, dass die Website zur Verfügung stellt. CGI ist dabei schon lange in Verwendung um Webseiten interaktiv zu gestalten. Als Programmiersprache hinter CGI sind viele verschiedene möglich. Es sind kaum Grenzen für die Programmiersprache vorhanden.\\
+Ein großer Nachteil besteht darin, dass für jede Anfrage auf den Webserver ein eigener CGI Prozess gestartet wir. Dies ist natürlich nicht sehr Ressourcensparend. Um dies zu umgehen gibt es mittlerweile verschiedene Module, die direkt mit dem Apache geladen werden, dadurch wird der Interpreter für die jeweilige Sprache nur einmal als Prozess gestartet.\\
+Ein Vorteil ist, dass es viele Programmiersprachen gibt, die im Zusammenhang mit CGI verwendet werden können. 
+\paragraph{Perl}
+Perl ist eine freie Programmiersprache, welche auch wie PHP interpretiert wird. Perl ist eine plattformunabhängige Programmiersprache. Sie wurde vormals entwickelt um im Serverbereich Log-Dateien auszuwerten, erlangte aber mit aufkommen der Webanwendungen immer eine größere Bedeutung für die Entwicklung von Webanwendungen.\\
+Im Bereich von Webservern wird Perl entweder mit CGI oder dem Modul mod\_perl für Apache verwendet.\\
+\paragraph{Python}
+Python ist eine interpretierte Programmiersprache, welche durch eine besonders einfache Lesbarkeit bekannt ist. Die Strukturierung der Programme wird durch die Einrücktiefe bestimmt. Ein großer Vorteil von Python ist, dass die Module in vielen verschiedenen Programmiersprachen geschrieben werden können. Wie auch Perl muss Python im Zusammenhang mit CGI verwendet werden. Auch wurde für Python Mod entwickelt, welcher es erlaubt Python mit Apache zu verwenden, ohne auf das langsamere CGI zurückgreifen zu müssen.\\
+\paragraph{Ruby}
+Ruby ist eine objektorientierte und interpretierte Programmiersprache, welche im Webbereich mit dem Framework Ruby on Rails verwendet wird. Auch Ruby muss mit CGI verwendet werden.
+\paragraph{Tomcat}
+Tomcat ist ein Webserver der von Apache Foundation entwickelt. Dieser erlaubtes Webapplikationen auszuführen die in Java geschrieben worden sind. Dieser werden in Servlets- oder JSavaServer Pages Basis ausgeführt.
+\paragraph{ASP.Net}
+ASP.Net ist eine Programmiersprache die auf dem .NET-Framework von Microsoft aufbaut. Dies ergibt schon den Nachteil, dass es nur auf Windows lauffähig ist. Es gibt auch eine Implementierung für ein Linux-basiertem Betriebssystem, diese sind jedoch bei weitem nicht immer auf dem neuesten Stand und nicht 100\%ig Kompatibel.\\
+Außerdem werden für den Serverbetrieb eine Lizenzgebühr fällig. ASP.Net wird nicht interpretiert sondern kompiliert.
+\paragraph{Node.js}
+Node.js ist eine Plattform, mit der verschiedene Netzwerkanwendungen realisiert werden können. Oft wird es auch dazu verwendet Webserver zu realisieren. Node.JS basiert auf Java-Script. Ein Vorteil ist, dass es eine große Anzahl an gleichzeitigen Netzwerkverbindungen erlaubt.
