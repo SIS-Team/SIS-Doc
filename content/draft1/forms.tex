@@ -1,4 +1,4 @@
-\subsection{Formulare}
+\subsection{Formulare} \label{sec:content_draft_form}
 Für die Generierung der Formulare wurde die Idee aus dem Projekt übernommen, welches von mir im letzten Jahr im Rahmen eines FTKL-Projektes entwickelt wurde.\\
 Die Generierung ist so konzipiert, dass es auf einfachste Wege möglich ist, verschiedene Formulare mit den verschiedensten Input-Feldern zu generieren.\\
 Da es jedoch nicht möglich ist alle beliebige Formulare zu generieren, musste für die Generierung der Suppliereingabe und der Eingabe der Stundenpläne eine eigene Routine entwickelt werden, auch die Eingabe für die Monitore wurde eigens entwickelt. Alle anderen Eingaben wurden mit der selben Routine entwickelt.\\
@@ -31,5 +31,7 @@ Um die Übersichtlichkeit der Eingabe zu bewahren, werden bei mehrstündigen Stu
 \subsubsection{Generierung der Listenfeldinhalte}
 Um es so redundanzfrei wie möglich zu Programmieren wurde eine Funktion entwickelt, die für die mitgegebenen Tabellen Listen erstellt, die anschließend mit den Listenfelder verknüpft werden können.\\
 Der große Vorteil ist, dass nicht zu jedem Listenfeld, das mehrfach auf einer Seite vorkommen kann, eine Datenbankabfrage und eine Liste erstellt werden muss. Diese Methode senkte die Größe der generierten HTML Seite auf ein Bruchteil. Am Anfang der Entwicklung wurden auch überflüssige Listen erstellt, dies verursachte auch viel Traffic und große HTML Dateien.
+\subsubsection{Datumsauswahl}
+Da es bei den Supplierungen und den Fehlenden nicht Übersichtlich ist, wenn alle Einträge in einer Liste sichtbar sind, musste eine Lösung gefunden werden, welche zur besseren Übersicht beiträgt. Hier habe ich ebenfalls die Methode aus dem FTKL Projekt übernommen. Dabei werden die Einträge von jeweils nur einem Tag angezeigt. Mit einer Auswahl kann dabei zwischen den Tagen gewechselt werden. Um zu verhindern, dass versehentlich fehlende oder Supplierungen für Wochenenden eingetragen werden, entschloss ich diese Tage automatisch zu überspringen.
 \subsubsection{Monitorformular}
 \input{content/draft1/monitorform}
