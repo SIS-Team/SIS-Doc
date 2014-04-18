@@ -1,8 +1,17 @@
 \subsection{App}
 % Prinzip der App, Entwurf
 \subsubsection{Aufbau}
+Die SIS-App dient als Frontend für mobile Geräte. Bei der App handelt es sich um ein reines Ausgabemedium für alle Nutzer, es gibt keine Möglichkeit für Administratoren Supplierungen, Neuigkeiten oder ähnliches einzutragen.\\
+Damit die Anmeldung für den Nutzer möglichst einfach ist, erfolgt diese mit den Novell-Zugangsdaten. Welche ähnlich wie bei der SIS-Webseite via LDAP überprüft werden.\\
+In der App gibt es sämtliche Ausgaben die Standardbenutzer ohne spezielle Berechtigungen auch sehen. Es werden der eigene Stundenplan, inklusive unterrichtendem Lehrer und genutztem Raum, eine Tabelle mit allen Supplierungen und ein daraus resultierender Stundenplan für den jeweiligen Nutzer erzeugt.\\
+Zusätzlich gibt es in der App auch eine Möglichkeit die Neuigkeiten die auf den Monitoren angezeigt werden anzusehen.\\
 
 \subsubsection{Menüführung}
 
+Da mobile Geräte wie zum Beispiel Smartphones oft kleine Displays haben, muss die Bedienung möglichst einfach gehalten und die App sehr übersichtlich gestaltet werden. Darum wurden für das Menü nur drei Menüpunkte ausgewählt (Stundenpläne, Supplierpläne und News) und diese mit großen Buttons umgesetzt.Weitere Menüpunkte, wie der „angepasste Stundenplan“ oder für Lehrer den Punkt „alle Stundenpläne“, wurden deshalb direkt auf der Stundenplanseite platziert, dadurch kommt man über den Menüpunkt Stundenpläne auf alle gewünschten Varianten des Stundenplans.\\
+Damit die Tabellen für Stundenpläne und Supplierungen nicht zu unübersichtlich werden, werden nur die notwendigsten Informationen in die Tabelle geschrieben, um weitere Informationen zu erlangen, gibt es Popup-Fenster mit weiteren Daten, welche erscheinen wenn man auf die gewünschte Zelle in der Tabelle tippt.\\
+
+
 \subsubsection{Laden der Daten}
-% nur oberflächlich erklären -> keine Sourcecodes hier.
+Da es sich bei dieser App um keine Webapp handelt, sind natürlich einige Daten lokal auf dem Gerät gespeichert.\\ Einige Daten müssen aber dynamisch geladen werden, da jede Klasse und jeder Lehrer einen eigenen Stundenplan und auch einen eigenen Supplierplan hat. Diese Daten werden mit PHP und MySQL aus der SIS-Datenbank geladen. Danach werden sie mit Hilfe von JavaScript verarbeitet und in einer lesbaren Form (in Form einer Tabelle) ausgegeben.\\
+Das Problem beim Laden der Daten ist, dass PHP Seiten in der App nicht ausgeführt werden können weshalb die Daten nicht direkt mit dem PHP-Code in die App geladen werden können. Deshalb werden die Daten über einen Umweg mit PHP und JavaScript heruntergeladen.\\
