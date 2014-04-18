@@ -9,3 +9,9 @@
 %
 % Als weitere Eigenschaft kannst du die Zeilen angeben: [firstline=300, lastline=500]
 % Damit nicht alles reinkopiert wird.
+Wie schon bei \autoref{sec:content_draft_form} erwähnt ist es nicht möglich für alle Eingabemasken die selbe Routine zu verwenden, deshalb unterteile ich auch hier in 3 verschiedene Routinen. In die Routine für die normalen Eingabemasken, in die Eingabemaske für die Supplierungen und in die Eingabemaske für die Stundenpläne.
+\paragraph{Routine für die normalen Eingabemasken}
+Für die Normale Eingabemaske gibt es eine Funktion mit dem Namen \textit{form\_new}, dieser Funktion müssen 3 Parameter mitgegeben werden. Ein Parameter ist der Aufbau der Tabelle (Variable \textit{\$field}), der zweite ist der Inhalt (Variable \textit{\$content}) und der letzte Parameter ist ein Objekt, das für die Sicherheit der Formulare da ist. (siehe \autoref{sec:content_draft_token})\\
+\subparagraph{Parameter \textit{\$field}}
+Der Parameter ist ein mehrdimensionales Array welches, wie bei \autoref{lst:content_imple_input} zu sehen, auszusehen hat. Hier ist als Beispiel eine Definition dieses Arrays für die Eingabemaske der Lehrer dargestellt.
+\lstinputlisting[style=custom, language=php, caption={Array Field}, label={lst:content_imple_input}, firstline=43, firstnumber=43]{sources/input/teacher.php}
