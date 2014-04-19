@@ -12,14 +12,8 @@ Anschließend muss das PDF nur noch ausgegeben werden ( \autoref{lst:content_imp
 
 
 \subsubsection{Supplierplan-Ausgabe}
-% Wie funktioniert die PDF Generierung für Supplierplan und Stundenplan?
-% Vielleicht kannst du hier mit subsections weiter unterteilen in die zwei Unterpunkte.
-%
-% Hier dürfen auch auch Sourcecode-Teile vorkommen.
-% Wenn Sourcecodes: jeweilge File in den Ordner /sources/ in einen Unterordner packen und mit folgendem Befehl includieren:
-%
-%
-% \lstinputlisting[style=custom, language=php, caption={Dateiname}, label={lst:content_imple_timetables_labelname}]{sources/ordner/datei.php}
-%
-% Als weitere Eigenschaft kannst du die Zeilen angeben: [firstline=300, lastline=500]
-% Damit nicht alles reinkopiert wird.
+
+Ähnlich wie bei der Stundenplan-PDF mus zuerst die Datenbank abgefragt werden. In diesem Fall werden jedoch nur die Supplierungen welche am gewählten Tag in der ausgewählten Abteilung eingetragen sind.\\
+Anschließend wird das von der Datenbank erhaltenen Array durchlaufen und ausgegeben.\\\\
+Da die Länge des Kommentars einer Supplierung nicht vorgegeben ist, muss auch hier der Befehl MultiCell verwende werden. Daraus ergeben sich die selben Probleme und Problemlösungen wie beim Stundenplan.\\\\
+Am unteren Ende der Tabelle werden zudem solange leere Zeilen hinzugefügt, bis insgesamt mindestens 12 Zeilen vorhanden sind und eine davon leer ist. Dies soll dazu dienen, dass bei Hinzukommen einer einzelnen weiteren Supplierung kein neuer Ausdruck nötig ist.
