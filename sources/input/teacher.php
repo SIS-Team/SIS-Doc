@@ -41,23 +41,23 @@ $dropDown=array("Sections");
 include_once(ROOT_LOCATION . "/modules/form/dropdownSelects.php");		//Stellt die Listen fÃ¼r die DropdownmenÃ¼s zur VerfÃ¼gung
 //Formularmaske
 $fields = array(
-	array( "ID", 		"",			 			"hidden", 	"",		"",		"",					""),
-	array( "teName", 	"Name: ", 				"text", 	"30",	"",		"",					"required"),
-	array( "teShort", 	"K&uuml;rzel: ", 		"text", 	"5",	"",		"",					"required"),
-	array( "display", 	"Kurzname: ", 			"text",		"20",	"",		"",					"required"),
-	array( "seShort",	"Stammabteilung: ", 	"dropdown",	"5",	"",		$selectSections,	""),
-	array( "invisible", "Unsichtbar: ", 		"checkbox",	"",		"",		"",			 		""),			
+	array( "ID","","hidden","","","",""),
+	array( "teName","Name: ","text","30","","","required"),
+	array( "teShort","K&uuml;rzel: ","text","5","","","required"),
+	array( "display","Kurzname: ","text","20","","","required"),
+	array( "seShort","Stammabteilung: ","dropdown","5","",$selectSections,""),
+	array( "invisible","Unsichtbar: ","checkbox","","","", ""),	
 	);
 
 
 $sort = "teachers.invisible,sections.short,teachers.short";
-$result = selectTeacher("",$sort);				//Rückgabewert des Selects
+$result = selectTeacher("",$sort);	//Rückgabewert des Selects
 
 while ($row = mysql_fetch_array($result)){	//Fügt solange eine neue Formularzeile hinzu, solange ein Inhalt zur Verfügung steht
-	form_new($fields,$row,$hashGenerator);		//Formular wird erstellt
+	form_new($fields,$row,$hashGenerator);	//Formular wird erstellt
 }
 
-form_new($fields,false,$hashGenerator);			//Formular für einen neuen Eintrag
+form_new($fields,false,$hashGenerator);	//Formular für einen neuen Eintrag
 
 //Seitenfooter
 pageFooter();
