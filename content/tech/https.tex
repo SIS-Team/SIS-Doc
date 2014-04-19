@@ -80,9 +80,9 @@ Um eine Zertifikat zu erhalten muss bei einer Zertifizierungsstelle darum angesu
 \includegraphics[keepaspectratio=true, width=12cm]{images/screenshots/certificate.png}
 \caption{Allgemeine Zertifikatinforamtionen}
 \label{fig:certificate}
-
-Die meisten Browser haben standardmäßig eine Liste von Zertifizierungsstellen eingetragen, welchen sie vertrauen. Diese Liste kann vom User jederzeit erweitert werden, jedoch sollte der User sich bezüglich der Seriosität der Zertifizierungsstelle wirklich sicher sein. 
 \end{figure}
+Die meisten Browser haben standardmäßig eine Liste von Zertifizierungsstellen eingetragen, welchen sie vertrauen. Diese Liste kann vom User jederzeit erweitert werden, jedoch sollte der User sich bezüglich der Seriosität der Zertifizierungsstelle wirklich sicher sein. 
+
 \subsubsection{Sicherheitsprobleme}
 Eine Schwachstelle der oben genannten Arten des Schlüsseltausches ist jedoch ein Man-in-the-Middle. Dieser müsste vor Aufbau der Verbindung von Host1 und Host2 zwischen ihnen liegen. In folge würde er jeweils mit Host1 und Host2 eine Verschlüsselung ausmachen. Wenn er nun die gesendeten Daten von Host1 an Host2 weiterleitet und umgekehrt, können die beiden Hosts dies nicht bemerken.\\
 Jedoch benötigt der Man-in-the-Middle ebenso ein Zertifikat, in dem steht, dass er der Zielserver sei. Um dies zu bewerkstelligen muss der Angreifer Zugang zu einer Zertifizierungsstelle besitzen und sich ein Zertifikat ausstellen lassen.
