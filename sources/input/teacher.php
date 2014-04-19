@@ -12,9 +12,9 @@
 
 include("../../../config.php");
 
-include_once(ROOT_LOCATION . "/modules/form/form.php");					//Stell die Formularmasken zur VerfÃ¼gung
-include_once(ROOT_LOCATION . "/modules/general/Main.php");				//Stellt das Design zur VerfÃ¼gung
-include_once(ROOT_LOCATION . "/modules/database/selects.php");			//Stellt die select-Befehle zur VerfÃ¼gung
+include_once(ROOT_LOCATION . "/modules/form/form.php");					//Stell die Formularmasken zur Verfügung
+include_once(ROOT_LOCATION . "/modules/general/Main.php");				//Stellt das Design zur Verfügung
+include_once(ROOT_LOCATION . "/modules/database/selects.php");			//Stellt die select-Befehle zur Verfügung
 include_once(ROOT_LOCATION . "/modules/database/inserts.php");			//Stellt die insert-Befehle zur Verfügung
 include_once(ROOT_LOCATION . "/modules/form/hashCheckFail.php");		
 
@@ -38,7 +38,7 @@ $hashGenerator->generate();
 HashFail();
 
 $dropDown=array("Sections");
-include_once(ROOT_LOCATION . "/modules/form/dropdownSelects.php");		//Stellt die Listen fÃ¼r die DropdownmenÃ¼s zur VerfÃ¼gung
+include_once(ROOT_LOCATION . "/modules/form/dropdownSelects.php");		//Stellt die Listen für die Dropdownmenüs zur Verfügung
 //Formularmaske
 $fields = array(
 	array( "ID","","hidden","","","",""),
