@@ -1,4 +1,12 @@
 \subsection{Token-Generator}
 \label{sec:content_draft_token}
-
-\subsection{Virtuelle Sessions}
+Um der unter \gref{sec:content_security_xsrf} beschriebenen Gefahr entgegenzuwirken, wurde eine PHP-Klasse erstellt, die Methoden zum Erstellen und Auswerten von Formular-Tokens bereitstellt.\\
+Grundsätzlich hierbei folgendermaßen vorzugehen:
+\begin{itemize}
+	\item Bereits beim Initialisieren des Objektes wird der Constructor-Methode der Name des Formulars und eine eindeutige ID des Formulars (zum Beispiel der Dateiname) mitgegeben.
+	\item Die Generierungs-Methode generiert die internen Schlüssel, die zum Identifizieren des Formulares nötig sind.
+	\item Die Ausgabe-Methode gibt den HTML-Code für die versteckten Formular-Elemente aus, die nötig sind, um die Session zu identifizieren.
+	\item Die Prüf-Methode stellt sicher, ob das abgesendete Formular zuvor für den Benutzer generiert wurde und wirft gegebenenfalls eine Exception.
+\end{itemize}
+Im vereinfacht gesagt, wird ein zufallsgenerierter Hash versteckt in das Formular eingebunden, so dass er beim Absenden des Formulars mitgesendet wird. Dieser Hash wird auf in der PHP-Session gespeichert und nach dem Absenden des Formulars am Server mit dem gespeicherten Wert verglichen.\\
+Für die genaue Umsetzung dieser Klasse und ihre Einbindung in Formulare, siehe \gref{sec:content_imple_hashgenerator}
