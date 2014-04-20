@@ -17,7 +17,7 @@ Unterstützte mobile Betriebssysteme bis Version(2.9):\\
 Ab PhoneGap-Version 3.0 werden nur noch Android, iOS und Windows Phone unterstützt.\\
 
 PhoneGap basiert auf dem Open-Source-Projekt Apache Cordova. Daher darf PhoneGap auch vollkommen kostenlos genutzt werden.\\
-\paragraph{PhoneGapBuild}
+\paragraph{PhoneGapBuild\\}
 Für dieses Projekt wurde PhoneGapBuild verwendet.\\
 Bei PhoneGapBuild handelt es sich um eine Online-Variante von PhoneGap. Diese wird von AdobeSystems kostenlos zur Verfügung gestellt. Der Vorteil dieser Variante ist, dass nicht für jedes Betriebssystem, für das die App entwickelt werden soll, eine eigene SDK installiert werden muss, da die Applikation direkt online kompiliert wird.\\
 Den Code kann man entweder in Form einzelner HTML-, CSS-, und JS-Dateien verpackt als ZIP-Datei hochladen, oder ein GitHub Projekt angeben in dem sich der Code befindet.\\
@@ -26,18 +26,27 @@ Nach dem Hochladen des Codes wird die App online sofort kompiliert und die Insta
 Für die App-Entwicklung mit PhoneGapBuild benötigt man ausschließlich einen Editor und einen Webbrowser, da es sich ja eigentlich um Webentwicklung handelt. Die App besteht nur aus einer(oder mehreren) Webseite(n), welche mit CSS gestaltet wird. Um die Applikation interaktiv zu gestalten, kann man mit JavaScript-Skripts arbeiten und diese auch integrieren. Im Gegensatz zur Webentwicklung gibt es bei der App zusätzlich noch eine Datei mit dem Namen config.xml. In dieser Datei stehen alle Informationen, wie zum Beispiel die Versionsnummer oder der Name, zu der App und anhand dieser Datei können Berechtigungen für den Zugriff auf das Gerät vergeben werden.\\
 
 \subsubsection{iOS}
+iOS ist das mobile Betriebssystem von Apple, es wird nur auf IPhones und IPads betrieben. Das Betriebssystem basiert auf dem MacOSX-Kern und somit auch auf einem Unix-Kern.\\
+Mit iOS vermarktet Apple den größten Konkurrenten von Android, obwohl das System nur auf den eigenen Geräten installiert wird, ist iOS das am 2. häufigsten genutzte mobile Betriebssystem mit ca. 13\% Marktanteil.\\
+\paragraph*{Appstore\\}
+IPhone- bzw. IPad-User können Applikationen für ihre Geräte im Appstore herunterladen.\\ 
+Eine Besonderheit an iOS ist, dass Apps ausschließlich aus dem Appstore geladen werden können. Das soll mehr Sicherheit und Kontrolle bieten.\\
+Um eine Applikation in den Appstore zu laden muss man Developer sein, wofür man wieder um jährlich 99\$ zahlen muss. Für das Veröffentlichen selbst muss man aber keine weiteren Gebühren bezahlen, aber Appel bekommt ca. 30\% der Einnahmen wenn die App kostenpflichtig ist.\\
+\paragraph*{PhoneGap mit iOS\\}
+Im Laufe des Projekts wurde eine Möglichkeit gefunden den Appstore zu umgehen. Wenn man eine iOS-Applikation mit dem Dienst „PhoneGap Build“ von Adobe erstellt, benötigt man zwar die geeigneten Zertifikate von Apple, das heißt man muss trotzdem als Developer angemeldet sein und jährlich 99\$ bezahlen, aber wenn man nun mit dem IPhone oder IPad dem Downloadlink folgt kommt anstatt des üblichen Downloads die Frage ob man die App installieren will.
+Wenn es sich bei den ausgestellten Zertifikaten um Distribution-Zertifikate handelt, ist es so möglich die App auf allen iOS-Geräten zu installieren ohne sie in den Appstore zu stellen. Um diese Funktion zu ermöglichen wurde wahrscheinlich ein Abkommen zwischen Apple und Adobe geschlossen.\\
 
 \subsubsection{Android}
 Android ist ein Betriebssystem für Smartphones, welches von Google entwickelt wird. Es basiert auf einem Linux-Kernel.\\
 Bei Android handelt es sich um das am weitesten verbreitete mobile Betriebssystem, es hat einen Marktanteil von ca. 80\%. Es wird als freie Software gehandelt und wird als Open-Source entwickelt.\\
 \\
-\paragraph*{Architektur}
+\paragraph*{Architektur\\}
 Android baut wie bereits erwähnt auf einem Linux-Kernel auf.  Dieser stellt eine Schnittstelle zwischen der Hardware und der höher gelegenen Software dar.\\
 In der nächsthöheren Systemschicht sind Android-Klassenbibliotheken, durch welche man die Funktionen des Kernels nutzen kann. Zusätzlich befindet sich auf dieser Ebene eine Dalvik-Virtual-Machine, dabei handelt es sich um eine virtuelle Maschine in der die Applikationen ausgeführt werden.\\
 Diese virtuelle Maschine wurde von Google entwickelt und ähnelt in ihrer Funktionalität sehr der Java-VM. Die virtuellen Maschinen führen den Bytecode der Applikationen aus, aber die Dalvik Maschine arbeitet als Registermaschine, weshalb normaler Java-Bytecode auf Android nicht funktioniert.\\
 Android startet für jede gestartete Applikation eine eigene virtuelle Maschine, dadurch kann keine App direkt auf das System zugreifen sondern nur über die virtuelle Maschine und des weiteren können sich die Apps nicht gegenseitig stören oder beeinflussen, dadurch dass sie in verschiedenen virtuellen Maschinen betrieben werden.\\
 \\
-\paragraph*{Store}
+\paragraph*{Store\\}
 Im Google Play Store sind viele Apps für Android verfügbar. Dieser Store ist komplett kostenlos nutzbar, jedoch gibt es kostenpflichtige Applikationen. Um Apps aus dem Play-Store zu installieren muss man aber einen Google-Account besitzen welcher auch komplett kostenlos ist.\\
 Bei Android kann man den Store relativ einfach umgehen, denn bei Android kann man alle APK-Files(Android-Installationsdateien) einfach ausführen. Dazu muss man nur in den Einstellungen im Menü Anwendungen, den Punkt Unbekannte Quellen aktivieren. Damit erlaubt man das Installieren von Apps die nicht aus dem Play-Store heruntergeladen werden.\\
 Ist das erledigt muss man nur noch das gewünschte APK-File auf dem Smartphone speichern (downloaden oder über USB auf dem Smartphone speichern) und dieses dann öffnen. Dann wird die Applikation automatisch installiert und ist danach wie jede andere Applikation auf dem Gerät installiert.\\
