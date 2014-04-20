@@ -1,4 +1,11 @@
 \subsection{Supplierplan-Generierung}
+
+Zunächst wird überprüft ob der aktuelle Supplierplan oder der \enquote{folgende} Supplierplan ausgewählt wurde. Je nach gewählter Option beginnt die Zählvariable bei 0 oder 2.\\
+Die Ansicht ist in zwei Berieche (divs) unterteilt. Jedes div stellt einen Tag dar.\\
+Für jeden Tag wird der folgende Ablauf durchgeführt:\\\\
+Zuerst wird kontrolliert ob das Datum, welches mittels der Zählvariable und dem aktuellen Datums erzeugt wurde, ein Wochentag ist. Sollte es sich um ein Wochenende handeln, wird der darauf folgende Montag verwendet.\\
+Anschließend wird zwischen Lehrer und Schüler bzw. Administratoren unterschieden. Dieser Teilung liegt zu Grunde, dass ein Lehrer andere Informationen sieht als ein Schüler.
+
 % Wie wird der Supplierplan generiert?
 %
 % Hier dürfen auch auch Sourcecode-Teile vorkommen.
