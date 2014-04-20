@@ -4,14 +4,9 @@
 \renewcommand{\lstlistlistingname}{Codes}
 \def\lstlistingautorefname{Code}
 
-%literate={ü}{{\"u}}1,
-%literate={ö}{{\"o}}1,
-%literate={ä}{{\"a}}1,
-%literate={ß}{{\ss}}1,
-
 \lstset{literate={ü}{{\"u}}1 {ö}{{\"o}}1 {ä}{{\"a}}1 {ß}{{\ss}}1}
 \lstset{	
-	%inputencoding=utf8,
+	inputencoding=utf8,
 	extendedchars=\true,
 	inputencoding=utf8x,
 	belowcaptionskip=1\baselineskip,
@@ -24,7 +19,7 @@
 	numbers=left,
 	numbersep=5pt,
 	numberstyle=\tiny\color{black},
-	basicstyle=\footnotesize\ttfamily
+	basicstyle=\ttfamily\scriptsize
 }
 \lstdefinestyle{custom}{
 	keywordstyle=\bfseries\color{green},
