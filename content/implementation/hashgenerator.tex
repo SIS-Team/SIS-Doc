@@ -1,0 +1,32 @@
+\subsection{Token-Generator}
+\label{sec:content_imple_hashgenerator}
+
+Das erste Problem, das auftritt, ist, dass es nur eine PHP-Session gibt, und somit auch nur ein benutzerspezifisches Daten-Array. Dies wird dann zu einem Problem, wenn für mehrere Formulare gleichzeitig die Tokens gespeichert werden müssen.\\
+Zur Lösung dieses Problems werden sogenannte virtuelle Sessions verwendet.
+
+\subsubsection{Virtuelle Sessions}
+Die virtuellen Sessions sind Unterteilungen unterhalb der PHP-Session. Sie werden mit Hilfe der Klasse \texttt{vSession} verwaltet.\\
+Die Klasse hat folgende Member:
+\begin{description}[style=nextline]
+	\item[\texttt{private \$name}] beinhaltet den Namen der virtuellen Session für das Objekt verwendet werden soll.
+	\item[\texttt{public function init()}] initialisiert virtuelle Session, für welche das Objekt erstellt wurde. Sollte die Session bereits existieren, wird eine Exception geworfen (siehe \autoref{lst:content_imple_vSession_init}).\\
+		\textit{Achtung:} Es wird die virtuelle Session initialisiert, nicht das Objekt.
+	\item[\texttt{public function exists()}] prüft, ob die virtuelle Session, für welche das Objekt erstellt wurde und gibt einen bool'schen Wert zurück.
+	\item[\texttt{public function destroy()}] löscht die Session, für welche das Objekt erstellt wurde.
+	\item[\texttt{public function destroyAll()}] löscht alle virtuellen Sessions (genauer: löscht die Referenz auf das Array der virtuellen Sessions).
+	\item[\texttt{public function setAttribute(\$name, \$value)}] setzt die durch \texttt{\$name} identifizierte Eigenschaft der virtuellen Session auf den Wert \texttt{\$value} (siehe \autoref{lst:content_imple_vSession_set}). Alte Werte werden überschrieben. Wenn mehr virtuelle Sessions existieren als erlaubt, wird \texttt{\$this->deleteOldest()} aufgerufen.
+	\item[\texttt{public function getAttribute(\$name)}] gibt den Wert der durch \texttt{\$name} identifizierten Eigenschaft der virtuellen Session zurück.\\
+		\textit{Achtung:} Es wird nicht überprüft, ob die Eigenschaft existiert.
+	\item[\texttt{public function attributeIsset(\$name)}] gibt in Form eines bool'schen Wertes zurück, ob die durch \texttt{\$name} identifizierte Eigenschaft der virtuellen Session existiert.
+	\item[\texttt{public function deleteOldest()}] löscht die älteste virtuelle Session (siehe \autoref{lst:content_imple_vSession_oldest}).
+\end{description}
+Zu erwähnen ist noch, dass die Constructor-Methode dieser Klasse als Parameter den Namen der Session erwartet (siehe \autoref{lst:content_imple_vSession_construct}).\\
+Für alle virtuele Sessions gibt es zusätzlich noch die Eigenschaften \texttt{created} und \texttt{modified}, welche beide Timestamps enthalten. Diese sind aber nicht zur Modifikation durch den Benutzer bestimmt, sondern dienen der vSession-Klasse als Anhaltspunkt zur Bestimmung alter Elemente, die vermutlich nicht mehr gebraucht werden. Initialisiert werden diese beiden Eigenschaften durch die \texttt{init()}-Methode (siehe \autoref{lst:content_imple_vSession_init}, Zeile 46, 47). Das \texttt{modified}-Feld wird dazu noch von der \texttt{setAttribute(\$name, \$value)}-Methode modifiziert (siehe \autoref{lst:content_imple_vSession_set}, Zeile 88). Zur Bestimmung, ob die Session noch benutzt wird, wird logischerweise der \texttt{modified}-Wert verwendet (siehe \autoref{lst:content_imple_vSession_oldest}, Zeile 123).\\
+Die in den folgenden Codes sichtbare Konstante \texttt{MAX\_VSESSIONS} wird am Beginn der Datei \enquote{/modules/general/VirtualSessionManager.php} definiert. Der Standardwert ist 15.\\
+\lstinputlisting[style=custom, language=php, caption={/modules/general/VirtualSessionManager.php; Constructor; Zeilen 29-31}, label={lst:content_imple_vSession_construct}, firstline=29, lastline=31, firstnumber=29]{sources/token/VirtualSessionManager.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/general/VirtualSessionManager.php; init(); Zeilen 38-51}, label={lst:content_imple_vSession_init}, firstline=38, lastline=51, firstnumber=38]{sources/token/VirtualSessionManager.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/general/VirtualSessionManager.php; setAttribute(); Zeilen 84-90}, label={lst:content_imple_vSession_set}, firstline=84, lastline=90, firstnumber=84]{sources/token/VirtualSessionManager.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/general/VirtualSessionManager.php; deleteOldest(); Zeilen 117-130}, label={lst:content_imple_vSession_oldest}, firstline=117, lastline=130, firstnumber=117]{sources/token/VirtualSessionManager.php}
+Aus Platzgründen, werden hier nur die wichtigsten Codeteile vorgestellt. Für den vollständigen Code siehe \gref{sec:content_imle_source}.
+
+\subsubsection{HashGenerator}
