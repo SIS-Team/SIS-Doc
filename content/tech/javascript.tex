@@ -7,6 +7,12 @@ JavaScript ist, wie die meisten Skriptsprachen, sehr einfach gehalten und Variab
 JavaScript ist eine Interpreter-Programmiersprache, das heißt, dass der Code erst im Webbrowser durch den integrierten Interpreter umgesetzt wird.\\
 Obwohl JavaScript eine sehr einfache Programmiersprache ist, sind trotzdem alle wichtigen Strukturelement, wie Schleifen, If-Klauseln, etc. welche auch in anderen Programmiersprachen wie zum Beispiel C oder Java existieren, enthalten.\\
 Weiters gibt es bei JavaScript die Möglichkeit Bibliotheken einzubinden. Dadurch kann man bereits vorgefertigte Funktionen einfach einbinden und anwenden. Ein Beispiel dafür ist JQuery.\\
+JavaScript ist objektorientiert. Klassen sind ebenfalls Objekte, mit denen Prototypen von ihren
+Instanzen genieriert werden. Prinzipiell sind alle Objekte, Eigenschaften und Methoden Variablen.
+Es gibt daher keine prinzipielle Unterscheidung zwischen Eigenschaften und Methoden.
+Die Variablentypisierung ist dynamisch. Es gibt keine Unterscheidung zwischen publiken und
+privaten Eigenschaften und Methoden.In Javascript kann aber auch ohne objektorientierung programmiert werden.
+\\
 
 \paragraph*{Anwendung}
 Um JavaScript in einer Webseite zu nutzen gibt es zwei Möglichkeiten, entweder der Code wird direkt in das HTML-Dokument geschrieben(Variante1) oder man schreibt den JavaScript-Code in ein eigenes Dokument und bindet dieses dann ein(Variante2).\\
@@ -45,7 +51,9 @@ Um eine Funktion aufzurufen schreibt man den Funktionsnamen mit Klammern dahinte
 Bei einem Funktionsaufruf kann man der Funktion auch Werte mitgeben, dazu muss man in der Klammer hinter dem Funktionsnamen die Werte/Variablen eintragen. Die Mitgabe von Parametern muss natürlich in der Funktion vorgesehen werden, ansonsten werden die Werte einfach ignoriert.\\
 
 \paragraph*{Variablen}
-Bei JavaScript gibt es, wie auch bei anderen Programmiersprachen, Variablen. Diesen muss aber im Gegensatz zu Programmiersprachen wie C, Java oder ähnlichen, bei der Deklaration, kein eindeutiger Variablentyp zugewiesen werden. In JavaScript nur zwei Unterscheidungen bei den Variablentypen, nämlich in Zahlen und in Zeichen bzw. Zeichenketten. 
+Bei JavaScript gibt es, wie auch bei anderen Programmiersprachen, Variablen. Diesen muss aber im Gegensatz zu Programmiersprachen wie C, Java oder ähnlichen, bei der Deklaration, kein eindeutiger Variablentyp zugewiesen werden. In JavaScript nur zwei Unterscheidungen bei den Variablentypen, nämlich in primitive Typen und in Objekttypen.
+Bei den primitiven Typen handelt es sich um Zahlen, alle anderen Variablen sind Objekttypen, also Zeichen, Zeichenketten oder ähnliches.\\
+
 Um in JavaScript eine Variable zu deklarieren, schreibt man var und dann den Variablennamen. Um ihr dann noch einen Wert zuzuweisen muss man nur den Variablennamen und ein = Symbol schreiben, danach wird der gewünschte Wert hingeschrieben, falls es sich um eine Zeichenkette handelt muss man den Wert zwischen Anführungszeichen setzen:\\
 \begin{lstlisting} 
 var name = “Peter”;
@@ -57,7 +65,7 @@ name = "Hans";
 Weiters muss man zwischen globalen und lokalen Variablen unterscheiden, während globale Variablen im gesamten Dokument definiert sind, sind lokale Variablen nur in der Funktion in der sie deklariert werden nutzbar. Um eine Variabel global zu definieren muss sie außerhalb jeglicher Funktionen definiert werden, wenn man eine Variabel aber innerhalb einer Funktion definiert handelt es sich um eine lokale Variable.\\
 
 \paragraph*{Arrays}
-In JavaSript gibt es auch Felder(Arrays). In diesen Feldern können sowohl Zahlen als auch Zeichen bzw. Zeichenketten gespeichert werden, es ist sogar möglich Zahlen und Zeichenketten in dasselbe Array zu speichern.\\
+In JavaSript gibt es auch Felder(Arrays).  Arrays sind Instanzen der Klasse Array. Werte innerhalb des Arrays sind prinzipiell voneinander unabhängige Variablen (beziehungsweise Referenzen). Bei Assoziative Arrays - also Arrays mit nicht-numerischen Indizes - sind die assoziativen Teile gleichzeitig auch Eigenschaften des Array-Objektes.\\
 Einen Wert in einem Array zu speichern funktioniert gleich, wie einer Variable einen Wert zuzuweisen, aber bei einem Array muss man zusätzlich zum Arraynamen noch die angeben welchen Arrayeintrag man verändern möchte.\\
 \begin{lstlisting}
 var cars = new Array();
@@ -67,7 +75,7 @@ cars[2] = "Mercedes";
 \end{lstlisting}
 
 \paragraph*{JSON}
-JSON (JavaScript Object Notation) ist ein Datenaustauschformat welches so gestaltet ist, dass Menschen es leicht lesen können und der Computer es einfach parsen kann. Es basiert auf JavaScript.\\
+JSON (JavaScript Object Notation) ist ein Datenaustauschformat welches so gestaltet ist, dass Objekte als Text codieren kann und der Computer es einfach parsen kann. Es basiert auf JavaScript.\\
 JSON wird sehr häufig in Verbindung mit JavaScript verwendet, kann aber auch mit anderen Programmiersprachen verwendet werden.\\
 Beispiel für ein JSON-Objekt:\\
 \begin{lstlisting}
