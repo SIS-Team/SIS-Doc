@@ -1,2 +1,39 @@
 \subsection{Mobile App}
+
+\subsubsection{Gewählte Lösung}
+
+\paragraph*{Hybrid-App\\}
+
+Die App wird als Hybrid-App realisiert, dabei handelt es sich um eine Applikation welche zwar mit Webtechnologien erstellt wird aber lokal auf dem Gerät betrieben wird.
+Die mobile App wird aus Webseiten mit HTML, JavaScript und CSS aufgebaut. Diese Dateien werden dann mit Hilfe des Frameworks PhoneGap zu einer App für Android, WindowsPhone und iOS kompiliert. Zur Kommunikation mit dem Server sind noch einige PHP-Dateien auf dem Server gespeichert.
+
+
+\subsubsection{Alternative Lösung}
+\paragraph*{Native App\\}
+
+Es könnte auch eine native App erstellt werden dann müsste aber für jedes der drei Betriebssysteme eine eigene App erstellt werden.\\
+\\
+Android:\\
+Native Android-Apps werden grundsätzlich in Java programmiert. Um solche Applikationen zu erstellen wird aber gewisse Software benötigt.\\
+Es muss eine Entwicklungsumgebung (IDE), zum Beispiel Eclipse, auf dem Rechner installiert werden und nachträglich müssen noch die Android Development Tools (ADT) installiert werden. Alternativ gibt es noch die Möglichkeit Android Studio von Google zu installieren, dabei handelt es sich um eine vollständige Android-Entwicklungsumgebung, mit einigen Extras wie zum Beispiel einem Layout-Editor.\\
+\\
+WindowsPhone:\\
+WindowsPhone-Apps werden in C\# programmiert.\\
+Zum erstellen einer WindowsPhone-App muss zuerst VisualStudio installiert werden. Damit können dann Apps für WindowsPhone entwickelt werden. In VisualStudio ist sogar ein Simulator integriert mit welchem es möglich ist die Apps zu testen bevor man sie auf ein Smartphone lädt.\\
+\\
+iOS:\\
+Für die Entwicklung einer iOS-Apps benötigt man als erstes das Betriebssytem von Apple Mac OS X, da es die Entwicklungssoftware für iOS-Apps (XCode) nur für Mac gibt.\\
+Um eine iOS Applikation zu erstellen muss man zuerst die Entwicklungssoftware, XCode, herunterladen und installieren. Mit Hilfe dieser Software kann man nun erste Apps erstellen. Die grafische Oberfläche der App kann man noch sehr einfach durch Drag and Drop Funktionen erstellen. Um den Schaltflächen jedoch Funktionen zuzuweisen muss man auch wieder programmieren. Bei der verwendeten Programmiersprache handelt es sich um Objective-C, eine objektorientierte Programmiersprache mit Ähnlichkeiten zu C++ und C\#.
+Die programmierten Applikationen kann man dann im integrierten Simulator testen.
+Um die Applikationen auf echten Geräten zu testen benötigt man bereits eine Entwicklerlizenz, diese kostet 99\$ pro Jahr(Preis von https://developer.apple.com/programs/ios).\\
+\\
+Native Applikationen sind zwar wesentlich schneller als hybrid Apps, aber diese Lösung wurde nicht gewählt, da es viel zu aufwendig ist für jedes Betriebssystem eine eigene Entwicklungsumgebung zu installieren und die App drei mal in den jeweiligen Programmiersprachen zu programmieren und zu erstellen. Und da keiner der an der Diplomarbeit beteiligten Schüler ein PC von Apple besitzt wäre es uns nicht möglich gewesen eine iOS-App auf diesen Weg zu erstellen.\\
+
+\paragraph*{Web-App\\}
+
+Eine weitere Alternative ist die Entwicklung einer Webapp.\\
+Bei einer Webapp handelt es sich prinzipiell um eine Webseite, welche für Smartphones optimiert wurde, beim Öffnen der Applikation wird einfach die gewünschte Webseite geladen.\\
+Die Entwicklung einer Webapp würde sich kaum von der Entwicklung einer hybrid App unterscheiden, aber bei der Webapp hat man den Vorteil, dass auch PHP-Seiten verwendet werden können. Dadurch ist die Übertragung der Daten und die Authentifizierung wesentlich einfacher.\\
+Eine Webapp hat aber den Nachteil, dass sie langsamer ist als eine Applikation welche lokal auf dem Gerät installiert ist und ein weiterer Nachteil für den Nutzer ist, dass bei dieser Lösung ein wesentlich größerer Bedarf an Internetdatenvolumen anfällt.\\
+
 % warum phonegap, was wären die alternativen gewesen? vor-, nachteile?

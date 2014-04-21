@@ -1,5 +1,17 @@
 \subsection{Verbindung App $ \leftrightarrow $ Server}
 % Wie funktioniert die Verbindung zwischen App und Server?
+
+Bei der Verbindung zwischen dem Server und der App muss darauf geachtet werden, dass die App zwar als Website entwickelt wurde aber lokal ausgeführt wird. Darum können die Daten nicht einfach mit PHP aus der Datenbank geladen und direkt weiterverarbeitet werden.\\
+
+\subsubsection{Gewählte Lösung}
+Die Lösung hierfür war, dass wir über das Source-Attribut eines Script-Tags eine PHP-Datei am Server eingebunden haben, welche die Daten aus der Datenbank lädt. Diese Daten werden dann in Form eines JSON-Objektes gespeichert. Mit Hilfe des ECHO-Befehls wird die Objektdeklaration und das Zuweisen der Daten in die Datei geschrieben. Dadurch kann dieser Code als JavaScript ausgeführt werden wenn er auf dem Gerät geladen wird. Weiters steht in dieser Datei noch der JavaScript-Code welcher die Daten verarbeitet.\\
+Dadurch, dass bei dieser Art des Datenaustausches auch noch der JavaScript-Code zum verarbeiten der Daten mitgeladen wird, hat man den Vorteil, dass viele Teile der App durch diesen JavaScript-Code und somit ohne Update der App verändert werden können.\\
+
+\subsubsection{Alternative Lösungen}
+Eine andere Möglichkeit wäre die JSON-Callback Funktion. Dabei ist auf dem Server ein PHP-File in welchem die benötigten Daten mittels MySQL aus der Datenbank abgerufen uns als JSON gespeichert werden. 
+Mit Hilfe der Funktion getJSON(), kann nun auf der lokalen Webseite durch Angabe der URL der PHP-Datei die Daten auf die lokale Seite geladen werden.\\
+Ein Problem bei dieser Verbindungsvariante ist, dass es nur schwer machbar ist, nach dem Laden der Daten erneut einen JavaScript-Code auszuführen, welcher dann die Daten verarbeitet, da im Normalfall der gesamte Code sofort beim Aufruf der Webseite ausgeführt wird.\\
+
 % Alternative Lösungen?
 % Vor-, Nachteile?
 %
