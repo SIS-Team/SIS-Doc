@@ -1,0 +1,57 @@
+digraph flowchart {
+	rankdir=TB;
+	ranksep="0.1 equally";
+	size="3,4";
+	ratio=fill;
+
+	Start[shape="box", style=rounded];
+	Exit[shape="box", style=rounded];
+	"Anzeige?"[shape="diamond", style=""];
+	"Stunde hinzugefügt?"[shape="diamond", style=""];
+	"Stunde gelöscht?"[shape="diamond", style=""];
+	"Einziger Eintrag?"[shape="diamond", style=""];
+	"Verschoben?"[shape="diamond", style=""];
+	"Eintrag vorhanden?"[shape="diamond", style=""];
+	"Eintrag vorhanden? "[shape="diamond", style=""];
+	
+	node[shape="parallelogram", style=""]
+	
+	Start -> "Auswahl Anzeige";
+	"Auswahl Anzeige" -> "Stunden aus DB abfragen";
+	"Stunden aus DB abfragen" -> "Array umstrukturieren";
+	"Array umstrukturieren" -> "Anzeige?";
+		"Anzeige?" -> "Stundenplan ausgeben"[label="normal"];
+		"Anzeige?" -> "Schleife Mon bis Fri"[label="modifiziert"];
+			"Schleife Mon bis Fri" -> "fehlende Klassen abfragen";
+			"fehlende Klassen abfragen" -> "betroffende Stunde entfernen";
+			"betroffende Stunde entfernen" -> "Popup erstellen";
+			"Popup erstellen" -> "Supplierplan aus DB abrufen";
+			"Supplierplan aus DB abrufen" -> "Schleife aller Supplierungen";
+				"Schleife aller Supplierungen" -> "Stunde hinzugefügt?";
+				"Stunde hinzugefügt?" -> "Eintrag vorhanden? "[label="ja"];
+					"Eintrag vorhanden? " -> "überschreiben "[label="ja"];
+						"überschreiben " -> "nächste Supplierung";
+					"Eintrag vorhanden? " -> "in neue Stunde schreiben "[label="nein"];
+						"in neue Stunde schreiben " -> "nächste Supplierung";
+				"Stunde hinzugefügt?" -> "Stunde gelöscht?"[label="nein"];
+					"Stunde gelöscht?" -> "Einziger Eintrag?"[label="ja"];
+						"Einziger Eintrag?" -> "Fach löschen"[label="ja"];
+							"Fach löschen" -> "Popup ändern";
+						"Einziger Eintrag?" -> "Popup ändern"[label="nein"];
+							"Popup ändern" -> "nächste Supplierung";
+					"Stunde gelöscht?" -> "Verschoben?"[label="nein"];
+						"Verschoben?" -> "aus alter Stunde löschen"[label="ja"];
+							"aus alter Stunde löschen" -> "Eintrag vorhanden?";
+								"Eintrag vorhanden?" -> "neues mit | getrennt anhängen"[label="ja"];
+									"neues mit | getrennt anhängen" -> "nächste Supplierung";
+								"Eintrag vorhanden?" -> "nächste Supplierung"[label="nein"];
+						"Verschoben?" -> "(echte Supplierung)"[label="nein"];
+							"(echte Supplierung)" -> "Fach ändern";
+							"Fach ändern" -> "Popup anpassen";
+							"Popup anpassen" -> "nächste Supplierung";
+				"nächste Supplierung" -> "Schleife aller Supplierungen"[label="loop"];
+				"nächste Supplierung" -> "nächster Tag";
+			"nächster Tag" -> "Schleife Mon bis Fri"[label="loop"];
+			"nächster Tag" -> "Stundenplan ausgeben";
+	"Stundenplan ausgeben" -> Exit;
+}
