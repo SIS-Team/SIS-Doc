@@ -1,12 +1,15 @@
 \subsubsection{Cross-Site Scripting (Weiland)}
-Oft auch XSS genannt. Bei einem Angriff mit Cross-Site-Scripting wird eine Website, welche auch eine vertrauenswürdige Seite sein kann, vom Angreifer mit einem Script versehen, welches im Browser des Opfers ausgeführt wird.\\
+Oft auch XSS genannt. Bei einem Angriff mit Cross-Site-Scripting wird eine Website, welche auch eine ansonsten vertrauenswürdige Seite sein kann, vom Angreifer mit einem Script versehen, welches im Browser des Opfers ausgeführt wird.\\
 Dabei muss der Angreifer nicht zwangsläufig auf den Server zugreifen können. Dadurch, dass viele Seiten dynamisch gestaltet sind, bieten sich einem Angreifer viele Möglichkeiten. Zum Beispiel gibt es oft die Möglichkeit eine Kommentar zu hinterlassen. Wenn in solch einem Feld ein Script platziert wird, wird es vom Browser eines Betrachters automatisch ausgeführt.
 \paragraph{Problem}
 Es gibt grundsätzlich drei verschiedene Arten von Cross-Site-Scripting:
 \subparagraph{reflektiert oder nicht-persistent}
+Bei dieser Art des XSS wird das Script vom Benutzer \enquote{geliefert} und nicht auf dem Server gespeichert. Die ist zum Beispiel möglich, wenn wie bei \autoref{lst:content_XSS_Vulnerable} eine vom Benutzer getätigte Eingabe direkt ausgegeben wird. Dies kann ebenso über GET- oder POST-Methoden funktionieren. So kann ein Angreifer einem Opfer mit dem Link zu der Seite und einem angefügten Script als z.B GET-Parameter (z.B. \texttt{input=<script type="text/javascript"> alert ('Dies sollte nicht passieren!'}) dazu bringen ein Script auszuführen
 \subparagraph{persistent oder beständig}
+Bei dieser Vorgehensweise wird das Script auf der Website gespeichert und somit bei jeder Anfrage ausgeliefert wird.\\ Dies lässt sich leicht anhand eines Forums beschreiben:\\\\
+Der Angreifer hinterlässt eine Nachricht im Forum, in der ein Script eingebaut ist. Sobald nun ein Besucher des Forums diese Nachricht lesen will, führt der Browser das Script aus.
 \subparagraph{DOM-basiert oder lokal}
-Der folgende Code (\autoref{lst:content_XSS_Vulnerable}) sollte eigentlich nur die mittels des GET-Parameter mitgegebene Eingabe ausgeben.
+Diese...
 \begin{lstlisting}[style=custom, language=PHP, caption={Cross-Site-Scripting Anfällig},label={lst:content_XSS_Vulnerable}]
 <html>
 	<head>
@@ -22,7 +25,7 @@ Der folgende Code (\autoref{lst:content_XSS_Vulnerable}) sollte eigentlich nur d
 </html>
 \end{lstlisting}
 
-Wird diese Seite jedoch zum Beispiel mit dem GET-PArameter \texttt{input=<script type="text/javascript"> alert ('Dies sollte nicht passieren!') </script>} aufgerufen, wird das mitgegebene Script ausgeführt.
+
 
 
 \paragraph{Methoden um Vorzubeugen}
