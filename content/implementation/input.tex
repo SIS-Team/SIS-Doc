@@ -25,7 +25,7 @@ Der Aufbau ist recht simpel. Jede Zeile entspricht einem Input-Feld und jede Spa
    \midrule
           \textbf{1. Spalte} & Name des Input-Feldes \newline Spaltenbezeichnung in der MySQL-Tabelle \newline Pflichtspalte & date  \\
           \hline
-          \textbf{2. Spalte} & Input-Typ \newline Pflichtspalte & siehe Abschnitt \nameref{sec:content_imple_input_type}\\
+          \textbf{2. Spalte} & Input-Typ \newline Pflichtspalte & siehe Abschnitt \nameref{sec:content_imple_input_type} \\
           \hline
           \textbf{3. Spalte} & Anzeigename \newline Pflichtspalte & Datum \\
           \hline
@@ -61,7 +61,8 @@ Ab Zeile 48 bis Zeile 84 werden in einer \textit{If-Abfrage} alle einzelnen Type
 Ist das Array \textit{\$field} durchlaufen werden die Zeilen ab 86 durchlaufen. In Zeile 86 wird die aufgerufene URL in die einzelnen Teile zerlegt, dies ist notwendig, um zu bestimmen mit welche Parametern die Funktion \textit{form\_savedelete} (siehe \autoref{}) aufgerufen werden soll, denn nicht in allen Eingaben soll Löschen möglich sein.\\
 In den Zeilen 88 - 99 wird zwischen den Parametern entschieden, mit denen die Funktion aufgerufen werden soll.
 \lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 41 - 99}, label={lst:content_imple_input_form}, linerange={41-99},firstnumber=41 ]{sources/input/form.php}
-\paragraph{Input-Typen\\} \label{sec:content_imple_input_type}
+\paragraph{Input-Typen} \label{sec:content_imple_input_type}
+$~~$ \\
 In dieser Routine werden nur die benötigten Typen definiert. Dazu gehören folgende:
 \begin{table}[H]
 \centering
@@ -273,8 +274,8 @@ In den nächsten Punkten werden die Codezeilen in einzelnen Teilen zerlegt und g
 Für die Eingabemaske der Stundenpläne werden 4 JavaScript Funktionen benötigt.
 \begin{enumerate}
 	\item \textit{visibility()}\\
-	Diese Funktion übernimmt die Aufgabe, die zusätzlichen Zeilen für die Teilung ein- bzw. aus zu blenden. Dieser Funktion muss als Parameter die Stunde mitgegeben werden.\\
-	Um sich nur auf die 7 Teilungen zu beschränken und Fehleingaben ab zu wehren, wird mit dem Eingegebenen Text ein \textit{Switch-Case} durchlaufen, wird die eingegebene Zahl gefunden, so wird diese übernommen, wird sie nicht gefunden wird als Teilung 1 angenommen.\\
+	Diese Funktion übernimmt die Aufgabe, die zusätzlichen Zeilen für die Teilungen ein- bzw. aus zu blenden. Dieser Funktion muss als Parameter die Stunde mitgegeben werden.\\
+	Um sich nur auf die 7 Teilungen zu beschränken und Fehleingaben ab zu wehren, wird mit dem Eingegebenen Text ein \textit{Switch-Case} durchlaufen. Wird die eingegebene Zahl gefunden, so wird diese übernommen, wird sie nicht gefunden, wird als Teilung 1 angenommen.\\
 	Anschließend werden zuerst alle Zeilen ausgeblendet und dann nach der Reihe wieder eingeblendet.
 	
 	\lstinputlisting[style=custom, language=java, caption={/data/scripts/lesson.js; Zeile 8 - 49},  label={lst:content_imple_input_form_lessons_java_1}, firstline =8, lastline = 49, firstnumber = 8 ]{sources/input/lessons.js}
@@ -291,8 +292,39 @@ Für die Eingabemaske der Stundenpläne werden 4 JavaScript Funktionen benötigt
 	
 	\item \textit{visibleHours()}\\
 	In dieser Funktion werden die Stunden ausgeblendet, welche nicht benötigt werden, aufgrund der Länge einer vorherigen Stunde. Dieser Funktion wir mit dem Parameter \textit{hour} die Stunde mitgegeben.\\
-	Zuerst werden alle Zeilen ab der mitgegebenen Stunde, die als Länge 1 haben sichtbar gemacht. Anschließend werden der Länge entsprechend die Stunden ausgeblendet.
+	Zuerst werden alle Zeilen ab der mitgegebenen Stunde, die als Länge 1 haben, sichtbar gemacht. Anschließend werden, der Länge entsprechend, die Stunden ausgeblendet.
 	
 	\lstinputlisting[style=custom, language=java, caption={/data/scripts/lesson.js; Zeile 78 - 105},  label={lst:content_imple_input_form_lessons_java_4}, firstline =78, lastline = 105, firstnumber = 78 ]{sources/input/lessons.js}
 	
 \end{enumerate}
+
+\subsubsection{Erstellen des Übernehmen Buttons}
+Die Funktion \textit{form\_savedelete} erstellt, je nach mitgegebenen Parameter, eine Check Box fürs Löschen und einen Übernehmen-Button oder nur einen Übernehmen-Button.\\
+Als Parameter wird dieser Funktion \textit{\$new} mitgegeben. Dieser Parameter kann den Wert \textit{false} oder \textit{true} annehmen. Bei \textit{false} wird beides erstellt, bei \textit{true} nur der Übernehmen-Button.
+\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 386 - 396},  label={lst:content_imple_input_form_saveDelete}, firstline =386, lastline = 396, firstnumber = 386 ]{sources/input/form.php}
+
+\subsubsection{Erstellen der Listenfelder}
+Für das Erstellen der Listen, für die Listenfelder, wurde eine eigene Funktion entwickelt, welche nur die Listen erstellt. Die benötigten Listen werden einmal, beim Aufrufen einer Seite, erstellt und auf diese kann man auf der ganzen Seite, mit dem definierten Namen, zugreifen.\\
+Es werden dabei nicht alle möglichen Listen erstellt, sondern man muss ein Array mit den Namen der gewünschten Listen erstellen. Dies muss definiert werden, bevor der \textit{include} der Datei für die Listenfelder gemacht wird. (siehe Beispiel \autoref{lst:content_imple_input_form_listen})
+
+
+\lstinputlisting[style=custom, language=php, caption={/backend/administration/lessons/lessons.php; Zeile 60 - 61},  label={lst:content_imple_input_form_listen}, firstline =60, lastline = 61, firstnumber = 60 ]{sources/input/lessons.php}
+
+Im Beispiel-\autoref{lst:content_imple_input_form_listen} ist in der Zeile 60 die Definition des Arrays zu sehen. Der Name \textit{\$dropDown} ist zwingend notwendig, auch die Namen der gewünschten Listen können nicht willkürlich gewählt werden. Hier die zur Auswahl stehenden Listen:
+\begin{itemize}
+	\item Sections: Abteilungskürzel
+	\item Teachers: Lehrerkürzel
+	\item Rooms: Raumnamen
+	\item Subjects: Fächerkürzel
+	\item Classes: Klassennamen
+	\item ClassesSub: Klassen nur für eine Abteilungen, benötigt bei den Supplierungen. \\
+	Wichtig: \textit{\$section}-Variable muss mit dem Abteilungs-Kürzel belegt sein.
+	\item Days: Wochentage von Mo - Fr
+\end{itemize}
+Für das Erstellen der Listen ist es nicht notwendig eine Funktion aufzurufen. Es muss einzig die Datei \textit{/modules/form/dropdownSelect.php} inkludiert werden.(siehe \autoref{lst:content_imple_input_form_listen} Zeile 61)\\
+Im \autoref{lst:content_imple_input_drop} ist zu sehen wie die Liste für die Abteilung erstellt wird.\\
+In der Zeile 14 wird abgefragt, ob diese Liste erstellt werden soll. In der Zeile 15 werden alle Abteilungskürzel aus der MySQL-Tabelle abgefragt. Diese Daten werden in Zeile 16 an die Funktion \textit{create} mitgegeben. Außerdem muss dieser Funktion auch der Listennamen, mit dem auf die Liste zugegriffen werden kann, mitgegeben werden.
+\lstinputlisting[style=custom, language=php, caption={/modules/form/dropdownSelects.php; Zeile 13 - 17},  label={lst:content_imple_input_drop}, firstline =13, lastline = 17, firstnumber = 13 ]{sources/input/dropdownSelects.php}
+Im \autoref{lst:content_imple_input_drop_create} ist die Funktion \textit{create} zu sehen.\\
+In den Zeilen 66 - 68 werden alle Datensätze in ein Array geschrieben. In Zeile 72 - 74 wird das Array durchlaufen und es werden die Einträge der Liste erstellt.
+\lstinputlisting[style=custom, language=php, caption={/modules/form/dropdownSelects.php; Zeile 61 - 77},  label={lst:content_imple_input_drop_create}, firstline =61, lastline = 77, firstnumber = 61 ]{sources/input/dropdownSelects.php}
