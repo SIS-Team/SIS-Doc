@@ -28,7 +28,15 @@ Es werden folgende Module des Basis-Systems eingebunden:
 \label{sec:content_imple_base_cookie}
 Das Modul CheckCookie prüft, ob die Cookies erlaubt sind, und leitet gegebenenfalls auf die Cookies-Akzeptieren-Seite (/cookies/) weiter. Zusätzlich wird das \enquote{Allow-Cookies}-Cookie erneuert (das Ablaufdatum wird 100 Tage in die Zukunft gesetzt).
 \lstinputlisting[style=custom, language=php, caption={/modules/general/CheckCookie.php; Zeilen 9-13},  label={lst:content_imple_base_cookie}, firstline=9, lastline=13, firstnumber=9]{sources/base/CheckCookie.php}
-Wie im Quellcode ersichtlich ist, wird die \texttt{REQUEST\_URI}, also die URL inklusive GET-Paremeter und Fragmentbezeichner der aktuellen Seite, der Cookies-Akzeptieren-Seite als GET-Parameter mitgegeben. Dies dient dazu, dass die Cookies-Akzeptieren-Seite den Benutzer nach dem Akzeptieren wieder auf die ursprüngliche Seite zurückschicken kann.
+Wie im Quellcode ersichtlich ist, wird die \texttt{REQUEST\_URI}, also die URL ohne Hostname inklusive GET-Paremeter und Fragmentbezeichner der aktuellen Seite, der Cookies-Akzeptieren-Seite als GET-Parameter mitgegeben. Dies dient dazu, dass die Cookies-Akzeptieren-Seite den Benutzer nach dem Akzeptieren wieder auf die ursprüngliche Seite zurückschicken kann.
+
+\subsubsection{ForceHTTPS}
+\label{sec:content_imple_base_https}
+Wie bereits unter \gref{sec:content_solutions_https} erwähnt, soll die Seite bei fehlendem HTTPS neu geladen werden.
+\lstinputlisting[style=custom, language=php, caption={/modules/general/ForceHTTPS.php; Zeilen 8-11},  label={lst:content_imple_base_https}, firstline=8, lastline=11, firstnumber=8]{sources/base/ForceHTTPS.php}
+
+
+
 %
 %
 % \lstinputlisting[style=custom, language=php, caption={Dateiname}, label={lst:content_imple_timetables_labelname}]{sources/ordner/datei.php}
