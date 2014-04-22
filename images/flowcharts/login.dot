@@ -1,0 +1,28 @@
+digraph flowchart {
+	rankdir=TB;
+	ranksep="0.1 equally";
+
+	Start[shape="box", style=rounded];
+	Exit[shape="box", style=rounded];
+	"Benutzer existiert?"[shape="diamond", style=""];
+	"Passwort leer?"[shape="diamond", style=""];
+	"Login fehlerhaft?"[shape="diamond", style=""];
+	
+	node[shape="parallelogram", style=""]
+	Start -> "lade Benutzer-Daten";
+	"lade Benutzer-Daten" -> "Benutzer existiert?";
+	"Benutzer existiert?" -> "logge Fehl-Login"[label="nein"];
+		"logge Fehl-Login" -> "werfe jeweilige Exception";
+		"werfe jeweilige Exception" -> Exit;
+	"Benutzer existiert?" -> "Passwort leer?"[label="ja"];
+		"Passwort leer?" -> "logge Fehl-Login"[label="ja"];
+		"Passwort leer?" -> "versuche Login"[label="nein"];
+		"versuche Login" -> "Login fehlerhaft?";
+		"Login fehlerhaft?" -> "logge Fehl-Login"[label="ja"];
+		"Login fehlerhaft?" -> "logge Login"[label="nein"];
+		"logge Login" -> "schreibe Daten in Session";
+		"schreibe Daten in Session" -> "generiere Log";
+		"generiere Log" -> Exit;
+		
+	{rank=same; "logge Login" "logge Fehl-Login"}
+}
