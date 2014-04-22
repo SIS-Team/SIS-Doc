@@ -16,7 +16,7 @@ Da jede Eingabezeile einen Datensatz einer MySQL Tabelle widerspiegelt,
 müssen diese Zeilen dem Datensatz zugeordnet werden können. Um dies zu realisieren wird im \$field Array ein \textit{Hidden}-Feld definiert. Deisem wird nach dem Erstellen beim Befüllen mit Daten die eindeutige ID des Datensatzes als Wert zugewiesen. Dieses Feld ist auf der Seite vorhanden, wird jedoch nicht auf der Seite dargestellt. Drückt der Anwender auf Übernehmen, so wird der Wert des \textit{Hidden}-Feldes mitgegeben und somit kann die Zeile identifiziert werden.\\
 \paragraph{Parameter \textit{\$field}\\}
 Dieser Parameter ist ein mehrdimensionales Array, welches, wie bei \autoref{lst:content_imple_input_bsp} Zeile 43-50 zu sehen, auszusehen hat. Hier ist als Beispiel eine Definition dieses Arrays für die Eingabemaske der Lehrer dargestellt.\\
-Der Aufbau ist recht simpel. Jede Zeile entspricht einem Input-Feld und jede Spalte entspricht einer Eigenschaft des Input-Felds. In der Tabelle \autoref{tab:content_imple_inout_array} ist die Funktion der einzelnen Spalten im Array beschrieben. \nameref{sec:content_imple_input_type}
+Der Aufbau ist recht simpel. Jede Zeile entspricht einem Input-Feld und jede Spalte entspricht einer Eigenschaft des Input-Felds. In der Tabelle \autoref{tab:content_imple_inout_array} ist die Funktion der einzelnen Spalten im Array beschrieben.
 \begin{table}[H]
 \centering
 \begin{tabular}{p{2 cm}p{8 cm}p{3 cm}}
@@ -25,7 +25,7 @@ Der Aufbau ist recht simpel. Jede Zeile entspricht einem Input-Feld und jede Spa
    \midrule
           \textbf{1. Spalte} & Name des Input-Feldes \newline Spaltenbezeichnung in der MySQL-Tabelle \newline Pflichtspalte & date  \\
           \hline
-          \textbf{2. Spalte} & Input-Typ \newline Pflichtspalte & siehe Abschnitt \\
+          \textbf{2. Spalte} & Input-Typ \newline Pflichtspalte & siehe Abschnitt \nameref{sec:content_imple_input_type}\\
           \hline
           \textbf{3. Spalte} & Anzeigename \newline Pflichtspalte & Datum \\
           \hline
