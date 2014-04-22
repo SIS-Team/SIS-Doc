@@ -10,7 +10,20 @@ In dieser werden drei Konstanten definiert:
 	\textit{Beispiel:} Ist das Grundverzeichnis des virtuellen Hosts bereits das Wurzelverzeichnis des Projektes, so muss der String "'"' verwendet werden.\\
 	\textit{Beispiel:} Befindet sich das Projekt im Ordner \enquote{foobar} unterhalb des Grundverzeichnisses des virtuellen Hosts, so ist der betreffende String "'\texttt{foobar/}"'.
 	\item[\texttt{ROOT\_LOCATION}] beinhaltet den absoluten Pfad vom Grundverzeichnis des Servers zum Projektverzeichnis. Dieser wird aus dem \texttt{DOCUMENT\_ROOT}, also dem Grundverzeichnis des virtuellen Hosts, und dem relativen Pfad des Projekt-Ordners zum \texttt{DOCUMENT\_ROOT} gebildet.
-\end{description} 
+\end{description}
+
+\subsubsection{Main-File}
+Die quasi Hauptdatei des Basis-Systems stellt die Datei /modules/general/Main.php dar. Diese bindet weitere wichtige Dateien des Grundsystems ein, dies soll das Einbinden der wichtigsten Module erleichtern.
+\lstinputlisting[style=custom, language=java, caption={/modules/general/Main.php},  label={lst:content_imple_base_main}, firstline=8, lastline=12, firstnumber=8]{sources/base/Main.php}
+Es werden folgende Module des Basis-Systems eingebunden:
+\begin{itemize}
+	\item CheckCookies, siehe \autoref{sec:content_imple_base_cookie}
+	\item ForceHTTPS, siehe \autoref{sec:content_imple_base_https}
+	\item SessionManager, siehe \autoref{sec:content_imple_base_session}
+	\item Connect, siehe \autoref{sec:content_imple_base_connect}
+	\item Site, siehe \autoref{sec:content_imple_base_site}
+\end{itemize}
+
 %
 %
 % \lstinputlisting[style=custom, language=php, caption={Dateiname}, label={lst:content_imple_timetables_labelname}]{sources/ordner/datei.php}
