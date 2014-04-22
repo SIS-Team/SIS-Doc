@@ -97,7 +97,8 @@ $where="classes.name='".$_POST['class']."' AND hoursStart.weekdayShort='".$_POST
 $sort="hoursStart.hour ASC";
 $result = selectLesson($where,"");	//Rückgabewert des Selects
 $content = "";
-while ($row = mysql_fetch_array($result)){	//Fügt solange eine neue Formularzeile hinzu, solange ein Inhalt zur Verfügung steht
+//Fügt solange eine neue Formularzeile hinzu, solange ein Inhalt zur Verfügung steht
+while ($row = mysql_fetch_array($result)){	
   	$sql= "SELECT COUNT(*) FROM lessons 
 		LEFT JOIN rooms ON rooms.ID = lessons.roomFK 
 		INNER JOIN teachers ON teachers.ID = lessons.teachersFK 
@@ -114,7 +115,7 @@ $where2 = " AND " . "hoursStart.hour='".$row['startHour']."' AND hoursEnd.hour='
 	$content[] = $row;
 }
 
-form_lesson($fields,$content,$hashGenerator);		//Formular wird erstellt
+form_lesson($fields,$content,$hashGenerator); //Formular wird erstellt
 
 if(!empty($_POST['hour'])){
 	printf("<script type=\"text/javascript\">text(%s,%s); Visibility(%s);</script>",$_POST['visibilityText'.$_POST['hour']],$_POST['hour'],$_POST['hour']);

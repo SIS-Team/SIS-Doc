@@ -52,9 +52,9 @@ $fields = array(
 
 $sort = "teachers.invisible,sections.short,teachers.short";
 $result = selectTeacher("",$sort);	//Rückgabewert des Selects
-
-while ($row = mysql_fetch_array($result)){	//Fügt solange eine neue Formularzeile hinzu, solange ein Inhalt zur Verfügung steht
-	form_new($fields,$row,$hashGenerator);	//Formular wird erstellt
+//Fügt solange eine neue Formularzeile hinzu, solange ein Inhalt zur Verfügung steht
+while ($row = mysql_fetch_array($result)){
+	form_new($fields,$row,$hashGenerator); //Formular wird erstellt
 }
 
 form_new($fields,false,$hashGenerator);	//Formular für einen neuen Eintrag
