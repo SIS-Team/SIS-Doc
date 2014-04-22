@@ -22,10 +22,10 @@ Connection: keep-alive\r\n
 \begin{description}
 \item[GET] Gibt an welche Datei aufgerufen werden soll. Da nach dem \enquote{/} kein Dateiname steht, wird die Seite aufgerufen, die beim Webserver als Standardseite eingetragen ist.
 \item[Host] Als Host wird die Adresse des gewünschten Servers eingetragen. Sie wird in eine IP-Adresse umgewandelt und dem TCP übergeben. Muss seit Einführung von HTTP/1.1 vorhanden sein, da ansonsten der Statuscode \enquote{400 Bad Request} zurückgesendet wird.
-\item[User-Agent] Der User-Agent ist jene Anwendung die diesen Request ausgelöst hat. In diesem Fall der Browser Mozilla Firefox Version 28.0.
-\item[Accept] Dies dient zur Übermittlung der erlaubten Dateiformate. Falls der Server keinen der angegebenen Dateitypen unterstütz muss er mit dem Fehlercode \enquote{406 Not acceptable} beantworten. Wird dieses Feld nicht in den Header eingetragen, so wird jeder Typ unterstütz.
+\item[User-Agent] Der User-Agent ist jene Anwendung, die diesen Request ausgelöst hat. In diesem Fall der Browser Mozilla Firefox Version 28.0.
+\item[Accept] Dies dient zur Übermittlung der erlaubten Dateiformate. Falls der Server keinen der angegebenen Dateitypen unterstützt, muss er mit dem Fehlercode \enquote{406 Not acceptable} antworten. Wird dieses Feld nicht in den Header eingetragen, so wird jeder Typ unterstützt.
 \item[Accept-Language] Gibt an welche Sprachen die aufgerufene Seite haben soll. Wenn auf dem Server verschiedene Sprachen vorhanden sind, wird die gewünschte ausgegeben. In diesem Fall sollte dies Deutsch oder Englisch(USA) sein. 
-\item[Accept-Encoding] Gibt die akzeptierten Kompressionsarten z.B. gzip an. Dies dient dazu, eine schneller Übermittlung der Daten zu ermöglichen.
+\item[Accept-Encoding] Gibt die akzeptierten Kompressionsarten z.B. gzip an. Dies dient dazu, eine schnellere Übermittlung der Daten zu ermöglichen.
 \end{description} 
 Sobald zwei aufeinander folgende Zeilenenden erreicht wurden, beginnt der Server die Anfrage zu bearbeiten.
 
@@ -40,21 +40,21 @@ Transfer-Encoding: chunked\r\n
 \end{lstlisting}
 \begin{description}
 \item[Statuscode] siehe Statuscodes
-\item[Date] Zeit zu der der Response versendet wurde.
-\item[Server] Äquivalent zu User-Agent für den Client gibt Server den verwendeten Server an. 
+\item[Date] Zeit, zu der der Response versendet wurde.
+\item[Server] Äquivalent zu User-Agent für den Client. Gibt den verwendeten Server an. 
 \item[X-Powered-By (nicht standardisiert)] Gibt die verwendete Technologie, in diesem Fall PHP Version 4.3.10, an. 
 \item[Connection] Die bevorzugte Verbindungsart.
 \item[Transfer-Encoding] Kompressionsverfahren mit welchem die zu übertragenden Daten komprimiert bzw. aufgeteilt wurden.
 \end{description}
-\autoref{lst:content_http_request} und\autoref{lst:content_http_response} wurden mittels Wireshark aufgenommen.
+\autoref{lst:content_http_request} und \autoref{lst:content_http_response} wurden mittels Wireshark aufgenommen.
 \subsubsection{Statuscodes}
 Es gibt für HTTP sechs verschiedene Arten von Satuscodes
 \paragraph{1xx}
 Diese Statuscodes werden während der Bearbeitung der Anfrage verwendet und dienen der Information.
 \paragraph{2xx}
-Diese Statuscodes werden benützt , wenn die Anfrage erfolgreich bewältigt wurde.  
+Diese Statuscodes werden benützt, wenn die Anfrage erfolgreich bewältigt wurde.  
 \paragraph{3xx}
-Diese Codes dienen dazu eine Umleitung ersichtlich zu machen. Bei solch einem Code wird eine Aktion des Clients gefordert, was meist automatisch geschieht. So wird zum Beispiel bei dem Statuscode \enquote{301 Moved Permanently} die neue Adresse im Header im Feld Location zurückgegeben.
+Diese Codes dienen dazu, eine Umleitung ersichtlich zu machen. Bei solch einem Code wird eine Aktion des Clients gefordert, was meist automatisch geschieht. So wird zum Beispiel bei dem Statuscode \enquote{301 Moved Permanently} die neue Adresse im Header im Feld Location zurückgegeben.
 \paragraph{4xx}
 Hiermit werden Fehler gekennzeichnet. Zum Beispiel 404: "Not Found".
 \paragraph{5xx}
@@ -63,7 +63,7 @@ Diese Codes sollen Server-Fehler kennzeichnen.
 \subsubsection{Versionen}
 Aktuell sind zwei verschiedene Versionen von HTTP im Einsatz, HTTP/1.0 und HTTP/1.1.
 \\
-Diese unterscheiden sich insofern, dass bei HTTP/1.0 für jede Anfrage eine neue Verbindung zum Server aufgebaut wird. Dies wirkt sich nachteilig auf die Geschwindigkeit aus, da z.B. auf einer Website mit vielen Bildern, für jedes Bild eine neue Verbindung hergestellt werden muss und diese Verbindungen durch die Eigenschaften von TCP-Verbindungen (z.B. Slow-start ) entsprechend langsam sind.
+Diese unterscheiden sich insofern, dass bei HTTP/1.0 für jede Anfrage eine neue Verbindung zum Server aufgebaut wird. Dies wirkt sich nachteilig auf die Geschwindigkeit aus, da, z.B. auf einer Website mit vielen Bildern, für jedes Bild eine neue Verbindung hergestellt werden muss und diese Verbindungen durch die Eigenschaften von TCP-Verbindungen (z.B. Slow-start ) entsprechend langsam sind.
 
 \paragraph{HTTP/2.0}  HTTP/2.0 befindet sich in der Entwicklung und basiert auf SPDY. Es wird von der \enquote{Hypertext Transfer Protocol Bis working group}, einer Arbeitsgruppe der \enquote{Internet Engineering Task Force} (IETF), entwickelt.
 
@@ -74,7 +74,7 @@ Zuerst wird eine Authentifizierung und eine Identifizierung der Kommunikationspa
 \subsubsection{Zertifikate}
 Für SSL wird ein digitales Zertifikat benötigt, welches von einer Zertifizierungsstelle ausgestellt wird.
 \paragraph{Erhalten eines Zertifikats}
-Um eine Zertifikat zu erhalten muss bei einer Zertifizierungsstelle darum angesucht werden. Zunächst wird eine E-Mail an den Betreiber der Domain gesendet.
+Um ein Zertifikat zu erhalten, muss bei einer Zertifizierungsstelle darum angesucht werden. Zunächst wird eine E-Mail an den Betreiber der Domain gesendet.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=12cm]{images/screenshots/certificate.png}
@@ -84,5 +84,5 @@ Um eine Zertifikat zu erhalten muss bei einer Zertifizierungsstelle darum angesu
 Die meisten Browser haben standardmäßig eine Liste von Zertifizierungsstellen eingetragen, welchen sie vertrauen. Diese Liste kann vom User jederzeit erweitert werden, jedoch sollte der User sich bezüglich der Seriosität der Zertifizierungsstelle wirklich sicher sein. 
 
 \subsubsection{Sicherheitsprobleme}
-Eine Schwachstelle der oben genannten Arten des Schlüsseltausches ist jedoch ein Man-in-the-Middle. Dieser müsste vor Aufbau der Verbindung von Host1 und Host2 zwischen ihnen liegen. In folge würde er jeweils mit Host1 und Host2 eine Verschlüsselung ausmachen. Wenn er nun die gesendeten Daten von Host1 an Host2 weiterleitet und umgekehrt, können die beiden Hosts dies nicht bemerken.\\
-Jedoch benötigt der Man-in-the-Middle ebenso ein Zertifikat, in dem steht, dass er der Zielserver sei. Um dies zu bewerkstelligen muss der Angreifer Zugang zu einer Zertifizierungsstelle besitzen und sich ein Zertifikat ausstellen lassen.
+Eine Schwachstelle der oben genannten Arten des Schlüsseltausches ist jedoch ein Man-in-the-Middle. Dieser müsste vor Aufbau der Verbindung von Host1 und Host2 zwischen ihnen liegen. In Folge würde er jeweils mit Host1 und Host2 eine Verschlüsselung ausmachen. Wenn er nun die gesendeten Daten von Host1 an Host2 weiterleitet und umgekehrt, können die beiden Hosts dies nicht bemerken.\\
+Jedoch benötigt der Man-in-the-Middle ebenso ein Zertifikat, in dem steht, dass er der Zielserver sei. Um dies zu bewerkstelligen, muss der Angreifer Zugang zu einer Zertifizierungsstelle besitzen und sich ein Zertifikat ausstellen lassen.
