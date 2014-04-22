@@ -40,7 +40,7 @@ Beispiel:\\
 	
 
 Bei den Splashscreens (das Bild das beim Starten der App erscheint) müssen auch mehrere Formate eingebunden werden.
-Um zu vermeiden, dass es durch PhoneGap zu Problemen mit der Kommunikation zwischen der App und dem Server kommt wurde die URL des Servers (https://sis.htlinn.ac.at), mit Hilfe des Access-Tags als Ausnahme hinzugefügt.\\
+Um zu vermeiden, dass es durch PhoneGap zu Problemen mit der Kommunikation zwischen der App und dem Server kommt wurde die URL des Servers (\href{https://sis.htlinn.ac.at}{https://sis.htlinn.ac.at}), mit Hilfe des Access-Tags als Ausnahme hinzugefügt.\\
 
 Bei den Preferences wurde eingestellt, dass die Applikation keine Berechtigungen hat,\\
 
@@ -50,10 +50,13 @@ Dadurch wird beim Installieren der App, die Verbindung mit dem Internet als einz
 
 Weiters wurde mit den Preferences noch eingestellt, dass die App im Fullscreen-Modus betrieben wird und das die App bevorzugt auf dem externen Speicher installiert wird.\\
 
+\subsubsection{Debugging}
+Während der Entwicklung wurde die Applikation nur auf dem PC getestet. Da die App rein aus Webtechnologien aufgebaut wird, kann diese auch im Webbrowser ausgeführt werden.\\
+Das betreiben der App auf dem PC zieht einige Vorteile mit sich. Die App muss nicht nach jeder Änderung neu gebuildet und auf das Smartphone geladen werden, sondern kann direkt nach der Änderung des Codes im Webbrowser neu geladen und getestet werden. Des Weiteren hat man im Webbrowser sehr mächtige Werkzeuge um Fehler im Code zu finden, zum Beispiel die Entwicklerkonsole.\\
 
 \subsubsection{Erstellen einer App mit PhoneGap}
 Um unsere App zu erstellen wurde die Onlinevariante von PhoneGap, PhoneGap Build, verwendet. Dazu muss man sich zuerst bei AdobeSystems registrien, das kann man aber kostenlos machen.\\
-Danach meldet man sich unter \href{https://build.phonegap.com}{PhoneGap Build} an und kommt es erscheint folgende Seite.\\
+Danach meldet man sich unter \href{https://build.phonegap.com}{https://build.phonegap.com} an und kommt es erscheint folgende Seite.\\
 
 \begin{figure}[H]
 \includegraphics[keepaspectratio=true, width=14cm]{images/phoneGap/PhoneGap1.png}
@@ -90,7 +93,7 @@ Wenn man nun das Dropdownmenü neben dem Androidsymbol öffnet,\\
 erscheint ein Punkt \enquote{add a key…}. Wenn man diesen Punkt auswählt wird man aufgefordert eine Datei hochzuladen, dabei handelt es sich um die Keystore-Datei, welche zuvor erzeugt wurde. Dann muss man dem Schlüssel noch einen Namen geben und bestätigen.\\
 Nun kann man in diesem Dropdownmenü den hochgeladenen Schlüssel auswählen, um ihn zu nutzen muss man zuerst noch ein Passwort eingeben, das ist jenes Passwort welches zuvor beim erstellen des Keystore-Files angegeben wurde. Wenn man nun einen Rebuild macht, bekommt man eine Android-Release-App, welche auch im Play-Store veröffentlicht werden kann.
 Bei iOS benötigt es bereits ein Entwicklerzertifikat, um eine Debug-App zu erstellen. Um ein solches Zertifikat zu erstellen muss man bei Apple als Developer angemeldet sein und 99\$ im Jahr bezahlen.\\
-Für dieses Projekt wurde der Apple-Enterprise-Account der Schule genutzt. Man benötigt nur eine Apple ID (Registrierung unter https://developer.apple.com/register/ ), mit dieser kann man dann von einem Administrator (in unserem Fall Direktor Laner) zum Account hinzugefügt werden.\\
+Für dieses Projekt wurde der Apple-Enterprise-Account der Schule genutzt. Man benötigt nur eine Apple ID (Registrierung unter \href{https://developer.apple.com/register/}{https://developer.apple.com/register/} ), mit dieser kann man dann von einem Administrator (in unserem Fall Direktor Laner) zum Account hinzugefügt werden.\\
 Nachdem man zum Enterprise-Programm hinzugefügt wurde, muss man das MemberCenter (https://developer.apple.com/membercenter/ ) öffnen.\\
 
 \begin{figure}[H]
@@ -125,10 +128,85 @@ erscheint ein Punkt \enquote{add a key…}. Wenn man diesen Punkt auswählt wird
 Hat man ein Developer-Zertifikat erstellt, kann die erstellte App nur auf den in dem Zertifikat bestimmten Geräten betrieben werden, wurde aber ein Distribution Zertifikat erstellt, kann die App nun auf allen iOS-Geräten verwendet werden.\\
 Um die App für den App-Store zu builden, wurden uns die Zertifikate von Direktor Günther Laner zur Verfügung gestellt, da die Applikation über den Developer Account des Direktors veröffentlicht wird.\\
 
-% Söö: Wie wurde die App erstellt?
-% Ich weiß das leider nicht so genau, deswegen kann ich dir nicht vorschlagen, was du erwähnen sollst, und was nicht. 
-% Die Generierung des Stunden- und Supplierplans musst du nicht mehr erwähnen.
-% 
+
+
+\subsubsection{Veröffentlichen der App}
+
+Apps werden meistens in verschiedenen Stores zur Verfügung gestellt. iOS Apps im iTunes-Store von Apple, Android Apps im Play-Store von Google und WindowsPhone Apps im WindowsPhone-Store.\\
+\paragraph{Android\\}
+Die Android App wurde anfangs nicht über den Play-Store verbreitet, sondern wurde auf der SIS-Homepage als Download zur Verfügung gestellt. Es wurde einfach die APK-Datei als Download zur Verfügung gestellt und auf jedem Gerät welches Unbekannte Installationsquellen zulässt konnte die App installiert werden.\\
+Um die Applikation in dem gewünschten Store zu veröffentlichen muss zuerst ein Release-APK erzeugt werden. Dazu muss die App signiert werden, dafür gibt es bei PhoneGap die Möglichkeit ein Keysotre-File hochzuladen. \\
+Um Apps im Play-Store zu veröffentlichen, muss man bei Google als Developer registriert sein. Dazu benötigt man nur einen normalen Google-Account (z.B. eine GMail-Adresse), unter \href{https://developer.android.com}{https://developer.android.com} wählt man dann den Reiter Distribution aus.\\
+
+\begin{figure}[H]
+\includegraphics[keepaspectratio=true, width=14cm]{images/appstores/AndroidDeveloper1.png}
+\caption{Android Developer Webseite vom 21.04.2014}
+\end{figure}
+
+Nun wählt man \enquote{Go to Developer Console >>} aus. Man wird zu einer Seite weitergeleitet, auf welcher man den Account mit welchem man angemeldet ist, als Developer-Account registrieren kann. Das kostet jedoch einmalig 25\$, für das Veröffentlichen einer App muss nichts mehr gezahlt werden.\\
+Für dieses Projekt wurde der Google Account von Professor Stecher verwendet und die Registrierungsgebühr wurde von der Schule bezahlt.\\
+Wenn man als Developer registriert ist muss man wieder auf \enquote{Go to Developer Console >>} klicken, dann kommt man zur Developer Konsole, wo man Apps hochladen und bearbeiten kann.\\
+
+\begin{figure}[H]
+\includegraphics[keepaspectratio=true, width=14cm]{images/appstores/AndroidDeveloper2.png}
+\caption{Android Developer Webseite vom 21.04.2014}
+\end{figure}
+
+Durch klicken auf \enquote{Add new application} kann man eine neue App hochladen. Dazu muss man nur die Release-APK welche zuvor von PhoneGap heruntergeladen wurde, hochgeladen werden. Danach muss man noch eine kurze Beschreibung der App angeben und Screenshot hochladen. Zusätzlich muss noch angegeben werden in welchen Ländern die App verfügbar ist und dass die App kostenfrei erhältlich ist.\\
+Wenn alle Einstellungen getroffen wurden, kann man die App veröffentlichen. Nun wird die App noch von Google überprüft und nach wenigen Stunden erscheint die App, falls keine Probleme auftreten, im Play-Store.\\
+
+\paragraph{WindowsPhone\\}
+
+Um die WindowsPhone App zu veröffentlichen muss man bei Microsoft als Developer registriert sein. Dazu benötigt man zuerst einen Microsoft-Account (z.B. eine Outlook.com E-Mail-Adresse), dann kann man sich auf dieser Seite \href{https://dev.windowsphone.com/en-us/join}{https://dev.windowsphone.com/en-us/join}  als WindowsPhone-Developer registrieren, das kostet ca. 17\$ jährlich.\\
+Für die Veröffentlichung unserer App wurde der Microsoft Account von Fachlehrer Hilpold verwendet, welcher sich freundlicherweise als Developer registrierte.\\
+Nun wählt man auf der Seite \href{https://dev.windowsphone.com/}{https://dev.windowsphone.com/} den Punkt\enquote{Submit apps} aus. Auf der Seite auf welche man nun weitergeleitet wird, kann man die App in Form eines XAP-Files hochladen. Zusätzlich müssen noch Screenshots eingefügt werden und es muss eine Beschreibung der App in der richtigen Sprache abgegeben werden.\\
+
+\paragraph{iOS\\}
+
+Bei iOS wurde auch eine Möglichkeit gefunden den iTunes App Store anfangs zu umgehen und die App über einen anderen Weg zu veröffentlichen bis die App im App Store ist. PhoneGap bietet die Möglichkeit, die App direkt auf dem iPhone zu installieren. Dazu muss man nur die Downloadseite (QR-Code-Link) mit dem iPhone laden und PhoneGap fragt automatisch nach ob die App installiert werden soll.\\
+Die Veröffentlichung der App im iTunes-Store wurde von der Tochter des Direktors, Frau Karin Laner übernommen, daher sind mir nur die Anforderungen an die Applikation bekannt welche von Apple gestellt werden damit diese veröffentlicht werden kann.\\
+Folgende Informationen werden benötigt um die Applikation in den iTunes Store hochzuladen:\\
+• die Installationsdatei welch von PhoneGap heruntergeladen wurde (IPA-Datei)\\
+text:\\
+• App Name\\
+• bundle display name (name below icon on the iPhone)\\
+• version number\\
+• copyright\\
+• primary category\\
+• secondary category (optional)\\
+• rating (any offensive material that requires 12+ rating?, see below)\\
+• free or paid app?\\
+• available in all territories or only certain ones (which countries?)\\
+• available in only German or other languages as well?\\
+• description (in all languages)\\
+• keywords (for search in app store)\\
+• support URL\\
+• contact information\\
+• any encryption within the app?\\
+• any 3rd party content within the app?\\
+files for app store:\\
+• app icon for app store (1024 x 1024 px)\\
+• screenshots:\\
+• 1-5 screenshots for 3,5 inch iPhone: 640 x 960 px\\
+• 1-5 screenshots for 4 inch iPhone: 640 x 1136 px\\
+files within xcode project folder:\\
+• all referenced libraries / frameworks if externals used\\
+• icon\\
+• 57 x 57 px - Icon.png\\
+• 114 x 114 px - Icon@2x.png\\
+• 120 x 120 px - Icon-60@2x.png\\
+• 29 x 29 px - Icon-Small.png\\
+• 58 x 58 px - Icon-Small@2x.png\\
+• 80 x 80 px - Icon-Small-40@2x.png\\
+• Default (loading) asset:\\
+• 320 x 480 px - Default.png\\
+• 640 x 960 px - Default@2x.png\\
+• 640 x 1136 px - Default-568h@2x.png\\
+• 640 x 960 px - iOS7-Default@2x.png\\
+• 640 x 1136 px - iOS7-Default-568h@2x.png\\
+\\
+All diese Informationen und Daten wurden an Frau Karin Laner weitergeleitet, welche sich dann um die weiteren Schritte der Veröffentlichung kümmerte.\\
+
 % Hier dürfen auch auch Sourcecode-Teile vorkommen.
 % Wenn Sourcecodes: jeweilge File in den Ordner /sources/ in einen Unterordner packen und mit folgendem Befehl includieren:
 %
