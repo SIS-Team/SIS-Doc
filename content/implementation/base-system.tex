@@ -1,11 +1,92 @@
 \subsection{Basis-System}
-% TODO: flo
-% Wie funktioniert das Basis-System?
-% Was macht es?
-% Was kann es?
-%
-% Hier dürfen auch auch Sourcecode-Teile vorkommen.
-% Wenn Sourcecodes: jeweilge File in den Ordner /sources/ in einen Unterordner packen und mit folgendem Befehl includieren:
+Das Basissystem ist relativ simple gehalten.\\
+\subsubsection{Konfiguration}
+Die erste - und wohl auch wichtigste - Datei des Basis-Systems ist die Datei /config.php, diese soll unter anderem das Problem des Wurzelverzeichnisses lösen (siehe \gref{sec:content_solutions_root}).
+\lstinputlisting[style=custom, language=php, caption={/config.php}, label={lst:content_imple_base_config}]{sources/base/config.php}
+In dieser werden drei Konstanten definiert:
+\begin{description}
+	\item[\texttt{BETA}] ist \texttt{true} solange das System im Testbetrieb ist.
+	\item[\texttt{RELATIVE\_ROOT}] beinhaltet den relativen Pfad vom Grundverzeichnis des virtuellen Hosts (vorgegeben durch den Webserver) zum Grundverzeichnis des Projektes. Hierbei ist zubachten, dass das erste Querstrich-Zeichen wegzulassen ist.\\
+	\textit{Beispiel:} Ist das Grundverzeichnis des virtuellen Hosts bereits das Wurzelverzeichnis des Projektes, so muss der String "'"' verwendet werden.\\
+	\textit{Beispiel:} Befindet sich das Projekt im Ordner \enquote{foobar} unterhalb des Grundverzeichnisses des virtuellen Hosts, so ist der betreffende String "'\texttt{foobar/}"'.
+	\item[\texttt{ROOT\_LOCATION}] beinhaltet den absoluten Pfad vom Grundverzeichnis des Servers zum Projektverzeichnis. Dieser wird aus dem \texttt{DOCUMENT\_ROOT}, also dem Grundverzeichnis des virtuellen Hosts, und dem relativen Pfad des Projekt-Ordners zum \texttt{DOCUMENT\_ROOT} gebildet. Dadurch ist auch geklärt, warum \texttt{RELATIVE\_ROOT} nicht mit einem \enquote{/} beginnen darf (Es ist zwar im Unix-Standard spezifiziert, dass ein mehrere Slashes hintereinander als eines behandelt werden sollen, allerdings kann es sein, dass das Betriebssystem dies nicht nach Standard behandelt.).
+\end{description}
+
+\subsubsection{Main-File}
+Die quasi Hauptdatei des Basis-Systems stellt die Datei /modules/general/Main.php dar. Diese bindet weitere wichtige Dateien des Grundsystems ein, dies soll das Einbinden der wichtigsten Module erleichtern.
+\lstinputlisting[style=custom, language=php, caption={/modules/general/Main.php; Zeilen 8-12},  label={lst:content_imple_base_main}, firstline=8, lastline=12, firstnumber=8]{sources/base/Main.php}
+Es werden folgende Module des Basis-Systems eingebunden:
+\begin{itemize}
+	\item CheckCookies, siehe \autoref{sec:content_imple_base_cookie}
+	\item ForceHTTPS, siehe \autoref{sec:content_imple_base_https}
+	\item SessionManager, siehe \autoref{sec:content_imple_base_session}
+	\item Connect, siehe \autoref{sec:content_imple_base_connect}
+	\item Site, siehe \autoref{sec:content_imple_base_site}
+\end{itemize}
+
+\subsubsection{CheckCookie}
+\label{sec:content_imple_base_cookie}
+Das Modul CheckCookie prüft, ob die Cookies erlaubt sind, und leitet gegebenenfalls auf die Cookies-Akzeptieren-Seite (/cookies/) weiter. Zusätzlich wird das \enquote{Allow-Cookies}-Cookie erneuert (das Ablaufdatum wird 100 Tage in die Zukunft gesetzt).
+\lstinputlisting[style=custom, language=php, caption={/modules/general/CheckCookies.php; Zeilen 9-13},  label={lst:content_imple_base_cookie}, firstline=9, lastline=13, firstnumber=9]{sources/base/CheckCookies.php}
+Wie im Quellcode ersichtlich ist, wird die \texttt{REQUEST\_URI}, also die URL ohne Hostname inklusive GET-Paremeter und Fragmentbezeichner der aktuellen Seite, der Cookies-Akzeptieren-Seite als GET-Parameter mitgegeben. Dies dient dazu, dass die Cookies-Akzeptieren-Seite den Benutzer nach dem Akzeptieren wieder auf die ursprüngliche Seite zurückschicken kann.
+
+\subsubsection{ForceHTTPS}
+\label{sec:content_imple_base_https}
+Wie bereits unter \gref{sec:content_solutions_https} erwähnt, soll die Seite bei fehlendem HTTPS neu geladen werden.
+\lstinputlisting[style=custom, language=php, caption={/modules/general/ForceHTTPS.php; Zeilen 8-11},  label={lst:content_imple_base_https}, firstline=8, lastline=11, firstnumber=8]{sources/base/ForceHTTPS.php}
+
+\subsubsection{SessionManager}
+\label{sec:content_imple_base_session}
+Das Modul SessionManager prüft, ob eine PHP-Session mit allen nötigen Feldern existiert, erstellt bei Bedarf eine solche, erneuert die Session-ID, bindet das Modul ActionLogger ein (siehe \autoref{sec:content_imple_base_logger}) und stellt Funktionen für den Login, Logout und das Entfernen der Session zur Verfügung.\\
+\paragraph{Initialisierung\\}
+Sollte die Session nicht aktiv sein, so wird diese mit den nötigen Feldern initalisiert.
+\lstinputlisting[style=custom, language=php, caption={/modules/general/SessionManager.php; Initialisierung; Zeilen 15-27},  label={lst:content_imple_base_session_init}, firstline=15, lastline=27, firstnumber=15]{sources/base/SessionManager.php}
+Es werden folgende Felder gesetzt:
+\begin{itemize}
+	\item \texttt{time} dient ebenso wie
+	\item \texttt{originalID} dazu, die Session später wieder zu identifizieren.
+	\item \texttt{active} ist \texttt{true} solange die Session aktiv ist.
+	\item \texttt{keep} ist \texttt{true}, wenn der Angemeldet-Bleiben-Hacken beim Login gesetzt wurde.
+	\item \texttt{loggedIn} ist \texttt{false}, wenn der Benutzer nicht angemeldet ist, sonst ist der Timestamp des Logins enthalten.
+	\item \texttt{rights} beinhaltet ein assoziatives Array, dessen Einträge, die Rechte des Benutzers widerspiegeln (siehe später).
+	\item \texttt{id} ist die eindeutige Identifikation des angemeldetet Benutzers (Initialen bei Lehrer und Nummer bei Schüler).
+	\item \texttt{name} beinhaltet den Vor- und Nachnamen des angemeldeten Benutzers.
+	\item \texttt{isTeacher} ist \texttt{true}, wenn der Benutzer ein Lehrer ist.
+	\item \texttt{class} beinhaltet den Klassenname des Schülers.
+	\item \texttt{section} beinhaltet die Abteilung des Schülers.
+\end{itemize}
+
+\paragraph{keeop-Flag\\}
+Für den Fall, dass das Angemeldet-Bleiben-Feld beim Login-Formular gesetzt ist, muss der Session-Manager dies erkennen und die Session offen halten (siehe \autoref{lst:content_imple_base_session_keep}).
+\lstinputlisting[style=custom, language=php, caption={/modules/general/SessionManager.php; keep-Flag; Zeilen 8-11},  label={lst:content_imple_base_session_keep}, firstline=8, lastline=11, firstnumber=8]{sources/base/SessionManager.php}
+
+Wegen des Angemeldet-Bleiben-Buttons wird der Angriffsvektor für Session-Hijacking größer (siehe \gref{sec:content_security_session-hijacking}), da die PHP-Session-ID über lange Zeiträume gleich bleibt. Um dies zu verhindern wird bei jedem Aufruf des SessionManagers die Session-ID erneuert.
+\lstinputlisting[style=custom, language=php, caption={/modules/general/SessionManager.php; Erneuern der ID; Zeile 29},  label={lst:content_imple_base_session_regen}, firstline=29, lastline=29, firstnumber=29]{sources/base/SessionManager.php}
+
+\paragraph{killSession\\}
+Die Funktion \texttt{killSession()} setzt das Flag \texttt{active} in der Session auf \texttt{false}, als Folge daraus, wird beim nächsten Aufruf des SessionManagers die Session neu initialisiert. Damit im aktuellen Programmlauf kein Fehler auftritt, werden alle kritischen Felder ebenfalls rückgesetzt. Kritische Felder sind in dem Fall das \texttt{loggedIn}-Feld und die Rechte.
+\lstinputlisting[style=custom, language=php, caption={/modules/general/SessionManager.php; \texttt{killSession()}; Zeilen 36-46}, label={lst:content_imple_base_session_kill}, firstline=36, lastline=46, firstnumber=36]{sources/base/SessionManager.php}
+
+\paragraph{Login\\}
+Wie der Name ja bereits andeutet, ist die Funktion \texttt{login(\$username, \$password)} für den Login zuständig. In dieser Funktion wird auf viele Funktionen der Datei /modules/general/LDAP.php zugegriffen, die Namen dieser Funktionen sind meistens selbsterklärend, für eine genauere Erklärung siehe \gref{sec:content_imple_ldap}.
+\lstinputlisting[style=custom, language=php, caption={/modules/general/SessionManager.php; \texttt{login()}; Zeilen 48-80}, label={lst:content_imple_base_session_login}, firstline=48, lastline=80, firstnumber=48]{sources/base/SessionManager.php}
+Zum besseren Verständnis des Codes siehe \autoref{fig:content_imple_base_session_login}:\\
+Der Punkt \enquote{lade Benutzer-Daten} besteht in Wirklichkeit aus zwei Befehlen. Zum Einen wird der Benutzer geladen (Zeile 50), zum Anderen wird DN (also quasi die eindeutige Bezeichnung des LDAP-Objektes - die ID) aus dem resultierenden mehrdimensionalen Array extrahiert.\\
+Die folgende \texttt{try-catch}-Direktive dient lediglich dazu, dass nicht so  viele \texttt{if-else}-Conditions geschrieben werden müssen. Letzten Endes wird für jeden Fehler eine Exception geworfen, der PHP-Interpreter spring in den \texttt{catch}-Block, der Fehl-Login wird geloggt und die Exception wird erneut geworfen.\\
+Der Punkt \enquote{schreibe Daten in Session} läuft folgendermaßen ab: Die Klasse wird ausgelesen und die Session geschreiben. Es wird bestimmt, ob es sich um einen Fehler handelt, auch dies wird in die Session geschrieben. Die Zeit des Logins wird in das \texttt{loggedIn}-Feld geschrieben (Dank der internen Repräsentation von \texttt{true} ist dieser Wert bool'sch wahr. $ \Longrightarrow $ Der Benutzer wird ab jetzt als angemeldet erkannt.). Der Name des Benutzers wird ausgelesen und in die Session geschrieben. Sollte es sich um einen Lehrer handeln, werden die Initialen, sonst der Benutzername in das \texttt{id}-Feld geschrieben. Nun werden nur noch die Abteilung und das Rechte-Array übernommen.
+\begin{figure}[H]
+\centering
+ \resizebox{16cm}{!}{ 
+	\fdot[scale=0.9]{images/flowcharts/login}
+}
+\caption{Programm-Ablauf \texttt{login()}}
+\label{fig:content_imple_base_session_login}
+\end{figure}
+
+\paragraph{Logout\\}
+Die \texttt{logout()}-Funktion macht im das selbe, wie die \texttt{killSession()}-Funktion, mit dem Unterschied, dass beim Logout die Session nicht neu initialisiert wird.
+
+
 %
 %
 % \lstinputlisting[style=custom, language=php, caption={Dateiname}, label={lst:content_imple_timetables_labelname}]{sources/ordner/datei.php}

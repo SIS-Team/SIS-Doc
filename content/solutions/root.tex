@@ -1,7 +1,4 @@
 \subsection{Wurzelverzeichnis}
-Das Projekt soll auch funktionsfähig sein, wenn es nicht dem Grundverzeichnis des virtuellen Hosts liegt. Das ist prinzipiell kein Problem, da alle Dateien relativ zum eigenen Standort referenziert werden können. Allerdings gibt es eine \enquote{Hauptdatei} (/modules/general/Main.php), die von allen Seiten includiert wird, da sie grundlegende Funktionen zur Verfügung stellt. Diese Datei includiert ihrerseits wiederum weitere Dateien, welche beispielsweise das Management der Sessions übernehmen. Werden diese Dateien relativ von der Hauptdatei  includiert, so werden sie in Wirklichkeit von der eigenen Datei includiert, da der Quellcode eingefügt wird. Das hat zur Folge, dass die referenzierten Dateien nicht existieren.
-
-\subsubsection{Gewählte Lösung}
-
-
-\subsubsection{Alternative Lösungen}
+\label{sec:content_solutions_root}
+Das Projekt soll auch funktionsfähig sein, wenn es nicht dem Grundverzeichnis des virtuellen Hosts liegt. Das ist prinzipiell kein Problem, da alle Dateien relativ zum eigenen Standort referenziert werden können. Allerdings gibt es eine \enquote{Hauptdatei} (/modules/general/Main.php), die von allen Seiten inkludiert wird, da sie grundlegende Funktionen zur Verfügung stellt. Diese Datei inkludiert ihrerseits wiederum weitere Dateien, welche beispielsweise das Management der Sessions übernehmen. Werden diese Dateien relativ von der Hauptdatei  inkludiert, so werden sie in Wirklichkeit von der eigenen Datei inkludiert, da der Quellcode eingefügt wird. Das hat zur Folge, dass die referenzierten Dateien nicht existieren.\\
+Dieses Problem wurde gelöst indem eine \enquote{Konfigurations}-Datei erstellt wird, in der der relative Pfad zum Projekt-Root-Verzeichnis vom Document-Root des Webservers, sowie der absolute Pfad des Root-Verzeichnises im Dateisystem definiert werden. Diese Datei wird von allen weiteren Dateien inkludiert, die weitere Einbindung von Dateien erfolgt nun nicht mehr über den relativen Pfad von der eigenen Position aus, sondern über die Root-Definition in der \enquote{Konfigurations}-Datei.
