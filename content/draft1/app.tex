@@ -12,6 +12,16 @@ Da mobile Geräte wie zum Beispiel Smartphones oft kleine Displays haben, muss d
 Damit die Tabellen für Stundenpläne und Supplierungen nicht zu unübersichtlich werden, werden nur die notwendigsten Informationen in die Tabelle geschrieben, um weitere Informationen zu erlangen, gibt es Popup-Fenster mit weiteren Daten, welche erscheinen wenn man auf die gewünschte Zelle in der Tabelle tippt.\\
 
 
-\subsubsection{Laden der Daten}
-Da es sich bei dieser App um keine Webapp handelt, sind natürlich einige Daten lokal auf dem Gerät gespeichert.\\ Einige Daten müssen aber dynamisch geladen werden, da jede Klasse und jeder Lehrer einen eigenen Stundenplan und auch einen eigenen Supplierplan hat. Diese Daten werden mit PHP und MySQL aus der SIS-Datenbank geladen. Danach werden sie mit Hilfe von JavaScript verarbeitet und in einer lesbaren Form (in Form einer Tabelle) ausgegeben.\\
-Das Problem beim Laden der Daten ist, dass PHP Seiten in der App nicht ausgeführt werden können weshalb die Daten nicht direkt mit dem PHP-Code in die App geladen werden können. Deshalb werden die Daten über einen Umweg mit PHP und JavaScript heruntergeladen.\\
+\subsubsection{Konzept}
+Zum erstellen einer App für Smartphones und Tablets wurde das Framework PhoneGap von Adobe genutzt. Dadurch konnten für die Entwicklung der App Webtechnologien, wie zum Beispiel HTML oder JavaScript, verwendet werden. Im Gegensatz zu herkömmlichen Web-Apps haben diese Applikationen aber den Nachteil, dass PHP-Seiten nicht direkt auf dem Gerät verwendet werden können, da die App lokal auf dem Gerät und nicht auf einem Webserver betrieben wird.
+Deshalb muss man bei der Entwicklung einer App dieser Art die Applikationsdateien grundsätzlich in 2 Arten Unterteilen.\\
+Die App-Dateien: Das sind jene Dateien welche direkt auf dem Gerät gespeichert, werden beziehungsweise als App gedownloadet werden (zum Beispiel HTML oder JavaScript).\\
+Die API-Dateien: Das sind jene Dateien welche auf dem Sever gespeichert sind und welche der Applikation den Zugriff auf die benötigten Daten, wie zum Beispiel Stundenpläne, ermöglichen (dabei handelt es sich hauptsächlich um PHP-Dateien).\\
+\\
+App:	In der App werden alle Daten gespeichert welche nicht dynamisch geändert werden müssen, also Daten die für jeden Benutzer gleich sind, zum Beispiel die Rohtabelle auf der Stundenplanseite oder das gesamte Menü. Da sich diese Dinge nie ändern, wurden sie direkt in der App gespeichert, um Downloadvolumen und Ladezeit zu sparen.\\
+Zu den Daten der App gehören aber auch Bilder für das App-Icon oder den Splashscreen (ein Bild welches beim Starten der App angezeigt wird).\\
+Und eine wichtige Datei muss in der App noch enthalten sein. Die Datei config.xml, dabei handelt es sich um eine Konfigurationsdatei, in welcher alle wichtigen Informationen zur App stehen, wie zum Beispiel der Name der App, um welche Version es sich handelt, welche Berechtigungen die App besitzt, etc.\\
+\\
+API:	Eine API (Application Programming Interface) ist eine Programmierschnittstelle. In diesem Fall wird die API benötigt, um die Daten aus der Datenbank in die App zu laden. Als API bezeichnen wir in diesem Fall alle Dateien, welche auf dem Server gespeichert sind und von der App genutzt werden, zum Beispiel login.php oder timetables.php.
+Dabei werden die Dateien in zwei Varianten unterschieden. Es gibt solche die reine PHP-Files sind (login.php und logout.php) und solche die zwar PHP-Code enthalten aber auch JavaScript-Code enthalten und später auch als JavaScript geladen werden.\\
+
