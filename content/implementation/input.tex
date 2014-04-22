@@ -14,9 +14,9 @@ Wie schon bei \autoref{sec:content_draft_form} erwähnt, ist es nicht möglich f
 Für die Normale Eingabemaske gibt es eine Funktion mit dem Namen \textit{form\_new}, dieser Funktion müssen 3 Parameter mitgegeben werden. Ein Parameter ist der Aufbau einer Eingabezeile (Variable \textit{\$field}), der zweite ist der Inhalt (Variable \textit{\$content}) und der letzte Parameter ist ein Objekt, das für die Sicherheit der Formulare benötigt wird. (siehe \autoref{sec:content_draft_token})\\
 Da jede Eingabezeile einen Datensatz einer MySQL Tabelle widerspiegelt,
 müssen diese Zeilen dem Datensatz zugeordnet werden können. Um dies zu realisieren wird im \$field Array ein \textit{Hidden}-Feld definiert. Deisem wird nach dem Erstellen beim Befüllen mit Daten die eindeutige ID des Datensatzes als Wert zugewiesen. Dieses Feld ist auf der Seite vorhanden, wird jedoch nicht auf der Seite dargestellt. Drückt der Anwender auf Übernehmen, so wird der Wert des \textit{Hidden}-Feldes mitgegeben und somit kann die Zeile identifiziert werden.\\
-\paragraph{Parameter \textit{\$field}}
+\paragraph{Parameter \textit{\$field}\\}
 Dieser Parameter ist ein mehrdimensionales Array, welches, wie bei \autoref{lst:content_imple_input_bsp} Zeile 43-50 zu sehen, auszusehen hat. Hier ist als Beispiel eine Definition dieses Arrays für die Eingabemaske der Lehrer dargestellt.\\
-Der Aufbau ist recht simpel. Jede Zeile entspricht einem Input-Feld und jede Spalte entspricht einer Eigenschaft des Input-Felds. In der Tabelle \autoref{tab:content_imple_inout_array} ist die Funktion der einzelnen Spalten im Array beschrieben.
+Der Aufbau ist recht simpel. Jede Zeile entspricht einem Input-Feld und jede Spalte entspricht einer Eigenschaft des Input-Felds. In der Tabelle \autoref{tab:content_imple_inout_array} ist die Funktion der einzelnen Spalten im Array beschrieben. \nameref{sec:content_imple_input_type}
 \begin{table}[H]
 \centering
 \begin{tabular}{p{2 cm}p{8 cm}p{3 cm}}
@@ -25,7 +25,7 @@ Der Aufbau ist recht simpel. Jede Zeile entspricht einem Input-Feld und jede Spa
    \midrule
           \textbf{1. Spalte} & Name des Input-Feldes \newline Spaltenbezeichnung in der MySQL-Tabelle \newline Pflichtspalte & date  \\
           \hline
-          \textbf{2. Spalte} & Input-Typ \newline Pflichtspalte & siehe Abschnitt \nameref{sec:content_imple_input_type}\\
+          \textbf{2. Spalte} & Input-Typ \newline Pflichtspalte & siehe Abschnitt \\
           \hline
           \textbf{3. Spalte} & Anzeigename \newline Pflichtspalte & Datum \\
           \hline
@@ -44,23 +44,24 @@ Der Aufbau ist recht simpel. Jede Zeile entspricht einem Input-Feld und jede Spa
 Mit diesen Eigenschaften können beliebige Eingabemasken erstellt werden, die einzige Voraussetzung ist, dass sich alle Input-Felder in einer Zeile  befinden müssen.\\
 Für eine bessere Darstellung befindet sich jede Zeile in einer eigenen Tabelle. Jedes Input-Feld in einer eigenen Zelle. Jede Tabelle wir mit einem Formular umschlossen. Somit entspricht jede Zeile einem eigenen Formular. Dies hat zur Folge, dass jede Zeile eigens bearbeitet werden kann.\\
 Eine Idee war, dass alle Zeilen in einer Tabelle sind, dies ist jedoch nicht so einfach realisierbar, da die leere Zeile keine Löschfunktion hat und somit auch weniger Spalten. Dies mit ein zu beziehen würde es unnötig verkomplizieren. Somit wurde diese Möglichkeit nicht verwendet.
-\paragraph{Parameter \$content}
-Mit diesem Funktionsparameter werden die Inhalte der Input-Felder mitgegeben. Wird diesem Parameter ein \textit{false} mitgegeben, so wird eine leere Zeile erstellt. Soll jedoch die Zeile mit Inhalt befüllt werden, so wird dieser Variable ein eindimensionales Array mitgegeben. Diese Routine wurde so konzipiert, dass dieser Inhalt einem Datensatz des MySQL-Querys, der mit der Funktion \textit{mysql\_fetch\_array} verarbeitet wurde, entspricht. (siehe \autoref{lst:content_imple_input_bsp} Zeile 57-59)\\
-Mit der \textit{While-Schleife}, in Zeile 57-59 im \autoref{lst:content_imple_input_bsp}, werden alle zurückgegebenen Datensätze einzeln verarbeitet und der Funktion \textit{form\_new} mitgegeben. Dadurch wird für jeden einzelnen Datensatz eine Zeile erstellt.\\
+\paragraph{Parameter \$content\\}
+Mit diesem Funktionsparameter werden die Inhalte der Input-Felder mitgegeben. Wird diesem Parameter ein \textit{false} mitgegeben, so wird eine leere Zeile erstellt. Soll jedoch die Zeile mit Inhalt befüllt werden, so wird dieser Variable ein eindimensionales Array mitgegeben. Diese Routine wurde so konzipiert, dass dieser Inhalt einem Datensatz des MySQL-Querys, der mit der Funktion \textit{mysql\_fetch\_array} verarbeitet wurde, entspricht. (siehe \autoref{lst:content_imple_input_bsp} Zeile 56)\\
+Mit der \textit{While-Schleife}, in Zeile 56-58 im \autoref{lst:content_imple_input_bsp}, werden alle zurückgegebenen Datensätze einzeln verarbeitet und der Funktion \textit{form\_new} mitgegeben. Dadurch wird für jeden einzelnen Datensatz eine Zeile erstellt.\\
 Auf den Inhalt wird mittels Array-Index zugegriffen. Dieser Index entspricht der im Query definierten Spaltenbezeichnungen. Um die richtigen Inhalte dem richtigen Input-Feldern zuweisen zu können, ist es wichtig, dass die 1. Spalte des \$field-Arrays mit der Spaltenbezeichnung übereinstimmt. Dies hat den Grund, dass die Inhalte mit den Input-Feldern über diese Information miteinander verknüpft werden.\\
 Eine große Rolle spielt auch die 6. Spalte des \$field-Arrays, da in der Erstell-Routine der Inhalt in diese Spalte geschrieben wird. Somit wird auch der vordefinierte Wert des Input-Feldes überschrieben.\\
 
-\lstinputlisting[style=custom, language=php, caption={backend/administration/teachers/index.php; Zeile 40 - 64},  label={lst:content_imple_input_bsp}, linerange={40-64}, firstnumber=40 ]{sources/input/teacher.php}
-\paragraph{Routine}
+\lstinputlisting[style=custom, language=php, caption={/backend/administration/teachers/index.php; Zeile 42 - 64},  label={lst:content_imple_input_bsp}, linerange={42-64}, firstnumber=42 ]{sources/input/teacher.php}
+
+\paragraph{Routine\\}
 In diesem Abschnitt wird ausschließlich der \autoref{lst:content_imple_input_form} behandelt. Alle Zeilenangaben beziehen sich auf diesen Code.\\
 \\
-In Zeile 42 ist der Beginn der \textit{foreach-Schleife} definiert. Diese Schleife spaltet das Array auf und durchläuft dieses Array Zeilenweise. Mit jedem Durchlauf springt der Pointer um eine Zeile weiter bis das Array durchlaufen ist. Dabei \enquote{kopiert} die Funktion die momentane Zeile in die Variable \textit{\$f}, so beinhaltet diese Variable immer die momentane Zeile als eindimensionales Array. Somit muss nicht mit 2 Indizes auf den Inhalt zugegriffen werden.\\
-In Zeile 44 - 46 wird der Inhalt mit dem jeweiligen Input-Feld zusammengeführt. Zuvor wird in Zeile 44 abgefragt, ob ein Inhalt übergeben wurde. Wenn ein Inhalt übergeben wird, dann muss dieser bearbeitet werden. Mit dem Namen des Input-Feldes wird im \textit{\$content} auf den jeweiligen Inhalt zugegriffen. Dieser wird anschließend in die dafür vorgesehene Spalte im \textit{\$f}-Array geschrieben.\\
-Ab Zeile 48 bis Zeile 83 werden in einer \textit{If-Abfrage} alle einzelnen Typen behandelt. Trifft eine Abfrage zu, so wird dieses Input-Feld erzeugt, dabei werden alle Eigenschaften, die im \textit{\$field} Array definiert wurden, dementsprechend berücksichtigt.\\
-Ist das Array \textit{\$field} durchlaufen werden die Zeilen ab 85 durchlaufen. In Zeile 85 wird die aufgerufene URL in die einzelnen Teile zerlegt, dies ist notwendig, um zu bestimmen mit welche Parametern die Funktion \textit{form\_savedelete} (siehe \autoref{}) aufgerufen werden soll, denn nicht in allen Eingaben soll Löschen möglich sein.\\
-In den Zeilen 87 - 98 wird zwischen den Parametern entschieden, mit denen die Funktion aufgerufen werden soll.
-\lstinputlisting[style=custom, language=php, caption={modules/form/form.php; Zeile 41 - 97}, label={lst:content_imple_input_form}, linerange={41-97},firstnumber=41 ]{sources/input/form.php}
-\paragraph{Input-Typen} \label{sec:content_imple_input_type}
+In Zeile 41 ist der Beginn der \textit{foreach-Schleife} definiert. Diese Schleife spaltet das Array auf und durchläuft dieses Array Zeilenweise. Mit jedem Durchlauf springt der Pointer um eine Zeile weiter bis das Array durchlaufen ist. Dabei \enquote{kopiert} die Funktion die momentane Zeile in die Variable \textit{\$f}, so beinhaltet diese Variable immer die momentane Zeile als eindimensionales Array. Somit muss nicht mit 2 Indizes auf den Inhalt zugegriffen werden.\\
+In Zeile 43 - 46 wird der Inhalt mit dem jeweiligen Input-Feld zusammengeführt. Zuvor wird in Zeile 43 abgefragt, ob ein Inhalt übergeben wurde. Wenn ein Inhalt übergeben wird, dann muss dieser bearbeitet werden. Mit dem Namen des Input-Feldes wird im \textit{\$content} auf den jeweiligen Inhalt zugegriffen. Dieser wird anschließend in die dafür vorgesehene Spalte im \textit{\$f}-Array geschrieben.\\
+Ab Zeile 48 bis Zeile 84 werden in einer \textit{If-Abfrage} alle einzelnen Typen behandelt. Trifft eine Abfrage zu, so wird dieses Input-Feld erzeugt, dabei werden alle Eigenschaften, die im \textit{\$field} Array definiert wurden, dementsprechend berücksichtigt.\\
+Ist das Array \textit{\$field} durchlaufen werden die Zeilen ab 86 durchlaufen. In Zeile 86 wird die aufgerufene URL in die einzelnen Teile zerlegt, dies ist notwendig, um zu bestimmen mit welche Parametern die Funktion \textit{form\_savedelete} (siehe \autoref{}) aufgerufen werden soll, denn nicht in allen Eingaben soll Löschen möglich sein.\\
+In den Zeilen 88 - 99 wird zwischen den Parametern entschieden, mit denen die Funktion aufgerufen werden soll.
+\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 41 - 99}, label={lst:content_imple_input_form}, linerange={41-99},firstnumber=41 ]{sources/input/form.php}
+\paragraph{Input-Typen\\} \label{sec:content_imple_input_type}
 In dieser Routine werden nur die benötigten Typen definiert. Dazu gehören folgende:
 \begin{table}[H]
 \centering
@@ -88,33 +89,47 @@ In dieser Routine werden nur die benötigten Typen definiert. Dazu gehören folg
 \subsubsection{Routine für die Eingabe der Supplierungen}
 Da für die Eingabe der Supplierungen eine andere Eingabemaske nötig ist, wurde eine eigene Routine entwickelt.\\
 Durch die Tatsache, dass eine Eingabezeile aus 2 Zeilen besteht, sind hier 2 Arrays für den Aufbau nötig. Der Parameter \textit{\$fieldRow1} beschreibt die erste und der Parameter \textit{\$fieldRow2} die zweite Zeile. Weiteres muss dieser Funktion das Kürzel der Abteilung mitgegeben werden. Damit wieder die richtigen GET Parameter an die URL angehängt werden. (Variable \textit{\$content}) Die restlichen Parameter erfüllen den gleichen Nutzen wie bei der normalen Routine. Der Aufbau der beiden \textit{\$field}-Parametern entspricht dem gleichen wie bei der normalen Routine.\\
-\paragraph{Routine}
-In diesem Abschnitt wird ausschließlich der \autoref{lst:content_imple_input_substitudes} behandelt. Alle Zeilenangaben beziehen sich auf diesen Code.\\
+\paragraph{Routine\\}
+Um den Code besser erklären zu können wird er in mehrere Teile zerlegt.\\
 \\
-Von Zeile 245 bis Zeile 263 werden einige Variablen vordefiniert. Diese sind notwendig, da einige Check Boxen standardmäßig aktiviert oder nicht aktiviert sein sollen. Außerdem sind einige Felder oder Zeilen nicht immer sichtbar, um dies so gut wie möglich zu steuern, wurde für jedes Element eine dementsprechende Variable definiert, welche an den notwendigen Stellen zum Einsatz kommt. Die Variablen sind jeweils als Arrays ausgeführt. Das Array \textit{\$display} ist notwendig, um zu steuern welche Felder und Zeilen sichtbar sind. Das Array \textit{\$checked} ist für die Steuerung der Check Boxen notwendig.
-Im Folgendem werden die möglichen Werte, die die Variablen annehmen können, beschrieben:
-\begin{itemize}
-	\item none: Feld/Zeile nicht sichtbar
-	\item table-cell: Feld ist als Tabellen-Zelle sichtbar
-	\item table-row: Zeile ist als Tabellen-Zeile sichtbar
-	\item checked : Check Box ist aktiviert
-	\item \enquote{}: Check Box ist deaktiviert
-\end{itemize}
-Da diese Werte abhängig von der ausgewählten Eingabeart der Supplierungen sind, muss die Zuweisung der Variablen unter Umständen abgeändert werden.\\
-In den Zeilen 265 - 268 wird die Farbe des Striches unter jeder Eingabezeile definiert. Diese wird rot eingefärbt, wenn ein Fehler aufgetreten ist. Ist ein Fehler aufgetreten, ist der Inhalt nicht aus einer MySQL Abfrage, sondern wird direkt aus den Werten entnommen, welche über POST der Webseite übergeben werden. Wird der Inhalt aus den POST-Variablen entnommen, dann gibt es eine Variable mit dem Namen \textit{hash}, daraus kann geschlossen werden, dass es eine Fehleingabe ist und der Strich rot eingefärbt werden muss, sonst wird er weiß eingefärbt.\\
-Da die Bezeichnung der Radio Buttons in den POST-Variablen nicht mit den Bezeichnungen aus der MySQL-Abfrage übereinstimmt, muss aus den POST-Variablen die richtigen Bezeichnungen für die weitere Verarbeitung herausgelesen werden. Dazu werden in der Variabel \textit{\$content} die richtigen Werte gesetzt. Dies ist in den Zeilen 270 - 277 zu sehen.\\
-Aufgrund der gesetzten Radio Buttons oder Check Boxen muss nun entschieden werden was sichtbar gemacht wird. Dazu gibt es in den Zeilen 279 - 317 \textit{If-Abfragen}, mit denen zwischen den einzelnen Modi unterschieden wird.\\  
-Ab der Zeile 320 bis zur Zeile 366 wird die erste Zeile erstellt. Dies geshieht im wesentlichen nach dem selben Prinzip wie bei der normalen Routine, jedoch bekommen hier die einzelnen Input-Typen eine \textit{id}. Mit dieser \textit{id} kann man mit JavaScript auf die Input-Typen zugreifen.(siehe Abschnitt \nameref{sec:content_imple_input_java}) Diese \textit{id} setzt sich aus dem Typ und der ID des Datensatzes in der MySQL Tabelle zusammen. Bei manchen wird noch der eindeutige Spaltenname angefügt.\\
-Zum Beispiel:
-\begin{itemize}
-	\item Eine Zeile von dem Datensatz mit der ID 2 hat folgende \textit{id} : visibleRow2
-	\item Ein Input-Feld mit dem Namen date aus der Zeile des Datensatzes mit der ID 3 hat folgende \textit{id} : visibleCell3date
-\end{itemize}
-Durch diese Bezeichnung lässt sich jede Zeile und Input-Feld eindeutig innerhalb der Eingabe definieren.\\
-Ab Zeile 369 wird die zweite Zeile erstellt. Dies funktioniert nach dem selben Prinzip wie zuvor.\\
-Die Verfügbaren Input-Typen wurden angepasst und auf die notwendigen reduziert. Außerdem wurde ein Typ neu erstellt, dieser nennt sich \textit{checkboxJava}. Dies ist eine Check Box, die als oncklick-Event eine Funktion hinterlegt hat, welche zum Umstrukturieren nötig ist. (siehe dazu Abschnitt \nameref{sec:content_imple_input_java})
-\lstinputlisting[style=custom, language=php, caption={modules/form/form.php; Zeile  224 - 356},  label={lst:content_imple_input_substitudes}, linerange={224-356}, firstnumber=224 ]{sources/input/form.php}
-\paragraph{Supplierung JavaScript}\label{sec:content_imple_input_java}
+\begin{enumerate}
+	\item \autoref{lst:content_imple_input_substitudes_1}\\
+	Von Zeile 221 bis Zeile 239 werden einige Variablen vordefiniert. Diese sind notwendig, da einige Check Boxen standardmäßig aktiviert oder nicht aktiviert sein sollen. Außerdem sind einige Felder oder Zeilen nicht immer sichtbar, um dies so gut wie möglich zu steuern, wurde für jedes Element eine dementsprechende Variable definiert, welche an den notwendigen Stellen zum Einsatz kommt. Die Variablen sind jeweils als Arrays ausgeführt. Das Array \textit{\$display} ist notwendig, um zu steuern welche Felder und Zeilen sichtbar sind. Das Array \textit{\$checked} ist für die Steuerung der Check Boxen notwendig.
+	Im Folgendem werden die möglichen Werte, die die Variablen annehmen können, beschrieben:
+	\begin{itemize}
+		\item none: Feld/Zeile nicht sichtbar
+		\item table-cell: Feld ist als Tabellen-Zelle sichtbar
+		\item table-row: Zeile ist als Tabellen-Zeile sichtbar
+		\item checked : Check Box ist aktiviert
+		\item \enquote{}: Check Box ist deaktiviert
+	\end{itemize}
+	Da diese Werte abhängig von der ausgewählten Eingabeart der Supplierungen sind, muss die Zuweisung der Variablen unter Umständen abgeändert werden.\\
+	In den Zeilen 241 - 244 wird die Farbe des Striches unter jeder Eingabezeile definiert. Diese wird rot eingefärbt, wenn ein Fehler aufgetreten ist. Ist ein Fehler aufgetreten, ist der Inhalt nicht aus einer MySQL Abfrage, sondern wird direkt aus den Werten entnommen, welche über POST der Webseite übergeben werden. Wird der Inhalt aus den POST-Variablen entnommen, dann gibt es eine Variable mit dem Namen \textit{hash}, daraus kann geschlossen werden, dass es eine Fehleingabe ist und der Strich rot eingefärbt werden muss, sonst wird er weiß eingefärbt.\\
+	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile  221 - 244},  label={lst:content_imple_input_substitudes_1}, linerange={221-244}, firstnumber=221 ]{sources/input/form.php}
+	
+	\item \autoref{lst:content_imple_input_substitudes_2}\\
+	Da die Bezeichnung der Radio Buttons in den POST-Variablen nicht mit den Bezeichnungen aus der MySQL-Abfrage übereinstimmt, muss aus den POST-Variablen die richtigen Bezeichnungen für die weitere Verarbeitung herausgelesen werden. Dazu werden in der Variabel \textit{\$content} die richtigen Werte gesetzt. Dies ist in den Zeilen 246 - 253 zu sehen.\\
+	Aufgrund der gesetzten Radio Buttons oder Check Boxen muss nun entschieden werden was sichtbar gemacht wird. Dazu gibt es in den Zeilen 255 - 293 \textit{If-Abfragen}, mit denen zwischen den einzelnen Modi unterschieden wird.\\ 
+	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile  246 - 267},  label={lst:content_imple_input_substitudes_2}, linerange={246-267}, firstnumber=255 ]{sources/input/form.php}
+	
+	\item \autoref{lst:content_imple_input_substitudes_3}\\
+	Ab der Zeile 303 bis zur Zeile 338 wird die erste Zeile erstellt. Dies geshieht im wesentlichen nach dem selben Prinzip wie bei der normalen Routine, jedoch bekommen hier die einzelnen Input-Typen eine \textit{id}. Mit dieser \textit{id} kann man mit JavaScript auf die Input-Typen zugreifen.(siehe Abschnitt \nameref{sec:content_imple_input_java_supp}) Diese \textit{id} setzt sich aus dem Typ und der ID des Datensatzes in der MySQL Tabelle zusammen. Bei manchen wird noch der eindeutige Spaltenname angefügt.\\
+	Zum Beispiel:
+	\begin{itemize}
+		\item Eine Zeile von dem Datensatz mit der ID 2 hat folgende \textit{id} : visibleRow2
+		\item Ein Input-Feld mit dem Namen date aus der Zeile des Datensatzes mit der ID 3 hat folgende \textit{id} : visibleCell3date
+	\end{itemize}
+	Durch diese Bezeichnung lässt sich jede Zeile und Input-Feld eindeutig innerhalb der Eingabe definieren.\\
+	
+	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile  303 - 338},  label={lst:content_imple_input_substitudes_3}, linerange={303-338}, firstnumber=303 ]{sources/input/form.php}
+	
+	\item \autoref{lst:content_imple_input_substitudes_4}\\
+	Ab Zeile 360 wird die zweite Zeile erstellt. Dies funktioniert nach dem selben Prinzip wie zuvor.\\
+	Die Verfügbaren Input-Typen wurden angepasst und auf die notwendigen reduziert. Außerdem wurde ein Typ neu erstellt, dieser nennt sich \textit{checkboxJava}. Dies ist eine Check Box, die als oncklick-Event eine Funktion hinterlegt hat, welche zum Umstrukturieren nötig ist. (siehe dazu Abschnitt \nameref{sec:content_imple_input_java_supp})	
+	
+	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile  360 - 371},  label={lst:content_imple_input_substitudes_4}, linerange={360-371}, firstnumber=360 ]{sources/input/form.php}
+\end{enumerate}
+\paragraph{Supplierung JavaScript\\}\label{sec:content_imple_input_java_supp}
 Für die Eingabe der Supplierungen wurde ein wenig JavaScript benötigt. Dies beschränkt sich auf eine Funktion, die das ein- und ausblenden der Eingabeelemente übernimmt.\\
 Dieser Funktion werden 2 Parameter mitgegeben, zum einen um welche Eingabezeile handelt es sich (\textit{id}) und welches Element ruft die Funktion auf (\textit{typ}).\\
 Mit der Unterscheidung des Typs wird bestimmt, welche Elemente ein- bzw. ausgeblendet werden müssen.\\
@@ -126,15 +141,16 @@ Hier die von mir verwendeten Eigenschaften:
 	\item \textit{checked} : ändert den Zustand der CheckBox oder Radio Buttons in den aktivierten(true) oder deaktivierten(false) Zustand
 \end{itemize}
 JavaScript wird hier benötigt, da das aus- und einblenden ohne neu Laden des Browsers geschehen muss. Dies kann nur mit JavaScript realisiert werden.\\
-\lstinputlisting[style=custom, language=java, caption={data/scripts/substitudes.js; Zeile 10 - 75},  label={lst:content_imple_input_substitudes_java}, firstline =10, lastline = 75, firstnumber = 10 ]{sources/input/substitudes.js}
+Im folgendem Codeausschnitt ist ein Teil der \textit{If}-Abfrage zur unterscheidung zwischen den verschiedenen Typen zu sehen.
+\lstinputlisting[style=custom, language=java, caption={data/scripts/substitudes.js; Zeile 10 - 20},  label={lst:content_imple_input_substitudes_java}, firstline =10, lastline = 20, firstnumber = 10 ]{sources/input/substitudes.js}
 \subsubsection{Routine für die Eingabe der Stundenpläne}
-Die Eingabemaske der Stundenpläne wird nach einem komplett anderen Prinzip erstellt. Denn bei dieser Eingabemaske erscheint nicht nach einer Eingabe eine neue Zeile, sondern es werden alle Zeilen beim Laden der Seite erstellt. Auch die nicht sichtbaren Zeilen für die Teilungen werden erstellt, jedoch nicht dargestellt. Um diese ein zu blenden wird JavaScript benötigt. (siehe \nameref{})\\
+Die Eingabemaske der Stundenpläne wird nach einem komplett anderen Prinzip erstellt. Denn bei dieser Eingabemaske erscheint nicht nach einer Eingabe eine neue Zeile, sondern es werden alle Zeilen beim Laden der Seite erstellt. Auch die nicht sichtbaren Zeilen für die Teilungen werden erstellt, jedoch nicht dargestellt. Um diese ein zu blenden wird JavaScript benötigt. (siehe Abschnitt \nameref{sec:content_imple_input_java_lessons})\\
 Die Funktion, die für das Erstellen der Eingabemaske zuständig ist, heißt \textit{form\_lesson} und benötigt 3 Parameter. Der \textit{\$field} Parameter ist gleich aufgebaut wie in den anderen Routinen. Der zweite Paramter ist der \textit{\$content} Parameter, diese Variable unterscheidet sich, von den anderen Routinen. Die letzte Variable ist, wie auch zuvor, für die Sicherheit notwendig.
-\paragraph{Parameter \textit{\$content}}
-Dieser Parameter wird hier als einziges behandelt, da sich dieser Aufbau wesentlich geändert hat. Bei den anderen Routinen wurde jede einzelne Tabellenzeile an die Funktion übergeben, dies ist durch den veränderten Aufbau der Eingabemaske nicht mehr möglich, deshalb werden hier zuerst alle Zeilen in ein mehrdimensionales Array geschrieben, anschließend wird dieses Array an die Funktion übergeben. Wie auch in den anderen Routinen werden die einzelnen Rückgabewerte mit einer \textit{while}-Schleife abgearbeitet, dies ist in den Zeilen 100 - 115 im \autoref{lst:content_imple_input_lessons} zu sehen. In dieser Schleife werden noch einige Dinge zusätzlich abgefragt.\\
-Um Teilungen aus den Rückgabewerten besser zu erkennen, wird hier mit der SQL-Abfrage in Zeile 101-108 die Anzahl der Teilungen der aktuell bearbeiteten Stunde/n abgefragt. Dies wird in Zeile 113 in eine zusätzliche Spalte des Arrays geschrieben. Anschließend wird das modifizierte Array dem Array \textit{\$content} angefügt. Diese Prozedur wird mit allen Rückgabewerten durchgeführt.\\
-\lstinputlisting[style=custom, language=php, caption={backend/administration/lessons/lessons.php; Zeile 96 - 121},  label={lst:content_imple_input_lessons}, firstline =96, lastline = 121, firstnumber = 96 ]{sources/input/lessons.php}
-\paragraph{Routine}
+\paragraph{Parameter \textit{\$content}\\}
+Dieser Parameter wird hier als einziges behandelt, da sich dieser Aufbau wesentlich geändert hat. Bei den anderen Routinen wurde jede einzelne Tabellenzeile an die Funktion übergeben, dies ist durch den veränderten Aufbau der Eingabemaske nicht mehr möglich, deshalb werden hier zuerst alle Zeilen in ein mehrdimensionales Array geschrieben, anschließend wird dieses Array an die Funktion übergeben. Wie auch in den anderen Routinen werden die einzelnen Rückgabewerte mit einer \textit{while}-Schleife abgearbeitet, dies ist in den Zeilen 101 - 116 im \autoref{lst:content_imple_input_lessons} zu sehen. In dieser Schleife werden noch einige Dinge zusätzlich abgefragt.\\
+Um Teilungen aus den Rückgabewerten besser zu erkennen, wird hier mit der SQL-Abfrage in Zeile 102-109 die Anzahl der Teilungen der aktuell bearbeiteten Stunde/n abgefragt. Dies wird in Zeile 114 in eine zusätzliche Spalte des Arrays geschrieben. Anschließend wird das modifizierte Array dem Array \textit{\$content} angefügt. Diese Prozedur wird mit allen Rückgabewerten durchgeführt.\\
+\lstinputlisting[style=custom, language=php, caption={/backend/administration/lessons/lessons.php; Zeile 96 - 118},  label={lst:content_imple_input_lessons}, firstline =96, lastline = 118, firstnumber = 96 ]{sources/input/lessons.php}
+\paragraph{Routine\\}
 Da alle Zeilen für alle Stunden und Teilungen von beginn an erstellt werden, wird die Erstellroutine insgesamt (7 Teilungen \'{a} 16 Stunden ergibt 112) 112 mal durchlaufen. Dabei werden die Zeilen für die Teilungen, bei einem leeren Tag nicht sichtbar und bei einem schon eingetragenen Tag dementsprechend sichtbar oder unsichtbar erstellt. Bei den zusätzlichen Teilungszeilen werden die Informationen über Länge der Stunde, Startstunde und Anzahl der Teilungen nicht angezeigt. Da sie für das Eintragen in der Datenbank benötigt werden, werden diese Daten in \textit{hidden} Felder gespeichert.\\
 Um zwischen der ersten Zeile und der zusätzlichen 6 Teilungszeilen zu unterscheiden wird die Moduldivision verwendet, dazu später mehr. Die Moduldivision dividiert eine Zahl und gibt den Rest bei der Division als Ergebnis zurück. Da im \textit{\$content} unter Umständen die Einträge nicht in der richtigen Reihenfolge enthalten sind, muss immer der gesamte Inhalt durchlaufen werden. Wird die richtige Stunde gefunden, dann wird aus der \textit{\$content} Variable ein neues Array erstellt, welches genau dem Inhalt entspricht, der in die Input-Felder geschrieben werden muss.\\
 Auch bei der Eingabemaske der Stundenpläne muss mittels JavaScript auf die Zeilen zugegriffen werden können, dazu braucht jede Zeile eine eindeutige ID. Diese wird hier mittels der Nummer der Teilung (1-7) und der Stunde gebildet.\\ 
@@ -152,10 +168,12 @@ Zum Beispiel:
 Um beim Erstellen und Befüllen der Eingabemaske die richtigen Felder sichtbar bzw. unsichtbar zu schalten. wird nach dem erstellen einer Stunde(7 Zeilen pro Stunde) wird eine JavaScript Funktion ausgeführt und die Zeilen werden dementsprechend ein- und ausgeblendet.
 In den nächsten Punkten werden die Codezeilen in einzelnen Teilen zerlegt und genauer erklärt.
 \begin{enumerate}
+
 	\item \autoref{lst:content_imple_input_form_lessons_1}\\
 	In diesem Codeabschnitt wird die Unterscheidung zwischen der ersten Zeile und den zusätzlichen Zeilen für die Teilung unterschieden.\\
 	Mit der Moduldivision in der \textit{If-Bedingung} wird überprüft, ob es sich um die erste Zeile einer Stunde handelt. Die Variable \textit{\$zeile} startet bei der Zählung mit 0 und endet bei 111. Sie wird bei jeder erstellten Zeile um 1 erhöht.\\
 	Beispiel zur Berechnung:
+	
 	\begin{itemize}
 		\item \textit{\$zeile} = 10\\
 		Dies entspricht der 4. Zeile aus der 2. Stunde.\\
@@ -164,8 +182,10 @@ In den nächsten Punkten werden die Codezeilen in einzelnen Teilen zerlegt und g
 		Dies entspricht der 1. Zeile aus der 3. Stunde.\\
 		$ \$zeile \% 7 = 14 \% 7 = 0 \Rightarrow $ Erste Zeile
 	\end{itemize}
+	
 	Durch dieses Verfahren kann jederzeit bestimmt werden, ob es die erste Zeile oder eine der zusätzlichen Zeilen ist.\\
 	Handelt es sich um die erste Zeile, dann werden folgende Dinge gemacht:
+	
 	\begin{itemize}
 		\item die Variable \textit{\$zeile1} auf 1 gesetzt, um zu erkennen, dass es sich um die erste Zeile handelt
 		\item die momentane Stunde wird berechnet und in die Variable \textit{\$hour} geschrieben\\
@@ -178,57 +198,101 @@ In den nächsten Punkten werden die Codezeilen in einzelnen Teilen zerlegt und g
 		\end{itemize}
 		\item die Sichtbarkeit der Zeile wird in die Variable \textit{\$visibility} geschrieben, da es sich um die erste Zeile handelt wird diese sichtbar erstellt.
 	\end{itemize}
+	
 	Handelt es sich jedoch um eine zusätzliche Zeile, dann werden folgende Dinge gemacht:
+	
 	\begin{itemize}
 		\item die Variable \textit{\$zeile1} auf 0 gesetzt, um zu erkennen, dass es sich nicht um die erste Zeile handelt
 		\item die momentane Stunde wird berechnet und in die Variable \textit{\$hour} geschrieben, dabei wird die PHP-Funktion \textit{floor} benötigt, diese Funktion rundet das Ergebnis auf eine Integer-Zahl ab.\\
 		Berechnung:
+		
 		\begin{itemize}
 			\item \textit{\$zeile} = 2\\
 			$ floor(\$zeile \div 7) + 1 = floor( 2 \div 7 ) + 1 = 1 \Rightarrow $ 1. Stunde
 			\item \textit{\$zeile} = 17\\
 			$ floor(\$zeile \div 7) + 1 = floor( 17 \div 7 ) + 1 = 3 \Rightarrow $ 3. Stunde\\
 		\end{itemize}
+		
 		\item die Sichtbarkeit der Zeile wird in die Variable \textit{\$visibility} geschrieben, da es sich nicht um die erste Zeile handelt wird diese unsichtbar erstellt.
 	\end{itemize}
-	In Zeile 121 wird die eindeutige ID dieser Zeile berechnet, die nach dem, schon genannten, Prinzip aufgebaut ist.\\
+	
+	In Zeile 123 wird die eindeutige ID dieser Zeile berechnet, die nach dem, schon genannten, Prinzip aufgebaut ist.\\
 	Beispiel zur Berechnung:
+	
 	\begin{itemize}
 		\item \textit{\$zeile} = 17 und \textit{\$hour} = 3\\
 		$ (\$zeile + 1 - ((\$hour - 1 ) \ast 7)) =  (17 + 1 - ((3 - 1) \ast 7)) = 4 \Rightarrow $ 4. Zeile
 		\item \textit{\$zeile} = 7 und \textit{\$hour} = 2\\
 		$ (\$zeile + 1 - ((\$hour - 1 ) \ast 7)) =  (7 + 1 - ((2 - 1) \ast 7)) = 1 \Rightarrow $ 1. Zeile
 	\end{itemize}
-	In Zeile 122 wird das Array für den Inhalt der Input-Felder definiert und vorbelegt. Dabei wird Standardmäßig bei den Indizes \textit{split} und \textit{length} 1 als Wert geschrieben, diese Werte werden jedoch, wenn nötig, abgeändert.\\
-	\lstinputlisting[style=custom, language=php, caption={modules/form/form.php; Zeile 110 - 122},  label={lst:content_imple_input_form_lessons_1}, firstline =110, lastline = 122, firstnumber = 110 ]{sources/input/form.php}
+	
+	In Zeile 124 wird das Array für den Inhalt der Input-Felder definiert und vorbelegt. Dabei wird Standardmäßig bei den Indizes \textit{split} und \textit{length} 1 als Wert geschrieben, diese Werte werden jedoch, wenn nötig, abgeändert.\\
+	
+	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 112 - 124},  label={lst:content_imple_input_form_lessons_1}, firstline =112, lastline = 124, firstnumber = 112 ]{sources/input/form.php}
+	
 	\item \autoref{lst:content_imple_input_form_lessons_2}\\
 	Dieser Codeauschnitt wird nur abgearbeitet wenn ein Inhalt mitgegeben wird. Wie schon oben erwähnt, muss jede Zeile des mehrdimensionalen Arrays \textit{\$content} jedes mal durchlaufen werden. Mit den richtigen Daten wird das Array\textit{\$stuff} befüllt, welches zum füllen der Input-Felder verwendet wird.\\
-	In Zeile 125 wird die Variable \textit{\$index} mit der \textit{unset}-Funktion gelöscht, um keine Störungen zu verursachen. Mit der \textit{foreach}-Schleife wird der \textit{\$content} durchlaufen. Dabei wird jede einzelne Zeile als eindimensionales Array in die Variable \textit{\$c} kopiert. In der Variable \textit{\$i} steht der aktuellen Index der Position im Array \textit{\$content}.\\
-	In der Zeile 127 wird geprüft, ob für die Stunde der aktuellen Zeile ein Eintrag gefunden wird. Dazu muss die Stunde mit der Start-Stunde  im Inhalt übereinstimmen.\\
-	In den Zeilen 128 - 136 werden alle benötigten Werte in ein Variable geschrieben, die anschließend in der Zeile 137 in das zuvor definierte Array \textit{\$stuff} geschrieben werden.  In Zeile 139 wird der aktuell verwendete Inhalt aus dem Array \textit{\$conent} gelöscht.\\ Da bei gefundenem Inhalt die \textit{\$foreach}-Schleife abgebrochen werden kann, wird in der zeile 141 überprüft, ob etwas gefunden wurde, wenn ja dann wird mit \textit{break} abgebrochen.\\
-	Die Zeilen 145 - 148 sind dazu zuständig, die Stunden auszublenden, welche wegen der Länge einer vorherigen Stunde nicht notwendig sind. Dabei wird auf 4 Bedingungen geprüft:
+	In Zeile 127 wird die Variable \textit{\$index} mit der \textit{unset}-Funktion gelöscht, um keine Störungen zu verursachen. Mit der \textit{foreach}-Schleife wird der \textit{\$content} durchlaufen. Dabei wird jede einzelne Zeile als eindimensionales Array in die Variable \textit{\$c} kopiert. In der Variable \textit{\$i} steht der aktuellen Index der Position im Array \textit{\$content}.\\
+	In der Zeile 129 wird geprüft, ob für die Stunde der aktuellen Zeile ein Eintrag gefunden wird. Dazu muss die Stunde mit der Start-Stunde  im Inhalt übereinstimmen.\\
+	In den Zeilen 131 - 138 werden alle benötigten Werte in ein Variable geschrieben, die anschließend in der Zeile 139 in das zuvor definierte Array \textit{\$stuff} geschrieben werden.  In Zeile 141 wird der aktuell verwendete Inhalt aus dem Array \textit{\$conent} gelöscht.\\ Da bei gefundenem Inhalt die \textit{\$foreach}-Schleife abgebrochen werden kann, wird in der zeile 143 überprüft, ob etwas gefunden wurde, wenn ja dann wird mit \textit{break} abgebrochen.\\
+	Die Zeilen 147 - 150 sind dazu zuständig, die Stunden auszublenden, welche wegen der Länge einer vorherigen Stunde nicht notwendig sind. Dabei wird auf 4 Bedingungen geprüft:
+	
 	\begin{itemize}
 		\item Ist von der letzten, mit Inhalt befüllten, Stunde eine Länge angegeben
 		\item Ist diese Länge größer als 1, wenn nicht, dann muss keine Stunde ausgeblendet werden, da die Stunde nur eine Stunde lang ist.
 		\item Ist die aktuelle Zeile eine andere Stunde, wie die zuletzt befüllte Stunde
 		\item Ist es die erste Zeile, da die zusätzlichen Zeilen sowieso ausgeblendet sind.
 	\end{itemize}
+	
 	Treffen alle diese Bedingungen zu, dann wird die Länge um eins verringert und die Variable \textit{\$visibility} verändert.\\
-	\lstinputlisting[style=custom, language=php, caption={modules/form/form.php; Zeile 124 - 144},  label={lst:content_imple_input_form_lessons_2}, firstline =124, lastline = 149, firstnumber = 124 ]{sources/input/form.php}
+	
+	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 126 - 151},  label={lst:content_imple_input_form_lessons_2}, firstline =126, lastline = 151, firstnumber = 126 ]{sources/input/form.php}
+	
 	\item \autoref{lst:content_imple_input_form_lessons_3}\\
 	In dieser Codesequenz werden die einzelnen Input-Typen für eine Zeile erstellt. Dabei wird, wie in den anderen Routinen auch, das \textit{\$field}-Array durchlaufen. Mittels \textit{If}-Abfrage wird der Input-Typ ausgewählt.\\
-	In den Zeilen 157 - 162 wird geprüft, ob Inhalt eingefügt werden muss oder nicht. Dies wird mittels der Variable \textit{\$index} überprüft, ist diese Variable gesetzt, dann muss ein Inhalt eingefügt werden. Außerdem wird auch die Variable \textit{\$edit} auf \textit{readonly} gesetzt, diese wird später benötigt, um die Felder Länge und Teilung zu sperren. Dies hat den Hintergrund, dass es zu Problemen kommen kann, wenn diese 2 Parameter geändert werden, wenn schon Daten vorhanden sind.\\
-	\lstinputlisting[style=custom, language=php, caption={modules/form/form.php; Zeile 156 - 164},  label={lst:content_imple_input_form_lessons_3}, firstline =156, lastline = 164, firstnumber = 156 ]{sources/input/form.php}
+	In den Zeilen 159 - 165 wird geprüft, ob Inhalt eingefügt werden muss oder nicht. Dies wird mittels der Variable \textit{\$index} überprüft, ist diese Variable gesetzt, dann muss ein Inhalt eingefügt werden. Außerdem wird auch die Variable \textit{\$edit} auf \textit{readonly} gesetzt, diese wird später benötigt, um die Felder Länge und Teilung zu sperren. Dies hat den Hintergrund, dass es zu Problemen kommen kann, wenn diese 2 Parameter geändert werden, wenn schon Daten vorhanden sind.\\
+	
+	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 159 - 167},  label={lst:content_imple_input_form_lessons_3}, firstline =159, lastline = 167, firstnumber = 159 ]{sources/input/form.php}
+	
 	\item \autoref{lst:content_imple_input_form_lessons_4}\\
 	Der unterschied zu den anderen Routinen besteht darin, dass wenn das \textit{hidden}-Feld ID erstellt wird, auch einige weitere Felder erstellt werden, abhängig um welche Zeile es sich handelt.\\
 	Wird das ID-Feld in der ersten Zeile einer Stunde erstellt, dann müssen Teilung, Stunde, Länge sichtbar sein. Wenn es sich jedoch um eine zusätzliche Zeile für die Teilungen handelt, dann müssen diese vorhanden sein, jedoch nicht sichtbar. Dazu wird hier in der \textit{If}-Bedingung zwischen Zeile 1 (\textit{\$zeile1=1}) und zwischen den anderen zusätzlichen Zeilen unterschieden.\\
 	Nach der \textit{If}-Abfrage werden noch 2 zusätzliche Hidden-Felder erzeugt, in welchen die Information über die Klasse und des Wochentages gespeichert wird.\\
-	\lstinputlisting[style=custom, language=php, caption={modules/form/form.php; Zeile 172 - 193},  label={lst:content_imple_input_form_lessons_4}, firstline =172, lastline = 193, firstnumber = 172 ]{sources/input/form.php}
+	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 175 - 190},  label={lst:content_imple_input_form_lessons_4}, firstline =175, lastline = 190, firstnumber = 175 ]{sources/input/form.php}
+	
 	\item \autoref{lst:content_imple_input_form_lessons_5}\\
-	Da immer nur eine Stunde mit deren Teilungen gelöscht werden kann, wird nur in der ersten Zeilen jeder Stunde eine Lösch-Funktion eingefügt. Dies wird mit den Zeilen 201 - 206 unterschieden.\\
-	Am Ende jeder Stunde wird die JavaScript-Funktion \textit{Visibility} ausgeführt. (siehe ???).\\
-	In der Zeile 211 wird die Zeilenanzahl um 1 erhöht. Am Ende der Funktion wird die Abbruchbedingung der \textit{Do-While}-Schleife definiert. Wie schon erwähnt werden 112 Zeilen Benötigt, da die Zählung der Zeilenzahl bei 0 beginnt, bricht die Bedingung ab wenn die Zeilennummer 111 übersteigt.\\
-	\lstinputlisting[style=custom, language=php, caption={modules/form/form.php; Zeile 201 - 212},  label={lst:content_imple_input_form_lessons_5}, firstline =201, lastline = 212, firstnumber = 201 ]{sources/input/form.php}
+	Da immer nur eine Stunde mit deren Teilungen gelöscht werden kann, wird nur in der ersten Zeilen jeder Stunde eine Lösch-Funktion eingefügt. Dies wird mit den Zeilen 198 - 203 unterschieden.\\
+	Am Ende jeder Stunde wird die JavaScript-Funktion \textit{Visibility} ausgeführt. (siehe Abschnitt \nameref{sec:content_imple_input_java_lessons}).\\
+	In der Zeile 208 wird die Zeilenanzahl um 1 erhöht. Am Ende der Funktion wird die Abbruchbedingung der \textit{Do-While}-Schleife definiert. Wie schon erwähnt werden 112 Zeilen Benötigt, da die Zählung der Zeilenzahl bei 0 beginnt, bricht die Bedingung ab wenn die Zeilennummer 111 übersteigt.\\
+	
+	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 198 - 209},  label={lst:content_imple_input_form_lessons_5}, firstline =198, lastline = 209, firstnumber = 198 ]{sources/input/form.php}
+	
 \end{enumerate}
 
-
+\paragraph{Stundenplan JavaScript\\} \label{sec:content_imple_input_java_lessons}
+Für die Eingabemaske der Stundenpläne werden 4 JavaScript Funktionen benötigt.
+\begin{enumerate}
+	\item \textit{visibility()}\\
+	Diese Funktion übernimmt die Aufgabe, die zusätzlichen Zeilen für die Teilung ein- bzw. aus zu blenden. Dieser Funktion muss als Parameter die Stunde mitgegeben werden.\\
+	Um sich nur auf die 7 Teilungen zu beschränken und Fehleingaben ab zu wehren, wird mit dem Eingegebenen Text ein \textit{Switch-Case} durchlaufen, wird die eingegebene Zahl gefunden, so wird diese übernommen, wird sie nicht gefunden wird als Teilung 1 angenommen.\\
+	Anschließend werden zuerst alle Zeilen ausgeblendet und dann nach der Reihe wieder eingeblendet.
+	
+	\lstinputlisting[style=custom, language=java, caption={/data/scripts/lesson.js; Zeile 8 - 49},  label={lst:content_imple_input_form_lessons_java_1}, firstline =8, lastline = 49, firstnumber = 8 ]{sources/input/lessons.js}
+	
+	\item \textit{text()}\\
+	Mit dieser Funktion wird ein Text, der mit dem Parameter \textit{text} der Funktion übergeben wird, in alle Zeilen einer Stunde geschrieben. Die Stunde wird mit dem Parameter \textit{hour} mitgegeben.
+	
+	\lstinputlisting[style=custom, language=java, caption={/data/scripts/lesson.js; Zeile 51 - 62},  label={lst:content_imple_input_form_lessons_java_2}, firstline =51, lastline = 62, firstnumber = 51 ]{sources/input/lessons.js}
+	
+	\item \textit{changeText()}\\
+	Diese Funktion schreibt den, in das Teilungsfeld, eingegebenen Text in alle anderen Zeilen der Stunde. Die Stunde wird mit dem Parameter \textit{hour} übergeben.
+	
+	\lstinputlisting[style=custom, language=java, caption={/data/scripts/lesson.js; Zeile 64 - 76},  label={lst:content_imple_input_form_lessons_java_3}, firstline =64, lastline = 76, firstnumber = 64 ]{sources/input/lessons.js}
+	
+	\item \textit{visibleHours()}\\
+	In dieser Funktion werden die Stunden ausgeblendet, welche nicht benötigt werden, aufgrund der Länge einer vorherigen Stunde. Dieser Funktion wir mit dem Parameter \textit{hour} die Stunde mitgegeben.\\
+	Zuerst werden alle Zeilen ab der mitgegebenen Stunde, die als Länge 1 haben sichtbar gemacht. Anschließend werden der Länge entsprechend die Stunden ausgeblendet.
+	
+	\lstinputlisting[style=custom, language=java, caption={/data/scripts/lesson.js; Zeile 78 - 105},  label={lst:content_imple_input_form_lessons_java_4}, firstline =78, lastline = 105, firstnumber = 78 ]{sources/input/lessons.js}
+	
+\end{enumerate}

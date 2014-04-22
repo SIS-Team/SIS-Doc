@@ -39,13 +39,15 @@ printf("<table>\n");	//Tabellen Tag auf
   			//Für jeden Eintrag im Array field einmal diese Schleife durchlaufen
   			$hashGenerator->printForm();
 foreach($field as $f) {	
-	
-	if($content!=false){ //Wenn Content mitgeliefert wird und der Typ des aktuellen Inputs kein DropDown, dann Content austauschen
-		$f[5]=$content[$f[0]]; //Content des aktuellen Inputs austauschen, Name des Array-Indizes ist der name des Inputs
+	//Wenn Content mitgeliefert wird und der Typ des aktuellen Inputs kein DropDown, dann Content austauschen
+	if($content!=false){
+		//Content des aktuellen Inputs austauschen, Name des Array-Indizes ist der name des Inputs
+		$f[5]=$content[$f[0]]; 
 	}
 	
 	if ($f[2] == "checkbox") { //Checkbox
-		if($f[5]==true){ //Wenn gecheckt, dann Variable checked auf checked setzen
+		//Wenn gecheckt, dann Variable checked auf checked setzen
+		if($f[5]==true){
 			$checked="checked";
 		}
 		else{ //sonst leer
@@ -136,17 +138,17 @@ if($content!=""){
 			$comment = $c['comment'];
 			$stuff=array('ID'=>$c['ID'],'split'=>$split,'length'=>$length,'roName'=>$room,'teShort'=>$teacher,'suShort'=>$subject, 'comment'=>$comment);
 
-			unset($content[$i]);				
+			unset($content[$i]);
 		}
 		if(isset($index)){
 			break;
 		}
 	}
-	if(!empty($length) && $length>1 && $startHour != $hour && $zeile1==1){					
+	if(!empty($length) && $length>1 && $startHour != $hour && $zeile1==1){
 		$length--;
 		$visibility="style=\"display:none\"";
 	}
-}	
+}
 
 printf("<tr %s %s>\n",$rowID,$visibility);	//Zeilen 	Tag auf
  		printf("<form method=\"post\">\n");	//Formular Anfang Tag
@@ -154,48 +156,43 @@ printf("<tr %s %s>\n",$rowID,$visibility);	//Zeilen 	Tag auf
 			 $hashGenerator->printForm();
 
 foreach($field as $f) {	
-	if(isset($index)){						//Wenn Content mitgeliefert wird und der Typ des aktuellen Inputs kein DropDown, dann Content austauschen
-		$f[5]=$stuff[$f[0]];					//Content des aktuellen Inputs austauschen, Name des Array-Indizes ist der name des Inputs
+	if(isset($index)){	//Wenn ein Content gefunden wurde
+		//Content des aktuellen Inputs austauschen, Name des Array-Indizes ist der name des Inputs
+		$f[5]=$stuff[$f[0]];
 		$edit = "readonly";
-	}	
+	}
 	else
-		$edit = "";			
-	
+		$edit = "";
+
 	if($f[2] == "text") {
-		printf("<td>%s <input type=\"text\" name=\"%s\" size=\"%spx\" value=\"%s\" %s >\n",	//Textbox erstellen
+		printf("<td>%s <input type=\"text\" name=\"%s\" size=\"%spx\" value=\"%s\" %s >\n",//Textbox erstellen
 				$f[1], $f[0], $f[3], $f[5], $f[6]);
 	}
 	else if($f[2] == "hidden") {
-		printf("<td><input type=\"hidden\" name=\"%s\" value=\"%s\">\n",			//Versteckten Typ erstellen
+		printf("<td><input type=\"hidden\" name=\"%s\" value=\"%s\">\n",	//Versteckten Typ erstellen
 				$f[0], $f[5]);
-	
+
 if($zeile1==1){
-	printf("<td>Teilung: <input type=\"text\" name=\"%s\" id=\"%s\" size=\"2px\" value=\"%s\" onchange=\"javascript:changeText(%s);\" %s>\n",	//Textbox erstellen  			
+	printf("<td>Teilung: <input type=\"text\" name=\"%s\" id=\"%s\" size=\"2px\" value=\"%s\" onchange=\"javascript:changeText(%s);\" %s>\n",	//Textbox erstellen
 		"visibilityText".$hour,"visibilityText".$hour,$stuff['split'],$hour,$edit);
-	printf("<td><input type=\"button\" size=\"4px\" value=\"OK\" onclick=\"javascript:Visibility(%s)\" >\n",	//Textbox erstellen  			
-		$hour);  						
-	printf("<td>Stunde: <input type=\"text\" name =\"hour\" size=\"3px\" value=\"%s\" readonly >\n",	//Textbox erstellen  			
-		$hour);
+	printf("<td><input type=\"button\" size=\"4px\" value=\"OK\" onclick=\"javascript:Visibility(%s)\" >\n", $hour);
+	printf("<td>Stunde: <input type=\"text\" name =\"hour\" size=\"3px\" value=\"%s\" readonly >\n", $hour);
 	printf("<td>L&auml;nge: <input type=\"text\" name=\"length\" id=\"%s\" size=\"5px\" value=\"%s\" onchange=\"javascript:visibleHours(%s);\" %s>\n",	//Textbox erstellen
 		"visibleHour".$hour, $stuff['length'], $hour,$edit);
 }
 else{
-	printf("<td><input type=\"hidden\" name=\"%s\" size=\"2px\" value=\"1\" >\n",	//Textbox erstellen  			
-		"visibilityText".$hour);
+	printf("<td><input type=\"hidden\" name=\"%s\" size=\"2px\" value=\"1\" >\n", "visibilityText".$hour);
 	printf("<td><td>\n");	  						
-	printf("<td><input type=\"hidden\" name =\"hour\" size=\"3px\" value=\"%s\" readonly >\n",	//Textbox erstellen  			
-		$hour);
+	printf("<td><input type=\"hidden\" name =\"hour\" size=\"3px\" value=\"%s\" readonly >\n",	$hour);
 	printf("<script type=\"text/javascript\">changeText(%s);</script>",$hour);
 }
-printf("<td><input type=\"hidden\" name =\"day\" value=\"%s\" >\n",	//Textbox erstellen  			
-	$_POST['day']);
-printf("<td><input type=\"hidden\" name =\"class\" value=\"%s\" >\n",	//Textbox erstellen  			
-	$_POST['class']);								
+printf("<td><input type=\"hidden\" name =\"day\" value=\"%s\" >\n",	$_POST['day']);
+printf("<td><input type=\"hidden\" name =\"class\" value=\"%s\" >\n",	//Textbox erstellen
+	$_POST['class']);
 	}
-	else if($f[2] == "dropdown") {												//Dropdown Menü erstellen
-
+	else if($f[2] == "dropdown") {										//Dropdown Menü erstellen
 		printf("<td>%s <input value=\"%s\" autocomplete=\"off\" size=\"%s\" list=\"%s\" name=\"%s\" %s></td>\n",
-				$f[1], $f[5], $f[3], $f[0], $f[0], $f[6]);			
+			$f[1], $f[5], $f[3], $f[0], $f[0], $f[6]);
 	}
 }
 if($zeile1==1)
@@ -210,7 +207,7 @@ else{
  		printf("<script type=\"text/javascript\">Visibility(%s);</script>",$hour);
  	$zeile+=1;
 }while($zeile<112);
-   	
+
 printf("</table>\n");
 }
 
@@ -297,42 +294,47 @@ else if($content["newSub"]){
 printf("<tr>\n"); //Zeilen Tag auf
 //Für jeden Eintrag im Array field einmal diese Schleife durchlaufen
 foreach($fieldRow1 as $f) {	
-	if($content!=false && $f[0]!="add" && $f[0]!="free"){ //Wenn Content mitgeliefert wird und der Typ des aktuellen Inputs keine CheckBox, dann Content austauschen
-		$f[5]=$content[$f[0]]; //Content des aktuellen Inputs austauschen, Name des Array-Indizes ist der name des Inputs
+	//Wenn Content mitgeliefert wird und nicht free oder add
+	if($content!=false && $f[0]!="add" && $f[0]!="free"){
+		 //Content des aktuellen Inputs austauschen, Name des Array-Indizes ist der name des Inputs
+		$f[5]=$content[$f[0]];
 	}
 	
 	if ($f[2] == "checkbox") { //Checkbox
-	
-		if($f[5]==true){ //Wenn gecheckt, dann Variable checked auf checked setzen
+		//Wenn gecheckt, dann Variable checked auf checked setzen
+		if($f[5]==true){ 
 			$checked="checked";
 		}
 		else{ //sonst leer
 			$checked="";					
 		}
 		printf("<td id=\"visibleCell%s%s\" style=\"display:%s;width:140px\">%s <input type=\"checkbox\" name=\"%s\" %s value=\"%s\" %s>\n",	//Checkbox erstellen
-				$ID,$f[0],$display[$f[0]],$f[1], $f[0], $checked, $f[0],$f[6]);
+			$ID,$f[0],$display[$f[0]],$f[1], $f[0], $checked, $f[0],$f[6]);
 	}
 	else if ($f[2] == "checkboxJava") {	//Checkbox
 		if(empty($content["ID"]))
 			$ID=0;
 		else
 			$ID=$content["ID"];
-			
-		printf("<td style=\"width:140px\">%s <input type=\"checkbox\" name=\"%s\" %s value=\"%s\" onclick=\"javascript:Visibility(%s,'%s')\">\n",		//Checkbox erstellen
-				$f[1], $f[0], $checked[$f[0]], $f[0],$ID,$f[0]);
+		//Checkbox erstellen
+		printf("<td style=\"width:140px\">%s <input type=\"checkbox\" name=\"%s\" %s value=\"%s\" onclick=\"javascript:Visibility(%s,'%s')\">\n",	
+			$f[1], $f[0], $checked[$f[0]], $f[0],$ID,$f[0]);
 	}
 	else if($f[2] == "text") {
 		if($f[0]=="comment")
 			printf("<td id=\"visibleSpan%s\" colspan=\"5\" style = \"display:%s\"></td>",$ID,$display["span"]);
-		printf("<td id=\"visibleCell%s%s\" style=\"display:%s\">%s <input id=\"%s%s\" type=\"text\" name=\"%s\" size=\"%spx\" value=\"%s\" %s >\n", //Textbox erstellen
-				$ID,$f[0],$display[$f[0]],$f[1],$ID,$f[0], $f[0], $f[3], $f[5], $f[6]);
+		//Textbox erstellen
+		printf("<td id=\"visibleCell%s%s\" style=\"display:%s\">%s <input id=\"%s%s\" type=\"text\" name=\"%s\" size=\"%spx\" value=\"%s\" %s >\n", 
+			$ID,$f[0],$display[$f[0]],$f[1],$ID,$f[0], $f[0], $f[3], $f[5], $f[6]);
 	}
 	else if($f[2] == "hidden") {
-		printf("<td><input type=\"hidden\" name=\"%s\" value=\"%s\">\n", //Versteckten Typ erstellen
-				$f[0], $f[5]);
+		//Versteckten Typ erstellen
+		printf("<td><input type=\"hidden\" name=\"%s\" value=\"%s\">\n", 
+			$f[0], $f[5]);
 	}
 	else if($f[2] == "dropdown") { //Dropdown Menü erstellen
-		printf("<td id=\"visibleCell%s%s\" style=\"display:%s\">%s <input value=\"%s\" autocomplete=\"off\" size=\"%s\" list=\"%s\" name=\"%s\" %s></td>\n",	$ID,$f[0],$display[$f[0]],$f[1], $f[5], $f[3], $f[0], $f[0], $f[6]);		
+		printf("<td id=\"visibleCell%s%s\" style=\"display:%s\">%s <input value=\"%s\" autocomplete=\"off\" size=\"%s\" list=\"%s\" name=\"%s\" %s></td>\n",
+			$ID,$f[0],$display[$f[0]],$f[1], $f[5], $f[3], $f[0], $f[0], $f[6]);		
 	}
 }
 	
@@ -348,24 +350,26 @@ printf("</tr>\n");
 printf("<tr id=\"visibleRow%s\" style=\"display:%s\">\n",$ID,$display["row"]); //Zeilen Tag auf
 		//Für jeden Eintrag im Array field einmal diese Schleife durchlaufen
 		printf("<td colspan=\"2\"></td>\n");
-foreach($fieldRow2 as $f) {		
-	if($content!=false && $f[0]!="add" && $f[0]!="free"){ //Wenn Content mitgeliefert, dann Content austauschen
-		$f[5]=$content[$f[0]]; //Content des aktuellen Inputs austauschen, Name des Array-Indizes ist der name des Inputs
+foreach($fieldRow2 as $f) {
+	//Wenn Content mitgeliefert wird, dann Content austauschen		
+	if($content!=false && $f[0]!="add" && $f[0]!="free"){ 
+		//Content des aktuellen Inputs austauschen, Name des Array-Indizes ist der name des Inputs
+		$f[5]=$content[$f[0]];
 	}
 	
 	if($f[2] == "text") {
-		printf("<td id=\"visibleCell%s%s\" style=\"display:%s\">%s <input  type=\"text\" name=\"%s\" size=\"%spx\" value=\"%s\" %s >\n", //Textbox erstellen
-				$ID,$f[0],$display[$f[0]],$f[1], $f[0], $f[3], $f[5], $f[6]);
+		//Textbox erstellen
+		printf("<td id=\"visibleCell%s%s\" style=\"display:%s\">%s <input  type=\"text\" name=\"%s\" size=\"%spx\" value=\"%s\" %s >\n", 
+			$ID,$f[0],$display[$f[0]],$f[1], $f[0], $f[3], $f[5], $f[6]);
 	}		
 	else if($f[2] == "dropdown") { //Dropdown Menü erstellen
-		printf("<td id=\"visibleCell%s%s\" style=\"display:%s\">%s <input value=\"%s\" autocomplete=\"off\" size=\"%s\" list=\"teShort\" name=\"%s\" %s></td>\n",	$ID,$f[0],$display[$f[0]],$f[1],$f[5], $f[3], $f[0], $f[6]);		
+		printf("<td id=\"visibleCell%s%s\" style=\"display:%s\">%s <input value=\"%s\" autocomplete=\"off\" size=\"%s\" list=\"teShort\" name=\"%s\" %s></td>\n", $ID,$f[0],$display[$f[0]],$f[1],$f[5], $f[3], $f[0], $f[6]);
 	}
 	else if ($f[2] == "radio") { //Checkbox		
-		printf("<td id=\"visibleCell%s%s\" style=\"display:%s\">%s <input type=\"radio\" id=\"visibleRadio%s%s\" name=\"freeRadio\" %s value=\"%s\"  %s onclick=\"javascript:Visibility(%s,'%s')\">\n",	 //Checkbox erstellen
-				$ID,$f[0],$display[$f[0]],$f[1], $ID,$f[0],$checked[$f[0]], $f[0],$f[6],$ID,$f[0]);
+		printf("<td id=\"visibleCell%s%s\" style=\"display:%s\">%s <input type=\"radio\" id=\"visibleRadio%s%s\" name=\"freeRadio\" %s value=\"%s\"  %s onclick=\"javascript:Visibility(%s,'%s')\">\n", $ID,$f[0],$display[$f[0]],$f[1], $ID,$f[0],$checked[$f[0]], $f[0],$f[6],$ID,$f[0]);
 	}				
 }
-			
+	
   	printf("</tr>\n");
 	printf("</form>\n");
 printf("</table>\n");
