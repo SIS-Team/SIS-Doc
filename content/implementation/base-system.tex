@@ -87,6 +87,12 @@ Der Punkt \enquote{schreibe Daten in Session} läuft folgendermaßen ab: Die Kla
 Die \texttt{logout()}-Funktion macht im das selbe, wie die \texttt{killSession()}-Funktion, mit dem Unterschied, dass beim Logout die Session nicht neu initialisiert wird.
 
 
+\subsection{Connect}
+\label{sec:content_imple_base_connect}
+Das Connect-Modul hat die simple Aufgabe, die Verbindung mit dem DMS aufzubauen und die Datenbank auszuwähnen.
+\lstinputlisting[style=custom, language=php, caption={/modules/general/Connect.php; Zeilen 7-10}, label={lst:content_imple_base_session_login}, firstline=7, lastline=10, firstnumber=7]{sources/base/SessionManager.php}
+In der hier eingebundenen Datei /modules/general/MySQLpassword.php werden eigentlich nur die drei Variablen \texttt{\$host}, \texttt{\$user} und \texttt{\$passwd}. Der Name der Datenbank \enquote{sis} ist statisch in der Connect.php eingetragen, kann aber bei Bedarf geändert werden.
+
 \subsubsection{Site}
 
 
