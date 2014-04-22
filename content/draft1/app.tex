@@ -13,12 +13,12 @@ Damit die Tabellen für Stundenpläne und Supplierungen nicht zu unübersichtlic
 
 
 \subsubsection{Konzept}
-Zum erstellen einer App für Smartphones und Tablets wurde das Framework PhoneGap von Adobe genutzt. Dadurch konnten für die Entwicklung der App Webtechnologien wie zum Beispiel HTML oder JavaScript verwendet werden. Im Gegensatz zu herkömmlichen Web-Apps haben diese Applikationen aber den Nachteil, dass PHP-Seiten nicht direkt auf dem Gerät verwendet werden können, da die App lokal auf dem Gerät und nicht auf einem Webserver betrieben wird.
+Zum erstellen einer App für Smartphones und Tablets wurde das Framework PhoneGap von Adobe genutzt. Dadurch konnten für die Entwicklung der App Webtechnologien, wie zum Beispiel HTML oder JavaScript, verwendet werden. Im Gegensatz zu herkömmlichen Web-Apps haben diese Applikationen aber den Nachteil, dass PHP-Seiten nicht direkt auf dem Gerät verwendet werden können, da die App lokal auf dem Gerät und nicht auf einem Webserver betrieben wird.
 Deshalb muss man bei der Entwicklung einer App dieser Art die Applikationsdateien grundsätzlich in 2 Arten Unterteilen.\\
-Die App-Dateien: Das sind jene Dateien welche direkt auf dem Gerät gespeichert werden beziehungsweise als App gedownloadet werden (zum Beispiel HTML oder JavaScript).\\
+Die App-Dateien: Das sind jene Dateien welche direkt auf dem Gerät gespeichert, werden beziehungsweise als App gedownloadet werden (zum Beispiel HTML oder JavaScript).\\
 Die API-Dateien: Das sind jene Dateien welche auf dem Sever gespeichert sind und welche der Applikation den Zugriff auf die benötigten Daten, wie zum Beispiel Stundenpläne, ermöglichen (dabei handelt es sich hauptsächlich um PHP-Dateien).\\
 \\
-App:	In der App werden alle Daten gespeichert welche nicht dynamisch geändert werden müssen, also Daten die für jeden Benutzer gleich sind, zum Beispiel die Rohtabelle auf der Stundenplanseite oder das gesamte Menü. Da sich diese Dinge nie ändern wurden sie direkt in der App gespeichert um Downloadvolumen und Ladezeit zu sparen.\\
+App:	In der App werden alle Daten gespeichert welche nicht dynamisch geändert werden müssen, also Daten die für jeden Benutzer gleich sind, zum Beispiel die Rohtabelle auf der Stundenplanseite oder das gesamte Menü. Da sich diese Dinge nie ändern, wurden sie direkt in der App gespeichert, um Downloadvolumen und Ladezeit zu sparen.\\
 Zu den Daten der App gehören aber auch Bilder für das App-Icon oder den Splashscreen (ein Bild welches beim Starten der App angezeigt wird).\\
 Und eine wichtige Datei muss in der App noch enthalten sein. Die Datei config.xml, dabei handelt es sich um eine Konfigurationsdatei, in welcher alle wichtigen Informationen zur App stehen, wie zum Beispiel der Name der App, um welche Version es sich handelt, welche Berechtigungen die App besitzt, etc.\\
 \\
