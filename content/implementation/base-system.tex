@@ -14,7 +14,7 @@ In dieser werden drei Konstanten definiert:
 
 \subsubsection{Main-File}
 Die quasi Hauptdatei des Basis-Systems stellt die Datei /modules/general/Main.php dar. Diese bindet weitere wichtige Dateien des Grundsystems ein, dies soll das Einbinden der wichtigsten Module erleichtern.
-\lstinputlisting[style=custom, language=java, caption={/modules/general/Main.php},  label={lst:content_imple_base_main}, firstline=8, lastline=12, firstnumber=8]{sources/base/Main.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/general/Main.php; Zeilen 8-12},  label={lst:content_imple_base_main}, firstline=8, lastline=12, firstnumber=8]{sources/base/Main.php}
 Es werden folgende Module des Basis-Systems eingebunden:
 \begin{itemize}
 	\item CheckCookies, siehe \autoref{sec:content_imple_base_cookie}
@@ -24,6 +24,11 @@ Es werden folgende Module des Basis-Systems eingebunden:
 	\item Site, siehe \autoref{sec:content_imple_base_site}
 \end{itemize}
 
+\subsubsection{CheckCookie}
+\label{sec:content_imple_base_cookie}
+Das Modul CheckCookie prüft, ob die Cookies erlaubt sind, und leitet gegebenenfalls auf die Cookies-Akzeptieren-Seite (/cookies/) weiter. Zusätzlich wird das \enquote{Allow-Cookies}-Cookie erneuert (das Ablaufdatum wird 100 Tage in die Zukunft gesetzt).
+\lstinputlisting[style=custom, language=php, caption={/modules/general/CheckCookie.php; Zeilen 9-13},  label={lst:content_imple_base_cookie}, firstline=9, lastline=13, firstnumber=9]{sources/base/CheckCookie.php}
+Wie im Quellcode ersichtlich ist, wird die \texttt{REQUEST\_URI}, also die URL inklusive GET-Paremeter und Fragmentbezeichner der aktuellen Seite, der Cookies-Akzeptieren-Seite als GET-Parameter mitgegeben. Dies dient dazu, dass die Cookies-Akzeptieren-Seite den Benutzer nach dem Akzeptieren wieder auf die ursprüngliche Seite zurückschicken kann.
 %
 %
 % \lstinputlisting[style=custom, language=php, caption={Dateiname}, label={lst:content_imple_timetables_labelname}]{sources/ordner/datei.php}
