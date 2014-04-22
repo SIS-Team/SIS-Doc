@@ -1,11 +1,16 @@
 \subsection{Basis-System}
-% TODO: flo
-% Wie funktioniert das Basis-System?
-% Was macht es?
-% Was kann es?
-%
-% Hier dürfen auch auch Sourcecode-Teile vorkommen.
-% Wenn Sourcecodes: jeweilge File in den Ordner /sources/ in einen Unterordner packen und mit folgendem Befehl includieren:
+Das Basissystem ist relativ simple gehalten.\\
+\subsubsection{Konfiguration}
+Die erste - und wohl auch wichtigste - Datei des Basis-Systems ist die Datei /config.php, diese soll unter anderem das Problem des Wurzelverzeichnisses lösen (siehe \gref{sec:content_solutions_root}).
+\lstinputlisting[style=custom, language=php, caption={/config.php}, label={lst:content_imple_base_config}]{sources/base/config.php}
+In dieser werden drei Konstanten definiert:
+\begin{description}
+	\item[\texttt{BETA}] ist \texttt{true} solange das System im Testbetrieb ist.
+	\item\texttt{[RELATIVE\_ROOT}] beinhaltet den relativen Pfad vom Grundverzeichnis des virtuellen Hosts (vorgegeben durch den Webserver) zum Grundverzeichnis des Projektes. Hierbei ist zubachten, dass das erste Querstrich-Zeichen wegzulassen ist.\\
+	\textit{Beispiel:} Ist das Grundverzeichnis des virtuellen Hosts bereits das Wurzelverzeichnis des Projektes, so muss der String "'"' verwendet werden.\\
+	\textit{Beispiel:} Befindet sich das Projekt im Ordner \enquote{foobar} unterhalb des Grundverzeichnisses des virtuellen Hosts, so ist der betreffende String "'\texttt{foobar/}"'.
+	\item[\texttt{ROOT\_LOCATION}] beinhaltet den absoluten Pfad vom Grundverzeichnis des Servers zum Projektverzeichnis. Dieser wird aus dem \texttt{DOCUMENT\_ROOT}, also dem Grundverzeichnis des virtuellen Hosts, und dem relativen Pfad des Projekt-Ordners zum \texttt{DOCUMENT\_ROOT} gebildet.
+\end{description} 
 %
 %
 % \lstinputlisting[style=custom, language=php, caption={Dateiname}, label={lst:content_imple_timetables_labelname}]{sources/ordner/datei.php}
