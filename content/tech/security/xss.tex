@@ -1,5 +1,5 @@
 \subsubsection{Cross-Site Scripting (Weiland)}
-Oft auch XSS genannt. Bei einem Angriff mit Cross-Site-Scripting wird eine Website, welche auch eine ansonsten vertrauenswürdige Seite sein kann, vom Angreifer mit einem Script versehen, welches im Browser des Opfers ausgeführt wird.\\
+Oft auch XSS genannt. Bei einem Angriff mit Cross-Site-Scripting wird eine Website, welche auch eine ansonsten vertrauenswürdige Seite sein kann, vom Angreifer mit einem Script versehen, welches im Browser des Opfers ausgeführt wird. Dadurch kann auch die digitale Identität des Opfers gestohlen werden (siehe \gref{} )\\ %Session-Hijacking
 Dabei muss der Angreifer nicht zwangsläufig auf den Server zugreifen können. Dadurch, dass viele Seiten dynamisch gestaltet sind, bieten sich einem Angreifer viele Möglichkeiten. Zum Beispiel gibt es oft die Möglichkeit eine Kommentar zu hinterlassen. Wenn in solch einem Feld ein Script platziert wird, wird es vom Browser eines Betrachters automatisch ausgeführt.
 \paragraph{Problem}
 Es gibt grundsätzlich drei verschiedene Arten von Cross-Site-Scripting:
@@ -20,7 +20,7 @@ Bei dieser Art des XSS wird das Script vom Benutzer \enquote{geliefert} und nich
 </html>
 \end{lstlisting}
 \subparagraph{persistent oder beständig}
-Bei dieser Vorgehensweise wird das Script auf der Website gespeichert und somit bei jeder Anfrage ausgeliefert wird.\\ Dies lässt sich leicht anhand eines Forums beschreiben:\\\\
+Bei dieser Vorgehensweise wird das Script auf der Website gespeichert und somit bei jeder Anfrage ausgeliefert wird. \\ Dies lässt sich leicht anhand eines Forums beschreiben:\\\\
 Der Angreifer hinterlässt eine Nachricht im Forum, in der ein Script eingebaut ist. Sobald nun ein Besucher des Forums diese Nachricht lesen will, führt der Browser das Script aus.
 \subparagraph{DOM-basiert oder lokal}
 Hierbei wird das bereits in der Seite vorhandene Script, z.B. Javascript, dazu verwendet, das eigene Script zu platzieren.\\
@@ -34,12 +34,11 @@ document.write("<OPTION value=2>English</OPTION>");
 
 Diese Seite kann nun durch mitgeben des Parameters  \texttt{default=<script type="text/javascript"> alert ('Dies sollte nicht passieren!'} dazu gebracht werden, dieses Script in den Code einzufügen und ausführen zu lassen. Dabei bemerkt der Server gar nichts von diesem Angriff, da der Code clientseitig verändert wird. 
 
-
 \paragraph{Methoden um Vorzubeugen}
 Die effektivste Methode um XSS vorzubeugen, ist jegliche Benutzereingabe zu verhindern und nur eine rein statische Website zu verwenden. Da dies in der Praxis jedoch meist nicht möglich ist, müssen andere Methoden verwendet werden.\\\\ 
-Um XSS auf seiner eigenen Site zu verhindern sollten alle Eingaben, welche ausgegeben werden zum Beispiel mit dem Befehl \enquote{htmlspecialchars}(PHP) behandelt oder auf irgendeine andere Art encodiert werden. Dadurch werden alle Sonderzeichen durch die dafür vorgesehenen Zeichen in der jeweiligen Sprache umgewandelt ( z.B. htmlspecialchars: aus < wird \&lt;), wodurch kein ausführbares Script mehr vorliegt.
-
-Manche Browser verhindern die Verwendung von XSS automatisch, so wird beispielsweise bei Internet Explorer 11 diese Meldung (\autoref{fig:content_security_xss_ie}) ausgegeben, wenn die Seite \autoref{lst:content_XSS_Vulnerable_reflected} mit einem Script als input aufgerufen wird.
+Um XSS auf seiner eigenen Site zu verhindern sollten alle Eingaben, welche ausgegeben werden zum Beispiel mit dem Befehl \enquote{htmlspecialchars}(PHP) behandelt oder auf irgendeine andere Art encodiert werden. Dadurch werden alle Sonderzeichen durch die dafür vorgesehenen Zeichen in der jeweiligen Sprache umgewandelt ( z.B. htmlspecialchars: aus < wird \&lt;), wodurch kein ausführbares Script mehr vorliegt.\\\\
+Ebenso ist es möglich alle vom Benutzer tätigbaren Eingaben mit einer Whitelist zu versehen. Dies bedeutet, dass nur Eingaben eines bestimmten Formats zugelassen werden (z.B. 01.01.2014). Jedoch ist diese Methode meist aufgrund vieler verschiedener erlaubter Eingabeformate (z.B. Forum) nicht möglich.\\\\
+Manche Browser verhindern die Verwendung von reflektierten XSS automatisch, so wird beispielsweise bei Internet Explorer 11 diese Meldung (\autoref{fig:content_security_xss_ie}) ausgegeben, wenn die Seite \autoref{lst:content_XSS_Vulnerable_reflected} mit einem Script als input aufgerufen wird.
 
 \begin{figure}[H]
 \centering
@@ -47,3 +46,6 @@ Manche Browser verhindern die Verwendung von XSS automatisch, so wird beispielsw
 \caption{Internet Explorer blockiert reflektiertes XSS}
 \label{fig:content_security_xss_ie}
 \end{figure}
+
+\paragraph{Samy}
+Einer der bekanntesten Angriffe mittels XSS dürfte der Wurm \enquote{Samy} sein. Dieser wurde im Jahr 2005 erstellt und auf MySpace hochgeladen. Durch den Besuch der Seite von Samy's Entwickler wurde das Script ausgeführt, welches den Entwickler als Freund hinzufügte, den Text \enquote{but most of all, samy is my hero} auf die Pinnwand schrieb und das Script auf die eigene Seite schrieb, wodurch den Besuchers der eigenen Seite das selbe Schicksal blüht.
