@@ -1,0 +1,13 @@
+digraph php {	
+	subgraph cluster_0 {
+		style=filled;
+		color=lightgrey;
+		node [style=filled,color=white];
+		Webserver -> "PHP-Interpreter" [label="\\parbox{3cm}{Übergabe\\\\der Datei}"];
+		"PHP-Interpreter" -> Webserver [label="\\parbox{3cm}{Rückgabe\\\\des erzeugten\\\\Codes}"];
+		label = "Server";
+	}
+	
+	Client -> Webserver [label="\\parbox{3cm}{Anfrage für\\\\PHP-Datei}"];
+	Webserver -> Client [label="\\parbox{3cm}{Antwort des\\\\erzeugten Codes}"];
+}
