@@ -4,6 +4,8 @@ Als PHP-Module wurden nur php5-mysql sowie php5-ldap verwendet.\\
 \begin{quote}
 Seit PHP4 kamm man als Entwickler auf Objektorientierung zurückgreifen. \cite[S. 231]{php5}
 \end{quote}
+Auch, wenn PHP inzwischen vollständig objektorientiert ist, kann immer noch funktional programmiert werden.
+\paragraph{Einbindung\\}
 Ein PHP Programm kann im Gegensatz zu anderen serverseitigen Programmiersprachen direkt in den HTML-Quelltext der Website eingebunden werden. Gekennzeichnet werden diese eingebetteten Programme mit den PHP-Tags (siehe Programm-Code \ref{lst:content_php_Tags}).\\
 \begin{lstlisting}[style=custom, language=PHP,  caption={PHP-Tags},label={lst:content_php_Tags}]
 <?php 
@@ -53,22 +55,20 @@ user=20091234&password=passwort&send=1	//POST-Parameter
 \end{lstlisting}
 \begin{lstlisting}[style=custom, language=PHP, caption={Beispiel POST},label={lst:content_php_POST}]
 <html>
-<head>
-</head>
-<body>
-<?php
-
-if(!empty($_POST['text']))	//Wenn die Variable text nicht leer ist
-	echo $_POST['text'];	//Soll der Text ausgegeben werden
-else	//Wenn sie leer ist
-	echo "nichts eingegeben";	//Soll eine Warnung ausgegeben werden
-?>
-
-<form method="post">	//method="post" --> Parameter werden mit POST mitgegeben
-	<textarea name="text"></textarea>
-	<button type="submit" name="save" value="Speichern">
-</form>
-</body>
+	<head>
+	</head>
+	<body>
+		<?php
+			if(!empty($_POST['text']))	//Wenn die Variable text nicht leer ist
+				echo $_POST['text'];	//Soll der Text ausgegeben werden
+			else	//Wenn sie leer ist
+				echo "nichts eingegeben";	//Soll eine Warnung ausgegeben werden
+		?>
+		<form method="post">	//method="post" --> Parameter werden mit POST mitgegeben
+			<textarea name="text"></textarea>
+			<input type="submit" name="save" value="Speichern" />
+		</form>
+	</body>
 </html>
 \end{lstlisting}
 \subparagraph{GET}
@@ -76,22 +76,20 @@ Bei GET werden die mitgegebenen Parameter direkt an die URL angehängt, um dies 
 Bei GET besteht die Grenze der Datenlänge darin, dass eine URL nur ca. 2000 lang sein darf, dies ist Browser und Server abhängig, aber 2000 Zeichen funktioniert bei allen Server-Client Kombinationen.
 \begin{lstlisting}[style=custom, language=PHP,  caption={Beispiel GET},label={lst:content_php_GET}]
 <html>
-<head>
-</head>
-<body>
-<?php
-
-if(!empty($_GET['text']))	//Wenn die Variable text nicht leer ist
-	echo $_GET['text'];	//Soll der Text ausgegeben werden
-else	//Wenn sie leer ist
-	echo "nichts eingegeben";	//Soll eine Warnung ausgegeben werden
-?>
-
-<form method="get">	//method="get" --> Parameter werden mit GET mitgegeben
-	<input type="text" name="text"></textarea>
-	<button type="submit" name="save" value="Speichern">
-</form>
-</body>
+	<head>
+	</head>
+	<body>
+		<?php
+			if(!empty($_GET['text']))	//Wenn die Variable text nicht leer ist
+				echo $_GET['text'];	//Soll der Text ausgegeben werden
+			else	//Wenn sie leer ist
+				echo "nichts eingegeben";	//Soll eine Warnung ausgegeben werden
+		?>
+		<form method="get">	//method="get" --> Parameter werden mit GET mitgegeben
+			<input type="text" name="text" />
+			<input type="submit" name="save" value="Speichern"/>
+		</form>
+	</body>
 </html>
 \end{lstlisting}
 \subparagraph{URL-Encoding}
@@ -122,11 +120,69 @@ kann es zu Fehlinterpretation des Rückgabewertes kommen. Um solche Situationen 
 ?>
 \end{lstlisting}
 \subparagraph{Serverseitige Realisierung}
-Ein Problem und gleichzeitig auch ein Vorteil besteht darin, dass der Webserver die PHP-Datei compiliert 
-und eine fertige HTML-Datei an den Client sendet. Dies muss in dieser Vorgehensweise geschehen, da der Webbrowser am Client nur HTML Code versteht.
-Der Vorteil liegt darin, dass keine Rechenleistung, beziehungsweise nur soviel, damit die Webseite gerendert werden kann, am Client nötig ist. Ein weiterer Vorteil liegt darin, dass Daten, die in der PHP Datei verarbeitet werden, nicht unbedingt in dieser Form an den Client gesendet werden. 
+Ein Nachteil aber auch gleichzeitig ein Vorteil besteht darin, dass der Webserver die PHP-Datei interpretiert und eine fertige HTML-Datei an den Client sendet. Der Vorteil liegt darin, dass keine Rechenleistung, beziehungsweise nur soviel, damit die Webseite gerendert werden kann, am Client nötig ist. Ein weiterer Vorteil liegt darin, dass Daten, die in der PHP Datei verarbeitet werden, nicht unbedingt in dieser Form an den Client gesendet werden. 
 Jedoch bedeutet dies auch, dass ohne neue Anfrage zum Server und 
 daraus resultierendem Neuladen der ganzen Seite kann sich nichts am Seitenaufbau ändern. 
-Soll sich z.B. bei Auswählen einer Check Box etwas am Aufbau der Seite ändern, 
-so muss entweder die Seite neu geladen werden oder man greift auf andere Technologien zurück. 
-(siehe \ref{sec:content_js_Javascript} oder \ref{sec:content_js_AJAX})
+In diesem Fall muss auf andere Technologien zurückgegriffen werden (siehe \ref{sec:content_js_Javascript} oder \ref{sec:content_js_AJAX}).
+
+\paragraph{Objektorientierung (Buchberger)\\}
+Es sollte bereits bekannt sein, was Objektorientierung ist, dementsprechend werde ich hier nun nicht mehr genau darauf eingehen.\\
+PHP5 verfügt über alle Merkmale, die auch andere große OOP-Sprachen (wie zum Beispiel C++ oder Java) auszeichnen.\\
+\\
+Klassen werden über das Token \texttt{class} erstellt, ihm folgt der Name der Klasse und der Klassen-Block. Alles, das innerhalb des Klassen-Blocks definiert wird (Variablen und Funktionen) sind Member der Klasse (also Felder, beziehungsweise Methoden). Ebenso verhällt es sich mit Unterklassen. Variablen werden mit dem Schlüsselwort \texttt{var} (bis PHP5 equivalent mit \texttt{public}, siehe später) und Funktionen wie gehabt \texttt{function} eingeleitet.\\
+Vererbung geschied über das Token \texttt{extends} zwischen Sub- und Super-Klassen-Name. Es gibt keine Mehrfachvererbungen.\\
+Der Konstructor ist die Methode \texttt{\_\_construct()}, der Konstruktor der Super-Klasse ist \texttt{parent::\_\_construct()}. In manchen PHP-Versionen war unter Umständen die Methode, die den gleichen Namen, wie die Klasse trägt, der Konstruktor, allerdings sollte man sich nicht darauf verlassen.\\
+Für den Destruktor verhält es sich analog zum Konstruktor, nur dass die dementsprechende Methode \texttt{\_\_destruct()} ist. Bemerkenswert ist, dass die Destruktoren auch ausgeführt werden, wenn das Script durch den Befehl \texttt{exit()} beendet wurde. Wird dieser Befehl in einem Destruktor aufgerufen, so werden die verbleibenden Shutdown-Routinen nicht mehr ausgeführt. Wirft ein Konstruktor während des Beenden des Scripts eine Exception, so wird ein \enquote{Fatal Error} erzeugt.\\
+Ebenso, wie auch bei den meisten anderen OOP-Sprachen, gibt es auch in PHP die Sichtbarkeits-Schlüsselwörter \texttt{private} und \texttt{public}, um private beziehungsweise publike Eigenschaften und Methoden kennzuzeichnen. Zusätzlich gibt es die Sichtbarkeit \texttt{protected}, der Zugriff auf diese Eigenschaften und Methoden ist nur der eigenen, bezeihungsweise ihrer Sub-Klassen gestattet. Das Schlüsselwort \texttt{var} ist bis PHP5 equivalent mit \texttt{public}, in späteren Versionen generiert es eine \texttt{E\_STRICT}-Warnung. Funktionen, die nicht \textit{zusätzlich} eine Sichtbarkeit angegeben haben, sind \texttt{public}.\\
+Die Instanzierung erfolgt mit dem \texttt{new}-Schlüsselwort.\\
+Der Zugriff auf die Obejekte erfolgt mit dem unter C++ für Objekt-Pointer verwendeten \texttt{->} Operator. Innerhalb des eigenen Objektes, kann dasselbe mit \texttt{this} aufgerufen werden.
+\begin{lstlisting}[style=custom, language=PHP,  caption={Beispiel: OOP in PHP},label={lst:content_php_php}]
+<?php 
+	class Frucht {
+		protected $giftig; // ist die Frucht giftig?
+		private $gegessen = 0; // Prozent
+		public function uebrig() {
+			return 100 - this->gegessen;
+		}
+		public function __construct($giftig) {
+			this->giftig = $giftig;
+		}
+		public function essen($bissen) {
+			// Parameter ist die Größe des Bissens (0 - 100);
+			$bissen %= 100; 
+			
+			if ($this->giftig && ($bissen > 10))
+				throw new Exception("Jetzt bist du tot. D:");
+				
+			this->gegessen -= $bissen;
+			
+			if (this->gegessen < 0) {
+				this->gegessen = 0;
+				return true;
+			}
+			return false;
+		}
+	}
+	
+	class Apfel extends Frucht {
+		public function __construct() {
+			parent::__construct(false); // Aepfel sind nicht giftig
+		}
+		public function vergiften() {
+			// Spieglein, Spieglen an der Wand...
+			this->giftig = true;
+		}
+	}
+	
+	$apfel = new Apfel();
+	$bissen = rand(5, 15);
+	
+	try {
+		for($i = 0; !$apfel->essen($bissen); $i++);
+		
+		echo "Du hast " . $i . " Bissen gebraucht."
+	} catch (Exception $e) {
+		echo $e->getMessage();
+	}
+?>
+\end{lstlisting}
