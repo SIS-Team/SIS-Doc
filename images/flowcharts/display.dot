@@ -1,5 +1,6 @@
 digraph flowchart {
 	rankdir=TB;
+	ranksep="0.01 equally";
 
 	Start[shape="box", style=rounded];
 	"exit"[shape="box", style=rounded];

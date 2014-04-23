@@ -1,5 +1,6 @@
 digraph flowchart {
 	rankdir=TB;
+	ranksep="0.02 equally";
 
 	Start[shape="box", style=rounded];
 	"Monitor ein?"[shape="diamond", style=""];
