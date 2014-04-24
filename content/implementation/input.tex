@@ -9,7 +9,7 @@
 %
 % Als weitere Eigenschaft kannst du die Zeilen angeben: [firstline=300, lastline=500]
 % Damit nicht alles reinkopiert wird.
-Wie schon bei \autoref{sec:content_draft_form} erwähnt, ist es nicht möglich für alle Eingabemasken die selbe Routine zu verwenden, deshalb unterteilen wir auch hier in 3 verschiedene Routinen. In die Routine für die normalen Eingabemasken, in die Eingabemaske für die Supplierungen und in die Eingabemaske für die Stundenpläne.
+Wie schon bei \autoref{sec:content_draft_form} erwähnt, ist es nicht möglich für alle Eingabemasken die selbe Routine zu verwenden, deshalb werden auch hier die Routinen in 3 Teile geteilt. In die Routine für die normalen Eingabemasken, in die Eingabemaske für die Supplierungen und in die Eingabemaske für die Stundenpläne.
 \subsubsection{Routine für die normalen Eingabemasken}
 Für die Normale Eingabemaske gibt es eine Funktion mit dem Namen \textit{form\_new}, dieser Funktion müssen 3 Parameter mitgegeben werden. Ein Parameter ist der Aufbau einer Eingabezeile (Variable \textit{\$field}), der zweite ist der Inhalt (Variable \textit{\$content}) und der letzte Parameter ist ein Objekt, das für die Sicherheit der Formulare benötigt wird. (siehe \autoref{sec:content_draft_token})\\
 Da jede Eingabezeile einen Datensatz einer MySQL Tabelle widerspiegelt,
@@ -42,7 +42,7 @@ Der Aufbau ist recht simpel. Jede Zeile entspricht einem Input-Feld und jede Spa
 \label{tab:content_imple_inout_array}
 \end{table}
 Mit diesen Eigenschaften können beliebige Eingabemasken erstellt werden, die einzige Voraussetzung ist, dass sich alle Input-Felder in einer Zeile  befinden müssen.\\
-Für eine bessere Darstellung befindet sich jede Zeile in einer eigenen Tabelle. Jedes Input-Feld in einer eigenen Zelle. Jede Tabelle wir mit einem Formular umschlossen. Somit entspricht jede Zeile einem eigenen Formular. Dies hat zur Folge, dass jede Zeile eigens bearbeitet werden kann.\\
+Für eine bessere Darstellung befindet sich jede Zeile in einer eigenen Tabelle. Jedes Input-Feld in einer eigenen Zelle. Jede Tabelle wird mit einem Formular umschlossen. Somit entspricht jede Zeile einem eigenen Formular. Dies hat zur Folge, dass jede Zeile eigens bearbeitet werden kann.\\
 Eine Idee war, dass alle Zeilen in einer Tabelle sind, dies ist jedoch nicht so einfach realisierbar, da die leere Zeile keine Löschfunktion hat und somit auch weniger Spalten. Dies mit ein zu beziehen würde es unnötig verkomplizieren. Somit wurde diese Möglichkeit nicht verwendet.
 \paragraph{Parameter \$content\\}
 Mit diesem Funktionsparameter werden die Inhalte der Input-Felder mitgegeben. Wird diesem Parameter ein \textit{false} mitgegeben, so wird eine leere Zeile erstellt. Soll jedoch die Zeile mit Inhalt befüllt werden, so wird dieser Variable ein eindimensionales Array mitgegeben. Diese Routine wurde so konzipiert, dass dieser Inhalt einem Datensatz des MySQL-Querys, der mit der Funktion \textit{mysql\_fetch\_array} verarbeitet wurde, entspricht. (siehe \autoref{lst:content_imple_input_bsp} Zeile 56)\\
@@ -291,7 +291,7 @@ Für die Eingabemaske der Stundenpläne werden 4 JavaScript Funktionen benötigt
 	\lstinputlisting[style=custom, language=java, caption={/data/scripts/lesson.js; Zeile 64 - 76},  label={lst:content_imple_input_form_lessons_java_3}, firstline =64, lastline = 76, firstnumber = 64 ]{sources/input/lessons.js}
 	
 	\item \textit{visibleHours()}\\
-	In dieser Funktion werden die Stunden ausgeblendet, welche nicht benötigt werden, aufgrund der Länge einer vorherigen Stunde. Dieser Funktion wir mit dem Parameter \textit{hour} die Stunde mitgegeben.\\
+	In dieser Funktion werden die Stunden ausgeblendet, welche nicht benötigt werden, aufgrund der Länge einer vorherigen Stunde. Dieser Funktion wird mit dem Parameter \textit{hour} die Stunde mitgegeben.\\
 	Zuerst werden alle Zeilen ab der mitgegebenen Stunde, die als Länge 1 haben, sichtbar gemacht. Anschließend werden, der Länge entsprechend, die Stunden ausgeblendet.
 	
 	\lstinputlisting[style=custom, language=java, caption={/data/scripts/lesson.js; Zeile 78 - 105},  label={lst:content_imple_input_form_lessons_java_4}, firstline =78, lastline = 105, firstnumber = 78 ]{sources/input/lessons.js}
