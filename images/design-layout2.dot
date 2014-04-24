@@ -1,0 +1,7 @@
+digraph php {
+	node [shape=record];
+	
+	struct0 [label="{ ULL2 | BLL2 } | { ULL1 | BLL1 }"];
+	dings   [label="Logo\n ",shape=diamond]
+	struct1 [label="{ URL1 | BRL1 } | { URL2 | BRL2 }"];
+}
