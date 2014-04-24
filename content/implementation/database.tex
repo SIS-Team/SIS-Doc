@@ -1,16 +1,485 @@
 \subsection{Datenbank}
 % Implementierung der Datenbank
+Die Implementierung der Datenbank wurde mit dem gratis erhältlichen Tool \textit{phpMyAdmin} vorgenommen. Unsere Wahl viel auf dieses Tool, da es einfach zu verwenden ist und nicht installiert werden muss. Die andere Möglichkeit wäre gewesen, dass wir die Datenbank mittels \textit{PHP} erstelle, dies hätte jedoch wesentlich mehr Zeit benötigt. Eine andere Möglichkeit wäre gewesen, dass wir mittels SSH und dem Kommandozeilen-Tool für MySQL die Datenbank erstellt hätten, dies war uns jedoch nicht möglich, da wir keinen SSH-Zugriff bekamen.
 \subsubsection{Aufbau}
 % Genaue Auflistung der Tabellen, Spalten, Kommentare, etc.
 %
 % @marco: Du hast das ja gemacht. Willst du das schreiben?
 % Ich würde sagen, du schreibst da einfach, bis dir nichts mehr einfällt, und dann mentionst du mich in einem commit und ich schreib weiter.
+Wie schon im Abschnitt \autoref{sec:content_solution_db} aufgelistet wurden die Tabellen dementsprechend erstellt. In diesem Abschnitt werden die Tabellen mit ihren Spalten und Datentypen aufgelistet.\\
+\\
+\paragraph{Klassen\\}
+In dieser Tabelle werden alle Klassen gespeichert. Der Tabellenname lautet \textit{classes}. Diese Tabelle umfasst insgesamt 6 Spalten.
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          name & Text & Name der Klasse \\
+          \hline
+          sectionFK & Integer & Fremdschlüssel auf die Abteilungs-Tabelle \\
+          \hline
+          teacherFK & Integer & Fremdschlüssel auf die Lehrer-Tabelle\\
+          \hline
+          roomFK & Integer & Fremdschlüssel auf die Raum-Tabelle\\
+          \hline
+          invisible & Boolean & Ob Eintrag sichtbar oder nicht\\
+   \bottomrule
+\end{tabular}
+\caption{Klassen-Tabelle}
+\end{table}
+
+\paragraph{Display-Modus\\}
+In dieser Tabelle sind die Modi für die Ein- und Ausschaltzeiten für die Monitore gespeichert. Der Tabellenname lautet \textit{displayMode}. Diese Tabelle umfasst insgesamt 2 Spalten.
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          name & Text & Name des Modus \\
+   \bottomrule
+\end{tabular}
+\caption{Display-Modus-Tabelle}
+\end{table}
+
+\paragraph{Stunden\\}
+In dieser Tabelle werden alle Stunden gespeichert, mit deren Anfangs- und Endzeiten. Um nicht zusätzlich die Wochentage speichern zu müssen, werden dise zu den Stunden gespeichert. Deshalb ist eine gewisse Redundanz der Zeiten gegeben, diese nahmen wir jedoch in kauf. Zu einem Problem wird dies dann, wenn sich zum Beispiel eine Uhrzeit ändern sollte. Der Tabellenname lautet \textit{hours}. Diese Tabelle umfasst insgesamt 6 Spalten.
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          weekday & Text & Wochentag - z.B.: Montag  \\
+          \hline
+          weekdayShort & Text & Wochentag-Kürzel z.B.: Mo   \\
+          \hline
+          hour & Integer & Stunde z.B: 1 oder 12  \\
+          \hline
+          startHour & Time & Anfangsstunde z.B.: 8:00  \\
+          \hline
+          endHour & Time & Endstunde z.B.: 8:50 \\
+   \bottomrule
+\end{tabular}
+\caption{Stunden-Tabelle}
+\end{table}
+
+\paragraph{Stundenplan\\}
+Für den Stundenplan sind 2 Tabellen notwendig. In einer Tabelle werden die Basisstunden einer Klasse gespeichert. In der anderen Tabelle werden die Baisstunden mit den anderen Informationen verknüpft. (siehe \autoref{sec:content_solution_db})\\
+
+\subparagraph{Basis-Stundenplan\\}
+In dieser Tabelle werden die Basisstunden gespeichert. Der Tabellenname lautet \textit{lessonsBase}. Diese Tabelle umfasst insgesamt 4 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          classFK & Integer & Fremdschlüssel auf die Klassen-Tabelle   \\
+          \hline
+          startHourFK & Integer & Fremdschlüssel auf die Stunden-Tabelle  \\
+          \hline
+          endHourFK & Integer & Fremdschlüssel auf die Stunden-Tabelle  \\
+   \bottomrule
+\end{tabular}
+\caption{Basis-Stundenplan-Tabelle}
+\end{table}
+
+\subparagraph{Eigentlicher Stundenplan\\}
+In dieser Tabelle werden die Basisstunden mit zusätzlichen Informationen zusammengeführt und gespeichert. Der Tabellenname lautet \textit{lessons}. Diese Tabelle umfasst insgesamt 6 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          lessonBaseFK & Integer & Fremdschlüssel auf die Basis-Stundenplan-Tabelle   \\
+          \hline
+	      roomFK & Integer & Fremdschlüssel auf die Raum-Tabelle   \\
+	      \hline
+          teachersFK & Integer & Fremdschlüssel auf die Lehrer-Tabelle   \\
+          \hline
+          subjectFK & Integer & Fremdschlüssel auf die Fächer-Tabelle  \\
+          \hline
+          comment & Text & Kommentar zur Stunde  \\
+   \bottomrule
+\end{tabular}
+\caption{Stundenplan-Tabelle}
+\end{table}
+
+\paragraph{Logs\\}
+Für das Speichern der Logs wurden insgesamt 5 Tabellen benötigt. Diese teilweise miteinander verknüpft sind.
+
+\subparagraph{Logins\\}
+In dieser Tabelle werden jegliche Anmeldeversuche an unsere Seite gespeichert. Außerdem wird hier auch gespeichert, ob die Anmeldung fehlschlug oder funktionierte. Der Tabellenname lautet \textit{logsLogins}. Diese Tabelle umfasst insgesamt 6 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          time & Integer & Zeit als Unix-Timestamp   \\
+          \hline
+	      user & Text & Loginname   \\
+	      \hline
+          userAgent & Text & User Agent des Browsers   \\
+          \hline
+          ip & Text & IP-Adresse  \\
+          \hline
+          success & Integer & 1-Erfolgreich; 0-Nicht Erfolgreich  \\
+   \bottomrule
+\end{tabular}
+\caption{Logins-Tabelle}
+\end{table}
+
+\subparagraph{Basis-Log\\}
+In dieser Tabelle werden die Log-Informationen miteinander verknüpft. Hier werden alle Bewegungen in der Seite einer Session zugewiesen. Der Tabellenname lautet \textit{logsMain}. Diese Tabelle umfasst insgesamt 5 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          time & Integer & Zeit als Unix-Timestamp   \\
+          \hline
+	      connFK & Integer & Fremdschlüssel auf die \textit{logsUSConn}-Tabelle   \\
+	      \hline
+          site & Text & Aufgerufene Seite   \\
+          \hline
+          params & Text & Angehängte Parameter an die Seite  \\
+   \bottomrule
+\end{tabular}
+\caption{Basis-Log-Tabelle}
+\end{table}
+
+\subparagraph{User-Session-Log\\}
+Da ein User mehrere Sessions und eine Session hintereinander mehrere User haben kann, musste eine Verbindungstabelle dieser beiden Informationen erstellt werden. Diese Daten werden in dieser Tabelle gespeichert. Der Tabellenname lautet \textit{logsUSConn}. Die Tabelle umfasst insgesamt 5 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          time & Integer & Zeit als Unix-Timestamp   \\
+          \hline
+	      sessionFK & Integer & Fremdschlüssel auf die Session-Logs-Tabelle   \\
+	      \hline
+          userFK & Integer & Fremdschlüssel auf die User-Logs-Tabelle   \\
+          \hline
+          ip & Text & IP-Adresse  \\
+   \bottomrule
+\end{tabular}
+\caption{User-Session-Tabelle}
+\end{table}
+
+\subparagraph{Session-Log\\}
+Alle eröffneten Sessions mit dem Server werden hier gespeichert. Diese werden später in der Tabelle \textit{logsUSConn} mit dem User zusammengeführt. Der Tabellenname lautet \textit{logsSessions}. Die Tabelle umfasst insgesamt 5 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          time & Integer & Zeit als Unix-Timestamp   \\
+          \hline
+	      PhpSessIDOrig & Text & Erste Session ID   \\
+	      \hline
+          userAgent & Text & User Agent des Browsers   \\
+          \hline
+          PhpSessIDAct & Text & Aktuelle Session ID  \\
+   \bottomrule
+\end{tabular}
+\caption{Session-Tabelle}
+\end{table}
+
+\subparagraph{User-Log\\}
+In dieser Tabelle werden die User gespeichert, welche unsere Seite besuchen. Um bei den Statistiken, ohne LDAP-Abfrage, zu erkennen welcher Abteilung/Klasse ein Schüler angehört, speicern wir in diesem Zusammenhang die Klasse und die Abteilung des Schülers. Der Tabellenname lautet \textit{logsUsers}. Diese Tabelle umfasst insgesamt 5 Spalten. 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          LDPA & Text & LDAP-ID des Schülers/Lehrers   \\
+          \hline
+	      classesFK & Integer & Fremdschlüssel auf die Klassen-Tabelle   \\
+	      \hline
+          sectionsFK & Integer & Fremdschlüssel auf die Abteilungs-Tabelle   \\
+          \hline
+          isTeacher & Integer & 1-Ja, 0-Nein  \\
+   \bottomrule
+\end{tabular}
+\caption{User-Session-Tabelle}
+\end{table}
+
+\paragraph{Fehlende Klassen\\}
+In dieser Tabelle werden die als fehlend eingetragenen Klassen gespeichert. Der Tabellenname lautet \textit{missingClasses}. Die Tabelle umfasst insgesamt 7 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          classFK & Integer & Fremdschlüssel auf die Klassen-Tabelle   \\
+          \hline
+	      startDay & Date & Datum des Starttages   \\
+	      \hline
+          startHourFK & Integer & Fremdschlüssel auf die Stunden-Tabelle   \\
+          \hline
+          endDay & Date & Datum des Endtages   \\
+          \hline
+          endHourFK & Integer & Fremdschlüssel auf die Stunden-Tabelle   \\
+          \hline
+          reason & Text & Grund des Fehlens  \\
+   \bottomrule
+\end{tabular}
+\caption{Fehlende-Klasse-Tabelle}
+\end{table}
+
+\paragraph{Fehlende Lehrer\\}
+In dieser Tabelle werden die als fehlend eingetragenen Lehrer gespeichert. Der Tabellenname lautet \textit{missingTeachers}. Die Tabelle umfasst insgesamt 7 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          teacherFK & Integer & Fremdschlüssel auf die Lehrer-Tabelle   \\
+          \hline
+	      startDay & Date & Datum des Starttages   \\
+	      \hline
+          startHourFK & Integer & Fremdschlüssel auf die Stunden-Tabelle   \\
+          \hline
+          endDay & Date & Datum des Endtages   \\
+          \hline
+          endHourFK & Integer & Fremdschlüssel auf die Stunden-Tabelle   \\
+          \hline
+          reason & Text & Grund des Fehlens  \\
+   \bottomrule
+\end{tabular}
+\caption{Fehlende-Lehrer-Tabelle}
+\end{table}
+
+\paragraph{Monitor Modus\\}
+In dieser Tabelle werden die verschiedenen Betriebsarten des Monitors gespeichert. Der Tabellenname lautet \textit{monitorMode}. Diese Tabelle umfasst insgesamt 2 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          name & Text & Name des Modus  \\
+   \bottomrule
+\end{tabular}
+\caption{Monitor-Modus-Tabelle}
+\end{table}
+
+\paragraph{Fehlende Lehrer\\}
+In dieser Tabelle sind alle Moonitore eingetragen, die in SIS registriet werden. Die Zuteilung der verschiedenen Modi wird in dieser Tabelle gespeichert. Der Tabellenname lautet \textit{monitors}. Die Tabelle umfasst insgesamt 12 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          name & Text & Name des Monitors   \\
+          \hline
+	      text & Text & Text der am Monitor links unten angezeigt wird  \\
+	      \hline
+          modeFK & Integer & Fremdschlüssel auf die Monitor-Modus-Tabelle   \\
+          \hline
+          file & Text & Dateinamen der zugewiesenen Datei    \\
+          \hline
+          roomFK & Integer & Fremdschlüssel auf die Raum-Tabelle   \\
+          \hline
+          sectionFK & Integer & Fremdschlüssel auf die Abteilungs-Tabelle   \\
+          \hline
+	      time & Integer & Erstellzeit als Unix-Timestamp   \\
+	      \hline
+          displayModeFK & Integer & Fremdschlüssel auf die Display-Modus-Tabelle   \\
+          \hline
+          displayStartDaytime & Integer & Unix-Timestamp der Einschaltzeit   \\
+          \hline
+          siplayEndDaytime & Integer & Unix-Timestamp der Ausschaltzeit   \\
+          \hline                    	      
+          ip & Text & IP Adresse beim Erstellen  \\
+   \bottomrule
+\end{tabular}
+\caption{Monitor-Tabelle}
+\end{table}
+
+\paragraph{Räume\\}
+In dieser Tabelle werden die Räume gespeichert. Der Tabellenname lautet \textit{rooms}. Diese Tabelle umfasst 3 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          name & Text & Name des Raumes  \\
+          \hline        
+          teacherFK & Integer & Fremdschlüssel auf die Lehrer-Tabelle \\
+   \bottomrule
+\end{tabular}
+\caption{News-Tabelle}
+\end{table}
+
+\paragraph{Abteilungen\\}
+In dieser Tabelle werden die Abteilungen gespeichert. Der Tabellenname lautet \textit{sections}. Die Tabelle umfasst 4 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          name & Text & Name der Abteilung   \\
+          \hline
+	      short & Text & Abteilungskürzel   \\
+	      \hline
+          teacherFK & Integer & Fremdschlüssel auf die Lehrer-Tabelle   \\
+   \bottomrule
+\end{tabular}
+\caption{Abteilungs-Tabelle}
+\end{table}
+
+\paragraph{Fächer\\}
+In dieser Tabelle werden alle Fächer gespeichert. Der Tabellenname lautet \textit{subjects}. Die Tabelle umfasst 4 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          name & Text & Name des Faches   \\
+          \hline
+	      short & Text & Fächer-Kurzbezeichnung   \\
+	      \hline
+          invisible & Boolean & Ob Eintrag sichtbar oder nicht   \\
+   \bottomrule
+\end{tabular}
+\caption{Fächer-Tabelle}
+\end{table}
+
+\paragraph{Fehlende Lehrer\\}
+In dieser Tabelle werden alle Supplierungen gespeichert. Der Tabellenname lautet \textit{substitudes}. Die Tabelle umfasst insgesamt 13 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          time & Date & Datum der Supplierung   \\
+          \hline
+	      newSub & Integer & Ob die Stunde hinzugefügt wird  \\
+	      \hline
+          remove & Boolean & Ob die Stunde entfernt wird   \\
+          \hline
+          lessonFK & Integer & Fremdschlüssel auf die Stundenplan-Tabelle    \\
+          \hline
+          startHourFK & Integer & Fremdschlüssel auf die Stunden-Tabelle   \\
+          \hline
+          endHourFK & Integer & Fremdschlüssel auf die Stunden-Tabelle   \\
+          \hline
+	      teacherFK & Integer & Fremdschlüssel auf die Lehrer-Tabelle \\
+	      \hline
+          subjectFK & Integer & Fremdschlüssel auf die Fächer-Tabelle   \\
+          \hline
+          roomFK & Integer & Fremdschlüssel auf die Raum-Tabelle \\
+          \hline
+          classFK & Integer & Fremdschlüssel auf die Klassen-Tabelle \\
+          \hline    
+          comment & Text & Kommentar \\
+          \hline                 	      
+          move & Boolean & Ob die Stunde verschoben wird  \\
+   \bottomrule
+\end{tabular}
+\caption{Supplierungs-Tabelle}
+\end{table}
+
+\paragraph{Lehrer\\}
+In dieser Tabelle werden alle Lehrer gespeichert. Der Tabellenname lautet \textit{teachers}. Die Tabelle umfasst insgesamt 6 Spalten.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+   \toprule
+   \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
+   \midrule
+          ID & Integer & Auto increment - Primärschlüssel  \\
+          \hline
+          name & Text & Name des Lehrers \\
+          \hline
+	      short & Text & Lehrerkürzel   \\
+	      \hline
+          display & Text & Kurzname des Lehrers   \\
+          \hline
+          sectionFK & Integer & Fremdschlüssel auf die Abteilungs-Tabelle   \\
+          \hline
+          invisible & Boolean & Ob Eintrag sichtbar oder nicht \\
+   \bottomrule
+\end{tabular}
+\caption{Lehrer-Tabelle}
+\end{table}
 
 \subsubsection{Zugriff}
 % Ich weiß nicht, ob es bekannt war, aber es gab eine Home-Made Lib für den Datenbankzugriff von Marco
 % Die könnte man hier dokumentieren.
 % 
-Für die Datenbankanbindung siehe \gref{sec:content_imple_base_connect}.
+Für die Datenbankanbindung siehe \gref{sec:content_imple_base_connect}.\\
+
 %
 % Und die High-Light-Anfragen, die nicht über Marco's Lib laufen.
 %
