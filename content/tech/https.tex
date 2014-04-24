@@ -74,7 +74,7 @@ Zuerst wird eine Authentifizierung und eine Identifizierung der Kommunikationspa
 \subsubsection{Zertifikate}
 Für SSL wird ein digitales Zertifikat benötigt, welches von einer Zertifizierungsstelle ausgestellt wird.
 \paragraph{Erhalten eines Zertifikats}
-Um ein Zertifikat zu erhalten, muss bei einer Zertifizierungsstelle darum angesucht werden. Zunächst wird eine E-Mail an den Betreiber der Domain gesendet.
+Um ein Zertifikat zu erhalten, muss bei einer Zertifizierungsstelle darum angesucht werden. Anschließend wird von der Zertifizierungsstelle die vertrauenswürdigkeit des Antragsstellenden überprüft. Jedoch wird aufgrund der Kosten und der Wettbewerbsfähigkeit
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=12cm]{images/screenshots/certificate.png}
@@ -82,6 +82,12 @@ Um ein Zertifikat zu erhalten, muss bei einer Zertifizierungsstelle darum angesu
 \label{fig:certificate}
 \end{figure}
 Die meisten Browser haben standardmäßig eine Liste von Zertifizierungsstellen eingetragen, welchen sie vertrauen. Diese Liste kann vom User jederzeit erweitert werden, jedoch sollte der User sich bezüglich der Seriosität der Zertifizierungsstelle wirklich sicher sein. 
+\paragraph{Extended-Validation-Zertifikat}
+Diese Zertifikate wurden entwickelt um eine höhere Sicherheit zu erhalten, als bei \enquote{normalen} Zertifikaten. Dies wird erreicht indem bei der Vergabe genauer kontrolliert wird. \\\\
+Wenn bei einer Website ein erweitertes Zertifikat verwendet wird, wird in den meisten Browsern die Adressleiste komplett oder zumindest teilweise grün dargestellt.
+\\
+Bei der Vergabe dieser Zertifikate werden drei Kriterien besonders beachtet:
+Die Identität und die Geschäftsadresse des Auftragstellers, ob der Antragsteller der ausschließliche Eigentümer der Domain ist oder ein exklusives Nutzungsrecht besitzt, ob die antragstellende Peron überhaupt befugt ist und ob die rechtlichen Dokumente von zeichnungsberechtigten Personen unterschrieben wurden.
 
 \subsubsection{Sicherheitsprobleme}
 Eine Schwachstelle der oben genannten Arten des Schlüsseltausches ist jedoch ein Man-in-the-Middle. Dieser müsste vor Aufbau der Verbindung von Host1 und Host2 zwischen ihnen liegen. In Folge würde er jeweils mit Host1 und Host2 eine Verschlüsselung ausmachen. Wenn er nun die gesendeten Daten von Host1 an Host2 weiterleitet und umgekehrt, können die beiden Hosts dies nicht bemerken.\\
