@@ -1,0 +1,12 @@
+digraph php {
+	rankdir="TB";
+	node [shape=box];
+	
+	"o=HTLinn" -> {"ou=STUDENTS", "ou=LEHRER", "..."};
+	"ou=STUDENTS" -> {"cn=0090319", "cn=20090334", "...  "};
+	"ou=LEHRER" -> {"cn=stecher", "cn=weiss", "... "};
+	
+	"..." [shape=box3d];
+	"... " [shape=box3d];
+	"...  " [shape=box3d];
+}

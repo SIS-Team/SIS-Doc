@@ -9,6 +9,14 @@ Verzeichnis-Dienste werden dazu verwendet, um Informationen über Personen oder 
 Eine LDAP-Datenstruktur ist Baum-förmig (DIT - Directory Information Tree) aufgebaut.\\
 Dies hat den Grund, dass man so geografische und/oder organisatorische Gegebenheiten besser in der Datenbank darstellen kann.
 \\
+\begin{figure}[H]
+\centering
+\resizebox{16cm}{!}{
+    \fdot[scale=0.8]{images/dit}{}
+}
+\caption{Beispiel: Directory Information Tree}
+\label{fig:content_ldap_dit}
+\end{figure}
 Man unterscheidet zwischen Container-Objekten (enthalten ihrerseits weitere Objekte) und Blatt-Objekten (Sie stellen Enden des Baumes dar).\\
 \\
 LDAP ist objektorientiert aufgebaut, das heißt, es gibt Objekt-Klassen (wird durch das Schema difiniert), welche Eigenschaften der Objekte vorgeben. Ein LDAP-Objekt besitzt mindestens eine Klasse.\\
