@@ -479,7 +479,33 @@ In dieser Tabelle werden alle Lehrer gespeichert. Der Tabellenname lautet \texti
 % Die könnte man hier dokumentieren.
 % 
 Für die Datenbankanbindung siehe \gref{sec:content_imple_base_connect}.\\
+Für die Eingaben wurden in einer selbst erstellten Libary \textit{selects} und \textit{inserts} entwickelt. Die Select-Funktionen befinden sich in der Datei \textit{/modules/databse/selects.php}. Die Insert-Befehle befinden sich in der Datei \textit{/modules/database/inserts.php}. Diese Zeilen können in der Formular-Datei inkludiert werden, dann sind alle Funktionen verfügbar. (siehe \autoref{lst:content_imple_data_include_bsp})
 
+\lstinputlisting[style=custom, language=php, caption={/backend/administration/teachers/index.php; Zeile 17 - 18},  label={lst:content_imple_data_include_bsp}, firstline =17, lastline = 18, firstnumber = 17 ]{sources/input/teacher.php}
+
+Ein Funktionsaufruf für die Select-Funktion des Lehrer-Formulars sieht wie in \autoref{lst:content_imple_data_select} zu sehen aus. In Zeile 53 wird eine Sortierung für die Datensätze definiert, welche in Zeile 54 der Funktion mitgegeben wird. In Zeile 54 wird das Ergebnis der Funktion in eine Variable gespeichert.
+
+\lstinputlisting[style=custom, language=php, caption={/backend/administration/teachers/index.php; Zeile 53 - 54},  label={lst:content_imple_data_select}, firstline =53, lastline = 54, firstnumber = 53 ]{sources/input/teacher.php}
+
+Ein Funktionsaufruf für die Insert-Funktion des Lehrer-Formulars sieht wie in \autoref{lst:content_imple_data_insert} zu sehen aus. In der ersten Zeile wird in einer \textit{If}-Abfrage abgefragt, ob im Formular übernehmen geklickt wurde. Die Zeile 2 ruft eine Funktion auf, welche für notwndig ist um ?????. In der 3. Zeile wird die Insert-Funktion aufgerufen. Diese 2 Zeilen werden nur aufgerufen, wenn die im Formular Übernehmen geklickt wird.
+
+\lstinputlisting[style=custom, language=php, caption={/backend/administration/teachers/index.php; Zeile 29 - 32},  label={lst:content_imple_data_insert}, firstline =29, lastline = 32, firstnumber = 29 ]{sources/input/teacher.php}
+
+Im Folgenden werden die Funktionen genauer erklärt.
+
+\subsubsection{Select-Funktionen}
+Alle Select-Funktionen sind nach dem selben Prinzip aufgebaut. Neben den spezifischen Selects für die einzelnen Anforderungen wurde eine allgemeine Select-Funktion entwickelt.
+\paragraph{SelectAll\\}
+Dieser Funktion müssen 3 Parameter mitgegeben werden. Mit dem \texttt{\$table}-Parameter wird die Tabelle ausgewählt. Mit dem \texttt{\$where}-Parameter kann das Ergebnis eingegrenzt werden und mit dem \texttt{\$order}-Parameter kann die Sortierung der Ergebnisses verändert werden.\\
+Diese Funktion ist im \autoref{lst:content_imple_select_all} zu sehen. In der Zeile 20 wird der Stamm SQL-Befehl mit der Tabelle-definiert. In den Zeilen 22 - 23 wird, falls die Parameter nicht leer sind, ein \textit{where} oder \textit{order by} Argument angehängt. In der Zeile 25 wird der SQL-Befehl ausgeführt und der Rückgabewert wird unbearbeitet zurückgegeben.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/database/selects.php; Zeile 18 - 26},  label={lst:content_imple_select_all}, firstline =18, lastline = 26, firstnumber = 18 ]{sources/database/selects.php}
+
+\paragraph{Standard-Select\\}
+Alle anderen Select-Funktionen sind gleich aufgebaut, sie unterscheiden sich jeweils nur am Stamm-SQL-Befehl. Diesen Funktionen muss der Tabellennam nicht mehr als Parameter übergeben werden. Die 2 anderen Parameter erfüllen die selbe Funktion wie in der \texttt{selectAll}-Funktion.\\
+Der Aufbau der Funktion entspricht exakt, dem der \texttt{selectAll}-Funktion. Lediglich der Stamm-SQL-Befehl ist nicht mehr von der Tabelle abhängig, denn diese ist einprogrammiert. (siehe \autoref{lst:content_imple_select_std})
+
+\lstinputlisting[style=custom, language=php, caption={/modules/database/selects.php; Zeile 76 - 86},  label={lst:content_imple_select_std}, firstline =76, lastline = 86, firstnumber = 76 ]{sources/database/selects.php}
 %
 % Und die High-Light-Anfragen, die nicht über Marco's Lib laufen.
 %
