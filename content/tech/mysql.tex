@@ -4,7 +4,7 @@ MySQL ist eine der bekanntesten und weit verbreiteten relationalen Datenbankverw
 Dieses Datenbankmanagementsystem verwendet als Sprache für den Zugriff auf die Datenbank SQL.\\
 SQL steht für \textbf{Structured Query Language} wurde dafür entwickelt eine einheitliche und leicht lesbare Programmierschnittstelle zur Verfügung zu stellen, um Datenbanken zu bearbeiten.\\
 SQL ist eine Datenbanksprache für relationale Datenbanken. Sie kann dazu verwendet werden Datenbanken und Tabellen zu erstellen und bearbeiten und Datensätze zu Bearbeiten, damit ist löschen, ändern oder einfügen von Datensätzen in Tabellen gemeint. Außerdem können auch Datensätze abgefragt werden  und können auch gefiltert, sortiert und vieles mehr werden. Die Voraussetzung ist, dass das Datenbanksystem auf dieser Datenbanksprache basiert.\\
-Hier die wichtigisten Befehle die wir verwendet haben.\\
+Hier die wichtigisten Befehle die verwendet wurden.\\
 \subparagraph{Beispiele für Befehle}
 \begin{itemize}
     \item SELECT
@@ -20,7 +20,7 @@ Hier die wichtigisten Befehle die wir verwendet haben.\\
 		    	\item \textit{SELECT * FROM substitudes ORDER BY time ASC}\\
 		    		Damit werden alle Supplierungen in aufsteigender Reihenfolge(ASC) ausgelesen. Sollen die Supplierungen absteigend ausgelesen werden verwendet man statt ASC DESC.
 		    	\item \textit{SELECT teachers.name FROM classes LEFT JOIN teachers ON teachers.ID = classes.teacherFK}\\
-		    		Mit dieser Abfrage können alle KV's der Klassen abgefragt werden. Da wir in unserem Datenbankdesign auf Redundanzvermeidung geachtet haben, verweisen wir in der classes Tabelle auf die teachers Tabelle. Dort stehen die Namen der KV's. In der classes Tabelle steht nur die eindeutige ID des Lehrers.\\\\
+		    		Mit dieser Abfrage können alle KV's der Klassen abgefragt werden. Da im Datenbankdesign auf Redundanzvermeidung geachtet wurde, wird in der classes Tabelle auf die teachers Tabelle verwiesen. Dort stehen die Namen der KV's. In der classes Tabelle steht nur die eindeutige ID des Lehrers.\\\\
 		    		\textbf{\textit{SELECT teachers.name FROM classes LEFT JOIN teachers ON teachers.ID = classes.teacherFK}}\\
 		    			Gibt alle Einträge der Tabelle classes zurück, jedoch nur die Einträge von der teachers Tabelle, die die ON Bedingung erfüllen.\\\\
 		    		\textbf{\textit{SELECT teachers.name FROM classes INNER JOIN teachers ON teachers.ID = classes.teacherFK}}\\
@@ -72,7 +72,7 @@ Hier die wichtigisten Befehle die wir verwendet haben.\\
 \paragraph{Aufbau von MySQL}
 Bei MySQL ist es im Normalfall so, dass die Datenbank/en auf einem MySQL Server liegen und die MySQL-Client/s Anfragen auf diesen Server senden.\\
 Ein Server kann mehrere Datenbanken beinhalten. Eine solche Datenbank kann jeweils mehrere Tabellen beinhalten. Jede Tabelle hat mehrere Spalten.\\
-Jede Spalte hat einen bestimmten Datentyp. Hier einige wichtige Datentypen, die wir benützen:
+Jede Spalte hat einen bestimmten Datentyp. Hier einige wichtige Datentypen, die benützt wurde:
 \begin{itemize}
 	\item TINYINT\\
 	Wird für die Speicherung von BOOL Werten verwendet, da es den wenigsten Speicherplatz benötigt

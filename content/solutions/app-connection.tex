@@ -4,7 +4,7 @@
 Bei der Verbindung zwischen dem Server und der App muss darauf geachtet werden, dass die App zwar als Website entwickelt wurde aber lokal ausgeführt wird. Darum können die Daten nicht einfach mit PHP aus der Datenbank geladen und direkt weiterverarbeitet werden.\\
 
 \subsubsection{Gewählte Lösung}
-Die Lösung hierfür war, dass wir über das Source-Attribut eines Script-Tags eine PHP-Datei am Server eingebunden haben, welche die Daten aus der Datenbank lädt. Diese Daten werden dann in Form eines JSON-Objektes gespeichert. Mit Hilfe des ECHO-Befehls wird die Objektdeklaration und das Zuweisen der Daten in die Datei geschrieben. Dadurch kann dieser Code als JavaScript ausgeführt werden wenn er auf dem Gerät geladen wird. Weiters steht in dieser Datei noch der JavaScript-Code welcher die Daten verarbeitet.\\
+Die Lösung hierfür war, dass über das Source-Attribut eines Script-Tags eine PHP-Datei am Server eingebunden wurde, welche die Daten aus der Datenbank lädt. Diese Daten werden dann in Form eines JSON-Objektes gespeichert. Mit Hilfe des ECHO-Befehls wird die Objektdeklaration und das Zuweisen der Daten in die Datei geschrieben. Dadurch kann dieser Code als JavaScript ausgeführt werden wenn er auf dem Gerät geladen wird. Weiters steht in dieser Datei noch der JavaScript-Code welcher die Daten verarbeitet.\\
 Dadurch, dass bei dieser Art des Datenaustausches auch noch der JavaScript-Code zum verarbeiten der Daten mitgeladen wird, hat man den Vorteil, dass viele Teile der App durch diesen JavaScript-Code und somit ohne Update der App verändert werden können.\\
 
 \subsubsection{Alternative Lösungen}
