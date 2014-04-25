@@ -1,13 +1,176 @@
 \subsection{Designs}
-% TODO flo
-% Wie wurden die Designs implementiert?
-% Unterschied Designs <-> Menü?
-%
-% Hier dürfen auch auch Sourcecode-Teile vorkommen.
-% Wenn Sourcecodes: jeweilge File in den Ordner /sources/ in einen Unterordner packen und mit folgendem Befehl includieren:
-%
-%
-% \lstinputlisting[style=custom, language=php, caption={Dateiname}, label={lst:content_imple_timetables_labelname}]{sources/ordner/datei.php}
-%
-% Als weitere Eigenschaft kannst du die Zeilen angeben: [firstline=300, lastline=500]
-% Damit nicht alles reinkopiert wird.
+\subsubsection{Menü}
+Die Generierung des Menüs erfolgt in der Datei /modules/menu/Main.php.\\
+\paragraph{Aufbau der Seite\\}
+Wie bereits unter \gref{sec:content_draft_design_web} erwähnt, besteht das Design des Menüs grundsätzlich aus dem SIS-Logo in der Mitte und links und rechts davon, in zwei Zeilen gruppiert, vier Plätze für Menüpunkte, die je nach Bedarf aus- und eingeblendet werden.\\
+\\
+Diese Menüpunkte sind nach zwei verschiedenen Systemen ansprechbar.\\
+Die programmiertechnisch einfachere Methode ist die, dass alle Punkt durchnummeriert werden (siehe \autoref{fig:content_imple_menu_layout1}).\\ Diese Methode ist serverseitig (PHP) die wichtigere.
+\begin{figure}[H]
+\centering
+\resizebox{16cm}{!}{
+    \fdot[scale=1]{images/design-layout1}{}
+}
+\caption{Menü: Seiten-Layout, Nummerierung}
+\label{fig:content_imple_menu_layout1}
+\end{figure}
+Die zweite Methode, um die Menüpunkte anzusprechen, ist der logische, strukturelle Aufbau, und die daraus resultierte Struktur, aus der sich eine Nomenklatur für die Punkte ergibt (siehe \autoref{fig:content_imple_menu_layout2}).\\
+Man unterteilt zunächst zwischen der oberen Reihe (\texttt{menuUp}, in der Grafik abgekürzt mit U) und unterer Reihe (\texttt{menuDown}, in der Grafik abgekürzt mit D).\\
+Weiters wird zwischen linkem und rechtem Menü-Block (in der Grafik durch L beziehungsweise R abgekürzt).\\
+Als letztes wird noch zwischen in innen- und außenliegenden Menüpunkten unterschieden, diese Eigenschaft wird \enquote{Level} genannt (innenliegende Punkte sind Level 1 - abgekürzt L1 - außenliegende sind Level 2 - abgekürzt L2). Für die Implementierung wurden die letzten zwei Unterscheidungsstufen zusammengefügt.\\
+Es ergeben sich dadurch folgende Unterscheidungen:
+\begin{itemize}
+	\item \texttt{menuLeftLevel1}
+	\item \texttt{menuLeftLevel2}
+	\item \texttt{menuRightLevel1}
+	\item \texttt{menuRightLevel2}
+\end{itemize}
+Diese Methode ist clientseitig wichtiger, da JavaScript durch DOM im Gegensatz zu PHP auf die HTML-IDs und HTML-Klassen zugreifen kann.
+\begin{figure}[H]
+\centering
+\resizebox{16cm}{!}{
+    \fdot[scale=1]{images/design-layout2}{}
+}
+\caption{Menü: Seiten-Layout, logische Nomenklatur}
+\label{fig:content_imple_menu_layout2}
+\end{figure}
+
+\paragraph{Konfiguration des Menüs\\}
+Wenn das Modul geladen wird (durch das \texttt{include()}-Kommando), so wird es automatisch initialisiert. Initialisierung ist dabei so zu verstehen, dass die nötigen globalen Variablen, die zur Konfiguration dienen, definiert werden.\\
+\lstinputlisting[style=custom, language=php, caption={/modules/menu/Main.php; Initialisierung; Zeilen 3-19}, label={lst:content_imple_menu_global}, firstline=3, lastline=19, firstnumber=3]{sources/menu/Main.php}
+Erklärung der globalen Variablen:\\
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{11 cm}}
+	\toprule
+		\textbf{Variable} & \textbf{Bedeutung} \\
+	\midrule
+		\texttt{\$back} & Link zur vorigen Seite; Wird bei Klick auf das Logo oder den Text links oben geöffnet.\\
+		\hline
+		\texttt{\$headerText} & Text, der oben links angezeigt werden soll.\\
+		\hline
+		\texttt{\$name} & $ \widehat{=} $ Benutzername. Wird oben rechts angezeigt.\\
+		\hline
+		\texttt{\$buttons} & Numerisches Array mit 8 Einträgen (0 bis 7, für die jeweiligen Buttons), jeder Eintrag ist ein assozitives Array (für die Schüssel, siehe \autoref{tab:content_imple_design_menu_buttons})\\
+	\bottomrule
+\end{tabular}
+\caption{Globale Konfiguration des Hauptmenüs}
+\label{tab:content_imple_design_menu_global}
+\end{table}
+
+Die Einträge im Array \texttt{\$buttons} haben folgende Schlüssel:\\
+\begin{table}[H]
+\centering
+\begin{tabular}{p{2.5 cm}p{11 cm}}
+	\toprule
+		\textbf{Schlüssel} & \textbf{Bedeutung} \\
+	\midrule
+		\texttt{displayed} & Soll der entsprechende Menüpunkt angezeigt werden?\\
+		\hline
+		\texttt{enabled} & Darf der Benutzer den Punkt benutzen?\\
+		\hline
+		\texttt{svg} & Link zur Grafik des Menüentrags (muss als SVG-Datei vorliegen); \newline
+			\textit{Beachte:} Link muss absolut sein.\newline
+			\textit{Beispiel:} \texttt{ROOT\_LOCATION . "/data/images/base.svg";}
+			\\
+		\hline
+		\texttt{text} & Dieser Text wird unter der Grafik angezeigt.\\
+		\hline
+		\texttt{jsurl} & Link des Menüpunktes; Wo kommt man hin, wenn man auf den Punkt klickt?\\
+		\hline
+		\texttt{url} & Analog zu \texttt{jsurl}; Dieser Wert wird verwendet, wenn kein JavaScript zur Verfügung steht.\\
+	\bottomrule
+\end{tabular}
+\caption{Globale Konfiguration des Hauptmenüs; Fortsetzung}
+\label{tab:content_imple_design_menu_buttons}
+\end{table}
+Diese gloabel Konfigurationsfelder können/müssen durch den Benutzer verändert werden, um das Menü anzupassen.\\
+Die zwei Konstanten \texttt{BASE\_RL} und \texttt{BASE\_LR} referenzieren absolut auf zwei Graphiken (siehe später).
+\paragraph{Ausgabe\\}
+Die Ausgabe des Menüs ist eigentlich ziemlich trivial, es sollen hier nur die interessanten Teile näher betrachtet werden.\\
+Um die HTML-Struktur der unter logischen und numerischen Identifizierung der Menüteile anzupassen, wurde vereinfacht gesprochen folgender Aufbau verwendet (es wird nur Knoten unterhalb des \texttt{body}-Tags berücksichtigt):
+\begin{lstlisting}[style=custom, language=html,  caption={Grundsätzliche HTML-Struktur der Menüs},label={lst:content_imple_design_htmlstruct}]
+<div id="header">
+	<div id="title">
+		<!-- Hier ist der Titel der Seite -->
+	</div>
+	<div id="userInfo">
+		<!-- Hier ist der Benutzername und der "Abmelden"-Button -->
+	</div>
+</div>
+<div id="menuContainer">
+	<div id="menuUp">
+		<div  class="mid">
+			<!-- Hier ist der obere Teil des Logos -->
+		</div>
+		<div class="menuRightLevel1">
+			<!-- Das ist Menuepunkt 2 -->
+			<!-- Hier wird das entsprechende Bild eingebunden -->
+			<div class="subtext">
+				<!-- Hier steht der Text des Menuepunktes -->
+			</div>
+		</div>
+		<div class="menuRightLevel2">
+			<!-- Das ist Menuepunkt 3 -->
+			<!-- Hier wird das entsprechende Bild eingebunden -->
+			<div class="subtext">
+				<!-- Hier steht der Text des Menuepunktes -->
+			</div>
+		</div>
+		<div class="menuLeftLevel2">
+			<!-- Das ist Menuepunkt 0 -->
+			<!-- Hier wird das entsprechende Bild eingebunden -->
+			<div class="subtext">
+				<!-- Hier steht der Text des Menuepunktes -->
+			</div>
+		</div>
+		<div class="menuLeftLevel1">
+			<!-- Das ist Menuepunkt 0 -->
+			<!-- Hier wird das entsprechende Bild eingebunden -->
+			<div class="subtext">
+				<!-- Hier steht der Text des Menuepunktes -->
+			</div>
+		</div>
+	</div>
+	<!-- Hier wuerde noch der entsprechende Code für die untere Haelfe kommen -->
+	</div>
+</div>
+\end{lstlisting}
+Das Beispiel unter \autoref{lst:content_imple_design_htmlstruct} ist natürlich nicht vollständig. Allerdings soll es den prinzipiellen Aufbau zeigen. An der Stelle des Kommentares über die untere Hälfte, steht nochmal der Code der oberen Hälfte, nur, dass die ID des Divs nun \texttt{menuDown} lauten würde und die Punkte haben selbstverständlich andere Nummern.\\
+\\
+Bei der Betrachtung fällt auf, dass der obere und der untere Teil des Logos getrennt eingebunden ist. Dies ist begründet dadurch, dass, wie bereits unter \gref{sec:content_draft_design_web} erwähnt wurde, das Logo bei Klick auf einen Menüpunkt in einer Animation auseinanderfahren soll. Dies ist am leichtesten möglich, indem man das Bild in zwei Sub-Bilder aufteilt. Das Logo wurde allerdings nicht willkürlich zerteilt, sondern wurde anhand der Kanten zerschnitten, was bei den Animationen dann letzten Endes schöner wirkt (siehe \autoref{fig:content_impl_design_logo-down} und \autoref{fig:content_impl_design_logo-down}).\\
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{7cm}
+		\centering
+		\includegraphics[keepaspectratio=true, height=5cm]{images/logo-black.png}
+		\caption{Logo, vollständig}
+		\label{fig:content_impl_design_logo}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{7cm}
+		\centering
+		\includegraphics[keepaspectratio=true, height=5cm]{images/logo-up.png}
+		\caption{Logo, oberer Teil}
+		\label{fig:content_impl_design_logo-up}
+	\end{minipage}
+	\hspace{1cm}
+	\begin{minipage}{7cm}
+		\centering
+		\includegraphics[keepaspectratio=true, height=5cm]{images/logo-down.png}
+		\caption{Logo, unterer Teil}
+		\label{fig:content_impl_design_logo-down}
+	\end{minipage}
+\end{figure}
+Die Ausgabe der Menüpunkte (\autoref{lst:content_imple_design_htmlstruct}) soll nun am Beispiel des Punktes 2 (dies entspricht dem ORL1) näher erläutert werden.\\
+\lstinputlisting[style=custom, language=php, caption={/modules/menu/Main.php; Bespiel: Menüpunkt 2; Zeilen 65-78}, label={lst:content_imple_menu_2}, firstline=65, lastline=78, firstnumber=65]{sources/menu/Main.php}
+Der Div, der den Menüpunkt umschließt, bekommt die HTML-Klasse \texttt{notUsed} angehängt, im Fall, dass der Wert des \texttt{display}-Schlüssels für den Punkt 2 \texttt{false} ist. Diese Klasse blendet im Grund den Div aus.\\
+Kann der Button verwendet werden - also wenn sein \texttt{enabled}-Schlüssel auf \texttt{true} (technisch gesehen ist hier jeder Wert außer 0 gültig, aber logisch ist es entweder \texttt{true} oder \texttt{false}) gesetzt ist - so wird die Ziel-URL des Links in einen Div-Tag der Klasse \texttt{linkAdr} (Elemente dieser Klasse sind nicht sichtbar) geschrieben. Später wird via JavaScript der Link aus diesem Div ausgelesen und die \texttt{onclick}-Events für das Bild und den Text darunter neu gesetzt.\\
+In Zeile 71 wird die Grafik, die durch die Konstante \texttt{BASE\_LR} referenziert wird, eingebunden. Diese Graphik hat die selbe Parallelprogramm-Form, wie die Grafiken der Menüpunkte, jedoch durchgehen, ohne Muster. Sämtliche Mouse-Events werden über diese einheitlichen Grafiken ausgelöst, da sonst in den leeren Bereichen keine Events getriggert werden können (Der gleiche Effekt wird als Vorteil genutzt, und war der Hauptgrund, warum man auf SVG-Grafiken zurückgegriffen hat $ \Longrightarrow $ Es ist mit ihnen möglich, nicht-rechteckige Bereiche mit Mouse-Events zu versehen.). Damit diese homogenen Grafiken nicht das Bild zerstören, wurde ihre Tranzparenz mittels CSS auf einen sehr hohen Wert gestellt $ \Longrightarrow $ Diese Grafiken sind nicht sichtbar.\\
+In der nächsten Zeile wird die eigentliche Grafik ausgegeben. Damit die zwei SVG-Elemente am Schluss genau übereinander liegen, wurden ihre \texttt{position}-Attribute mit CSS auf \texttt{absolute} gestellt.\\
+Im Div mit der Klasse \texttt{subtext} wird nun der Link erstellt. Als \texttt{href}-Attribut hat er die Nicht-JavaScript-URL. Damit, im Falle dass JavaScript aktiviert ist, die richtige URL geöffnet wird, wird später das \texttt{onclick}-Event dementsprechend modifiziert (Wichtig ist hierbei, dass die Funktion des Events \texttt{false} zurückgibt, ansonsten würde die Standard-Aktion weiter ausgeführt - also in diesem Fall das öffnen des Nicht-JavaScript-Links.). 
+
+\subsubsection{Designs via Managementsystem}
