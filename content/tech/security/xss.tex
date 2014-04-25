@@ -1,4 +1,5 @@
 \subsubsection{Cross-Site Scripting (Weiland)}
+\label{sec:content_security_cross_site_scripting}
 Oft auch XSS genannt. Bei einem Angriff mit Cross-Site-Scripting wird eine Website, welche auch eine ansonsten vertrauenswürdige Seite sein kann, vom Angreifer mit einem Script versehen, welches im Browser des Opfers ausgeführt wird. Dadurch kann auch die digitale Identität des Opfers gestohlen werden (siehe \gref{sec:content_security_session-hijacking} )\\ %Session-Hijacking
 Dabei muss der Angreifer nicht zwangsläufig auf den Server zugreifen können. Dadurch, dass viele Seiten dynamisch gestaltet sind, bieten sich einem Angreifer viele Möglichkeiten. Zum Beispiel gibt es oft die Möglichkeit eine Kommentar zu hinterlassen. Wenn in solch einem Feld ein Script platziert wird, wird es vom Browser eines Betrachters automatisch ausgeführt.
 \paragraph{Problem}
@@ -35,6 +36,8 @@ document.write("<OPTION value=2>English</OPTION>");
 Diese Seite kann nun durch mitgeben des Parameters  \texttt{default=<script type="text/javascript"> alert ('Dies sollte nicht passieren!'} dazu gebracht werden, dieses Script in den Code einzufügen und ausführen zu lassen. Dabei bemerkt der Server gar nichts von diesem Angriff, da der Code clientseitig verändert wird. 
 
 \paragraph{Methoden um Vorzubeugen}
+
+\label{sec:content_security_cross_site_scripting_Methods}
 Die effektivste Methode um XSS vorzubeugen, ist jegliche Benutzereingabe zu verhindern und nur eine rein statische Website zu verwenden. Da dies in der Praxis jedoch meist nicht möglich ist, müssen andere Methoden verwendet werden.\\\\ 
 Um XSS auf seiner eigenen Site zu verhindern sollten alle Eingaben, welche ausgegeben werden zum Beispiel mit dem Befehl \enquote{htmlspecialchars}(PHP) behandelt oder auf irgendeine andere Art encodiert werden. Dadurch werden alle Sonderzeichen durch die dafür vorgesehenen Zeichen in der jeweiligen Sprache umgewandelt ( z.B. htmlspecialchars: aus < wird \&lt;), wodurch kein ausführbares Script mehr vorliegt.\\\\
 Ebenso ist es möglich alle vom Benutzer tätigbaren Eingaben mit einer Whitelist zu versehen. Dies bedeutet, dass nur Eingaben eines bestimmten Formats zugelassen werden (z.B. 01.01.2014). Jedoch ist diese Methode meist aufgrund vieler verschiedener erlaubter Eingabeformate (z.B. Forum) nicht möglich.\\\\

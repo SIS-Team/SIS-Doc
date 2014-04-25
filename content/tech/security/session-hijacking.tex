@@ -2,19 +2,19 @@
 \label{sec:content_security_session-hijacking}
 Hierbei geht es darum die Session eines anderen Benutzers zu \enquote{entführen}. 
 \paragraph{Problem}
-Grundsätzlich muss der Angreifer, bevor er die Identität übernehmen kann, die dafür benötigten Daten sammeln. Dies geschieht meist über Sniffing (abhören des Datenverkehrs des Opfers) oder XSS. Ist eine Verschlüsselung vorhanden, muss diese zuvor umgangen oder geknackt werden.\\\\
+Grundsätzlich muss der Angreifer, bevor er die Identität übernehmen kann, die dafür benötigten Daten sammeln. Dies geschieht meist über Sniffing (Abhören des Datenverkehrs des Opfers) oder XSS. Ist eine Verschlüsselung vorhanden, muss diese zuvor umgangen oder geknackt werden.\\\\
 Auch hier gibt es mehrere Möglichkeiten eines Angriffs:
 \begin{description}
 \item[Session Fixation] Der Angreifer stellt eine Verbindung mit dem Server her und erhält von diesem eine eindeutige Session-ID. Diese muss er nun dem Opfer unterschieben und darauf warten dass dieser sich anmeldet. Sobald das Opfer sich angemeldet hat, hat auch der Angreifer Zugriff auf das System und kann unter der Identität des Opfers handeln.
 \item[Session-Sidejacking] Der Angreifer schneidet mit Hilfe eines Programms (z.B. Wireshark) den Datenverkehr im Netzwerk mit und sucht anschließend in den erhaltenen Daten nach einem Session-Cookie, das er verwenden kann, um für die Website als das Opfer zu erscheinen.
-\item[irgendwie am PC des Opfers]
-\item[XSS] 
+\item[PC des Opfers] Natürlich kann der Angreifer, falls er die Möglichkeit besitzt den PC des Clients, auf die auf diesem PC gespeicherten Sessions zugreifen.
+\item[XSS] Hierbei wird ein Script im Browser des Clients ausgeführt . siehe \gref{sec:content_security_cross_site_scripting}
 \end{description}
-Eine Möglichkeit um am die Session einer anderen Person zu gelangen ist XSS. Dabei wird mittels eines Scripts das \texttt{document.cookie} ausgelesen und kopiert.
-
 
 \paragraph{Methoden um Vorzubeugen}
 Um Session Fixation zu verhindern sollte darauf verzichtet werden, Session-IDs als GET oder POSST Variablen mitzugeben. Zudem sollte sich die Session-ID bei jedem Login ändern, sodass die Session-ID welche der Angreifer besitz nicht mehr gültig ist.\\ Ebenso ist es möglich zu jeder Session-ID auf dem Server einen Timestamp zu speichern und bei erneuter Verwendung dieser ID die, seit der letzten Verwendung, vergangene Zeit zu messen. Wenn diese Zeit kurz ist (z.B. weniger als 5 Minuten), kann davon ausgegangen werden, dass es sich nicht um einen Angreifer handelt und der Server kann den alten Timestamp durch den neuen ersetzen.\\ Auch ist es möglich nur Zugriffe zu erlauben, bei denen im Referrer-Feld der HTTP-Anfrage eine vertrauenswürdige Seite steht. Sollte es sich um keine vertrauenswürdige Seite handeln sollte die Session gelöscht werden.\\
 Grundsätzlich gilt: Je mehr verschiedene Sicherheitsvorkehrungen getroffen werden, desto schwerer ist das System zu hacken.\\\\
-Zur Verhinderung von Session-Sidejacking ist es am einfachsten, den gesamten Datenverkehr zu verschlüsseln. 
+Zur Verhinderung von Session-Sidejacking ist es am einfachsten, den gesamten Datenverkehr zu verschlüsseln. \\\\
+Um dem Angreifer den direkten Zugang zum PC zu erschweren, sollte dieser grundsätzlich kennwortgeschützt sein. An dieser Stelle wird jedoch nicht weiter darauf eingegangen, wie ein PC zu sichern ist.\\\\
+Zur Vermeidung von XSS siehe \gref{sec:content_security_cross_site_scripting_Methods}
 \\\\Es sollte verhindert werden ,dass XSS auf dem Server möglich ist, damit diese Sicherheitslücke nicht zum Stehlen von Cookies oder dergleichen verwendet werden kann. Zudem sollten alle Daten verschlüsselt übertragen werden, damit einem Angreifer das Sniffing erschwert wird.
