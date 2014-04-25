@@ -1,0 +1,62 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,scale=1]
+  \pgfsetlinewidth{1bp}
+%%
+\begin{scope}
+  \pgfsetstrokecolor{black}
+  \definecolor{strokecol}{rgb}{0.83,0.83,0.83};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{0.83,0.83,0.83};
+  \pgfsetfillcolor{fillcol}
+  \filldraw (8bp,8bp) -- (8bp,210bp) -- (261bp,210bp) -- (261bp,8bp) -- cycle;
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (130bp,188bp) node {Server};
+\end{scope}
+  \pgfsetcolor{black}
+  % Edge: Webserver -> Client
+  \draw [->] (214.9bp,140.05bp) .. controls (228.15bp,134.17bp) and (243.37bp,125.58bp)  .. (254bp,114bp) .. controls (268.41bp,98.309bp) and (258.32bp,85.438bp)  .. (273bp,70bp) .. controls (283.5bp,58.957bp) and (298.1bp,50.83bp)  .. (320.95bp,41.385bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (322bp,92bp) node {\parbox{3cm}{Antwort des\\erzeugten Codes}};
+  % Edge: Client -> Webserver
+  \draw [->] (361.9bp,49.028bp) .. controls (367.12bp,54.997bp) and (372.28bp,62.28bp)  .. (375bp,70bp) .. controls (381.5bp,88.442bp) and (387.46bp,98.928bp)  .. (375bp,114bp) .. controls (357.01bp,135.76bp) and (280.08bp,144.49bp)  .. (220.21bp,148.56bp);
+  \draw (431bp,92bp) node {\parbox{3cm}{Anfrage für\\PHP-Datei}};
+  % Edge: Webserver -> PHP-Interpreter
+  \draw [->] (154.36bp,146.94bp) .. controls (114.22bp,142.43bp) and (49.593bp,132.45bp)  .. (35bp,114bp) .. controls (22.87bp,98.661bp) and (24.629bp,86.579bp)  .. (35bp,70bp) .. controls (40.917bp,60.541bp) and (50.11bp,53.503bp)  .. (69.272bp,43.997bp);
+  \draw (84bp,92bp) node {\parbox{3cm}{Übergabe\\der Datei}};
+  % Edge: PHP-Interpreter -> Webserver
+  \draw [->] (120.81bp,51.567bp) .. controls (133.83bp,70.92bp) and (154.88bp,102.22bp)  .. (175.49bp,132.88bp);
+  \draw (224bp,92bp) node {\parbox{3cm}{Rückgabe\\des erzeugten\\Codes}};
+  % Node: Webserver
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,1.0,1.0};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,1.0,1.0};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1.0] (187bp,150bp) ellipse (33bp and 18bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (187bp,150bp) node {Webserver};
+\end{scope}
+  % Node: Client
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (346bp,34bp) ellipse (27bp and 18bp);
+  \draw (346bp,34bp) node {Client};
+\end{scope}
+  % Node: PHP-Interpreter
+\begin{scope}
+  \definecolor{strokecol}{rgb}{1.0,1.0,1.0};
+  \pgfsetstrokecolor{strokecol}
+  \definecolor{fillcol}{rgb}{1.0,1.0,1.0};
+  \pgfsetfillcolor{fillcol}
+  \filldraw [opacity=1.0] (109bp,34bp) ellipse (47bp and 18bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (109bp,34bp) node {PHP-Interpreter};
+\end{scope}
+%
+\end{tikzpicture}
+

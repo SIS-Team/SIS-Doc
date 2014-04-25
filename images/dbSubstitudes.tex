@@ -1,0 +1,126 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: fehlende Klassen -> Klassen
+  \draw [->] (208.96bp,166.23bp) .. controls (189.94bp,179.1bp) and (167.43bp,198.27bp)  .. (156.71bp,222bp) .. controls (144.08bp,249.95bp) and (140.59bp,264.91bp)  .. (156.71bp,291bp) .. controls (165.68bp,305.52bp) and (181.46bp,315.03bp)  .. (206.47bp,324.61bp);
+  % Edge: Supplierungen -> Räume
+  \draw [->] (99.003bp,171.73bp) .. controls (116.71bp,155.32bp) and (145.15bp,132.13bp)  .. (174.71bp,121bp) .. controls (232.6bp,99.206bp) and (305.03bp,97.448bp)  .. (360.11bp,99.486bp);
+  % Edge: fehlende Lehrer -> Lehrer
+  \draw [->] (303.85bp,247.89bp) .. controls (319.86bp,249.89bp) and (336.66bp,251.99bp)  .. (361.52bp,255.1bp);
+  % Edge: Supplierungen -> Fächer
+  \draw [->] (94.451bp,171.99bp) .. controls (111.29bp,151.06bp) and (141.67bp,116.73bp)  .. (174.71bp,96bp) .. controls (227.33bp,62.98bp) and (248.26bp,71.056bp)  .. (306.71bp,50bp) .. controls (321.44bp,44.692bp) and (337.54bp,38.741bp)  .. (361.31bp,29.861bp);
+  % Edge: Klassen -> Räume
+  \draw [->] (262.35bp,313.86bp) .. controls (276.15bp,301.58bp) and (293.8bp,284.46bp)  .. (306.71bp,267bp) .. controls (339.57bp,222.56bp) and (366.93bp,163.81bp)  .. (385.37bp,120.41bp);
+  % Edge: Klassen -> Abteilungen
+  \draw [->] (274.82bp,332bp) .. controls (291.81bp,332bp) and (312.87bp,332bp)  .. (342.55bp,332bp);
+  % Edge: Supplierungen -> Stunden
+  \draw [->] (80.708bp,171.93bp) .. controls (80.708bp,151.13bp) and (80.708bp,130.33bp)  .. (80.708bp,99.309bp);
+  % Edge: Stunden -> BasisStunden
+  \draw [->] (58.552bp,99.29bp) .. controls (40.168bp,116.02bp) and (15.375bp,142.59bp)  .. (4.7083bp,172bp) .. controls (-13.076bp,221.04bp) and (26.074bp,275.34bp)  .. (61.477bp,313.77bp);
+  % Edge: BasisStunden -> Zeiten
+  \draw [->] (123.66bp,350.16bp) .. controls (128.86bp,352.89bp) and (134bp,355.85bp)  .. (138.71bp,359bp) .. controls (156.76bp,371.05bp) and (154.65bp,383.72bp)  .. (174.71bp,392bp) .. controls (232.53bp,415.87bp) and (306.46bp,412.69bp)  .. (361.68bp,406.17bp);
+  % Edge: Stunden -> Räume
+  \draw [->] (118.39bp,80.669bp) .. controls (163.33bp,80.62bp) and (240.67bp,81.63bp)  .. (306.71bp,88bp) .. controls (320.87bp,89.366bp) and (336.23bp,91.617bp)  .. (360.17bp,95.676bp);
+  % Edge: Abteilungen -> Lehrer
+  \draw [->] (392.71bp,313.61bp) .. controls (392.71bp,304.9bp) and (392.71bp,296.19bp)  .. (392.71bp,277.25bp);
+  % Edge: Stunden -> Lehrer
+  \draw [->] (94.258bp,99.325bp) .. controls (110.91bp,120.57bp) and (141.11bp,155.19bp)  .. (174.71bp,175bp) .. controls (227.29bp,206.01bp) and (250.14bp,190.03bp)  .. (306.71bp,213bp) .. controls (322.54bp,219.43bp) and (339.25bp,227.93bp)  .. (362.82bp,241bp);
+  % Edge: Supplierungen -> Zeiten
+  \draw [->] (89.658bp,208.06bp) .. controls (110.39bp,249.58bp) and (160.98bp,349.06bp)  .. (174.71bp,359bp) .. controls (202.35bp,379.02bp) and (296.06bp,391.44bp)  .. (361.37bp,398.22bp);
+  % Edge: Supplierungen -> Lehrer
+  \draw [->] (95.78bp,208.18bp) .. controls (112.71bp,227.03bp) and (142.13bp,255.36bp)  .. (174.71bp,267bp) .. controls (233.44bp,287.98bp) and (306.81bp,278.66bp)  .. (361.64bp,267.18bp);
+  % Edge: Klassen -> Lehrer
+  \draw [->] (274.82bp,315.62bp) .. controls (297.77bp,304.6bp) and (328.13bp,290.01bp)  .. (361.56bp,273.96bp);
+  % Edge: BasisStunden -> Klassen
+  \draw [->] (135.77bp,332bp) .. controls (155.6bp,332bp) and (177.7bp,332bp)  .. (206.55bp,332bp);
+  % Edge: Stunden -> Fächer
+  \draw [->] (118.34bp,73.401bp) .. controls (177.18bp,61.521bp) and (290.5bp,38.639bp)  .. (361.51bp,24.3bp);
+  % Node: Lehrer
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (424bp,277bp) -- (362bp,277bp) -- (362bp,241bp) -- (424bp,241bp) -- cycle;
+  \draw (392.71bp,259bp) node {Lehrer};
+\end{scope}
+  % Node: Räume
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (425bp,120bp) -- (361bp,120bp) -- (361bp,84bp) -- (425bp,84bp) -- cycle;
+  \draw (392.71bp,102bp) node {Räume};
+\end{scope}
+  % Node: Stunden
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (118bp,99bp) -- (44bp,99bp) -- (44bp,63bp) -- (118bp,63bp) -- cycle;
+  \draw (80.708bp,81bp) node {Stunden};
+\end{scope}
+  % Node: Zeiten
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (424bp,419bp) -- (362bp,419bp) -- (362bp,383bp) -- (424bp,383bp) -- cycle;
+  \draw (392.71bp,401bp) node {Zeiten};
+\end{scope}
+  % Node: fehlende Lehrer
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (304bp,258bp) -- (178bp,258bp) -- (178bp,222bp) -- (304bp,222bp) -- cycle;
+  \draw (240.71bp,240bp) node {fehlende Lehrer};
+\end{scope}
+  % Node: Abteilungen
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (443bp,350bp) -- (343bp,350bp) -- (343bp,314bp) -- (443bp,314bp) -- cycle;
+  \draw (392.71bp,332bp) node {Abteilungen};
+\end{scope}
+  % Node: Fächer
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (424bp,36bp) -- (362bp,36bp) -- (362bp,0bp) -- (424bp,0bp) -- cycle;
+  \draw (392.71bp,18bp) node {Fächer};
+\end{scope}
+  % Node: Klassen
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (275bp,350bp) -- (207bp,350bp) -- (207bp,314bp) -- (275bp,314bp) -- cycle;
+  \draw (240.71bp,332bp) node {Klassen};
+\end{scope}
+  % Node: Supplierungen
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (139bp,208bp) -- (23bp,208bp) -- (23bp,172bp) -- (139bp,172bp) -- cycle;
+  \draw (80.708bp,190bp) node {Supplierungen};
+\end{scope}
+  % Node: News
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (108bp,404bp) -- (54bp,404bp) -- (54bp,368bp) -- (108bp,368bp) -- cycle;
+  \draw (80.708bp,386bp) node {News};
+\end{scope}
+  % Node: BasisStunden
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (136bp,350bp) -- (26bp,350bp) -- (26bp,314bp) -- (136bp,314bp) -- cycle;
+  \draw (80.708bp,332bp) node {BasisStunden};
+\end{scope}
+  % Node: fehlende Klassen
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (307bp,166bp) -- (175bp,166bp) -- (175bp,130bp) -- (307bp,130bp) -- cycle;
+  \draw (240.71bp,148bp) node {fehlende Klassen};
+\end{scope}
+%
+\end{tikzpicture}
+

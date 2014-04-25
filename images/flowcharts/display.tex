@@ -1,0 +1,177 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,scale=0.8]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: Displaymodus permantent ein? -> Displaymodus permantent aus?
+  \draw [->] (356bp,629.97bp) .. controls (356bp,622.76bp) and (356bp,614.28bp)  .. (356bp,596.21bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (371.5bp,613bp) node {nein};
+  % Edge: echo false -> exit
+  \draw [->] (473bp,69.973bp) .. controls (473bp,62.763bp) and (473bp,54.284bp)  .. (473bp,36.209bp);
+  % Edge: Displaymodus permantent aus? -> Wochentag $ \\geq $ 6 (Wochenende)?
+  \draw [->] (345.12bp,560.7bp) .. controls (340.08bp,552.68bp) and (333.99bp,542.98bp)  .. (323.06bp,525.59bp);
+  \draw (355.5bp,543bp) node {nein};
+  % Edge: Wochentag $ \\geq $ 6 (Wochenende)? -> ein: Einschaltzeit von Datenbank
+  \draw [->] (307.11bp,489.97bp) .. controls (305.13bp,482.68bp) and (302.8bp,474.09bp)  .. (297.94bp,456.21bp);
+  \draw (320.5bp,473bp) node {nein};
+  % Edge: Monitor existiert? -> echo none
+  \draw [->] (607bp,704.98bp) .. controls (631.19bp,694.01bp) and (658bp,675.62bp)  .. (658bp,648bp) .. controls (658bp,648bp) and (658bp,648bp)  .. (658bp,158bp) .. controls (658bp,144.14bp) and (659.57bp,128.84bp)  .. (662.79bp,106.06bp);
+  \draw (673.5bp,403bp) node {nein};
+  % Edge: jetzt: wenn Sommerzeit: + 1 h -> jetzt zwischen ein und aus?
+  \draw [->] (289bp,209.97bp) .. controls (289bp,202.76bp) and (289bp,194.28bp)  .. (289bp,176.21bp);
+  % Edge: Start -> Frage Monitor-Datenbank ab
+  \draw [->] (569bp,839.97bp) .. controls (569bp,832.76bp) and (569bp,824.28bp)  .. (569bp,806.21bp);
+  % Edge: Monitor existiert? -> Displaymodus permantent ein?
+  \draw [->] (529.93bp,705.16bp) .. controls (496.31bp,694.11bp) and (447.45bp,678.05bp)  .. (400.34bp,662.57bp);
+  \draw (506.5bp,683bp) node {sonst};
+  % Edge: jetzt zwischen ein und aus? -> echo true
+  \draw [->] (287.97bp,139.97bp) .. controls (287.56bp,132.76bp) and (287.07bp,124.28bp)  .. (286.04bp,106.21bp);
+  \draw (294.5bp,123bp) node {ja};
+  % Edge: aus: Ausschaltzeit von Datenbank -> jetzt: aktueller Timestamp
+  \draw [->] (289bp,349.97bp) .. controls (289bp,342.76bp) and (289bp,334.28bp)  .. (289bp,316.21bp);
+  % Edge: Frage Monitor-Datenbank ab -> Monitor existiert?
+  \draw [->] (569bp,769.97bp) .. controls (569bp,762.76bp) and (569bp,754.28bp)  .. (569bp,736.21bp);
+  % Edge: ein: Einschaltzeit von Datenbank -> aus: Ausschaltzeit von Datenbank
+  \draw [->] (291.97bp,419.97bp) .. controls (291.56bp,412.76bp) and (291.07bp,404.28bp)  .. (290.04bp,386.21bp);
+  % Edge: Displaymodus permantent ein? -> echo true
+  \draw [->] (255.89bp,637.93bp) .. controls (150.59bp,625.94bp) and (0bp,604.22bp)  .. (0bp,578bp) .. controls (0bp,578bp) and (0bp,578bp)  .. (0bp,158bp) .. controls (0bp,114.61bp) and (126.16bp,97.971bp)  .. (220.69bp,90.978bp);
+  \draw (6.5bp,368bp) node {ja};
+  % Edge: echo true -> exit
+  \draw [->] (333.41bp,69.973bp) .. controls (365.57bp,57.999bp) and (407.12bp,42.529bp)  .. (445.97bp,28.065bp);
+  % Edge: Displaymodus permantent aus? -> echo false
+  \draw [->] (464.76bp,568.46bp) .. controls (536bp,559.1bp) and (616bp,541.19bp)  .. (616bp,508bp) .. controls (616bp,508bp) and (616bp,508bp)  .. (616bp,158bp) .. controls (616bp,129.71bp) and (594.66bp,127.87bp)  .. (570bp,114bp) .. controls (567.62bp,112.66bp) and (565.18bp,111.39bp)  .. (553.42bp,106.09bp);
+  \draw (622.5bp,333bp) node {ja};
+  % Edge: echo none -> exit
+  \draw [->] (616.3bp,69.973bp) .. controls (583.08bp,57.927bp) and (540.11bp,42.34bp)  .. (500.2bp,27.866bp);
+  % Edge: Wochentag $ \\geq $ 6 (Wochenende)? -> echo false
+  \draw [->] (429.65bp,497.67bp) .. controls (499.68bp,488.14bp) and (575bp,470.37bp)  .. (575bp,438bp) .. controls (575bp,438bp) and (575bp,438bp)  .. (575bp,158bp) .. controls (575bp,136.86bp) and (559.93bp,121.63bp)  .. (532.33bp,106.12bp);
+  \draw (581.5bp,298bp) node {ja};
+  % Edge: jetzt: aktueller Timestamp -> jetzt: wenn Sommerzeit: + 1 h
+  \draw [->] (289bp,279.97bp) .. controls (289bp,272.76bp) and (289bp,264.28bp)  .. (289bp,246.21bp);
+  % Edge: jetzt zwischen ein und aus? -> echo false
+  \draw [->] (327.57bp,143.33bp) .. controls (353.23bp,133.56bp) and (387.37bp,120.58bp)  .. (425.65bp,106.01bp);
+  \draw (418.5bp,123bp) node {nein};
+  % Node: Monitor existiert?
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (569bp,736bp) -- (433bp,718bp) -- (569bp,700bp) -- (705bp,718bp) -- cycle;
+  \draw (569bp,718bp) node {Monitor existiert?};
+\end{scope}
+  % Node: aus: Ausschaltzeit von Datenbank
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (547bp,386bp) -- (137bp,386bp) -- (31bp,350bp) -- (441bp,350bp) -- cycle;
+  \draw (289bp,368bp) node {aus: Ausschaltzeit von Datenbank};
+\end{scope}
+  % Node: ein: Einschaltzeit von Datenbank
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (543bp,456bp) -- (145bp,456bp) -- (43bp,420bp) -- (441bp,420bp) -- cycle;
+  \draw (293bp,438bp) node {ein: Einschaltzeit von Datenbank};
+\end{scope}
+  % Node: jetzt: aktueller Timestamp
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (491bp,316bp) -- (170bp,316bp) -- (87bp,280bp) -- (408bp,280bp) -- cycle;
+  \draw (289bp,298bp) node {jetzt: aktueller Timestamp};
+\end{scope}
+  % Node: Frage Monitor-Datenbank ab
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (788bp,806bp) -- (440bp,806bp) -- (350bp,770bp) -- (698bp,770bp) -- cycle;
+  \draw (569bp,788bp) node {Frage Monitor-Datenbank ab};
+\end{scope}
+  % Node: echo false
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (559bp,106bp) -- (422bp,106bp) -- (387bp,70bp) -- (524bp,70bp) -- cycle;
+  \draw (473bp,88bp) node {echo false};
+\end{scope}
+  % Node: Displaymodus permantent ein?
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (356bp,666bp) -- (129bp,648bp) -- (356bp,630bp) -- (583bp,648bp) -- cycle;
+  \draw (356bp,648bp) node {Displaymodus permantent ein?};
+\end{scope}
+  % Node: echo none
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (755bp,106bp) -- (613bp,106bp) -- (577bp,70bp) -- (719bp,70bp) -- cycle;
+  \draw (666bp,88bp) node {echo none};
+\end{scope}
+  % Node: Start
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (584bp,876bp) -- (554bp,876bp);
+  \draw (554bp,876bp) .. controls (548bp,876bp) and (542bp,870bp)  .. (542bp,864bp);
+  \draw (542bp,864bp) -- (542bp,852bp);
+  \draw (542bp,852bp) .. controls (542bp,846bp) and (548bp,840bp)  .. (554bp,840bp);
+  \draw (554bp,840bp) -- (584bp,840bp);
+  \draw (584bp,840bp) .. controls (590bp,840bp) and (596bp,846bp)  .. (596bp,852bp);
+  \draw (596bp,852bp) -- (596bp,864bp);
+  \draw (596bp,864bp) .. controls (596bp,870bp) and (590bp,876bp)  .. (584bp,876bp);
+  \draw (569bp,858bp) node {Start};
+\end{scope}
+  % Node: jetzt: wenn Sommerzeit: + 1 h
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (526bp,246bp) -- (149bp,246bp) -- (52bp,210bp) -- (429bp,210bp) -- cycle;
+  \draw (289bp,228bp) node {jetzt: wenn Sommerzeit: + 1 h};
+\end{scope}
+  % Node: exit
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (488bp,36bp) -- (458bp,36bp);
+  \draw (458bp,36bp) .. controls (452bp,36bp) and (446bp,30bp)  .. (446bp,24bp);
+  \draw (446bp,24bp) -- (446bp,12bp);
+  \draw (446bp,12bp) .. controls (446bp,6bp) and (452bp,0bp)  .. (458bp,0bp);
+  \draw (458bp,0bp) -- (488bp,0bp);
+  \draw (488bp,0bp) .. controls (494bp,0bp) and (500bp,6bp)  .. (500bp,12bp);
+  \draw (500bp,12bp) -- (500bp,24bp);
+  \draw (500bp,24bp) .. controls (500bp,30bp) and (494bp,36bp)  .. (488bp,36bp);
+  \draw (473bp,18bp) node {exit};
+\end{scope}
+  % Node: Displaymodus permantent aus?
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (356bp,596bp) -- (126bp,578bp) -- (356bp,560bp) -- (586bp,578bp) -- cycle;
+  \draw (356bp,578bp) node {Displaymodus permantent aus?};
+\end{scope}
+  % Node: Wochentag $ \\geq $ 6 (Wochenende)?
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (312bp,526bp) -- (36bp,508bp) -- (312bp,490bp) -- (588bp,508bp) -- cycle;
+  \draw (312bp,508bp) node {Wochentag $ \geq $ 6 (Wochenende)?};
+\end{scope}
+  % Node: jetzt zwischen ein und aus?
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (289bp,176bp) -- (83bp,158bp) -- (289bp,140bp) -- (495bp,158bp) -- cycle;
+  \draw (289bp,158bp) node {jetzt zwischen ein und aus?};
+\end{scope}
+  % Node: echo true
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (369bp,106bp) -- (235bp,106bp) -- (201bp,70bp) -- (335bp,70bp) -- cycle;
+  \draw (285bp,88bp) node {echo true};
+\end{scope}
+%
+\end{tikzpicture}
+

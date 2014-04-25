@@ -1,0 +1,142 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,scale=0.9]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: schreibe Daten in Session -> generiere Log
+  \draw [->] (201.46bp,175.83bp) .. controls (204.56bp,164.83bp) and (209.29bp,150.54bp)  .. (224.49bp,124.07bp);
+  % Edge: werfe jeweilige Exception -> Exit
+  \draw [->] (412.1bp,131.92bp) .. controls (401.12bp,109.63bp) and (382.36bp,71.524bp)  .. (365bp,36.283bp);
+  % Edge: Benutzer existiert? -> Passwort leer?
+  \draw [->] (395.69bp,618.27bp) .. controls (378.38bp,604.17bp) and (352.83bp,583.35bp)  .. (325.78bp,561.3bp);
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (377.5bp,590bp) node {ja};
+  % Edge: lade Benutzer-Daten -> Benutzer existiert?
+  \draw [->] (415bp,703.77bp) .. controls (415bp,691.85bp) and (415bp,676.04bp)  .. (415bp,652.21bp);
+  % Edge: Login fehlerhaft? -> logge Login
+  \draw [->] (233.96bp,353.45bp) .. controls (224.76bp,340.8bp) and (211.89bp,323.1bp)  .. (195.31bp,300.3bp);
+  \draw (235.5bp,326bp) node {nein};
+  % Edge: logge Login -> schreibe Daten in Session
+  \draw [->] (185.11bp,263.77bp) .. controls (187.16bp,251.73bp) and (189.89bp,235.72bp)  .. (193.9bp,212.21bp);
+  % Edge: Login fehlerhaft? -> logge Fehl-Login
+  \draw [->] (275.24bp,355.86bp) .. controls (303.9bp,342.01bp) and (348.03bp,320.67bp)  .. (390.63bp,300.07bp);
+  \draw (360.5bp,326bp) node {ja};
+  % Edge: Passwort leer? -> logge Fehl-Login
+  \draw [->] (329.36bp,531.47bp) .. controls (346.9bp,518.88bp) and (370.53bp,499.1bp)  .. (384bp,476bp) .. controls (415bp,422.85bp) and (424.16bp,349.71bp)  .. (427.46bp,300.16bp);
+  \draw (418.5bp,414bp) node {ja};
+  % Edge: versuche Login -> Login fehlerhaft?
+  \draw [->] (250.76bp,439.77bp) .. controls (249.94bp,427.77bp) and (248.85bp,411.83bp)  .. (247.22bp,387.91bp);
+  % Edge: generiere Log -> Exit
+  \draw [->] (265.34bp,87.98bp) .. controls (282.37bp,74.839bp) and (305.63bp,56.882bp)  .. (332.29bp,36.299bp);
+  % Edge: Benutzer existiert? -> logge Fehl-Login
+  \draw [->] (426.39bp,617.3bp) .. controls (436.94bp,600.18bp) and (451bp,572.41bp)  .. (451bp,546bp) .. controls (451bp,546bp) and (451bp,546bp)  .. (451bp,370bp) .. controls (451bp,349.47bp) and (445.07bp,327.09bp)  .. (435.66bp,300.18bp);
+  \draw (466.5bp,458bp) node {nein};
+  % Edge: Start -> lade Benutzer-Daten
+  \draw [->] (415bp,791.77bp) .. controls (415bp,779.85bp) and (415bp,764.04bp)  .. (415bp,740.21bp);
+  % Edge: logge Fehl-Login -> werfe jeweilige Exception
+  \draw [->] (427.04bp,263.92bp) .. controls (425.87bp,241.93bp) and (423.89bp,204.53bp)  .. (421.97bp,168.28bp);
+  % Edge: Passwort leer? -> versuche Login
+  \draw [->] (296.65bp,529.45bp) .. controls (288.82bp,516.91bp) and (277.89bp,499.43bp)  .. (263.44bp,476.3bp);
+  \draw (300.5bp,502bp) node {nein};
+  % Node: Benutzer existiert?
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (415bp,652bp) -- (268bp,634bp) -- (415bp,616bp) -- (562bp,634bp) -- cycle;
+  \draw (415bp,634bp) node {Benutzer existiert?};
+\end{scope}
+  % Node: Passwort leer?
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (307bp,564bp) -- (191bp,546bp) -- (307bp,528bp) -- (423bp,546bp) -- cycle;
+  \draw (307bp,546bp) node {Passwort leer?};
+\end{scope}
+  % Node: generiere Log
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (356bp,124bp) -- (175bp,124bp) -- (128bp,88bp) -- (309bp,88bp) -- cycle;
+  \draw (242bp,106bp) node {generiere Log};
+\end{scope}
+  % Node: Login fehlerhaft?
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (246bp,388bp) -- (115bp,370bp) -- (246bp,352bp) -- (377bp,370bp) -- cycle;
+  \draw (246bp,370bp) node {Login fehlerhaft?};
+\end{scope}
+  % Node: lade Benutzer-Daten
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (579bp,740bp) -- (318bp,740bp) -- (251bp,704bp) -- (512bp,704bp) -- cycle;
+  \draw (415bp,722bp) node {lade Benutzer-Daten};
+\end{scope}
+  % Node: logge Login
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (279bp,300bp) -- (125bp,300bp) -- (85bp,264bp) -- (239bp,264bp) -- cycle;
+  \draw (182bp,282bp) node {logge Login};
+\end{scope}
+  % Node: Start
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (430bp,828bp) -- (400bp,828bp);
+  \draw (400bp,828bp) .. controls (394bp,828bp) and (388bp,822bp)  .. (388bp,816bp);
+  \draw (388bp,816bp) -- (388bp,804bp);
+  \draw (388bp,804bp) .. controls (388bp,798bp) and (394bp,792bp)  .. (400bp,792bp);
+  \draw (400bp,792bp) -- (430bp,792bp);
+  \draw (430bp,792bp) .. controls (436bp,792bp) and (442bp,798bp)  .. (442bp,804bp);
+  \draw (442bp,804bp) -- (442bp,816bp);
+  \draw (442bp,816bp) .. controls (442bp,822bp) and (436bp,828bp)  .. (430bp,828bp);
+  \draw (415bp,810bp) node {Start};
+\end{scope}
+  % Node: Exit
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (371bp,36bp) -- (341bp,36bp);
+  \draw (341bp,36bp) .. controls (335bp,36bp) and (329bp,30bp)  .. (329bp,24bp);
+  \draw (329bp,24bp) -- (329bp,12bp);
+  \draw (329bp,12bp) .. controls (329bp,6bp) and (335bp,0bp)  .. (341bp,0bp);
+  \draw (341bp,0bp) -- (371bp,0bp);
+  \draw (371bp,0bp) .. controls (377bp,0bp) and (383bp,6bp)  .. (383bp,12bp);
+  \draw (383bp,12bp) -- (383bp,24bp);
+  \draw (383bp,24bp) .. controls (383bp,30bp) and (377bp,36bp)  .. (371bp,36bp);
+  \draw (356bp,18bp) node {Exit};
+\end{scope}
+  % Node: versuche Login
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (375bp,476bp) -- (179bp,476bp) -- (129bp,440bp) -- (325bp,440bp) -- cycle;
+  \draw (252bp,458bp) node {versuche Login};
+\end{scope}
+  % Node: werfe jeweilige Exception
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (618bp,168bp) -- (305bp,168bp) -- (224bp,132bp) -- (537bp,132bp) -- cycle;
+  \draw (421bp,150bp) node {werfe jeweilige Exception};
+\end{scope}
+  % Node: schreibe Daten in Session
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (394bp,212bp) -- (81bp,212bp) -- (0bp,176bp) -- (313bp,176bp) -- cycle;
+  \draw (197bp,194bp) node {schreibe Daten in Session};
+\end{scope}
+  % Node: logge Fehl-Login
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (559bp,300bp) -- (351bp,300bp) -- (297bp,264bp) -- (505bp,264bp) -- cycle;
+  \draw (428bp,282bp) node {logge Fehl-Login};
+\end{scope}
+%
+\end{tikzpicture}
+

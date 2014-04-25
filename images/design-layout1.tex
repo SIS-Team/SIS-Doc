@@ -1,0 +1,42 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,scale=1]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Node: dings
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (180bp,84bp) -- (130bp,42bp) -- (180bp,0bp) -- (230bp,42bp) -- cycle;
+  \draw (180bp,45bp) node {Logo};
+  \draw (180bp,28bp) node {};
+\end{scope}
+  % Node: struct0
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (0bp,17bp) -- (0bp,67bp) -- (112bp,67bp) -- (112bp,17bp) -- cycle;
+  \draw (0bp,42bp) -- (56bp,42bp);
+  \draw (56bp,17bp) -- (56bp,67bp);
+  \draw (56bp,42bp) -- (112bp,42bp);
+  \draw (28bp,49bp) node {Box 0};
+  \draw (28bp,24bp) node {Box 4};
+  \draw (84bp,49bp) node {Box 1};
+  \draw (84bp,24bp) node {Box 5};
+\end{scope}
+  % Node: struct1
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (248bp,17bp) -- (248bp,67bp) -- (360bp,67bp) -- (360bp,17bp) -- cycle;
+  \draw (248bp,42bp) -- (304bp,42bp);
+  \draw (304bp,17bp) -- (304bp,67bp);
+  \draw (304bp,42bp) -- (360bp,42bp);
+  \draw (276bp,49bp) node {Box 2};
+  \draw (276bp,24bp) node {Box 6};
+  \draw (332bp,49bp) node {Box 3};
+  \draw (332bp,24bp) node {Box 7};
+\end{scope}
+%
+\end{tikzpicture}
+
