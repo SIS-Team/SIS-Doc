@@ -3,7 +3,7 @@ digraph php {
 	node [shape=box];
 	
 	"o=HTLinn" -> {"ou=STUDENTS", "ou=LEHRER", "..."};
-	"ou=STUDENTS" -> {"cn=0090319", "cn=20090334", "...  "};
+	"ou=STUDENTS" -> {"cn=20090319", "cn=20090334", "...  "};
 	"ou=LEHRER" -> {"cn=stecher", "cn=weiss", "... "};
 	
 	"..." [shape=box3d];
