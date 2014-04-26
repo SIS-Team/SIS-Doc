@@ -29,7 +29,7 @@ Damit der JavaScript-Code ausgeführt werden kann wird diese Datei als JavaScrip
 
 Sollte die Anmeldung erfolgreich gewesen sein, wird nun der folgende JavaScript-Code geladen, und leitet den Nutzer in das Menü der App weiter.\\
 
-window.location.href='menu.html';
+window.location.href=\grq menu.html\grq;
 
 \paragraph{Automatische Wiederanmeldung\\}
 	
@@ -61,11 +61,11 @@ Weitere Tags sind\\
 \begin{description}
 \item[\texttt{<name></name>}] Damit wird der Name der App angegeben
 \item[\texttt{<description></description>}] Darin wird eine Beschreibung der App geschrieben
-\item[\texttt{<author email="help@sis.htlinn.ac.at"></author>}] Zwischen diesen Tags wird angegeben wer die App erstellt hat.
-\item[\texttt{<icon src="images/icon.png" />}] Mit diesem Tag kann man den Pfad des App-Icons angeben.
-\item[\texttt{<gap:splash src="images/splash.png" />}] Mit diesem Tag kann man den Pfad des Splashscreens angeben.
-\item[\texttt{<access origin="http://sis.htlinn.ac.at"/>}]Mit dem Access-Tag gibt man an auf welche Webseiten die App zugreifen, bzw. welche Webseiten die App laden darf.
-\item[\texttt{<gap:plugin name=" " version="" />}] Mit diesem Tag werden Plugins eingebunden.
+\item[\texttt{<author email=\enquote{help@sis.htlinn.ac.at}></author>}] Zwischen diesen Tags wird angegeben wer die App erstellt hat.
+\item[\texttt{<icon src=\enquote{eimages/icon.png} />}] Mit diesem Tag kann man den Pfad des App-Icons angeben.
+\item[\texttt{<gap:splash src=\enquote{images/splash.png} />}] Mit diesem Tag kann man den Pfad des Splashscreens angeben.
+\item[\texttt{<access origin=\enquote{http://sis.htlinn.ac.at}/>}]Mit dem Access-Tag gibt man an auf welche Webseiten die App zugreifen, bzw. welche Webseiten die App laden darf.
+\item[\texttt{<gap:plugin name=\enquote{ } version=\enquote{ } />}] Mit diesem Tag werden Plugins eingebunden.
 \item[\texttt{<manifest> </manifest>}] Das Manifest Tag wurde verwendet um das Android-Manifest zu erstellen,darin kann man	Berechtigungen für die Android-App einstellen. Das Manifest wäre in diesem Fall aber nicht notwendig gewesen.
 \end{description}
 
