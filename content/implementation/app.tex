@@ -1,42 +1,78 @@
 \subsection{App}
 
+\subsubsection{Verbindungsüberprüfung}
+
+Da die App ohne eine bestehende Internetverbindung nicht sinnvoll nutzbar ist, wird direkt beim öffnen der App überprüft ob eine Verbindung zum SIS-Server (also eine Internetverbindung) besteht.\\
+Dazu wird ein Bild vom SIS-Server geladen, dieses wird dann aber ausgeblendet, da es rein zur Verbiundugsüberprüfung dient. Wenn das Bild erfolgreich geladen werden kann heißt das, dass eine Verbindung zum Server besteht. Tritt beim Laden des Bildes ein Fehler auf heißt das, dass die Verbindung zum Server fehlerhaft ist beziehungsweise nicht besteht. In diesem Fall wird, mit Hilfe der alert-Funktion, eine Meldung ausgegeben, dass keine Verbindung aufgebaut  werden konnte.\\
+
+\lstinputlisting[style=custom, language=html, caption={/index.html; Bild laden zur Verbindungsüberprüfung; Zeile 65}, label={lst:widget}, firstline=65, lastline=65, firstnumber=65]{sources/app/index.html}
+
+\subsubsection{Login}
+
+\paragraph{Datenübermittleung\\}
+Beim Login müssen als erstes die Anmeldedaten an den Server übertragen werden. Da in der App kein PHP verwendet werden kann werden die Daten über ein iFrame an den Server gesandt.\\
+
+\lstinputlisting[style=custom, language=html, caption={/index.html; Login-Formular; Zeilen 69-81}, label={lst:widget}, firstline=69, lastline=81, firstnumber=69]{sources/app/index.html}
+
+Dadurch dass die login.php im iFrame geladen wird, wird die HTML-Seite nicht neu geladen.\\
+Wenn die Daten an den Server gesandt wurden erstellt dieser eine Session für den Benutzer.\\
+
+\paragraph{Überprüfung der Session\\}
+	
+Da über das iFrame nicht überprüft werden kann ob die Anmeldung korrekt durchgeführt werden konnte, muss noch eine zusätzliche PHP-Datei geladen werden um das zu überprüfen. In dieser PHP-Datei wird überprüft ob eine Session für den Nutzer existiert, falls die Session existiert wird JavaScript-Code ausgegeben, welcher den Nutzer in das Menü der App weiterleiten soll.\\
+
+\lstinputlisting[style=custom, language=php, caption={/mobile/api/checkCookie.php; Überprüfung der Session; Zeilen 1-7}, label={lst:widget}, firstline=1, lastline=7, firstnumber=1]{sources/app/api/checkCookie.php}
+
+Damit der JavaScript-Code ausgeführt werden kann wird diese Datei als JavaScript eingebunden. Da die Überprüfung der Session aber erst nach der Eingabe der Daten durch den Nutzer durchgeführt wird, muss diese Datei dynamisch mit Hilfe von JavaScript eingebunden werden.\\
+
+\lstinputlisting[style=custom, language=html, caption={/index.html; Funktion checkCookie(); Zeilen 14-18}, label={lst:widget}, firstline=14, lastline=18, firstnumber=14]{sources/app/index.html}
+
+Sollte die Anmeldung erfolgreich gewesen sein, wird nun der folgende JavaScript-Code geladen, und leitet den Nutzer in das Menü der App weiter.\\
+
+window.location.href='menu.html';
+
+\paragraph{Automatische Wiederanmeldung\\}
+	
+Um die Bedienung der App zu erleichtern, wurde die Funktion \enquote{Angemeldet bleiben} integriert. Dadurch wird der Benutzer, falls er diese Funktion bei der letzten Anmeldung ausgewählt hat, beim öffnen der App automatisch angemeldet.\\
+
+Damit das Funktioniert müssen der Benutzername und das Passwort des Nutzers gespeichert werden, diese werden aber nur lokal auf dem Gerät gespeichert und können nicht ausgelesen werden.\\
+
+Um die Daten zu speichern wurde die Funktion saveLogin() erstellt.\\
+
+\lstinputlisting[style=custom, language=html, caption={/index.html; Funktion saveLogin(); Zeilen 32-39}, label={lst:widget}, firstline=32, lastline=39, firstnumber=32]{sources/app/index.html}
+
+
+Mit der Funktion window.localStorage.setItem() können Variablen oder sonstige Daten auf dem lokalen Speicher des Smartphones gespeichert werden.\\
+ Die Funktion saveLogin() wird nach jedem Anmeldeversuch ausgeführt, falls der Benutzer bei Angemeldet bleiben einen Hacken gesetzt hat. Sollte die Anmeldung fehlschlagen, weil ein falscher Benutzername oder ein falsches Passwort eingegeben wurden, werden die Daten sofort wieder gelöscht.\\
+Wenn der Benutzer nicht mehr angemeldet bleiben möchte, muss er sich (durch klicken auf den logout-Button) abmelden. Wenn das gemacht wird, wird die Funktion logout() ausgeführt diese leitet den Benutzer zurück auf die Anmeldeseite und löscht Benuzternamen und Passwort.\\
+
+\lstinputlisting[style=custom, language=html, caption={/logout.html; Funktion logout(); Zeilen 8-13}, label={lst:widget}, firstline=8, lastline=13, firstnumber=8]{sources/app/logout.html}
+
 \subsubsection{Konfigurationsdatei-config.xml}
 
 Um die Metadaten der App zu konfigurieren, um bestimmte Einstellungen zu treffen oder um Plugins zu laden wird die Datei config.xml benötigt. Diese Konfigurationsdatei wird zusammen mit allen anderen Dateien in das ZIP-Paket gespeichert und für den PhoneGap build hochgeladen.\\
 Die config.xml besteht grundsätzlich aus XML-Code.\\
 Am Anfang der Datei steht ein Widget-Tag in welchem die ID der Applikation und die Versionsnummer angegeben werden.\\
  
-\lstinputlisting[style=custom, language=xml, caption={config.xml}, label={lst:widget}, firstline=2, lastline=6]{sources/app/config.xml}
+\lstinputlisting[style=custom, language=xml, caption={/config.xml; App-Basisinformationen; Zeilen 2-6}, label={lst:widget}, firstline=2, lastline=6, firstnumber=2]{sources/app/config.xml}
 
 
 Weitere Tags sind\\
-\begin{tabular}{llpipe}
-   <name></name>&Damit wird der Name der App angegeben\\
-   <description></description>&Darin wird eine Beschreibung der App\\
-    						&geschrieben\\
-   <author email="help@sis.htlinn.ac.at"></author>&Zwischen diesen Tags wird angegeben\\
-    											&wer die App erstellt hat.\\
-   <icon src="images/icon.png" />&Mit diesem Tag kann man den Pfad des\\
-   								&App-Icons angeben.\\
-   <gap:splash src="images/splash.png" />&Mit diesem Tag kann man den Pfad des\\
-    									&Splashscreens angeben.\\
-   <access origin="http://sis.htlinn.ac.at"/>&Mit dem Access-Tag gibt man an auf\\
-   											&welche Webseiten die App zugreifen,\\
-   											&bzw. welche Webseiten die App laden darf.\\
-   <manifest> </manifest>&Das Manifest Tag wurde verwendet um\\
-   						&das Android-Manifest zu erstellen,\\
-   						&darin kann man	Berechtigungen für die\\
-   						&Android-App einstellen. Das Manifest\\
-   						&wäre in diesem Fall aber nicht notwendig\\
-   						&gewesen.\\
-   <gap:plugin name=" " version="" />&Mit diesem Tag werden Plugins eingebunden.\\
-   \\
- \end{tabular}
+\begin{description}
+\item[\texttt{<name></name>}] Damit wird der Name der App angegeben
+\item[\texttt{<description></description>}] Darin wird eine Beschreibung der App geschrieben
+\item[\texttt{<author email="help@sis.htlinn.ac.at"></author>}] Zwischen diesen Tags wird angegeben wer die App erstellt hat.
+\item[\texttt{<icon src="images/icon.png" />}] Mit diesem Tag kann man den Pfad des App-Icons angeben.
+\item[\texttt{<gap:splash src="images/splash.png" />}] Mit diesem Tag kann man den Pfad des Splashscreens angeben.
+\item[\texttt{<access origin="http://sis.htlinn.ac.at"/>}]Mit dem Access-Tag gibt man an auf welche Webseiten die App zugreifen, bzw. welche Webseiten die App laden darf.
+\item[\texttt{<gap:plugin name=" " version="" />}] Mit diesem Tag werden Plugins eingebunden.
+\item[\texttt{<manifest> </manifest>}] Das Manifest Tag wurde verwendet um das Android-Manifest zu erstellen,darin kann man	Berechtigungen für die Android-App einstellen. Das Manifest wäre in diesem Fall aber nicht notwendig gewesen.
+\end{description}
 
 Für iOS wird das Icon in vielen verschiedenen Größen benötigt, damit die App für alle Geräte angepasst ist. Darum wurden zusätzlich noch zwölf Icons erstellt und in der config.xml eingebunden. Damit die Icons auch richtig zugewiesen werden, werden dem Icon-Tag noch jeweils ein Attribut für die Höhe und die Breite des Bildes und ein Attribut um das richtige Betriebssystem anzugeben, mitgegeben.\\
 Beispiel:\\
 
-\lstinputlisting[style=custom, language=xml, caption={config.xml}, label={lst:widget}, firstline=32, lastline=32]{sources/app/config.xml}
+\lstinputlisting[style=custom, language=xml, caption={/config.xml; Icon 76px für iOS; Zeile 32}, label={lst:widget}, firstline=32, lastline=32, firstnumber=32]{sources/app/config.xml}
 	
 
 Bei den Splashscreens (das Bild das beim Starten der App erscheint) müssen auch mehrere Formate eingebunden werden.
@@ -44,7 +80,7 @@ Um zu vermeiden, dass es durch PhoneGap zu Problemen mit der Kommunikation zwisc
 
 Bei den Preferences wurde eingestellt, dass die Applikation keine Berechtigungen hat,\\
 
-\lstinputlisting[style=custom, language=xml, caption={config.xml}, label={lst:widget}, firstline=84, lastline=84]{sources/app/config.xml}
+\lstinputlisting[style=custom, language=xml, caption={/config.xml; Berechtigungen aufheben; Zeile 84}, label={lst:widget}, firstline=84, lastline=84, firstnumber=84]{sources/app/config.xml}
 
 Dadurch wird beim Installieren der App, die Verbindung mit dem Internet als einzige angeforderte Berechtigung angezeigt. Diese Berechtigung kann bei PhoneGap-Apps nämlich nicht abgestellt werden.\\
 
@@ -81,7 +117,7 @@ Dieses Keystore-File kann man selbst erstellen, sofern man die JDK (Java Develop
 Beispielbefehl:\\
 
 \begin{lstlisting}
-$ keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
 \end{lstlisting}
 
 Nachdem dieser Befehl eingegeben wurde, wird man noch aufgefordert, den Namen des Entwicklers oder Entwicklerteams, die Nationalität und einige weiter Angaben einzugeben. Zuletzt muss noch ein Passwort angegeben werden, dieses wird benötigt um den Schlüssel zu entsperren, wenn er bei PhoneGap genutzt wird.\\

@@ -1,84 +1,45 @@
 \subsubsection{Javascript (Klotz)}
 \label{sec:content_js_Javascript}
-JavaScript ist eine Skriptsprache welche für dynamische Erweiterungen im Webbrowser gedacht war. Es sollte helfen interaktive Websites, einfacher zu erstellen. Daher ist JavaScript auch nicht als alleinstehende Programmiersprache geeignet, und kommt fast immer in Kombination mit anderen Programmen oder Programmiersprachen zum Vorschein.\\
-JavaScript wird hauptsächlich Clientseitig, das heißt im Webbrowser des Nutzers, genutzt um für den Nutzer Extras einzubauen. Dadurch wird auch der Server entlastet, da die Rechenleistung des Anwender-PCs genutzt wird und nicht die des Servers.\\
- Es gibt aber auch Serverseitiges-JavaScript(SSJS). Das kann dann, mit einem entsprechenden Interpreter (z.B.: Node.js), gleich wie andere Serverseitige Programmiersprachen verwendet werden.\\
-JavaScript ist, wie die meisten Skriptsprachen, sehr einfach gehalten und Variablendeklarationen und ähnliches fallen weg(Variablentypen können auch während Laufzeit einfach verändert werden).\\
-JavaScript ist eine Interpreter-Programmiersprache, das heißt, dass der Code erst im Webbrowser durch den integrierten Interpreter umgesetzt wird.\\
-Obwohl JavaScript eine sehr einfache Programmiersprache ist, sind trotzdem alle wichtigen Strukturelement, wie Schleifen, If-Klauseln, etc. welche auch in anderen Programmiersprachen wie zum Beispiel C oder Java existieren, enthalten.\\
-Weiters gibt es bei JavaScript die Möglichkeit Bibliotheken einzubinden. Dadurch kann man bereits vorgefertigte Funktionen einfach einbinden und anwenden. Ein Beispiel dafür ist JQuery.\\
-JavaScript ist objektorientiert. Klassen sind ebenfalls Objekte, mit denen Prototypen von ihren
-Instanzen genieriert werden. Prinzipiell sind alle Objekte, Eigenschaften und Methoden Variablen.
-Es gibt daher keine prinzipielle Unterscheidung zwischen Eigenschaften und Methoden.
-Die Variablentypisierung ist dynamisch. Es gibt keine Unterscheidung zwischen publiken und
-privaten Eigenschaften und Methoden.In Javascript kann aber auch ohne objektorientierung programmiert werden.
-\\
+JavaScript ist eine Skriptsprache welche für dynamische Erweiterungen im Webbrowser gedacht war. Es sollte helfen interaktive Websites, einfacher zu erstellen. Daher ist JavaScript auch nicht als alleinstehende Programmiersprache geeignet, und kommt fast immer in Kombination mit anderen Programmen oder Programmiersprachen zum Vorschein. Es handelt sich um eine Interpretersprache, das heißt der Code wird vor dem Ausführen nicht kompiliert sondern erst während der Ausführung interpretiert.\\
+JavaScript folgt zwar weitgehend der Syntax von Java-Ausdrücken und Namenskonventionen von Java, daher auch der Name, aber ansonsten haben die beiden Sprachen kaum Gemeinsamkeiten.\\
+JavaScript ist eine Objektorientierte Programmiersprache, fast alle Variablen stellen ein Objekt dar, das heißt fast alle Variablen besitzen Eigenschaften und Methoden.\\
+Als Beispiel:\\
+\begin{lstlisting}[language=html]
+	var auto = 'Audi';
+\end{lstlisting}
+Bei der Variable auto handelt es sich um eine Stringvariable. In JavaScript besitzen Stringvariablen automatisch die Eigenschaft length, welche die Anzahl der Zeichen des Strings angibt. Das heißt die Variable auto.length hat den Wert 4.\\
+Zusätzlich haben Stringvariablen auch einige Methoden, wie zum Beispiel substring() oder toUpperCase(). Diese können auf das Stringobjekt angewandt werden:\\
+\begin{lstlisting}[language=html]
+	auto=auto.toUpperCase();
+\end{lstlisting}
+Jetzt würde 'AUDI' in der Variable auto stehen.\\
 
-\paragraph*{Anwendung}
-Um JavaScript in einer Webseite zu nutzen gibt es zwei Möglichkeiten, entweder der Code wird direkt in das HTML-Dokument geschrieben(Variante1) oder man schreibt den JavaScript-Code in ein eigenes Dokument und bindet dieses dann ein(Variante2).\\
-Variante 1\\
-Wenn man den Code direkt in die HTML-Datei schreiben möchte, muss dieser Code dementsprechend markiert werden. Dazu verwendet man den Script-Tag (siehe Codebeispiel), dieser kann im Head oder im Body stehen, es ist jedoch üblich Funktionen in den Head zu schreiben.\\
-\begin{lstlisting}
-<html>
-  <head>
-    <script>
-	//Here comes JS
-    </script> 
-  </head>
-  
-  <body>
-  </body>
-</html>
+Es gibt aber auch Variablen welche keine Objekte darstellen, sogenannte primitive Variablen, damit werden aber nur Zahlen gespeichert und verarbeitet.\\
+
+JavaScript hat eine \enquote{schwache Typisierung}, dadurch ist es relativ einfach den Typ von Variablen zu ändern. So kann man zum Beispiel zu einer Variable mit einem  Zahlwert, einfach einen String anhängen und danach handelt es sich bei der Variable um eine Stringvariable. Bei anderen Programmiersprachen mit einer „starken Typisierung“ wäre es nicht möglich den Variablentypen so einfach zu ändern.\\
+ Bei der Variablendeklaration muss aufgrund der dynamischen Typisierung kein Cast angegeben werden. Dafür werden Variablen mit var deklariert.\\
+Funktionen sind Variablen (Objekte) der Klasse Function und unterliegen den selben Scoping-Regeln. Es gibt auch andere Schreibweisen über das Token "function". Mögliche Schreibweisen für Funktionen:\\
+\begin{lstlisting}[language=html]
+var f = new Function(x, y, {return x + y;});
+var f = function (x, y) {return x + y;}; // 1)
+function f (x, y) {return x + y;};
 \end{lstlisting}
 
+\paragraph{Scoping}
+Objekte, also Variablen und Funktionen, können in JavaScript in globale und lokale Objekte unterschieden werden. Der Unterschied liegt im Geltungsbereich der Objekte. Globale Objekte existieren für alle JavaScript-Funktionen auf der Webseite und können jederzeit bzw. überall im JavaScript-Code verwendet oder verändert werden. Lokale Objekte können hingegen nur in der Funktion verwendet werden in der sie deklariert wurden.\\
+\paragraph{DOM}
+Das Document Object Model, ist ein Modell in dem die einzelnen HTML-Teile als Objekte dargestellt werden.
+Das HTML-DOM in einer Baumstruktur:\\
+ 
+Bild\\
+Durch dieses Modell und zusätzliche Funktionen, welche als Bibliothek (z.B. jQuery), eingebunden werden können, kann man mit JavaScript die einzelnen Elemente einer Webseite verändern. Das kann genutzt werden um nachträglich geladene Inhalte in die Webseite einzubauen, oder das aussehen der Webseite zu verändern ohne diese neu zu laden.\\
+Als Ergänzung zum DOM gibt es noch ein BOM (Browser Object Model). Die Objekte aus denen dieses Modell besteht, geben dann zum Beispiel die Fensterhöhe oder Fensterbreite an, es werden aber auch Informationen über das verwendete Betriebssystem und den verwendeten Browser angegeben.
 
-Variante 2\\
-Im Gegensatz zur ersten Variante kommt in diesem Fall nur die Verlinkung zur JavaScript-Datei und nicht der ganze Code in das HTML-Dokument. Das eingebundene JavaScript-Dokument muss nicht auf dem gleichen Server oder Rechner gespeichert sein wie die Webseite, der Code kann sogar aus dem Internet geladen werden. Zum Einbinden einer JavaScript-Datei wird wieder ein Script-Tag verwendet, diesmal wird aber die URL der JavaScript-Datei als Attribut(„src = “) mitgegeben.\\
-\begin{lstlisting}
-<script src="js/jquery.js" type="text/javascript"></script>
-\end{lstlisting}
-
-\paragraph*{Funktionen}
-In JavaScript kann man auch Funktionen schreiben, welche dann bei eintreten bestimmter Ereignisse ausgeführt werden. Der Code für eine JavaScript-Funktion sieht wie folgt aus:\\
-\begin{lstlisting}
-function functionname()
-{
-some code to be executed
-}
-\end{lstlisting}
-Zwischen den geschwungenen Klammern wird der Code, der ausgeführt werden soll, geschrieben.\\
-Um eine Funktion aufzurufen schreibt man den Funktionsnamen mit Klammern dahinter. Der Funktionsaufruf kann zwischen zwei Script-Tags geschrieben werden oder als bestimmtes Attribut (z.B. „onClick“) in manchen anderen Tags.\\
-Bei einem Funktionsaufruf kann man der Funktion auch Werte mitgeben, dazu muss man in der Klammer hinter dem Funktionsnamen die Werte/Variablen eintragen. Die Mitgabe von Parametern muss natürlich in der Funktion vorgesehen werden, ansonsten werden die Werte einfach ignoriert.\\
-
-\paragraph*{Variablen}
-Bei JavaScript gibt es, wie auch bei anderen Programmiersprachen, Variablen. Diesen muss aber im Gegensatz zu Programmiersprachen wie C, Java oder ähnlichen, bei der Deklaration, kein eindeutiger Variablentyp zugewiesen werden. In JavaScript nur zwei Unterscheidungen bei den Variablentypen, nämlich in primitive Typen und in Objekttypen.
-Bei den primitiven Typen handelt es sich um Zahlen, alle anderen Variablen sind Objekttypen, also Zeichen, Zeichenketten oder ähnliches.\\
-
-Um in JavaScript eine Variable zu deklarieren, schreibt man var und dann den Variablennamen. Um ihr dann noch einen Wert zuzuweisen muss man nur den Variablennamen und ein = Symbol schreiben, danach wird der gewünschte Wert hingeschrieben, falls es sich um eine Zeichenkette handelt muss man den Wert zwischen Anführungszeichen setzen:\\
-\begin{lstlisting} 
-var name = “Peter”;
-var Anzahl;
-Anzahl = 3;
-name = "Hans";
-\end{lstlisting}
-
-Weiters muss man zwischen globalen und lokalen Variablen unterscheiden, während globale Variablen im gesamten Dokument definiert sind, sind lokale Variablen nur in der Funktion in der sie deklariert werden nutzbar. Um eine Variabel global zu definieren muss sie außerhalb jeglicher Funktionen definiert werden, wenn man eine Variabel aber innerhalb einer Funktion definiert handelt es sich um eine lokale Variable.\\
-
-\paragraph*{Arrays}
-In JavaSript gibt es auch Felder(Arrays).  Arrays sind Instanzen der Klasse Array. Werte innerhalb des Arrays sind prinzipiell voneinander unabhängige Variablen (beziehungsweise Referenzen). Bei Assoziative Arrays - also Arrays mit nicht-numerischen Indizes - sind die assoziativen Teile gleichzeitig auch Eigenschaften des Array-Objektes.\\
-Einen Wert in einem Array zu speichern funktioniert gleich, wie einer Variable einen Wert zuzuweisen, aber bei einem Array muss man zusätzlich zum Arraynamen noch die angeben welchen Arrayeintrag man verändern möchte.\\
-\begin{lstlisting}
-var cars = new Array();
-cars[0] = "Audi";
-cars[1] = "BMW";
-cars[2] = "Mercedes";
-\end{lstlisting}
-
-\paragraph*{JSON}
-JSON (JavaScript Object Notation) ist ein Datenaustauschformat welches so gestaltet ist, dass Objekte als Text codieren kann und der Computer es einfach parsen kann. Es basiert auf JavaScript.\\
+\paragraph{JSON}
+JavaScript Object Notation ist ein Datenaustauschformat welches so gestaltet ist, dass Objekte als Text codieren kann und der Computer es einfach parsen kann. Es basiert auf JavaScript.\\
 JSON wird sehr häufig in Verbindung mit JavaScript verwendet, kann aber auch mit anderen Programmiersprachen verwendet werden.\\
 Beispiel für ein JSON-Objekt:\\
-\begin{lstlisting}
+\begin{lstlisting}[language=html]
 {
   "Gerät": "Auto",
   "Marke": "Audi",
@@ -86,7 +47,7 @@ Beispiel für ein JSON-Objekt:\\
   "Seriennummer": 02345032,
 }
 \end{lstlisting}
+Die Daten werden in Form von Daten-Wert Paaren gespeichert. Aus diesem Objekt kann man nur relativ einfach Daten auslesen.\\ 
 
-Die Daten werden in Form von Daten-Wert Paaren gespeichert. Aus diesem Objekt kann man nur relativ einfach Daten auslesen. Der JavaScript-Code um die Marke auszulesen würde zum Beispiel wie folgt aussehen:
-var Marke = object.Marke;
+
 
