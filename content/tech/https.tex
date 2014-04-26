@@ -27,7 +27,7 @@ Connection: keep-alive\r\n
 \item[Accept-Language] Gibt an welche Sprachen die aufgerufene Seite haben soll. Wenn auf dem Server verschiedene Sprachen vorhanden sind, wird die gewünschte ausgegeben. In diesem Fall sollte dies Deutsch oder Englisch(USA) sein. 
 \item[Accept-Encoding] Gibt die akzeptierten Kompressionsarten z.B. gzip an. Dies dient dazu, eine schnellere Übermittlung der Daten zu ermöglichen.
 \end{description} 
-Sobald zwei aufeinander folgende Zeilenenden erreicht wurden, beginnt der Server die Anfrage zu bearbeiten.
+Sobald zwei aufeinander folgende Zeilenenden (=\enquote{\textbackslash r\textbackslash n}) erreicht wurden, beginnt der Server die Anfrage zu bearbeiten.
 
 \begin{lstlisting}[style=custom, caption={HTTP-Response},label={lst:content_http_response}]
 HTTP/1.1 200 OK\r\n
@@ -39,7 +39,7 @@ Transfer-Encoding: chunked\r\n
 \r\n
 \end{lstlisting}
 \begin{description}
-\item[Statuscode] siehe Statuscodes
+\item[Statuscode] siehe \gref{sec:content_http_statuscodes}
 \item[Date] Zeit, zu der der Response versendet wurde.
 \item[Server] Äquivalent zu User-Agent für den Client. Gibt den verwendeten Server an. 
 \item[X-Powered-By (nicht standardisiert)] Gibt die verwendete Technologie, in diesem Fall PHP Version 4.3.10, an. 
@@ -48,17 +48,15 @@ Transfer-Encoding: chunked\r\n
 \end{description}
 \autoref{lst:content_http_request} und \autoref{lst:content_http_response} wurden mittels Wireshark aufgenommen.
 \subsubsection{Statuscodes}
-Es gibt für HTTP sechs verschiedene Arten von Satuscodes
-\paragraph{1xx}
-Diese Statuscodes werden während der Bearbeitung der Anfrage verwendet und dienen der Information.
-\paragraph{2xx}
-Diese Statuscodes werden benützt, wenn die Anfrage erfolgreich bewältigt wurde.  
-\paragraph{3xx}
-Diese Codes dienen dazu, eine Umleitung ersichtlich zu machen. Bei solch einem Code wird eine Aktion des Clients gefordert, was meist automatisch geschieht. So wird zum Beispiel bei dem Statuscode \enquote{301 Moved Permanently} die neue Adresse im Header im Feld Location zurückgegeben.
-\paragraph{4xx}
-Hiermit werden Fehler gekennzeichnet. Zum Beispiel 404: "Not Found".
-\paragraph{5xx}
-Diese Codes sollen Server-Fehler kennzeichnen.
+\label{sec:content_http_statuscodes}
+Es gibt für HTTP fünf verschiedene standardisierte Arten von Satuscodes
+\begin{description}
+\item[1xx] Diese Statuscodes werden während der Bearbeitung der Anfrage verwendet und dienen der Information.
+\item[2xx] Diese Statuscodes werden benützt, wenn die Anfrage erfolgreich bewältigt wurde.  
+\item[3xx] Diese Codes dienen dazu, eine Umleitung ersichtlich zu machen. Bei solch einem Code wird eine Aktion des Clients gefordert, was meist automatisch geschieht. So wird zum Beispiel bei dem Statuscode \enquote{301 Moved Permanently} die neue Adresse im Header im Feld Location zurückgegeben.
+\item[4xx] Hiermit werden Fehler gekennzeichnet. Zum Beispiel 404: "Not Found".
+\item[5xx] Diese Codes sollen Server-Fehler kennzeichnen.
+\end{description}
 
 \subsubsection{Versionen}
 Aktuell sind zwei verschiedene Versionen von HTTP im Einsatz, HTTP/1.0 und HTTP/1.1.
@@ -68,7 +66,7 @@ Diese unterscheiden sich insofern, dass bei HTTP/1.0 für jede Anfrage eine neue
 \paragraph{HTTP/2.0}  HTTP/2.0 befindet sich in der Entwicklung und basiert auf SPDY. Es wird von der \enquote{Hypertext Transfer Protocol Bis working group}, einer Arbeitsgruppe der \enquote{Internet Engineering Task Force} (IETF), entwickelt.
 
 \subsection{HTTPS (Weiland)}
-HTTPS (= Hypertext Transfer Protocol Secure) dient zur Verschlüsselung der Verbindung von Client zu Server. Dies geschieht mittels SSL/TLS.
+HTTPS (= Hypertext Transfer Protocol Secure) dient zur Verschlüsselung der Verbindung von Client zu Server. Dies geschieht mittels SSL/TLS. Diese Möglichkeit der Herstellung einer sicheren Verbindung besitzt den Vorteil, dass hierfür auf dem Client keine Installation einer speziellen Software nötig ist.
 \subsubsection{Verbindungsaufbau}
 Zuerst wird eine Authentifizierung und eine Identifizierung der Kommunikationspartner durchgeführt. Dann wird ein symmetrischer Schlüssel \enquote{ausgemacht}. Für diesen Vorgang kann entweder eine asymmetrische Verschlüsselung oder der \enquote{Diffie-Hellman-Merkle-Schlüsselabtauch} verwendet werden. Dies soll gewährleisten, dass nur die beiden Kommunikationspartner die Verschlüsselung kennen.
 \subsubsection{Zertifikate}
