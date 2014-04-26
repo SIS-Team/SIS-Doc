@@ -33,18 +33,18 @@ Der Bind wird wieder gelöst und das Daten-Array zurückgegeben, beziehungsweise
 Die Funktion \texttt{LDAP\_getDN(\$ent)} erwartet als Parameter ein LDAP-Entry-Array und gibt den DN des ersten Objektes im Array zurück.\\
 Die Funktionen \texttt{getSection(\$ent)}, \texttt{getFullName(\$ent)} und \texttt{getInitials(\$ent)} sind ähnlich trivial und sollen nicht näher erläutert werden. Einzig bei der Funktion \texttt{getFullName(\$ent)} ist zu erwähnen, dass nur der erste Vorname zurückgegeben wird.\\
 
-\lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{getClass()}; Zeilen 129-141}, label={lst:content_imple_ldap_getdn}, firstline=129, lastline=141, firstnumber=129]{sources/ldap/LDAP.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{getClass()}; Zeilen 129-141}, label={lst:content_imple_ldap_getclass}, firstline=129, lastline=141, firstnumber=129]{sources/ldap/LDAP.php}
 Beim Auslesen der Klasse, wird der Fakt genutzt, dass alle Klassen im Container \texttt{ou=GROUPS,ou=PUBLIC,o=HTLinn} liegen und einen CN haben, welcher länger als 3 Zeichen ist. Dieser Fakt ist sonst für keine Gruppe gegeben. Dementsprechend wird die Gruppenzugehörigkeit nach diesen Kriterien überprüft.\\
 
-\lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{isTeacher()}; Zeilen 120-127}, label={lst:content_imple_ldap_getdn}, firstline=120, lastline=127, firstnumber=120]{sources/ldap/LDAP.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{isTeacher()}; Zeilen 120-127}, label={lst:content_imple_ldap_teacher}, firstline=120, lastline=127, firstnumber=120]{sources/ldap/LDAP.php}
 Alle Lehrer-Objekte liegen im Container \texttt{ou=LEHRER,o=HTLinn}. Es wird der DN zerlegt und der Container verglichen.\\
 
-\lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{getRights()}; Zeilen 78-118}, label={lst:content_imple_ldap_getdn}, firstline=78, lastline=118, firstnumber=78]{sources/ldap/LDAP.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{getRights()}; Zeilen 78-118}, label={lst:content_imple_ldap_rights}, firstline=78, lastline=118, firstnumber=78]{sources/ldap/LDAP.php}
 In der Funktion \texttt{getRights(\$ent)} wird anfangs das Rechte-Array initialisiert (alle Rechte entzogen $ \Longrightarrow $ alle Rechte auf \texttt{false}). Danach werden alle Gruppenzugehörigkeiten durchlaufen, wenn eine Gruppe im Container \texttt{ou=SIS,o=HTL1} liegt, ist es möglich, dass es sich um eine Rechte-Gruppe handelt (Für eine Auflistung aller Gruppen siehe \gref{sec:content_solutions_users}.). Handelt es sich um die SuperAdmin-Gruppe, so wird das \texttt{root}-Flag im Rechte-Array gesetzt. Handelt es sich um die News-Gruppe, so wird das \texttt{news}-Flag gesetzt. Kommt das Wort Admin vor, so wird das jeweilige Abteilungs-Flag gesetzt.\\
 Für die Beta-Phase wird bei den vier Entwicklern das \texttt{root}-Flag gesetzt (Die Entwickler werden durch ihren CN identifiziert.).\\
 Das Berechtigungs-Array wird aus der Funktion zurückgegeben.\\
 
-\lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{LDAP\_login()}; Zeilen 17-29}, label={lst:content_imple_ldap_getdn}, firstline=17, lastline=29, firstnumber=17]{sources/ldap/LDAP.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{LDAP\_login()}; Zeilen 17-29}, label={lst:content_imple_ldap_login}, firstline=17, lastline=29, firstnumber=17]{sources/ldap/LDAP.php}
 Die Login-Funktion verlangt als Parameter den DN des Benutzers (dieser muss zuvor ausgelesen werden) und das Passwort.\\
 Sollte kein LDAP-Host eingetragen sein, wird der Testbenutzer verwendet, es findet keien Bind statt. Der DN für den Testbenutzer ist \texttt{cn=123345678,ou=STUDENTS,o=HTLinn} (das entspricht dem Benutzernamen \enquote{12345678}), das Passwort ist \enquote{sister}.\\
 Sollte ein Host eingetragen sein, so wird ein Bind versucht. Ist dieser erfolgreich wird \texttt{true} zurückgegeben, sonst \texttt{false}.
