@@ -387,9 +387,11 @@ function form_savedelete($new)
 {
 
 if($new!=true)
-	printf("<td style=\"text-align:right; width:111px\"> L&ouml;schen<input type=\"checkbox\" name=\"delete\" value=\"delete\"></td>\n");		//Checkbox erstellen
+	//Checkbox erstellen
+	printf("<td style=\"text-align:right; width:111px\"> L&ouml;schen<input type=\"checkbox\" name=\"delete\" value=\"delete\"></td>\n");
 
-printf("<td style=\"text-align:right;width:86px\"><input type=\"submit\" name=\"save\" value=\"&Uuml;bernehmen\"></td>\n");	//Submit Button erstellen
+//Submit Button erstellen
+printf("<td style=\"text-align:right;width:86px\"><input type=\"submit\" name=\"save\" value=\"&Uuml;bernehmen\"></td>\n");
 
 }
 ?>
