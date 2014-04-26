@@ -169,8 +169,50 @@ Die Ausgabe der Menüpunkte (\autoref{lst:content_imple_design_htmlstruct}) soll
 \lstinputlisting[style=custom, language=php, caption={/modules/menu/Main.php; Bespiel: Menüpunkt 2; Zeilen 65-78}, label={lst:content_imple_menu_2}, firstline=65, lastline=78, firstnumber=65]{sources/menu/Main.php}
 Der Div, der den Menüpunkt umschließt, bekommt die HTML-Klasse \texttt{notUsed} angehängt, im Fall, dass der Wert des \texttt{display}-Schlüssels für den Punkt 2 \texttt{false} ist. Diese Klasse blendet im Grund den Div aus.\\
 Kann der Button verwendet werden - also wenn sein \texttt{enabled}-Schlüssel auf \texttt{true} (technisch gesehen ist hier jeder Wert außer 0 gültig, aber logisch ist es entweder \texttt{true} oder \texttt{false}) gesetzt ist - so wird die Ziel-URL des Links in einen Div-Tag der Klasse \texttt{linkAdr} (Elemente dieser Klasse sind nicht sichtbar) geschrieben. Später wird via JavaScript der Link aus diesem Div ausgelesen und die \texttt{onclick}-Events für das Bild und den Text darunter neu gesetzt.\\
-In Zeile 71 wird die Grafik, die durch die Konstante \texttt{BASE\_LR} referenziert wird, eingebunden. Diese Graphik hat die selbe Parallelprogramm-Form, wie die Grafiken der Menüpunkte, jedoch durchgehen, ohne Muster. Sämtliche Mouse-Events werden über diese einheitlichen Grafiken ausgelöst, da sonst in den leeren Bereichen keine Events getriggert werden können (Der gleiche Effekt wird als Vorteil genutzt, und war der Hauptgrund, warum man auf SVG-Grafiken zurückgegriffen hat $ \Longrightarrow $ Es ist mit ihnen möglich, nicht-rechteckige Bereiche mit Mouse-Events zu versehen.). Damit diese homogenen Grafiken nicht das Bild zerstören, wurde ihre Tranzparenz mittels CSS auf einen sehr hohen Wert gestellt $ \Longrightarrow $ Diese Grafiken sind nicht sichtbar.\\
+In Zeile 71 wird die Grafik, die durch die Konstante \texttt{BASE\_LR} referenziert wird, eingebunden. Diese Graphik hat die selbe Parallelprogramm-Form, wie die Grafiken der Menüpunkte, jedoch durchgehend, ohne Muster. Sämtliche Mouse-Events werden über diese einheitlichen Grafiken ausgelöst, da sonst in den leeren Bereichen keine Events getriggert werden können (Der gleiche Effekt wird als Vorteil genutzt und war der Hauptgrund, warum man auf SVG-Grafiken zurückgegriffen hat $ \Longrightarrow $ Es ist mit ihnen möglich, nicht-rechteckige Bereiche mit Mouse-Events zu versehen.). Damit diese homogenen Grafiken nicht das Bild zerstören, wurde ihre Tranzparenz mittels CSS auf einen sehr hohen Wert gestellt $ \Longrightarrow $ Diese Grafiken sind nicht sichtbar.\\
 In der nächsten Zeile wird die eigentliche Grafik ausgegeben. Damit die zwei SVG-Elemente am Schluss genau übereinander liegen, wurden ihre \texttt{position}-Attribute mit CSS auf \texttt{absolute} gestellt.\\
-Im Div mit der Klasse \texttt{subtext} wird nun der Link erstellt. Als \texttt{href}-Attribut hat er die Nicht-JavaScript-URL. Damit, im Falle dass JavaScript aktiviert ist, die richtige URL geöffnet wird, wird später das \texttt{onclick}-Event dementsprechend modifiziert (Wichtig ist hierbei, dass die Funktion des Events \texttt{false} zurückgibt, ansonsten würde die Standard-Aktion weiter ausgeführt - also in diesem Fall das öffnen des Nicht-JavaScript-Links.). 
+Im Div mit der Klasse \texttt{subtext} wird nun der Link erstellt. Als \texttt{href}-Attribut hat er die Nicht-JavaScript-URL. Damit, im Falle dass JavaScript aktiviert ist, die richtige URL geöffnet wird, wird später das \texttt{onclick}-Event dementsprechend modifiziert (Wichtig ist hierbei, dass die Funktion des Events \texttt{false} zurückgibt, ansonsten würde die Standard-Aktion weiter ausgeführt - also in diesem Fall das öffnen des Nicht-JavaScript-Links.).\\
+Die anderen Menü-Punkte sind analog.\\
+\paragraph{JavaScripts\\}
+Die im Menü verwendeten Scripts sind größtenteils trivial.\\
+Es werden folgende Funktionen definiert:
+\begin{table}[H]
+\centering
+\begin{tabular}{p{3.5 cm}p{11 cm}}
+	\toprule
+		\textbf{Funktion} & \textbf{Bedeutung} \\
+	\midrule
+		\texttt{main()} & Wird beim Laden der Seite ausgeführt. Setzt die \texttt{onclick}-, \texttt{onmouseenter}- und \texttt{onmouseleave}-Events der Grafiken und Links.\\
+		\hline
+		\texttt{openLink(link)} & Öffnet den als Parameter angegebenen Link mit Animation in einem neu-erstellten iFrame. Ist bereits ein Link geöffnet, so wird dieser zuvor geschlossen. Hat der zu öffnende Link einen GET-Parameter \textit{menu}, so wird der Link nicht im iFrame geöffnet, sondern normal. Hat der Link einen Fragmentbezeichner, so wird dieser beim Öffnen entfernt und im Scope des iFrames die Funktion \texttt{smoothScroll()} aufgerufen (Diese ist in der Datei /data/scripts/main.js definiert). Das \texttt{onclick}-Event des Close-Buttons im iFrame wird so modifiziert, dass bei Klick ist \texttt{closeLink()}-Funktion des drüberliegenden Frames ausgeführt wird.\\
+		\hline
+		\texttt{closeLink()} & Fährt die Animation wieder rückfährts ein.\\
+		\hline
+		\texttt{hoverLink(half, row)} & Ändert die Farbe der Grafik des Menüeintrages, der durch die Parameter identifiziert ist, auf einen hellen Grauwert (\texttt{\# ccc}). Und die Textfarbe des Namens des Punktes auf schwarz.\\
+		\hline
+		\texttt{dehoverLink(half, row)} & Ändert die Farbe der Grafik des Menüeintrages, der durch die Parameter identifiziert ist auf schwarz. Und die Textfarbe des Namens des Punktes auf weiß.\\
+		\hline
+		\texttt{hoverLinkMiddle()} & Ändert die Farbe der Grafik des Logos auf einen hellen Grauwert (\texttt{\#ccc}).\\
+		\hline
+		\texttt{dehoverLinkMiddle()} & Ändert die Farbe der Grafik des Logos auf schwarz.\\
+		\hline
+		\texttt{checkMobile()} & Leitet, wenn es sich um einen mobilen Webbrowser handelt, auf die Mobilseite um. Diese Funktion wird nicht ausgeführt, wenn der GET-Parameter \texttt{noMobile} angegeben wird.\\
+	\bottomrule
+\end{tabular}
+\caption{JavaScript-Funktionen für Menü}
+\label{tab:content_imple_design_menu_script_functions}
+\end{table}
+Bei der Implementierung dieser Funktionen gibt es eigentlich keine Herausforderungen. Für den Quellcode siehe \gref{sec:content_imle_source}.
 
 \subsubsection{Designs via Managementsystem}
+Da ja bereits unter \gref{sec:content_imple_base_site} ausführlich auf das Management von Designs eingegangen wurde, soll nun nur noch anhand eines Beispiels der Aufbau eines Designs, die Verwendung mit dem Design-Management-System und grundsätzliche Design-Richtlinien erklärt werden.\\
+Als Beispiel wird das Design \enquote{supmain} (/modules/design/submain.html) verwendet.
+\lstinputlisting[style=custom, language=php, caption={/modules/designs/supmain.html}, label={lst:content_imple_design}]{sources/design/supmain.html}
+Es handelt sich im Wesentlichen um eine Standard-HTML-Datei. Die aktuell interessantesten Teile der Datei sind die Platzhalter.\\
+Der erste befindet sind in Zeile 10: Es handelt sich um den Platzhalter für Titel der Seite. Das bedeutet, dass, wenn mit diesem Design eine Seite mit dem Titel \enquote{Testseite} geladen wird, der Text in der Fenster-Titel-Leiste \enquote{SIS.Web Access - Testseite} lautet.\\
+In den Zeilen 11 bis 15 ist der Platzhalter \texttt{\&root;} zu sehen. Dieser wird beim Laden des Designs durch den Pfad zum Projekt-Grundverzeichnis relativ zum Document-Root des Webservers ersetzt.\\
+An der Stelle des, in Zeile 38 vorkommenden, Platzhalters wird der Text der Website eingefügt.\\
+\\
+In diesem Beispiel sind noch die beiden Scripts in den Zeilen 4 bis 9 und 16 bis 25 interessant. Das erste versucht zu erkennen, ob die Seite in einem Frame geladen wird, und springt aus dem Frame in den drüber liegenden. Das zweite prüft, im Falle dass der durch den Platzhalter \texttt{\&mobile;} eingesetzte Wert nicht \texttt{false} ist, ob ein mobiler Webbrowser verwendet wird, und leitet ihn auf die mobile Seite um. Die Funktion, die mobile Browser erkennt \texttt{isMobile()} wird in der Datei /data/scripts/miscellaneous.js definiert.\\
+\\
+Das soeben erläuterte Design wird unter anderem für Login verwendet. Der Name \enquote{supmain} steht für \enquote{super Main}, also \enquote{über Main}, rührt daher, dass das Design für die in das Menü mit iFrames eingebetteten Seiten das Design \enquote{main} verwenden. Da das besprochene Design dem des Menüs ähnelt, also quasi \enquote{über dem main-Design} liegt, wurde ein passender Name schnell gefunden. 
