@@ -328,3 +328,45 @@ In der Zeile 14 wird abgefragt, ob diese Liste erstellt werden soll. In der Zeil
 Im \autoref{lst:content_imple_input_drop_create} ist die Funktion \texttt{create} zu sehen.\\
 In den Zeilen 66 - 68 werden alle Datensätze in ein Array geschrieben. In Zeile 72 - 74 wird das Array durchlaufen und es werden die Einträge der Liste erstellt.
 \lstinputlisting[style=custom, language=php, caption={/modules/form/dropdownSelects.php; Zeile 61 - 77},  label={lst:content_imple_input_drop_create}, firstline =61, lastline = 77, firstnumber = 61 ]{sources/input/dropdownSelects.php}
+
+\subsubsection{Erstellen der Datumsauswahl}
+In den Formularen für die Supplierungen und den Fehlenden kann das Datum ausgewählt werden. Dafür wurde eine eigene Funktion entwickelt, welche durch das inkludieren der Datei \textit{/modules/other/dateChange.php} verwendet wird. Anschließend muss noch an der gewünschten Stelle die Funktion \texttt{dateChange} aufgerufen werden. Diese Funktion erwartet als Parameter ein Datum. Im \autoref{lst:content_imple_input_change_include} ist ein Aufruf der Funktion und die benötigten Codezeilen, um die Rückgabewerte zu interpretieren, zu sehen.\\
+Wird weder über das Formular zum Ändern des Datums, noch über das Speichern eines Eintrags das aktuelle Datum mitgegeben, wird das heutige Datum verwendet, siehe dazu Zeile 58. Wird das Datum mit dem Formular zum Ändern des Datums übergeben, so wird dieser Wert verwendet, siehe dazu Zeile 62. Die letzte Möglichkeit ist über das Speichern eines Eintrages, dann wird dieses Datum verwendet, siehe dazu Zeile 65. Das Datum wird immer der Funktion \texttt{no\_weekend} übergeben. (siehe Abschnitt \nameref{sec:content_imple_date}) In der Zeile 68 wird die Funktion aufgerufen, welche das Formular für die Änderung des Datums erstellt. Der Rückgabewert dieser Funktion wird als neues Datum verwendet, denn diese Funktion übernimmt die Auswertung der Datumsänderung. 
+
+\lstinputlisting[style=custom, language=php, caption={/backend/absentees/classes/index.php; Zeile 57 - 68},  label={lst:content_imple_input_change_include}, firstline =57, lastline = 68, firstnumber = 57 ]{sources/input/missingClasses.php}
+
+In den Zeilen 7 - 12 wird die Auswertung durchgeführt, welche notwendig ist, um zu erkennen welcher Pfeil gedrückt worden ist. Wird der rechte Pfeil gedrückt, so wird die Zeile 8 ausgeführt, wird der linke Pfeil gedrückt wird die Zeile 11 ausgeführt. (\texttt{date\_increase} und \texttt{date\_decrease} siehe Abschnitt \nameref{sec:content_imple_date})\\
+In den Zeilen 16 - 29 wird das Formular erstellt. In der Zeile 32 wird das aktualisierte Datum zurückgegeben.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/other/dateChange.php; Zeile 5 - 33},  label={lst:content_imple_input_change_fun}, firstline =5, lastline = 33, firstnumber = 5 ]{sources/input/dateChange.php}
+
+\paragraph{Date-Funktionen}
+\label{sec:content_imple_date}
+$ ~~ $\\
+In der Datei \textit{/modules/other/dateFunctions.php} sind einige Funktionen definiert, welche das Verarbeiten von Daten betrifft. Hier die 5 Funktionen, die in den Formularen benötigt werden.\\
+
+\subparagraph{\texttt{date\_increase()}\\}
+Diese Funktion inkrementiert das, über den Parameter \texttt{\$d} mitgegebene, Datum um einen Tag. Sollte das inkrementierte Datum auf ein Wochenende fallen, so wird es solange inkrementiert, bis das Datum auf kein Wochenende fällt.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 52 - 61},  label={lst:content_imple_input_change_fun}, firstline =52, lastline = 61, firstnumber = 52 ]{sources/input/dateFunctions.php}
+
+\subparagraph{\texttt{date\_decrease()}\\}
+Diese Funktion dekrementiert das, über den Parameter \texttt{\$d} mitgegebene, Datum um einen Tag. Sollte das dekrementierte Datum auf ein Wochenende fallen, so wird es solange dekrementiert, bis das Datum auf kein Wochenende fällt.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 64 - 73},  label={lst:content_imple_input_change_fun}, firstline =64, lastline = 73, firstnumber = 64 ]{sources/input/dateFunctions.php}
+
+\subparagraph{\texttt{no\_weekend()}\\}
+Diese Funktion prüft, ob das, über den Parameter \texttt{\$d} mitgegebene, Datum  auf einen Wochentag fällt. Fällt es auf ein Wochenende, so wird das Datum solange inkrementiert bis es nicht mehr auf ein Wochenende fällt.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 76 - 84},  label={lst:content_imple_input_change_fun}, firstline =76, lastline = 84, firstnumber = 76 ]{sources/input/dateFunctions.php}
+
+\subparagraph{\texttt{prevNextDay()}\\}
+Diese Funktion wird in dem Formular für die Stundenpläne benötigt. Dabei wird von einem Wochentag der vorherige und der nächste zurückgegeben. Dabei endet die Woche mit Freitag und startet mit Montag.\\
+Mit der \textit{If}-Abfrage wird zwischen den 3 Varianten unterscheiden. Die erste trifft zu, wenn der Wochentag Di - Do ist. Die zweite Abfrage, wenn der Wochentag der Montag ist und die letzte für den Freitag. Am Ende der Funktion wird ein Array mit den beiden Wochentagen zurück.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 26 - 49},  label={lst:content_imple_input_change_fun}, firstline =26, lastline = 49, firstnumber = 26 ]{sources/input/dateFunctions.php}
+
+\subparagraph{\texttt{weekday}\\}
+Diese Funktion gibt für das, über den Parameter \texttt{\$d} mitgegebene, Datum  den Wochentag in Kurzform zurück. Die möglichen Wochentage sind Mo - So.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 12 - 17},  label={lst:content_imple_input_change_fun}, firstline =12, lastline = 17, firstnumber = 12 ]{sources/input/dateFunctions.php}
