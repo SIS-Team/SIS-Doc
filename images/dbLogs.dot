@@ -1,0 +1,10 @@
+digraph database {
+	rankdir=LR;
+	
+	node [shape=box];
+
+	Benutzer -> {Klassen Abteilungen};
+	Verknüpfungen -> {Benutzer Sessions};
+	Haupttabelle -> Verknüpfungen;
+	"Login-Tabelle";
+}

@@ -1,0 +1,67 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,scale=0.8]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: Benutzer -> Abteilungen
+  \draw [->] (381.53bp,63.383bp) .. controls (389.87bp,61.611bp) and (398.81bp,59.71bp)  .. (417.6bp,55.714bp);
+  % Edge: Benutzer -> Klassen
+  \draw [->] (381.53bp,80.617bp) .. controls (394.95bp,83.47bp) and (409.96bp,86.66bp)  .. (433.81bp,91.732bp);
+  % Edge: Verknüpfungen -> Benutzer
+  \draw [->] (264.33bp,57bp) .. controls (273.03bp,58.702bp) and (281.9bp,60.436bp)  .. (300.46bp,64.068bp);
+  % Edge: Verknüpfungen -> Sessions
+  \draw [->] (264.33bp,33bp) .. controls (274.06bp,31.097bp) and (283.99bp,29.154bp)  .. (303.23bp,25.39bp);
+  % Edge: Haupttabelle -> Verknüpfungen
+  \draw [->] (105.88bp,45bp) .. controls (114.25bp,45bp) and (123.02bp,45bp)  .. (141.88bp,45bp);
+  % Node: Login-Tabelle
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (105bp,117bp) -- (1bp,117bp) -- (1bp,81bp) -- (105bp,81bp) -- cycle;
+  \draw (53bp,99bp) node {Login-Tabelle};
+\end{scope}
+  % Node: Sessions
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (378bp,36bp) -- (304bp,36bp) -- (304bp,0bp) -- (378bp,0bp) -- cycle;
+  \draw (341bp,18bp) node {Sessions};
+\end{scope}
+  % Node: Haupttabelle
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (105bp,63bp) -- (1bp,63bp) -- (1bp,27bp) -- (105bp,27bp) -- cycle;
+  \draw (53bp,45bp) node {Haupttabelle};
+\end{scope}
+  % Node: Abteilungen
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (518bp,63bp) -- (418bp,63bp) -- (418bp,27bp) -- (518bp,27bp) -- cycle;
+  \draw (468bp,45bp) node {Abteilungen};
+\end{scope}
+  % Node: Klassen
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (502bp,117bp) -- (434bp,117bp) -- (434bp,81bp) -- (502bp,81bp) -- cycle;
+  \draw (468bp,99bp) node {Klassen};
+\end{scope}
+  % Node: Verknüpfungen
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (264bp,63bp) -- (142bp,63bp) -- (142bp,27bp) -- (264bp,27bp) -- cycle;
+  \draw (203bp,45bp) node {Verknüpfungen};
+\end{scope}
+  % Node: Benutzer
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (381bp,90bp) -- (301bp,90bp) -- (301bp,54bp) -- (381bp,54bp) -- cycle;
+  \draw (341bp,72bp) node {Benutzer};
+\end{scope}
+%
+\end{tikzpicture}
+
