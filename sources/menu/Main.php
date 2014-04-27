@@ -62,20 +62,20 @@
 						<div class="mid">
 							<?php include(ROOT_LOCATION . "/data/images/up.svg"); ?>
 						</div>
-						<div class="<?php echo ($buttons[2]['displayed'] ? "" : "notUsed "); ?>menuPoint menuRightLevel1">
-							<?php 
-								if ($buttons[2]['enabled']) {
-									echo '<div class="linkAdr">' . $buttons[2]['jsurl'] . '</div>';
-								}
-							?>
-							<?php include(BASE_LR); ?>
-							<?php include($buttons[2]['svg']); ?>
-							<div class="subtext">
-								<a<?php echo ($buttons[2]['enabled'] ? "" : ' class="noLink"'); ?> href="<?php echo $buttons[2]['url']; ?>">
-									<?php echo $buttons[2]['text']; ?>
-								</a>
-							</div>
-						</div>
+<div class="<?php echo ($buttons[2]['displayed'] ? "" : "notUsed "); ?>menuPoint menuRightLevel1">
+	<?php 
+		if ($buttons[2]['enabled']) {
+			echo '<div class="linkAdr">' . $buttons[2]['jsurl'] . '</div>';
+		}
+	?>
+	<?php include(BASE_LR); ?>
+	<?php include($buttons[2]['svg']); ?>
+	<div class="subtext">
+		<a<?php echo ($buttons[2]['enabled'] ? "" : ' class="noLink"'); ?> href="<?php echo $buttons[2]['url']; ?>">
+			<?php echo $buttons[2]['text']; ?>
+		</a>
+	</div>
+</div>
 						<div class="<?php echo ($buttons[3]['displayed'] ? "" : "notUsed "); ?>menuPoint menuRightLevel2">
 							<?php 
 								if ($buttons[3]['enabled']) {
