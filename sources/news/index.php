@@ -5,10 +5,10 @@
 	 *	Gibt News aus
 	 */	 
 include("../config.php");
-include_once(ROOT_LOCATION . "/modules/general/Main.php");				//Stellt das Design zur Verfügung
-include_once(ROOT_LOCATION . "/modules/database/selects.php");			//Stellt die select-Befehle zur Verfügung
-include_once(ROOT_LOCATION . "/modules/other/dateFunctions.php");		//Stellt Datumsfunktionen zur Verfügung
-require_once(ROOT_LOCATION . "/modules/other/miscellaneous.php");		//Stell Verschiedenes zur Verfügung
+include_once(ROOT_LOCATION . "/modules/general/Main.php");				//Stellt das Design zur VerfÃ¼gung
+include_once(ROOT_LOCATION . "/modules/database/selects.php");			//Stellt die select-Befehle zur VerfÃ¼gung
+include_once(ROOT_LOCATION . "/modules/other/dateFunctions.php");		//Stellt Datumsfunktionen zur VerfÃ¼gung
+require_once(ROOT_LOCATION . "/modules/other/miscellaneous.php");		//Stell Verschiedenes zur VerfÃ¼gung
 
 ifNotLoggedInGotoLogin(); //Kontrolle ob angemeldet
 //Seitenheader
