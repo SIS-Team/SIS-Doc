@@ -5,10 +5,10 @@
 	 *	Gibt Stundenplan von allen Klassen/Lehrern aus
 	 */
 include_once("../../config.php");
-include_once(ROOT_LOCATION . "/modules/general/Main.php");				//Stellt das Design zur Verfügung
-include_once(ROOT_LOCATION . "/modules/database/selects.php");			//Stellt die select-Befehle zur Verfügung
-include_once(ROOT_LOCATION . "/modules/other/miscellaneous.php");		//Stellt Verschiedenes zur Verfügung
-include_once(ROOT_LOCATION . "/modules/other/dateFunctions.php");		//Stellt Datumsfunktionen zur Verfügung
+include_once(ROOT_LOCATION . "/modules/general/Main.php");				//Stellt das Design zur VerfÃ¼gung
+include_once(ROOT_LOCATION . "/modules/database/selects.php");			//Stellt die select-Befehle zur VerfÃ¼gung
+include_once(ROOT_LOCATION . "/modules/other/miscellaneous.php");		//Stellt Verschiedenes zur VerfÃ¼gung
+include_once(ROOT_LOCATION . "/modules/other/dateFunctions.php");		//Stellt Datumsfunktionen zur VerfÃ¼gung
 
 ifNotLoggedInGotoLogin();	//Kontrolle ob angemeldet
 $permission = getPermission();
@@ -220,7 +220,7 @@ function isEvening($hours)
 	if($check == 11) return "evening";;
 	
 	$check = 0;
- for ($i = 12; $i < 17; $i++) //wenn erste 11 Stunden befüllt und letzte 5 Stunden leer -> normal
+ for ($i = 12; $i < 17; $i++) //wenn erste 11 Stunden befÃ¼llt und letzte 5 Stunden leer -> normal
  	{
  	 if (!isset($hours[$i])) $check++;
  	 }	
