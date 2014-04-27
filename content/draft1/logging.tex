@@ -2,4 +2,25 @@
 % TODO flo
 % Was wird geloggt? Warum? Ab wann? Wie?
 
+Als Seitenbetreiber ist man gut beraten, mitzuschreiben, was wann passiert. Dies hat unter anderem den Grund, dass im Falle eines gröberen Sicherheitsproblems zurückverfolgt werden kann, wer das Problem verursacht hat. Der verwendete Webserver Apache hat bereits von sich aus Funktionen zum Mitschneiden der Seitenaufrufe. Diese haben allerdings den Nachteil, dass sie nur die Aufrufe mit Zeit und IP und einigen weiteren Daten mitschreiben. Es kann also nur mit längeren Umwegen festgestellt werden, welcher Benutzer zu dieser Zeit angemeldet war. Zusätzlich ist der Zugang zu den Log-Daten nicht sehr komfortable, da diese nur in Textdateien gespeichert werden. Deshalb wurd ein zusätzliches System geschaffen, um die Zugriffe effizient mitzuschneiden.\\
+Als Speichermedium wird MySQL gewählt. Dies hat den Vorteil, dass die Datensätze effizient durchsucht werden können (dies ist vorteilhaft für die Generierung von etwaigen Statistiken). Ein Nachteil ist, dass die Log-Daten bei einem SQL-Injection-Angriff gelöscht oder modifiziert werden können (aus diesem Grund wird zusätzlich noch der Standard-Apache-Log eingesetzt).\\
+Es soll erst geloggt werden nachdem der Benutzer angemeldet ist. Andere Benutzer, die eventuell nur zufällig auf die Seite gelangen könnten sonst die Benutzungs-Statistiken verfälschen. Für unangemeldete Benutzer reichen im Problemfall sowieso die Daten des Apache-Logs.\\
+\\
+Damit auch größere Zusammenhänge, wie zum Beispiel, dass mehrere Benutzer sich nacheinander auf dem gleichen PC angemeldet haben, erfasst werden können, muss eine flexible Datenbankstruktur geschaffen werden, die solche Dinge berücksichtigt.\\
+\\
+Ein guter Anfang ist das Anlegen einer Tabelle für alle PHP-Sessions. Dies ist allerdings alleine schon ein Problem, denn wie später unter \gref{sec:content_imple_base_session} beschrieben wird, ändert sich die Session-ID nach jedem Neuladen der Seite. Die Lösung ist recht einfach: Es wird die ursprüngliche Session-ID in der Session gespeichert. In der Datenbank wird diese dann verglichen.\\
+Das Problem setzt sich fort, wenn man bedenkt, das es durchaus möglich ist, dass zwei Sessions in einem zeitlichen Abstand die gleich ID bekommen. Dies kann einfach umgangen werden, indem der Timestamp der Eröffnung der Session mit gespeichert und dann später ebenfalls in die Datenbank geschrieben und verglichen wird.\\
+\\
+Es ist nicht unwahrscheinlich, dass sich in einer Session mehrere verschiedene Benutzer anmelden. Um diesen Fall abzudecken, wird zunächst eine Tabelle für die Benutzer erstellt. Immer wenn sich ein User zum ersten Mal anmeldet wird ein neuer Eintrag in dieser Tabelle erstellt.\\
+Nun wird die Session- mit der Benutzer-Tabelle verknüpft. Bei jeder Anmeldung wird hier ein neuer Eintrag mit dem Zeitpunkt des Logins angelegt. Somit kann nun jederzeit festgestellt werden, welcher Benutzer wann mit welcher Session eingeloggt war.\\
+\\
+Nun kommt es zum eigentlich Logging-Prozess: Es braucht eine weitere Tabelle, diese stellt die Haupttabelle für das Logging dar. Bei jedem Aufruf einer Seite, die den SessionManager einbindet, wird in dieser ein neuer Eintrag erstellt. Ein Eintrag besteht aus dem Fremdschlüssel der Verbindungstabelle zwischen User- und Session-Tabelle, der URL der aufgerufenen Seite, ihrer GET-Parameter und Fragmentbezeichner und natürlich der Zeit des Aufrufs.\\
+\\
+Durch diesen eigentlich recht simplen Aufbau können bereits alle Bewegungen der einzelnen Benutzer auf der Seite (auch, wenn sich ein User in mehreren Webbrowsern zur selben Zeit angemeldet hat) nachvollzogen werden.
+\\
+% Noch ein paar Worte über die logsLogins-tabelle
+% ein Ref auf die Datenbanken
+% und ein Bild des Aufbaus, dann ist auch das hier fertig
+ 
+
 \input{content/draft1/statistics}
