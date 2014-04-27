@@ -1,0 +1,7 @@
+\subsection{News}
+
+Bei der Ausgabe der News wir zuerst die ID der Abteilung des Schülers aus der Datenbank abgefragt. Bei einem Lehrer liefert dies kein Ergebnis. Anschließend werden alle Ergebnisse aus der Datenbank ausgelesen, bei denen die Abteilung des Schülers oder keine Abteilung eingetragen ist.
+
+\lstinputlisting[style=custom, language=php, caption={/news/index.php}, label={lst:content_imple_timetables_output}, firstline =11, lastline = 26, firstnumber = 11 ]{sources/news/index.php}
+
+Diese werden mittels Schleife durchlaufen und ausgegeben.

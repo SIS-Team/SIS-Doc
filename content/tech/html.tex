@@ -1,11 +1,11 @@
 \subsubsection{HTML (Weiland)}
 
-HTML steht für "'Hypertext Markup Language"' und bezeichnet eine Auszeichnungssprache. HTML-Dateien werden hauptsächlich für Websites verwendet.
+HTML steht für "'Hypertext Markup Language"' und bezeichnet eine Auszeichnungssprache. HTML-Dateien werden hauptsächlich für Websites verwendet. Der Code wird nicht serverseitig ausgewertet, sondern vom Browser des Clients selbst.
 
 
 \paragraph{Aufbau}
 
-Eine HTML-Datei ist grundsätzlich immer gleich aufgebaut. Sie besteht aus einem Header in dem unter anderem der Titel und die Meta-Daten bestimmt werden und einem Body in dem der eigentliche Inhalt, welcher angezeigt werden soll, steht.
+Eine HTML-Datei ist grundsätzlich immer gleich aufgebaut. Sie besteht aus einem Header, in dem unter anderem der Titel und die Meta-Daten bestimmt werden, und einem Body, in dem der eigentliche Inhalt, welcher angezeigt werden soll, steht.
 \begin{lstlisting}[style=custom, language=HTML, caption={HTML-Tags}]
 <!DOCTYPE html>
 <html> 
@@ -19,20 +19,20 @@ Eine HTML-Datei ist grundsätzlich immer gleich aufgebaut. Sie besteht aus einem
 \end{lstlisting}
 
 \paragraph{Elemente}
-Jedes Element setzt sich aus einem Start-Tag und einem End-Tag zusammen. Im End-Tag wird nach der eckigen Klammer ein \enquote{/} geschrieben. (z.b. </html>).\\\\
+Grundsätzlich setzt sich jedes Element aus einem Start-Tag und einem End-Tag zusammen, wobei es aber auch ein paar Ausnahmen gibt.  Im End-Tag wird nach der eckigen Klammer ein \enquote{/} geschrieben. (z.b. </html>).\\\\
 Dies sind die wichtigsten Elemente, mit denen eine einfache Seite aufgebaut werden kann:
 \begin{description}
 \item[ ]
 \begin{description} [style=nextline]
-\item[<!DOCTYPE html>] Sollte zu Beginn jedes HTML-Dokuments stehen. Ist eigentlich kein richtiger HTML-Tag, wird jedoch benötigt um dem Browser den verwendeten Dokumenttyp mitzuteilen.
-\item[<html>] Wird ganz zu Beginn, jedoch nach dem DOCTYPE-TAG,  eines Dokuments verwendet um das Dokument einzuleiten.
-\item[<head>] Hier werden Informationen, wie Meta-DAten oder zum Beispiel der Titel hinterlegt.
+\item[<!DOCTYPE html>] Sollte zu Beginn jedes HTML-Dokuments stehen. Ist eigentlich kein richtiges HTML-Element, wird jedoch benötigt um dem Browser den verwendeten Dokumenttyp mitzuteilen.
+\item[<html>] Wird ganz zu Beginn, jedoch nach dem DOCTYPE-Tag,  eines Dokuments verwendet um das Dokument einzuleiten.
+\item[<head>] Hier werden Informationen, wie Meta-Daten oder zum Beispiel der Titel hinterlegt.
 \item[<body>] Leitet den Body, den Teil in dem die Ausgabe steht, ein.
 \item[<title>] Dient dazu den Titel der Site, welcher unter anderem im Tab steht, anzugeben. Wenn kein Titel angegeben wird, wird stattdessen die URL verwendet.
 \item[<script>] Mittels dieses Tags ist es möglich ein Script (z.B. JavaScript) in den HTML-Code einzubinden.
 \item[<p>] Dieses Tag definiert einen Absatz. Es ist nicht möglich in einem Absatz ein anderes Blockelement, wie zum Beispiel eine Tabelle aufzurufen. Es ist grundsätzlich kein Endtag nötig, sollte aber dennoch gesetzt werden.
-\item[<div>] Mittels dieses Tags wir ein Bereich definiert. Dies dient unter anderem dazu mittels CSS die Darstellung anzupassen. In einem Div darf nahezu jeder andere Tag verwendet werden, ausgenommen sind \enquote{<head>}, \enquote{<head>} und \enquote{<body>} 
-\item[<hx>] Erzeugt eine Überschrift. Anstelle des X muss eine Zahl von 1 bis 6 eingefügt werden. Je nach Zahl ändert sich die Foramtierung des damit gekennzeichneten Texts.
+\item[<div>] Mittels dieses Tags wird ein Bereich definiert. Dies dient unter anderem dazu mittels CSS die Darstellung anzupassen. In einem Div darf nahezu jeder andere Tag verwendet werden, ausgenommen sind \enquote{<html>}, \enquote{<head>} und \enquote{<body>} 
+\item[<hx>] Erzeugt eine Überschrift. Anstelle des \enquote{x} muss eine Zahl von 1 bis 6 eingefügt werden. Je nach Zahl ändert sich die Formatierung des damit gekennzeichneten Texts.
 \item[<a>] Hiermit wird ein Verweis erzeugt. Alles was zwischen dem Start- und dem End-Tag steht wird dann als Verweis gekennzeichnet. Zwischen diesen Tags können zum Beispiel auch Bilder stehen.
 \item[<br />] Erzeugt einen Zeilenumbruch in der Ausgabe. \enquote{</br>} ist ebenso möglich, entspricht jedoch nicht dem XHTML-Standard.
 \item[<img>] Bindet ein Bild in die Ausgabe ein. Die Quelle des Bildes muss mitgegeben werden. Zum Beispiel: \texttt{<img src="bild.png"}. Bei diesem Tag wird kein End-Tag benötigt.
@@ -86,8 +86,8 @@ Dies sind die wichtigsten Elemente, mit denen eine einfache Seite aufgebaut werd
 
 \paragraph{HTML5}
 HTML5 ist die aktuellste Version von HTML. Die Entwicklung begann am 29. April 2009 und soll im Jahr 2014 fertiggestellt werden.\\ 
-Mit der Einführung von HTML5 kommen viele neue Elemente, wie zum Beispiel \enquote{details} und \enquote{summary}, zum HTML-Standard dazu. Dies Elemente sind zum Teil interaktiv, was im bisherigen Standard nicht möglich war. So wird zum Beispiel mit dem Element \enquote{details} eine Ausgabe erzeugt die ein-oder ausgeklappt werden kann ohne ein Script zu verwenden oder eine serverseitge Aktion zu erfordern.\\
-Im Gegensatz zu früheren Versionen von HTML wird die Wiedergabe von Video- und Audiodateien unterstützt. Jedoch sind aktuell noch nicht alle Browser fähig, diese Funktionen zu verwenden.\\
+Mit der Einführung von HTML5 kommen viele neue Elemente, wie zum Beispiel \enquote{details} und \enquote{summary}, zum HTML-Standard dazu. Dies Elemente sind zum Teil interaktiv, was im bisherigen Standard nicht möglich war. So wird zum Beispiel mit dem Element \enquote{details} eine Ausgabe erzeugt, die ein-oder ausgeklappt werden kann, ohne ein Script zu verwenden oder eine serverseitge Aktion zu erfordern.\\
+Eine weitere Änderung ist, dass im Gegensatz zu früheren Versionen von HTML die Wiedergabe von Video- und Audiodateien unterstützt wird. Jedoch sind aktuell noch nicht alle Browser fähig, diese Funktionen zu verwenden.\\
 Die unterstützten Formate sind für Videodateien 0gg Theora, MP4(H.264) und WebM(VP8) und für Audiodateien 0gg Vorbis, MP3 und Wav. \\
 Ein weiterer Unterschied ist, dass bei der Deklaration nur mehr \texttt{\enquote{<!DOCTYPE html>}} stehen muss und nicht mehr welche Version wie bisher (z.B. \texttt{<!DOCTYPE HTML PUBLIC \enquote{-//W3C//DTD HTML 4.01//EN} \enquote{ http://www.w3.org/TR/html4/strict.dtd}}> )
 \begin{description}
