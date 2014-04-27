@@ -48,6 +48,51 @@ Wenn der Benutzer nicht mehr angemeldet bleiben möchte, muss er sich (durch kli
 
 \lstinputlisting[style=custom, language=html, caption={/logout.html; Funktion logout(); Zeilen 8-13}, label={lst:widget}, firstline=8, lastline=13, firstnumber=8]{sources/app/logout.html}
 
+\subsubsection{Übertragung der Daten}
+
+Um die Daten für den Stundenplan und den Supplierplan zu laden, wird eine PHP-Datei über das Source-Attribut eines Scripttags geladen. Diese PHP-Datei besteht zum einen Teil aus PHP-Code und zum anderen Teil auch aus JavaScript-Code, welcher dann ausgeführt wird.
+
+\lstinputlisting[style=custom, language=html, caption={/stundenplan.html; Laden der Stunenplandaten; Zeile 17}, label={lst:widget}, firstline=17, lastline=17, firstnumber=17]{sources/app/stundenplan.html}
+
+In dieser Datei werden zuerst alle Informationen bezüglich des Stundenplans aus der Datenbank ausgelesen:
+
+\lstinputlisting[style=custom, language=html, caption={/mobile/api/timetables.php; Daten aus Datenbank laden; Zeilen 40-44}, label={lst:widget}, firstline=40, lastline=44, firstnumber=40]{sources/app/api/timetables.php}
+
+Diese Daten werden dann JSON-codiert und mit Hilfe des ECHO-Befehls werden sie dann, als JavaScript-Variable gespeichert. Die Ausgabe des ECHO-Befehls wird dann als JavaScript geladen.
+
+\lstinputlisting[style=custom, language=html, caption={/mobile/api/timetables.php; JSON-Codierung der Daten; Zeilen 46-48}, label={lst:widget}, firstline=46, lastline=48, firstnumber=46]{sources/app/api/timetables.php}	
+
+
+\subsubsection{Auswerten der Daten}
+
+Um die Daten, welche vom Server geladen wurden, auszuwerten, wird eine for/in Schleife verwendet. Diese wiederholt den Vorgang für jedes Element in einem Array oder Objekt.
+
+\begin{lstlisting}
+for(aLesson in timetObject){}
+\end{lstlisting}
+
+\subsubsection{Eintragen der Inhlate}
+
+Die Inhalte des Stunden- oder Supplierplans, müssen nachträglich mittles JavaScript, eingetragen werden. Dazu wird jQuery verwendet. Mit Hilfe von jQuery und dem HTML-DOM können Inhalte der Webseite einfach ausgelesen oder geändert werden.
+
+Dabei wird das ganze Dokument als Objekt verwendet und die gewünschte Tabellenzelle wird anhand ihrer ID gefunden. Die Eigenschaft innerHTML, gibt den Inhalt dieses Elements an.
+
+Beispiel:
+document.getElementById(cell).innerHTML=Lesson;
+\lstinputlisting[style=custom, language=html, caption={/mobile/api/timetables.php; Veränder des Tabelleninhaltes; Zeile 105}, label={lst:widget}, firstline=105, lastline=105, firstnumber=105]{sources/app/api/timetables.php}	
+
+
+Um die Inhalte einzutragen muss die HTML-Seite zuerst vollständig geladen sein, deshalb wird die Methode ready() auf das Objekt document angewandt, denn dadurch wird der JavaScript-Code erst ausgeführt wenn das Dokument vollständig geladen wurde.
+
+
+\subsubsection{Dynamische Anpassung des Designs}
+
+Da die Oberfläche der App bei Androidgeräten anders dargestellt wurde, als bei iOS oder WindowsPhone-Geräten, wird nun für Androidgeräte eine andere CSS-Datei als bei anderen Geräten geladen. Dazu wird mit dem BOM-Objekt navigator zuerst überprüft ob es sich um ein Gerät mit Android handelt, ist das der Fall, dann wir mit Hilfe von jQuery im Header des Dokuments ein link-Tag generiert mit dem das gewünschte CSS-File eingebunden wird.
+
+\lstinputlisting[style=custom, language=html, caption={/js/osDetection.js; Laden des richtigen CSS; Zeilen 2-10}, label={lst:widget}, firstline=2, lastline=10, firstnumber=2]{sources/app/osDetection.js}
+
+
+
 \subsubsection{Konfigurationsdatei-config.xml}
 
 Um die Metadaten der App zu konfigurieren, um bestimmte Einstellungen zu treffen oder um Plugins zu laden wird die Datei config.xml benötigt. Diese Konfigurationsdatei wird zusammen mit allen anderen Dateien in das ZIP-Paket gespeichert und für den PhoneGap build hochgeladen.\\
