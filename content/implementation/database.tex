@@ -6,8 +6,8 @@ Die Implementierung der Datenbank wurde mit dem gratis erhältlichen Tool \texti
 %
 % @marco: Du hast das ja gemacht. Willst du das schreiben?
 % Ich würde sagen, du schreibst da einfach, bis dir nichts mehr einfällt, und dann mentionst du mich in einem commit und ich schreib weiter.
-Wie schon im Abschnitt \autoref{sec:content_solution_db} aufgelistet wurden die Tabellen dementsprechend erstellt. In diesem Abschnitt werden die Tabellen mit ihren Spalten und Datentypen aufgelistet.\\
-\\
+Wie schon im \autoref{sec:content_solution_db} aufgelistet wurden die Tabellen dementsprechend erstellt. In diesem Abschnitt werden die Tabellen mit ihren Spalten und Datentypen aufgelistet.\\
+
 \paragraph{Klassen\\}
 In dieser Tabelle werden alle Klassen gespeichert. Der Tabellenname lautet \textit{classes}. Diese Tabelle umfasst insgesamt 6 Spalten.
 \begin{table}[H]
@@ -73,7 +73,7 @@ In dieser Tabelle werden alle Stunden gespeichert, mit deren Anfangs- und Endzei
 \end{table}
 
 \paragraph{Stundenplan\\}
-Für den Stundenplan sind 2 Tabellen notwendig. In einer Tabelle werden die Basisstunden einer Klasse gespeichert. In der anderen Tabelle werden die Baisstunden mit den anderen Informationen verknüpft. (siehe \autoref{sec:content_solution_db})\\
+Für den Stundenplan sind 2 Tabellen notwendig. In einer Tabelle werden die Basisstunden einer Klasse gespeichert. In der anderen Tabelle werden die Baisstunden mit den anderen Informationen verknüpft. (siehe \autoref{sec:content_solution_db})
 
 \subparagraph{Basis-Stundenplan\\}
 In dieser Tabelle werden die Basisstunden gespeichert. Der Tabellenname lautet \textit{lessonsBase}. Diese Tabelle umfasst insgesamt 4 Spalten.
@@ -122,7 +122,7 @@ In dieser Tabelle werden die Basisstunden mit zusätzlichen Informationen zusamm
 \end{table}
 
 \paragraph{Logs\\}
-Für das Speichern der Logs wurden insgesamt 5 Tabellen benötigt. Diese teilweise miteinander verknüpft sind.
+Für das Speichern der Logs wurden insgesamt 5 Tabellen benötigt, welche teilweise miteinander verknüpft werden.
 
 \subparagraph{Logins\\}
 In dieser Tabelle werden jegliche Anmeldeversuche an unsere Seite gespeichert. Außerdem wird hier auch gespeichert, ob die Anmeldung fehlschlug oder funktionierte. Der Tabellenname lautet \textit{logsLogins}. Diese Tabelle umfasst insgesamt 6 Spalten.
@@ -166,7 +166,7 @@ In dieser Tabelle werden die Log-Informationen miteinander verknüpft. Hier werd
 	      \hline
           site & Text & Aufgerufene Seite   \\
           \hline
-          params & Text & Angehängte Parameter an die Seite  \\
+          params & Text & Angehängte Parameter an die URL  \\
    \bottomrule
 \end{tabular}
 \caption{Basis-Log-Tabelle}
@@ -219,7 +219,7 @@ Alle eröffneten Sessions mit dem Server werden hier gespeichert. Diese werden s
 \end{table}
 
 \subparagraph{User-Log\\}
-In dieser Tabelle werden die User gespeichert, welche unsere Seite besuchen. Um bei den Statistiken, ohne LDAP-Abfrage, zu erkennen welcher Abteilung/Klasse ein Schüler angehört, speicern wir in diesem Zusammenhang die Klasse und die Abteilung des Schülers. Der Tabellenname lautet \textit{logsUsers}. Diese Tabelle umfasst insgesamt 5 Spalten. 
+In dieser Tabelle werden die User gespeichert, welche unsere Seite besuchen. Um bei den Statistiken, ohne LDAP-Abfrage, zu erkennen welcher Abteilung/Klasse ein Schüler angehört, speichern wir in diesem Zusammenhang die Klasse und die Abteilung des Schülers. Der Tabellenname lautet \textit{logsUsers}. Diese Tabelle umfasst insgesamt 5 Spalten. 
 
 \begin{table}[H]
 \centering
@@ -317,7 +317,7 @@ In dieser Tabelle sind alle Moonitore eingetragen, die in SIS registriet werden.
 
 \begin{table}[H]
 \centering
-\begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
+\begin{tabular}{p{3.5 cm}p{2.5 cm}p{9.5 cm}}
    \toprule
    \textbf{Spalte} & \textbf{Datentyp} & \textbf{Beschreibung} \\
    \midrule
@@ -487,7 +487,7 @@ Ein Funktionsaufruf für die Select-Funktion des Lehrer-Formulars sieht wie in \
 
 \lstinputlisting[style=custom, language=php, caption={/backend/administration/teachers/index.php; Zeile 53 - 54},  label={lst:content_imple_data_select}, firstline =53, lastline = 54, firstnumber = 53 ]{sources/input/teacher.php}
 
-Ein Funktionsaufruf für die Insert-Funktion des Lehrer-Formulars sieht wie in \autoref{lst:content_imple_data_insert} zu sehen aus. In der ersten Zeile wird in einer \textit{If}-Abfrage abgefragt, ob im Formular übernehmen geklickt wurde. Die Zeile 2 ruft eine Funktion auf, welche für notwndig ist um ?????. In der 3. Zeile wird die Insert-Funktion aufgerufen. Diese 2 Zeilen werden nur aufgerufen, wenn die im Formular Übernehmen geklickt wird.
+Ein Funktionsaufruf für die Insert-Funktion des Lehrer-Formulars sieht wie in \autoref{lst:content_imple_data_insert} zu sehen aus. In der Zeile 29 wird in einer \textit{If}-Abfrage abgefragt, ob im Formular übernehmen geklickt wurde. In der Zeile 31 wird die Insert-Funktion aufgerufen. Die Zeile 30 ruft eine Funktion auf, um zu kontrollieren, ob das Formular gültig ist.
 
 \lstinputlisting[style=custom, language=php, caption={/backend/administration/teachers/index.php; Zeile 29 - 32},  label={lst:content_imple_data_insert}, firstline =29, lastline = 32, firstnumber = 29 ]{sources/input/teacher.php}
 
@@ -506,6 +506,130 @@ Alle anderen Select-Funktionen sind gleich aufgebaut, sie unterscheiden sich jew
 Der Aufbau der Funktion entspricht exakt, dem der \texttt{selectAll}-Funktion. Lediglich der Stamm-SQL-Befehl ist nicht mehr von der Tabelle abhängig, denn diese ist einprogrammiert. (siehe \autoref{lst:content_imple_select_std})
 
 \lstinputlisting[style=custom, language=php, caption={/modules/database/selects.php; Zeile 76 - 86},  label={lst:content_imple_select_std}, firstline =76, lastline = 86, firstnumber = 76 ]{sources/database/selects.php}
+
+\subsubsection{Insert-Funktionen}
+Einige der Insert-Funktionen sind gleich aufgebaut. Für Spezialfälle mussten jedoch neue entwickelt werden. In diesem Abschnitt wird eine Standard-Insert-Funktion erläutert. Außerdem werden auch die stark abgeänderten Funktionen erläutert.
+
+\paragraph{Allgemeine Insert-Funktion\\}
+Die allgemeine Insert-Funktion wird anhand der Insert-Funktion für das Klassen-Formular erläutert.(siehe \autoref{lst:content_imple_insert_std})\\
+Dieser Funktion muss kein Parameter mitgegeben werden, denn die Funktion hat Zugriff auf die \textit{POST}-Parameter. Diese werden in der Zeile 17 in eine dementsprechende Variable geschrieben. In der Zeile 20 wird der \textit{Save}-Parameter aus dem Array gelöscht.\\
+In der Zeile 23 wird ein Array definiert, welches als Indizes die Spaltennamen der Tabelle hat, in die die Daten eingefügt werden. Die Indizes bekommen als Werte die Werte zugewiesen, welche in die Tabelle eingefügt werden sollten.\\
+In der Zeile 25 wird die ID in das Array geschrieben, wenn es ein Update ist, gibt es eine ID, andernfalls ist diese leer. In den Zeilen 28 - 46 wird das Array vervollständigt.\\
+Dabei gibt es zwei verschiedene Varianten:
+\begin{itemize}
+	\item Die Werte werden direkt aus dem \textit{POST}-Array übernommen und in das Array geschrieben. (siehe Zeile 28)
+	\item Die Werte aus dem \textit{POST}-Array werden zuerst, in der dementsprechenden Tabelle, in eine zugehörige ID \enquote{umgewnandelt}. Dies ist nötig, weil wir die Tabellen miteinander verbinden und mittels ID auf andere Tabellen verweisen.\\
+	In Zeile 36 ist die Abfrage für die ID zu sehen. In Zeile 38 wird der Rückgabewert mit der Funktion \texttt{control()} überprüft, dieser Rückgabewert wird in eine Variable gespeichert. Anschließend wird in Zeile 40 der Wert in das Array geschrieben. (Funktion \texttt{control} siehe Abschnitt \nameref{sec:content_imple_control})
+\end{itemize}
+In diesem Formular gibt es eine Check Box, bei dieser kann nicht einfach der Wert in das Array geschrieben werden, da in die Datenbank ein True oder False geschrieben werden muss. Bei aktivierter Check Box wird jedoch der Name der Check Box zurückgegeben. Darum muss in Zeile 49 geprüft werden, ob das Array-Element leer ist. Ist es nicht leer muss dem Array True zugewiesen werden.\\
+In der Zeile 53 wird geprüft, ob bei Löschen ein Hacken im Formular gesetzt wurde und ob bei allen Überprüfungen 1 in die Variablen geschrieben wurde. Ist die Multiplikation der Kontroll-Variablen 1, dann ist alles korrekt abgelaufen und der Datensatz kann in der Zeile 54 eingefügt werden. (Funktion \texttt{saveupdate} siehe Abschnitt \nameref{sec:content_imple_saveupdate})
+
+\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 14 - 55},  label={lst:content_imple_insert_std}, firstline =14, lastline = 55, firstnumber = 14 ]{sources/database/inserts.php}
+
+\paragraph{Insert Supplierplan\\}
+Für den Supplierplan musste eine sehr aufwendige Funktion geschrieben werden, da es darauf ankommt welcher Eingabemodus, bei der Eingabe der Supplierungen, ausgewählt wurde. Um in dem Formular zu erkennen, ob das Hinzufügen in die Datenbank funktioniert hat, wird in dieser Funktion im Erfolgsfall ein True zurückgegeben, sonst ein False. Die grundsätzliche Zuweisung der Werte dem Array, das zum Speichern in der Datenbank verwendet wird, wird hier nicht weiter erklärt, denn diese funktioniert nach dem selben Prinzip wie oben erklärt. Hier werden nur die wesentlichen Unterschiede beschrieben. Diese Funktion wird in verschieden Teile zerlegt, um sie zu erklären.\\
+\begin{enumerate}
+\item \autoref{lst:content_imple_insert_suppl_1}\\
+Bei der Insert-Funktion der Supplierungen werden keine vorhandenen Einträge, bei einem aktualisieren eines Eintrages, verändert, sondern der Eintrag wird gelöscht und anschließend neu erstellt. In Zeile 295 wird abgefragt, ob der Eintrag eine ID hat, wenn ja, wird ein bestehender Eintrag aktualisiert. Wenn nicht, dann ist es ein neuer Eintrag. Bei einem bestehendem Eintrag wird diese in dn Zeilen 298 - 299 gelöscht. Anschließend muss noch die alte ID aus dem Array gelöscht werden, dies wird in Zeile 300 durchgeführt. 
+
+\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 295 - 302},  label={lst:content_imple_insert_suppl_1}, firstline =295, lastline = 302, firstnumber = 295 ]{sources/database/inserts.php}
+
+\item \autoref{lst:content_imple_insert_suppl_2}\\
+Ist bei Löschen im Formular ein Hacken gesetzt worden, dann wird der restliche Code in der Funktion übersprungen. Dies wird mit der \textit{If}-Bedingung in der Zeile 304 durchgeführt.\\
+In den Zeilen 306 - 308 entscheidet sich um welche Eingabemethode es sich handelt. Dafür sind \textit{If}-Abfragen zuständig, die weiteren Abfragen für die restlichen Eingabemethoden sind hier nicht dargestellt.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 304 - 308},  label={lst:content_imple_insert_suppl_2}, firstline =304, lastline = 308, firstnumber = 304 ]{sources/database/inserts.php}
+
+\item \autoref{lst:content_imple_insert_suppl_3}\\
+Dies ist ein Ausschnitt aus dem Verarbeitungscode für den Entfall einer Stunde. Dabei wird das Array wie gewohnt befüllt, jedoch muss anschließend die Stunde, für die der Entfall eingetragen werden soll, gefunden werden. Dabei müssen 2 Fälle unterschieden werden, zum Einen es wird ein Lehrer mitgegeben, zum Anderen es wird kein Lehrer mitgegeben.\\
+Diese Abfrage ist in Zeile 359 zu sehen. Der erste Teil wird abgearbeitet wenn kein Lehrer mitgegeben wird, denn dann werden alle Lehrer ausgewählt. Mit der SQL-Abfrage in den Zeilen 361 - 367 werden alle Stunden der Lehrer abgefragt, welche dieser Entfall betrifft. In Zeile 368 wird geprüft, ob Stunden gefunden wurden, wenn nicht wird False zurückgegeben. Wenn Stunden gefunden wurden, wird in Zeile 369 - 372 für jede Stunde eine Supplierung eingetragen.\\
+Im zweiten Teil wird eine Supplierung für einen bestimmten Lehrer eingetragen. In den Zeilen 380 - 383 wird die Stunde des Lehrers abgefragt. In den Zeilen 385 - 388 wird eine Supplierung für diesen Lehrer eingetragen. Dies geschieht nur, wenn eine Stunde zu diesem Lehrer gefunden wurde, dies wird in der Zeile 385 überprüft. Ist keine gefunden worden, so wird ein False zurückgegeben.\\
+Dieser Teil ist ebenfalls bei der Verschiebung vorhanden.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 359 - 389},  label={lst:content_imple_insert_suppl_3}, firstline =359, lastline = 389, firstnumber = 359 ]{sources/database/inserts.php}
+
+\item \autoref{lst:content_imple_insert_suppl_4}\\
+In der freien Eingabe muss auf die Stunde mittels der fehlenden Lehrer zurück geschlossen werden. Dazu werden hier die möglichen fehlenden Lehrer, mit einer SQL-Abfrage in Zeile 488 - 493, abgefragt. Die abgefragten Daten werden in den Zeilen 495 - 497 in ein Array geschrieben.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 488 - 497},  label={lst:content_imple_insert_suppl_4}, firstline =488, lastline = 497, firstnumber = 488 ]{sources/database/inserts.php}
+
+\item \autoref{lst:content_imple_insert_suppl_5}\\
+Werden fehledne Lehrer gefunden, so kann fortgefahren werden, sind keine gefunden worden, so wird dieser Teil übersprungen und ein False zurückgeben. In der \textit{foreach}-Schleife von Zeile 501 - 539 werden alle gefundenen fehlenden Lehrer durchlaufen. In der \textit{If-Abfrage} in der Zeile 503 werden die Lehrer ausselektiert, um nur diese zu erhalten, welche in Frage kommen. In den Zeilen 504 - 508 wird die, zu dem fehlenden Lehrer, passende Stunde abgefragt. Wird eine gefunden, wird eine Supplierung angelegt.\\
+Wird kein fehlender Lehrer gefunden, so wird in der Zeile 515 ein False zurückgegeben.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 499 - 520},  label={lst:content_imple_insert_suppl_5}, firstline =499, lastline = 520, firstnumber = 499 ]{sources/database/inserts.php}
+
+\end{enumerate}
+Am Ende der Funktion wird ein True zurückgegeben, wenn bis dahin die Funktion noch nicht mit einem False abgebrochen wurde, ist alles korrekt abgelaufen.
+
+\paragraph{Insert Stundenpläne\\}
+Diese Funktion unterscheidet sich von den anderen dadurch, dass bei den Stundenplänen eine Stunde und eine Basis-Stunde angelegt werden muss. Ist diese schon angelegt, so muss die dementsprechende Basis-Stunde mit der Stunde verknüpft werden. Die grundsätzliche Zuweisung der Werte dem Array, das zum Speichern in der Datenbank verwendet wird, wird hier nicht weiter erklärt, denn diese funktioniert nach dem selben Prinzip wie oben erklärt. Nur dass hier, wie schon erwähnt, zwei Tabellen verwendet werden, deshalb werden hier auch zwei Arrays befüllt. Hier werden nur die wesentlichen Unterschiede beschrieben. Diese Funktion wird in verschieden Teile zerlegt, um sie zu erklären.\\
+\begin{enumerate}
+	\item \autoref{lst:content_imple_insert_stund_1}\\
+	Hier ist die Definition der beiden Arrays für die beiden Tabellen zu sehen. Einmal das Array für die Stunde und einmal für die Basis-Stunde.
+	
+	\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 88 - 91},  label={lst:content_imple_insert_stund_1}, firstline =81, lastline = 91, firstnumber = 88 ]{sources/database/inserts.php}
+	
+	\item \autoref{lst:content_imple_insert_stund_2}\\
+	Wenn keine Basistunde fgefunden wurde, dann wird dieser Code ausgeführt, um eine neue Basisstunde zu erzeugen. Die ID der erstellten Basisstunde wird anschließend mit einer SQL-Abfrage in der Zeile 120 abgefragt und ins Array geschrieben. Da nun eine Basisstunde vorhanden ist, kann diese in alle nötigen Positionen in den Arrays schreiben, siehe dazu Zeile 121 und 124.
+	
+	\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 118 - 124},  label={lst:content_imple_insert_stund_2}, firstline =118, lastline = 124, firstnumber = 118 ]{sources/database/inserts.php}
+	
+	\item \autoref{lst:content_imple_insert_stund_3}\\
+	Dieser Codeteil übernimmt das Löschen und das Speichern der Stunden. Mit der \textit{If}-Abfrage in der Zeile 127 wird überprüft, ob gespeichert oder gelöscht werden soll. Beim Speichern muss nur die Funktion aufgerufen werden. Beim Löschen werden alle Stunden und Basisstunden gelöscht. Dazu wird in den Zeilen 133 - 137 ein Delete-SQL-Befehl ausgeführt.
+	
+	\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 118 - 124},  label={lst:content_imple_insert_stund_3}, firstline =127, lastline = 138, firstnumber = 127 ]{sources/database/inserts.php}	
+	
+\end{enumerate}
+
+\paragraph{\texttt{saveupdate}-Funktion}
+\label{sec:content_imple_saveupdate}
+$ ~~ $\\
+Diese Funktion übernimmt die Aufgabe das, in den Insert-Funktionen, definierte Array in einen SQL-Befehl umzuwandeln und auszuführen. Dabei braucht diese Funktion 2 Parameter. Der Parameter \texttt{\$insert} ist das Array mit den Daten. Der Parameter \texttt{\$table} ist die Tabelle in die die Daten eingefügt werden. Beim Beschreiben dieser Funktion wird die Funktion in 2 Teile zerlegt. Der erste Teil ist das Hinzufügen und im zweiten Teil wird der Datensatz aktualisiert.\\
+
+\begin{enumerate}
+
+	\item \autoref{lst:content_imple_saveupdate_1}\\
+	In diesem Codeteil wird das hinzufügen eines neuen Datensatzes durchgeführt. In den Zeilen 560 - 563 werden Variablen für die Spaltennamen, deren Inhalt, der Anzahl der Spalten und eine Laufvariable definiert.\\
+	In den anschließenden Zeilen wird jede Spalte durchlaufen. Diese \textit{foreach} Definition hat den Vorteil, dass in der Variable \texttt{\$i} der Index des Arrays und in der Variable \texttt{\$p} der Wert steht. Denn im Array sind die Indizes die Spaltennamen. In der Zeile 569 wird dem String für die Spaltennamen der Index hinzugefügt und in der Zeile 570 wird dem String für die Werte der Wert angefügt.\\
+	In den Zeilen 572 - 575 wird, solange es nicht der letzte Wert ist, ein Beistrich angefügt. Nach dem Durchlauf hat der String \texttt{\$col} alle Spalten enthalten und der String \texttt{\$dat} alle Werte. Der Aufbau der beiden Strings ist wie folgt:
+	
+	\begin{itemize}
+		\item \texttt{\$col}\\
+		\texttt{name,short,display,section}
+		\item  \texttt{\$dat}\\
+		\texttt{'Test Test','TT','Test T.','1'}
+	\end{itemize}
+	
+	In der Zeile 580 werden alle Daten zu einem Insert-Befehl zusammengefügt.
+	
+	\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 560 - 580},  label={lst:content_imple_saveupdate_1}, firstline =560, lastline = 580, firstnumber = 560 ]{sources/database/inserts.php}
+
+	\item \autoref{lst:content_imple_saveupdate_2}\\
+	Dieser Teil funktioniert im wesentlichen gleich wie der schon oben beschriebene Teil. Die einzige Ausnahme ist, dass der Update Befehl anders aufgebaut ist als der Insert-Befehl. Deshalb gibt es hier nur mehr einen String. Diesem String wird in der Zeile 593 die Daten zugewiesen. Der Aufbau dieses Strings ist wie folgt:
+	
+	\begin{itemize}
+		\item  \texttt{\$dat}\\
+		\texttt{name = 'Test1 Test1',short = 'TT',display = 'Test2 T.',section = '2'}
+	\end{itemize}
+	
+	In der Zeile 600 wird der Insert Befehl zusammengefügt.
+	
+	\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 585 - 600},  label={lst:content_imple_saveupdate_2}, firstline =585, lastline = 600, firstnumber = 585 ]{sources/database/inserts.php}
+
+\end{enumerate}
+
+\paragraph{\texttt{deleteID}-Funktion\\}
+In dieser Funktion wird ein Datensatz gelöscht. Dieser Funktion werden 2 Parameter mitgegeben. Der Parameter \texttt{\$ID} gibt den zu löschenden Datensatz an. Mit dem Parameter \texttt{\$table} wird die Tabelle angegeben aus der der Datensatz gelöscht werden soll.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 608 - 612},  label={lst:content_imple_delete}, firstline =608, lastline = 612, firstnumber = 608 ]{sources/database/inserts.php}
+
+\paragraph{\texttt{control}-Funktion}
+\label{sec:content_imple_control}
+$ ~~ $\\
+In dieser Funktion wird kontrolliert, ob ein Fehler aufgetreten ist. Es wird dabei kontrolliert ob ein Wert eingeben wurde, aber zu diesem keine ID in der Tabelle gefunden wurde. Dies bedeutet, dass der eingegeben Wert falsch ist. Wird dagegen nichts eingegeben und auch keine ID gefunden, so ist das nicht falsch. Ist ein Fehler gefunden worden so wird ein JavaScript-Alert ausgegeben und eine 0 wird zurückgegeben. Bei korrekter Eingabe wird eine 1 zurückgegeben.
+
+\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 621 - 629},  label={lst:content_imple_control}, firstline =621, lastline = 629, firstnumber = 621 ]{sources/database/inserts.php}
 %
 % Und die High-Light-Anfragen, die nicht über Marco's Lib laufen.
 %

@@ -356,33 +356,37 @@ if(empty($post["delete"])){
 			//Wenn die Kontrolle erfolgreich ist
 			if(($ok1*$ok2*$ok3*$ok4)==1){
 				//Wenn kein Lehrer eingegeben wurde --> Für alle Lehrer zu dieser Stunde in dieser Klasse usw. wird eine Supplierung eingetragen
-				if($teacher==""){
-					//ID's der ganzen Lessons für die Basisstunde finden
-					$sql = "SELECT lessons.ID FROM lessons INNER JOIN lessonsBase ON lessonsBase.ID=lessons.lessonBaseFK WHERE lessonsBase.startHourFK='".$startHour."' AND lessonsBase.endHourFK='".$endHour."' AND lessonsBase.classFK='".$class."'";
-					$result = mysql_query($sql);			
-					while($row[]=mysql_fetch_array($result)){
-					}
-					unset($row[count($row)-1]);
-					if($row != array()){
-						foreach($row as $i => $r){
-							$data["lessonFK"]=$r["ID"];
-							saveupdate($data,"substitudes");
-						}
-					}
-					else
-						return false;
-				}
-				//Wenn ein Lehrer mitgegeben wurde nur für diesen eine Supplierung eintragen
-				else{
-					//ID der Lesson für die Basisstunde und dem Lehrer finden
-					$sql = "SELECT lessons.ID FROM lessons INNER JOIN lessonsBase ON lessonsBase.ID=lessons.lessonBaseFK WHERE lessonsBase.startHourFK='".$startHour."' AND lessonsBase.endHourFK='".$endHour."' AND lessonsBase.classFK='".$class."' AND lessons.teachersFK='".$teacher."'";
-					$temp = mysql_fetch_array(mysql_query($sql));
-					$data["lessonFK"]=$temp["ID"];
-					if($temp["ID"]!="")
-						saveupdate($data,"substitudes");
-					else 
-						return false;
-				}
+if($teacher==""){
+	//ID's der ganzen Lessons für die Basisstunde finden
+	$sql = "SELECT lessons.ID FROM lessons 
+		INNER JOIN lessonsBase ON lessonsBase.ID=lessons.lessonBaseFK 
+		WHERE lessonsBase.startHourFK='".$startHour."' AND lessonsBase.endHourFK='".$endHour."' AND lessonsBase.classFK='".$class."'";
+	$result = mysql_query($sql);			
+	while($row[]=mysql_fetch_array($result)){
+	}
+	unset($row[count($row)-1]);
+	if($row != array()){
+		foreach($row as $i => $r){
+			$data["lessonFK"]=$r["ID"];
+			saveupdate($data,"substitudes");
+		}
+	}
+	else
+		return false;
+}
+//Wenn ein Lehrer mitgegeben wurde nur für diesen eine Supplierung eintragen
+else{
+	//ID der Lesson für die Basisstunde und dem Lehrer finden
+	$sql = "SELECT lessons.ID FROM lessons 
+		INNER JOIN lessonsBase ON lessonsBase.ID=lessons.lessonBaseFK 
+		WHERE lessonsBase.startHourFK='".$startHour."' AND lessonsBase.endHourFK='".$endHour."' AND lessonsBase.classFK='".$class."' AND lessons.teachersFK='".$teacher."'";
+	$temp = mysql_fetch_array(mysql_query($sql));
+	$data["lessonFK"]=$temp["ID"];
+	if($temp["ID"]!="")
+		saveupdate($data,"substitudes");
+	else 
+		return false;
+}
 			}	
 		}
 		//Wenn die Stunde verschoben wird
@@ -481,52 +485,39 @@ if(empty($post["delete"])){
 		//Wenn die Kontrolle erfolgreich ist
 		if(($ok1*$ok2*$ok3*$ok4*$ok5*$ok6)==1){
 			//Alles fehlende Lehrer die zur Supplierzeit fehlen und die die Supplierung betrifft finden
-			$sql = "SELECT missingTeachers.teacherFK,missingTeachers.startDay, missingTeachers.endDay,hourST.hour as startHour, hourEN.hour as endHour FROM missingTeachers INNER JOIN hours as hourST ON hourST.ID = missingTeachers.startHourFK INNER JOIN hours as hourEN ON hourEN.ID = missingTeachers.endHourFK INNER JOIN lessons ON missingTeachers.teacherFK = lessons.teachersFK INNER JOIN lessonsBase ON lessonsBase.ID = lessons.lessonBaseFK WHERE missingTeachers.startDay <='".mysql_real_escape_string(htmlspecialchars($post['time']))."' AND missingTeachers.endDay >='".mysql_real_escape_string(htmlspecialchars($post['time']))."' AND lessonsBase.startHourFK='".$data["startHourFK"]."' AND lessonsBase.endHourFK='".$data["endHourFK"]."' AND lessonsBase.classFK='".$class."'";
+$sql = "SELECT missingTeachers.teacherFK,missingTeachers.startDay, missingTeachers.endDay,hourST.hour as startHour, hourEN.hour as endHour FROM missingTeachers 
+	INNER JOIN hours as hourST ON hourST.ID = missingTeachers.startHourFK 
+	INNER JOIN hours as hourEN ON hourEN.ID = missingTeachers.endHourFK 
+	INNER JOIN lessons ON missingTeachers.teacherFK = lessons.teachersFK 
+	INNER JOIN lessonsBase ON lessonsBase.ID = lessons.lessonBaseFK 
+	WHERE missingTeachers.startDay <='".mysql_real_escape_string(htmlspecialchars($post['time']))."' AND missingTeachers.endDay >='".mysql_real_escape_string(htmlspecialchars($post['time']))."' AND lessonsBase.startHourFK='".$data["startHourFK"]."' AND lessonsBase.endHourFK='".$data["endHourFK"]."' AND lessonsBase.classFK='".$class."'";
+$temp = mysql_query($sql);
+while($missTeacher[] = mysql_fetch_array($temp)){
+}
+unset($missTeacher[count($missTeacher)-1]);
+
+if(!empty($missTeacher)){
+	//Für jeden fehlenden Lehrer eine Supplierung eintragen
+	foreach($missTeacher as $i => $m){
+		//Lessons ID finden
+		if(($m['startDay']==$data['time'] && $m['startHour']<=$post['startHour']) || ($m['endDay']==$data['time'] && $m['endHour']>=$post['endHour']) || ($m['startDay']<$data['time'] && $data['time'] < $m['endDay'])){
+			$sql = "SELECT lessons.ID FROM lessons 
+				INNER JOIN lessonsBase ON lessonsBase.ID = lessons.lessonBaseFK 
+				WHERE lessonsBase.startHourFK ='".$data["startHourFK"]."' AND lessonsBase.endHourFK='".$data["endHourFK"]."' AND lessonsBase.classFK='".$class."' AND lessons.teachersFK = '".$m["teacherFK"]."'";
 			$temp = mysql_query($sql);
-			while($missTeacher[] = mysql_fetch_array($temp)){
-			}
-			unset($missTeacher[count($missTeacher)-1]);
+			$temp = mysql_fetch_row($temp);
+			$data["lessonFK"] = $temp[0];
+			if($temp[0]!="")
+				saveupdate($data,"substitudes");
 
-			if(!empty($missTeacher)){
-				//Für jeden fehlenden Lehrer eine Supplierung eintragen
-				foreach($missTeacher as $i => $m){
-					//Lessons ID finden
-					if($m['startDay']==$data['time'] && $m['startHour']<=$post['startHour']){
-						$sql = "SELECT lessons.ID FROM lessons INNER JOIN lessonsBase ON lessonsBase.ID = lessons.lessonBaseFK WHERE lessonsBase.startHourFK='".$data["startHourFK"]."' AND lessonsBase.endHourFK='".$data["endHourFK"]."' AND lessonsBase.classFK='".$class."' AND lessons.teachersFK = '".$m["teacherFK"]."'";
-						$temp = mysql_query($sql);
-						$temp = mysql_fetch_row($temp);
-						$data["lessonFK"] = $temp[0];
-						if($temp[0]!="")
-							saveupdate($data,"substitudes");
-
-					}
-					else if($m['endDay']==$data['time'] && $m['endHour']>=$post['endHour']){
-						$sql = "SELECT lessons.ID FROM lessons INNER JOIN lessonsBase ON lessonsBase.ID = lessons.lessonBaseFK WHERE lessonsBase.startHourFK='".$data["startHourFK"]."' AND lessonsBase.endHourFK='".$data["endHourFK"]."' AND lessonsBase.classFK='".$class."' AND lessons.teachersFK = '".$m["teacherFK"]."'";
-						$temp = mysql_query($sql);
-						$temp = mysql_fetch_row($temp);
-						$data["lessonFK"] = $temp[0];
-	
-						if($temp[0]!="")
-							saveupdate($data,"substitudes");
-
-					}
-					else if($m['startDay']<$data['time'] && $data['time'] < $m['endDay']){
-						$sql = "SELECT lessons.ID FROM lessons INNER JOIN lessonsBase ON lessonsBase.ID = lessons.lessonBaseFK WHERE lessonsBase.startHourFK='".$data["startHourFK"]."' AND lessonsBase.endHourFK='".$data["endHourFK"]."' AND lessonsBase.classFK='".$class."' AND lessons.teachersFK = '".$m["teacherFK"]."'";
-						$temp = mysql_query($sql);
-						$temp = mysql_fetch_row($temp);
-						$data["lessonFK"] = $temp[0];
-	
-						if($temp[0]!="")
-							saveupdate($data,"substitudes");
-
-					}
-					else
-						return false;
-				}
-			//Wenn kein fehlender Lehrer gefunden ist Fehler zurückgeben --> falsche Eingabe
-			}
-			else
-				return false;	//sonst true
+		}
+		else
+			return false;
+	}
+//Wenn kein fehlender Lehrer gefunden ist Fehler zurückgeben --> falsche Eingabe
+}
+else
+	return false;	//sonst true
 		}	
 	}
 }
@@ -566,97 +557,58 @@ function saveUpdate($insert,$table){
 	//Wenn ID leer ist --> Neuer Datensatz
 	if(empty($insert['ID']))
 	{
-		$col="";	//String für die Spaltennamen
-		$dat="";	//String für die Daten
-		$len=count($insert);	//Länge der Arrays zählen
-		$lauf=1;	//Laufvariable auf 1 setzen
-		
-		//Jede Spalte durchlaufen
-		foreach($insert as $i => $p)
-		{
-			if($i != "ID"){	//Index ID nicht verwenden
-				$col.= $i;	//Index (Spaltenname)
-				$dat.= "'".$p."'";	//Daten
-				if($lauf < $len){	//Wenn es nicht die letzte Spalte ist Beistrich anfügen
-					$col.=" , ";
-					$dat.=" , ";
-				}
-			}
-			$lauf+=1;	//Laufvariable erhöhen		
-		}
+$col="";	//String für die Spaltennamen
+$dat="";	//String für die Daten
+$len=count($insert);	//Länge des Arrays zählen
+$lauf=1;	//Laufvariable auf 1 setzen
 
-		$sql="INSERT INTO ".$table." (".$col.") VALUES (".$dat.")";	//Insert Befehl aufbauen
+//Jede Spalte durchlaufen
+foreach($insert as $i => $p)
+{
+	if($i != "ID"){	//Index ID nicht verwenden
+		$col.= $i; //Index (Spaltenname)
+		$dat.= "'".$p."'";	//Daten
+		//Wenn es nicht die letzte Spalte ist Beistrich anfügen
+		if($lauf < $len){	
+			$col.=" , "
+			$dat.=" , ";
+		}
+	}
+	$lauf+=1; //Laufvariable erhöhen		
+}
+//Insert Befehl aufbauen
+$sql="INSERT INTO ".$table." (".$col.") VALUES (".$dat.")";	
 	
-	}
-	else if(!empty($insert['ID']))	//Wenn die ID gegeben ist --> Update
+	}//Wenn die ID gegeben ist --> Update
+else if(!empty($insert['ID']))
+{
+	$dat=""; //String für die Daten
+	$len=count($insert); //Länge der Arrays zählen
+	$lauf=1; //Laufvariable auf 1 setzen
+
+	//Jede Spalte durchlaufen
+	foreach($insert as $i => $p)
 	{
-		$dat="";	//String für die Daten
-		$len=count($insert);	//Länge der Arrays zählen
-		$lauf=1;	//Laufvariable auf 1 setzen
-
-		//Jede Spalte durchlaufen
-		foreach($insert as $i => $p)
-		{
-			if($i != "ID"){		//Index ID nicht verwenden
-				$dat.= $i." = '".$p."'";	//Daten
-
-				if($lauf < $len)	//Wenn es nicht die letzte Spalte ist Beistrich anfügen
-					$dat.=" , ";
-			}
-			$lauf+=1;	//Laufvariable erhöhen	
+		if($i != "ID"){	//Index ID nicht verwenden
+			$dat.= $i." = '".$p."'"; //Daten
+			//Wenn es nicht die letzte Spalte ist Beistrich anfügen
+			if($lauf < $len)	
+				$dat.=" , ";
 		}
-		$sql="UPDATE ".$table." SET ".$dat." WHERE ID = '".$insert["ID"]."'";	//Update Befehl aufbauen
+		$lauf+=1; //Laufvariable erhöhen	
 	}
-
-mysql_query($sql);	//Befehl ausführen
-
+	$sql="UPDATE ".$table." SET ".$dat." WHERE ID = '".$insert["ID"]."'"; //Update Befehl aufbauen
+}
+mysql_query($sql); //Befehl ausführen
 }
 
 //Funktion zum löschen eines Datensatzes
 //$ID......Die Datensatz ID
 //$table...Tabellenname als String
 function deleteID($ID,$table){
-
-$sql="DELETE FROM ".$table." WHERE ID = '".$ID."'";	//Delete Befehl aufbauen
+//Delete Befehl aufbauen
+$sql="DELETE FROM ".$table." WHERE ID = '".$ID."'";
 mysql_query($sql);	//Befehl ausführen
-
-}
-
-//Funktion zum löschen eines Datensatzes
-//$ID......Die Datensatz ID
-//$table...Tabellenname als String
-function hourDelete(){
-
-
-$sql="SELECT lessons.ID FROM lessons INNER JOIN lessonsBase ON lessonsBase.ID = lessons.lessonBaseFK INNER JOIN classes ON lessonsBase.classFK = classes.ID INNER JOIN hours ON lessonsBase.startHourFK = hours.ID WHERE classes.name = '".$_POST['class']."' AND hours.weekdayShort = '".$_POST['day']."'";
-$result = mysql_query($sql);
-
-while($lessons[]=mysql_fetch_array($result)){
-}
-unset($lessons[count($lessons)-1]);
-
-$sql="SELECT lessonsBase.ID FROM lessonsBase INNER JOIN classes ON lessonsBase.classFK = classes.ID INNER JOIN hours ON lessonsBase.startHourFK = hours.ID WHERE classes.name = '".$_POST['class']."' AND hours.weekdayShort = '".$_POST['day']."'";
-$result = mysql_query($sql);
-
-while($lessonsBase[]=mysql_fetch_array($result)){
-}
-unset($lessonsBase[count($lessonsBase)-1]);
-
-
-foreach($lessons as $l){
-
-$sql = "DELETE FROM lessons WHERE ID='".$l['ID']."'";
-mysql_query($sql);
-
-}
-
-foreach($lessonsBase as $l){
-
-$sql = "DELETE FROM lessonsBase WHERE ID='".$l['ID']."'";
-mysql_query($sql);
-
-}
-
 }
 
 //Funktion zum Kontrollieren von Selects und Post
