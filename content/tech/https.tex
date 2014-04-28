@@ -20,11 +20,11 @@ Connection: keep-alive\r\n
 \end{lstlisting}
 
 \begin{description}
-\item[GET] Gibt an welche Datei aufgerufen werden soll. Da nach dem \enquote{/} kein Dateiname steht, wird die Seite aufgerufen, die beim Webserver als Standardseite eingetragen ist.
+\item[GET] Gibt an, welche Datei aufgerufen werden soll. Da nach dem \enquote{/} kein Dateiname steht, wird die Seite aufgerufen, die beim Webserver als Standardseite eingetragen ist.
 \item[Host] Als Host wird die Adresse des gewünschten Servers eingetragen. Sie wird in eine IP-Adresse umgewandelt und dem TCP übergeben. Muss seit Einführung von HTTP/1.1 vorhanden sein, da ansonsten der Statuscode \enquote{400 Bad Request} zurückgesendet wird.
 \item[User-Agent] Der User-Agent ist jene Anwendung, die diesen Request ausgelöst hat. In diesem Fall der Browser Mozilla Firefox Version 28.0.
 \item[Accept] Dies dient zur Übermittlung der erlaubten Dateiformate. Falls der Server keinen der angegebenen Dateitypen unterstützt, muss er mit dem Fehlercode \enquote{406 Not acceptable} antworten. Wird dieses Feld nicht in den Header eingetragen, so wird jeder Typ unterstützt.
-\item[Accept-Language] Gibt an welche Sprachen die aufgerufene Seite haben soll. Wenn auf dem Server verschiedene Sprachen vorhanden sind, wird die gewünschte ausgegeben. In diesem Fall sollte dies Deutsch oder Englisch(USA) sein. 
+\item[Accept-Language] Gibt an, welche Sprachen die aufgerufene Seite haben soll. Wenn auf dem Server verschiedene Sprachen vorhanden sind, wird die gewünschte ausgegeben. In diesem Fall sollte dies Deutsch oder Englisch(USA) sein. 
 \item[Accept-Encoding] Gibt die akzeptierten Kompressionsarten z.B. gzip an. Dies dient dazu, eine schnellere Übermittlung der Daten zu ermöglichen.
 \end{description} 
 Sobald zwei aufeinander folgende Zeilenenden (=\enquote{\textbackslash r\textbackslash n}) erreicht wurden, beginnt der Server die Anfrage zu bearbeiten.
@@ -49,7 +49,7 @@ Transfer-Encoding: chunked\r\n
 \autoref{lst:content_http_request} und \autoref{lst:content_http_response} wurden mittels Wireshark aufgenommen.
 \subsubsection{Statuscodes}
 \label{sec:content_http_statuscodes}
-Es gibt für HTTP fünf verschiedene standardisierte Arten von Satuscodes
+Es gibt für HTTP fünf verschiedene standardisierte Arten von Satuscodes:\textsl{}
 \begin{description}
 \item[1xx] Diese Statuscodes werden während der Bearbeitung der Anfrage verwendet und dienen der Information.
 \item[2xx] Diese Statuscodes werden benützt, wenn die Anfrage erfolgreich bewältigt wurde.  
@@ -61,7 +61,7 @@ Es gibt für HTTP fünf verschiedene standardisierte Arten von Satuscodes
 \subsubsection{Versionen}
 Aktuell sind zwei verschiedene Versionen von HTTP im Einsatz, HTTP/1.0 und HTTP/1.1.
 \\
-Diese unterscheiden sich insofern, dass bei HTTP/1.0 für jede Anfrage eine neue Verbindung zum Server aufgebaut wird. Dies wirkt sich nachteilig auf die Geschwindigkeit aus, da, z.B. auf einer Website mit vielen Bildern, für jedes Bild eine neue Verbindung hergestellt werden muss und diese Verbindungen durch die Eigenschaften von TCP-Verbindungen (z.B. Slow-start ) entsprechend langsam sind.
+Diese unterscheiden sich insofern, dass bei HTTP/1.0 für jede Anfrage eine neue Verbindung zum Server aufgebaut wird und bei HTTP/1.1 nicht. Dies wirkt sich nachteilig auf die Geschwindigkeit aus, da, z.B. auf einer Website mit vielen Bildern, für jedes Bild eine neue Verbindung hergestellt werden muss und diese Verbindungen durch die Eigenschaften von TCP-Verbindungen (z.B. Slow-start ) entsprechend langsam sind.
 
 \paragraph{HTTP/2.0}  HTTP/2.0 befindet sich in der Entwicklung und basiert auf SPDY. Es wird von der \enquote{Hypertext Transfer Protocol Bis working group}, einer Arbeitsgruppe der \enquote{Internet Engineering Task Force} (IETF), entwickelt.
 
@@ -72,7 +72,7 @@ Zuerst wird eine Authentifizierung und eine Identifizierung der Kommunikationspa
 \subsubsection{Zertifikate}
 Für SSL wird ein digitales Zertifikat benötigt, welches von einer Zertifizierungsstelle ausgestellt wird.
 \paragraph{Erhalten eines Zertifikats}
-Um ein Zertifikat zu erhalten, muss bei einer Zertifizierungsstelle darum angesucht werden. Anschließend wird von der Zertifizierungsstelle die vertrauenswürdigkeit des Antragsstellenden überprüft. Jedoch wird aufgrund der Kosten und der Wettbewerbsfähigkeit
+Um ein Zertifikat zu erhalten, muss bei einer Zertifizierungsstelle darum angesucht werden. Anschließend wird von der Zertifizierungsstelle die Vertrauenswürdigkeit des Antragsstellenden überprüft. Jedoch wird aufgrund der Kosten und der Wettbewerbsfähigkeit meist nicht sehr streng und genau kontrolliert.
 \begin{figure}[H]
 \centering
 \includegraphics[keepaspectratio=true, width=12cm]{images/screenshots/certificate.png}

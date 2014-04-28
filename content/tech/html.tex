@@ -30,13 +30,13 @@ Dies sind die wichtigsten Elemente, mit denen eine einfache Seite aufgebaut werd
 \item[<body>] Leitet den Body, den Teil in dem die Ausgabe steht, ein.
 \item[<title>] Dient dazu den Titel der Site, welcher unter anderem im Tab steht, anzugeben. Wenn kein Titel angegeben wird, wird stattdessen die URL verwendet.
 \item[<script>] Mittels dieses Tags ist es möglich ein Script (z.B. JavaScript) in den HTML-Code einzubinden.
-\item[<p>] Dieses Tag definiert einen Absatz. Es ist nicht möglich in einem Absatz ein anderes Blockelement, wie zum Beispiel eine Tabelle aufzurufen. Es ist grundsätzlich kein Endtag nötig, sollte aber dennoch gesetzt werden.
+\item[<p>] Dieses Tag definiert einen Absatz. Es ist nicht möglich in einem Absatz ein anderes Blockelement, wie zum Beispiel eine Tabelle, aufzurufen. Es ist grundsätzlich kein Endtag nötig, sollte aber dennoch gesetzt werden.
 \item[<div>] Mittels dieses Tags wird ein Bereich definiert. Dies dient unter anderem dazu mittels CSS die Darstellung anzupassen. In einem Div darf nahezu jeder andere Tag verwendet werden, ausgenommen sind \enquote{<html>}, \enquote{<head>} und \enquote{<body>} 
 \item[<hx>] Erzeugt eine Überschrift. Anstelle des \enquote{x} muss eine Zahl von 1 bis 6 eingefügt werden. Je nach Zahl ändert sich die Formatierung des damit gekennzeichneten Texts.
-\item[<a>] Hiermit wird ein Verweis erzeugt. Alles was zwischen dem Start- und dem End-Tag steht wird dann als Verweis gekennzeichnet. Zwischen diesen Tags können zum Beispiel auch Bilder stehen.
+\item[<a>] Hiermit wird ein Verweis erzeugt. Alles was zwischen dem Start- und dem End-Tag steht, wird dann als Verweis gekennzeichnet. Zwischen diesen Tags können zum Beispiel auch Bilder stehen.
 \item[<br />] Erzeugt einen Zeilenumbruch in der Ausgabe. \enquote{</br>} ist ebenso möglich, entspricht jedoch nicht dem XHTML-Standard.
 \item[<img>] Bindet ein Bild in die Ausgabe ein. Die Quelle des Bildes muss mitgegeben werden. Zum Beispiel: \texttt{<img src="bild.png"}. Bei diesem Tag wird kein End-Tag benötigt.
-\item[<table>] Mit diesem Tag wird eine Tabelle erzeugt. Standardmäßig besitzt eine Tabelle keine Umrandung, diese muss mittels \enquote{border} eingestellt werden
+\item[<table>] Mit diesem Tag wird eine Tabelle erzeugt. Standardmäßig besitzt eine Tabelle keine Umrandung, diese muss mittels \enquote{border} eingestellt werden.
 \begin{description}
 \item[<tr>] In einer Tabelle muss jede Zeile mit diesem Tag gekennzeichnet werden.
 \item[<th>] Erzeugt ein Tabellenüberschriftenfeld.
@@ -94,8 +94,8 @@ Ein weiterer Unterschied ist, dass bei der Deklaration nur mehr \texttt{\enquote
 \item[]
 \begin{description}[style=nextline]
 \item[in SIS verwendete Funktionen:]
-\item[datalist] Liste von <option> Elementen, welche von anderen Elementen verwendet werden kann. Unter anderem verwendet um bei der Auswahl des angezeigten Stundenplans eine vorgefertigte Liste der Klassen und Lehrkräfte zu verwenden.
-\item[video] Gibt ein Video aus. Bei uns wurde der Befehl (CODE EINFÜGEN) verwendet. Wobei die Option \enquote{autoplay} angibt ob das Video bei einem Seitenaufruf automatisch starten soll und die Option \enquote{loop} ob die Wiedergabe in einer Endlosschleife laufen  soll.
-\item[source] Wird bei video und audio verwendet um verschiedene Quellen anzugeben. Somit verwendet jeder Browser die Quelldatei, welche er bevorzugt. Diese Option wurde bei der Wiedergabe des Videos verwendet, wobei als \enquote{src} der Speicherort des Videos und als \enquote{type} der Typ (z.B. video/mp4) der Datei verwendet werden muss. 
+\item[datalist] Liste von <option> Elementen, welche von anderen Elementen verwendet werden kann. Unter anderem verwendet, um bei der Auswahl des angezeigten Stundenplans eine vorgefertigte Liste der Klassen und Lehrkräfte zu verwenden.
+\item[video] Gibt ein Video aus. Bei uns wurde der Befehl (\texttt{<video autoplay=\enquote{autoplay} loop=\enquote{true}>}) verwendet. Wobei die Option \enquote{autoplay} angibt ob das Video bei einem Seitenaufruf automatisch starten soll und die Option \enquote{loop} ob die Wiedergabe in einer Endlosschleife laufen  soll.
+\item[source] Wird bei video und audio verwendet um verschiedene Quellen anzugeben. Somit verwendet jeder Browser jene Quelldatei, welche er bevorzugt. Diese Option wurde bei der Wiedergabe des Videos verwendet, wobei als \enquote{src} der Speicherort des Videos und als \enquote{type} der Typ (z.B. video/mp4) der Datei verwendet werden muss. 
 \end{description}
 \end{description}

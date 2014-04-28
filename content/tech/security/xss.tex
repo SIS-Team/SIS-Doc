@@ -6,7 +6,7 @@ Oft bieten Websites die Möglichkeit, Kommentare zu hinterlassen. Wenn in solch 
 \paragraph{Problem}
 Es gibt grundsätzlich drei verschiedene Arten von Cross-Site-Scripting:
 \subparagraph{reflektiert oder nicht-persistent}
-Bei dieser Art des XSS wird das Script vom Benutzer \enquote{geliefert} und nicht auf dem Server gespeichert. Die ist zum Beispiel möglich, wenn wie bei \autoref{lst:content_XSS_Vulnerable_reflected} eine vom Benutzer getätigte Eingabe direkt ausgegeben wird. Dies kann ebenso über GET- oder POST-Methoden funktionieren. So kann ein Angreifer einem Opfer mit dem Link zu der Seite und einem angefügten Script (z.B GET-Parameter= \texttt{input=<script type=\enquote{text/javascript}> alert ('Dies sollte nicht passieren!')}) dazu bringen ein Script auszuführen.
+Bei dieser Art des XSS wird das Script vom Benutzer \enquote{geliefert} und nicht auf dem Server gespeichert. Dies ist zum Beispiel möglich, wenn wie bei \autoref{lst:content_XSS_Vulnerable_reflected} eine vom Benutzer getätigte Eingabe direkt ausgegeben wird. Dies kann ebenso über GET- oder POST-Methoden funktionieren. So kann ein Angreifer einem Opfer mit dem Link zu der Seite und einem angefügten Script (z.B GET-Parameter= \texttt{input=<script type=\enquote{text/javascript}> alert ('Dies sollte nicht passieren!')}) dazu bringen ein Script auszuführen.
 \begin{lstlisting}[style=custom, language=PHP, caption={ reflektiertes Cross-Site-Scripting Anfällig},label={lst:content_XSS_Vulnerable_reflected}]
 <html>
 	<head>
@@ -40,7 +40,7 @@ Diese Seite kann nun durch mitgeben des Parameters  \texttt{default=<script type
 
 \label{sec:content_security_cross_site_scripting_Methods}
 Die effektivste Methode um XSS vorzubeugen, ist jegliche Benutzereingabe zu verhindern und nur eine rein statische Website zu verwenden. Da dies in der Praxis jedoch meist nicht möglich ist, müssen andere Methoden verwendet werden.\\\\ 
-Um XSS auf seiner eigenen Site zu verhindern sollten alle Eingaben, welche ausgegeben werden zum Beispiel mit dem Befehl \enquote{htmlspecialchars}(PHP) behandelt oder auf irgendeine andere Art encodiert werden. Dadurch werden alle Sonderzeichen durch die dafür vorgesehenen Zeichen in der jeweiligen Sprache umgewandelt ( z.B. htmlspecialchars: aus < wird \&lt;), wodurch kein ausführbares Script mehr vorliegt.\\\\
+Um XSS auf seiner eigenen Site zu verhindern sollten alle Eingaben, welche ausgegeben werden, zum Beispiel mit dem Befehl \enquote{htmlspecialchars}(PHP) behandelt oder auf irgendeine andere Art encodiert werden. Dadurch werden alle Sonderzeichen durch die dafür vorgesehenen Zeichen in der jeweiligen Sprache umgewandelt ( z.B. htmlspecialchars: aus < wird \&lt;), wodurch kein ausführbares Script mehr vorliegt.\\\\
 Ebenso ist es möglich alle vom Benutzer tätigbaren Eingaben mit einer Whitelist zu versehen. Dies bedeutet, dass nur Eingaben eines bestimmten Formats zugelassen werden (z.B. 01.01.2014). Jedoch ist diese Methode meist aufgrund vieler verschiedener erlaubter Eingabeformate (z.B. Forum) nicht möglich.\\\\
 Manche Browser verhindern die Verwendung von reflektierten XSS automatisch, so wird beispielsweise bei Internet Explorer 11 diese Meldung (\autoref{fig:content_security_xss_ie}) ausgegeben, wenn die Seite \autoref{lst:content_XSS_Vulnerable_reflected} mit einem Script als input aufgerufen wird.
 
