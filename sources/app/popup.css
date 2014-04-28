@@ -1,0 +1,30 @@
+﻿.PopupCon {
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    height: 0px;
+    width: 0px;
+}
+
+.Popup{     
+    display: none;
+    background: #fff;
+    position: absolute;
+    top: 10px;
+    z-index: 3;
+    min-width: 100px;
+    box-shadow: 0 0 10px #222;
+    padding: 10px;
+    opacity: 1;
+} 
+#overlay{
+    display: none; 
+    background-color: #333;
+    opacity: 0.5;
+    width: 210%;   
+    height: 210%;   
+    position: fixed;   
+    z-index: 2;   
+    top: 0px;
+    margin-left: -10px; 
+}
