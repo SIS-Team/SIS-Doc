@@ -13,6 +13,35 @@ Das System wurde für alle 4 Abteilungen ausgelegt, aber die Nutzung nur in der 
 Wir können seit langem, die ein digitales School Information Service in angriff genommen haben, behaupten, dass unser System in der Schule verwendet wird und auch eine mögliche Zukunft hat. Dies hat auch die Testphase gezeigt. (siehe \gref{sec:content_draft_log_erkenn})\\
 Die App ist in den drei großen App-Stores (Google Play Store, Apple iTunes Store und Microsoft Store) vertreten.\\
 Von den 449 Schülern der Elektronikabteilung haben sich 232, sowie 19 Lehrer, bereits mindestens einmal angemeldet. \\
-Der durch unsere Projekt verursachte Traffic wird auf ungefähr 850 MB pro Tag geschätzt (genauer Rechenweg siehe \gref{sec:traffic}).\\
 \\
 Die Rückmeldungen der Schüler und Lehrer sind nach dem Beseitigen anfänglicher Probleme vorwiegend positiv.
+
+\subsection{Abschätzung des Traffics}
+Der, durch unsere Projekt verursachte Traffic, wird auf ungefähr 700 MB pro Tag geschätzt. Im folgendem wird die Berechnung ausführlich beschrieben.\\
+
+\paragraph{Messwerte\\}
+Die für die Abschätzung herangezogenen Messwerte stammen vom 18.3.2014 9:15 Uhr - 18.3.2014 14:15.\\
+Dabei wurden folgende Werte beobachtet:
+
+\begin{itemize}
+	\item ca. 600 App-Aufrufe\\
+	je $ \approx  $ 10 kB (Stark abhängig von der aufgerufenen Seite. Exemplarisch: Stundenplan)
+	\item ca.  800 Website-Aufrufe\\
+	je $ \approx  $ 130 kB (Stark abhängig von der aufgerufenen Seite. Exemplarisch: Stundenplan-Formular -> relativ groß)
+	\item ca 34000 Monitor-Aufrufe\\
+	je $ \approx  $   1 kB (Stark abhängig von Änderungen. Geschätzter Wert; maximal zirka 10 kB, minimal ~ 50 B)
+\end{itemize}
+
+\paragraph{Berechnung\\}
+
+Im folgendem wird der Traffic der Monitore, App-Aufrufe und Website-Aufrufe zusammengezählt, um den gesamten Traffic zu erhalten, welcher vom Webserver verursacht wird.\\
+\\
+Aufrufe aus der App: $ 600 \ast 10 kB = 6MB $\\
+Aufrufe aus dem Web: $ 800 \ast 130 kB = 104 MB $\\
+Aufrufe der Monitore: $ 3400 \ast 1kB = 3,4MB $\\
+\\
+Daraus ergibt sich eine Summe von 113,4MB innerhalb von 4 Stunden, dies auf 24h Stunden hochgerechnet ergibt einen Traffic von 680 MB.\\
+
+\paragraph{Interpretation\\}
+Dieses Ergebnis ist sehr stark geschätzt, da für unsere Berechnung ein Ausschnitt von 4 Stunden an einen spezifischen Tag gewählt wurde. Besser wäre gewesen, diese Aufrufe über eine längere Periode hinweg zu beobachten. Danach wäre ein korrekteres Ergebnis berechenbar.\\
+Jedoch ist dieses Ergebnis ein Anhaltspunkt, falls eine Begrenzung des Traffics durchgeführt werden soll oder ähnliche Maßnahmen getroffen werden sollen.
