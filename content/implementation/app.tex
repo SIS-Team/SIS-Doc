@@ -71,6 +71,15 @@ Um die Daten, welche vom Server geladen wurden, auszuwerten, wird eine for/in Sc
 for(aLesson in timetObject){}
 \end{lstlisting}
 
+Bei diesem Durchlauf wird den einzelnen Elementen noch die ID der Stundenplantabellenzelle zugewiesen, in welche sie geschrieben werden. Diese wird benötigt, um die Elemente und die zugehörigen Tabellenzellen später noch in Verbindung zu setzen. Da es oft vorkommt, dass ein Element in mehrere Zellen eingetragen wird (bei Doppel- oder Mehrfachstunden), werden dem Element in diesem Fall mehrere Zellen-IDs zugewiesen, dazu werden die einzelnen IDs mit \enquote{/} unterteilt.\\
+Die Eigenschaft, in der die Zell-ID gespeichert, wurde \enquote{cellid} genannt.\\
+
+\lstinputlisting[style=custom, language=html, caption={/mobile/api/timetables.php; Zuweisen der Zell-ID; Zeile 95}, label={lst:widget}, firstline=95, lastline=95, firstnumber=95]{sources/app/api/timetables.php}
+
+Wenn die ID der Zellen des Stundenplans und die cellid des Elements verglichen werden, wird die Methode indexof() verwendet, damit die einzelnen IDs erkannt werden.\\
+
+
+
 \subsubsection{Eintragen der Inhlate}
 
 Die Inhalte des Stunden- oder Supplierplans, müssen nachträglich mittles JavaScript, eingetragen werden. Dazu wird jQuery verwendet. Mit Hilfe von jQuery und dem HTML-DOM können Inhalte der Webseite einfach ausgelesen oder geändert werden.
@@ -78,11 +87,37 @@ Die Inhalte des Stunden- oder Supplierplans, müssen nachträglich mittles JavaS
 Dabei wird das ganze Dokument als Objekt verwendet und die gewünschte Tabellenzelle wird anhand ihrer ID gefunden. Die Eigenschaft innerHTML, gibt den Inhalt dieses Elements an.
 
 Beispiel:
-document.getElementById(cell).innerHTML=Lesson;
-\lstinputlisting[style=custom, language=html, caption={/mobile/api/timetables.php; Veränder des Tabelleninhaltes; Zeile 105}, label={lst:widget}, firstline=105, lastline=105, firstnumber=105]{sources/app/api/timetables.php}	
+
+\lstinputlisting[style=custom, language=html, caption={/mobile/api/timetables.php; Eintragen der Stunde; Zeile 105}, label={lst:widget}, firstline=105, lastline=105, firstnumber=105]{sources/app/api/timetables.php}	
 
 
 Um die Inhalte einzutragen muss die HTML-Seite zuerst vollständig geladen sein, deshalb wird die Methode ready() auf das Objekt document angewandt, denn dadurch wird der JavaScript-Code erst ausgeführt wenn das Dokument vollständig geladen wurde.
+
+\subsubsection{Alle Stundenpläne}
+
+Die Stundenpläne aller Klassen zu sehen ist nur Lehrern erlaubt, deshalb wird nach  dem Laden der Seite überprüft, ob es sich bei dem Benutzer um einen Lehrer handelt. Ist der angemeldete Benutzer ein Lehrer dann wird mittles jQuery der Link mit der ID \enquote{linkForTeacher} eingeblendet.\\
+
+\lstinputlisting[style=custom, language=html, caption={/stundenplan.html; Einblenden eines Links ; Zeilen 29-33}, label={lst:widget}, firstline=29, lastline=33, firstnumber=23]{sources/app/stundenplan.html}
+
+Wenn die Seite \enquote{alle Stundenpläne} geöffnet wird, wird eine Seite geladen auf der ein leeres Dropdownfeld und eine Stundenplantabelle sind. Anfangs wird die Stundenplantabelle ausgeblendet. Nun müssen alle Unterrichtsklassen, welche in der Datenbank eingetragen sind, in das Dropdownfeld eingetragen werden. Dazu wird wieder ein PHP-File über das Source-Attribut eines Script-Tags eingebunden. In dieser Datei werden alle Unterrichtsklassen aus der Datenbank ausgelesen und in ein JSON-Objekt gespeichert.\\
+Mit JavaScript werden dann die einzelnen Auswahlmöglichkeiten in das vorgefertigte Dropdownfeld geschrieben.\\
+
+Wenn der Benutzer eine Klasse ausgewählt hat, wird noch eine PHP-Datei auf die gleiche Art eingebunden. Dieser Seite wird ein GET-Parameter mitgegeben, in welchem die ausgewählte Klasse steht. Nun werden die Stundenplandaten dieser Klasse aus der Datenbank geladen und in die Stundenplantabelle eingetragen. Dann wird die Stundenplantabelle eingeblendet. Das Dropdownfeld bleibt weiterhin eingeblendet, falls der Benutzer noch den Stundenplan einer anderen Klasse ansehen möchte.\\
+
+\subsubsection{Popup}
+
+Um das Popup-Fenster zu erzeugen wurden drei zusätzliche DIV-Bereiche erzeugt.\\
+Zwei DIV-Bereiche wurden ineinander erzeugt, der äußere um die Position des Popups zu bestimmen und den inneren um die Eigenschaften des eigentlichen Popup-Fensters zu bestimmen.\\
+
+\lstinputlisting[style=custom, language=html, caption={/stundenplan.html; Popup-Container ; Zeilen 204-210}, label={lst:widget}, firstline=204, lastline=210, firstnumber=204]{sources/app/stundenplan.html}
+
+\lstinputlisting[style=custom, language=html, caption={/popup.css; CSS des Popups ; Zeilen 1-19}, label={lst:widget}, firstline=1, lastline=19, firstnumber=1]{sources/app/popup.css}
+
+Der dritte Bereich wird benötigt um die restliche Seite auszugrauen, während das Popup geöffnet ist. Dazu werden die Höhe und die Breite dieses DIV-Bereiches auf einen Wert gesetzt, der größer als 100\% ist. Dadurch erstreckt sich der Bereich über die gesamte Seite.\\
+Nun wird dem  Bereich ein Grauwert als Hintergrundfarbe zugewiesen und eine Transparenz eingestellt, dadurch wird ein grauer Schleier über die Seite gelegt.\\
+Damit nicht auch das Popup ausgegraut wird, wird bei beiden Bereichen ein z-index definiert, dieser gibt an wie weit ein DIV-Bereich im Vordergrund oder im Hintergrund liegt. Deshalb muss der Overlay-Bereich einen niedrigeren z-index besitzen als der Popup-Bereich, denn je höher der Wert des z-index, desto weiter liegt der Bereich im Vordergrund.\\
+
+Die Daten die in das Popup-Fenster geschrieben werden, werden aus dem JSON-Objekt geladen, welches beim generieren des Stundenplans, erstellt wurde. Um das richtige Element zu laden wird das Objekt so lange mit einer for/in Schleife durchlaufen, bis die ID der Zelle auf die geklickt wurde und die ID des aktuellen Elements übereinstimmen. Die Daten dieses Elements, werden dann, wieder mit Hilfe der jQuery-Bibliothek, in das Popup geschrieben.\\
 
 
 \subsubsection{Dynamische Anpassung des Designs}
@@ -91,6 +126,11 @@ Da die Oberfläche der App bei Androidgeräten anders dargestellt wurde, als bei
 
 \lstinputlisting[style=custom, language=html, caption={/js/osDetection.js; Laden des richtigen CSS; Zeilen 2-10}, label={lst:widget}, firstline=2, lastline=10, firstnumber=2]{sources/app/osDetection.js}
 
+
+Zusätzlich wurde für Android die Möglichkeit implementiert, dass sich das Menüformat anpasst, wenn das Smartphone im Querformat gehalten wird. Das heißt, wenn das Smartphone quer gehalten wird, werden die einzelnen Menüpunkte nebeneinander angezeigt.\\
+Dazu wird das Menü in zwei Varianten erstellt, einmal im Hochformat und einmal im Querformat, jeweils in einem eigenen DIV-Bereich. Nun wird über das Attribut \enquote{onresize()} des HTML-Bodys, die Funktion \enquote{checkScreen()} aufgerufen, welche überprüft, ob die Breite größer als die Höhe oder die Höhe größer als die Breite ist  und dementsprechend wird die unerwünschte Variante des Menüs ausgeblendet.\\
+
+\lstinputlisting[style=custom, language=html, caption={/js/screenFormat.js; Überprüfen des Bildformats; Zeilen 1-12}, label={lst:widget}, firstline=1, lastline=12, firstnumber=1]{sources/app/screenFormat.js}
 
 
 \subsubsection{Konfigurationsdatei-config.xml}
@@ -132,9 +172,9 @@ Dadurch wird beim Installieren der App, die Verbindung mit dem Internet als einz
 Weiters wurde mit den Preferences noch eingestellt, dass die App im Fullscreen-Modus betrieben wird und das die App bevorzugt auf dem externen Speicher installiert wird.\\
 
 \subsubsection{Debugging}
-Während der Entwicklung wurde die Applikation nur auf dem PC getestet. Da die App rein aus Webtechnologien aufgebaut wird, kann diese auch im Webbrowser ausgeführt werden.\\
+Anfangs wurde die Applikation während der Entwicklung nur auf dem PC getestet. Da die App rein aus Webtechnologien aufgebaut wird, kann diese auch im Webbrowser ausgeführt werden.\\
 Das betreiben der App auf dem PC zieht einige Vorteile mit sich. Die App muss nicht nach jeder Änderung neu gebuildet und auf das Smartphone geladen werden, sondern kann direkt nach der Änderung des Codes im Webbrowser neu geladen und getestet werden. Des Weiteren hat man im Webbrowser sehr mächtige Werkzeuge um Fehler im Code zu finden, zum Beispiel die Entwicklerkonsole.\\
-
+Als die Entwicklung der App weiter fortgeschritten war, muss sie natürlich auch auf dem Smartphone getestet werden, da Probleme die am Smartphone auftreten am PC oft nicht auftreten. Dabei wurde darauf geachtet, dass die App möglichst auf mehreren verschiedenen Geräten getestet wird, um auszuschließen das, die Applikation nur auf einem Gerät funktioniert.\\
 \subsubsection{Erstellen einer App mit PhoneGap}
 Um die App zu erstellen wurde die Onlinevariante von PhoneGap, PhoneGap Build, verwendet. Dazu muss man sich zuerst bei AdobeSystems registrien, das kann man aber kostenlos machen.\\
 Danach meldet man sich unter \href{https://build.phonegap.com}{https://build.phonegap.com} an und kommt es erscheint folgende Seite.\\
