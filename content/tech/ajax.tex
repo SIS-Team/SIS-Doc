@@ -1,2 +1,79 @@
 \subsubsection{AJAX (Buchberger)} 
 \label{sec:content_js_AJAX}
+\begin{quote}
+\enquote{Ajax steht für Asynchronous Javascript + XML. Der Name ist - geben wir es ehrlich zu - ein wenig künstlich.} \cite{ajax}[S. 317]
+\end{quote}
+Ajax stellt eine Möglichkeit dar, zur JavsScript-Laufzeit ohne Neuladen der Seite Daten vom Server anzufragen.\\
+Technisch gesehen ist Ajax ein JavaScript Objekt (\texttt{XMLHttpRequest()}), das vom Webbrowser zur Verfügung gestellt wird. Dieses Objekt über bestimmte Methoden Anfragen senden.\\
+Prinzipiell gibt es im \texttt{XMLHttpRequest()}-Objekt Möglichkeiten für synchrone Anfragen (Die JavaScript-Ausführung bleibt stehen, und wird erst fortgesetzt, wenn die Antwort ankommt.) und asynchrone Anfragen (Ausführung läuft weiter. Es wird jedoch eine Funktion angegeben, die ausgeführt wird, wenn die Antwort ankommt.).\\
+\begin{lstlisting}[style=custom, language=JavaScript,  caption={Synchrones AJAX},label={lst:content_ajax_0}]
+var http = new XMLHttpRequest();
+// Der dritte Parameter der Methode open bestimmt, ob die Anfrage asynchron sein soll.
+
+// synchrone Anfrage
+http.open("GET", "file.php", false);
+
+// Sendet Request ab.
+http.send(null);
+
+// Gibt den HTTP-Status der Antwort aus.
+console.log(http.status);
+// Gibt den HTTP-Körper der Antwort aus.
+console.log(http.responseText);
+\end{lstlisting}
+\begin{quote}
+\enquote{
+\texttt{
+readyState:\\
+Holds the status of the XMLHttpRequest. Changes from 0 to 4:\\
+0: request not initialized\\
+1: server connection established\\
+2: request received\\
+3: processing request\\ 
+4: request finished and response is ready} \cite{readyState}
+}
+\end{quote}
+\begin{lstlisting}[style=custom, language=JavaScript,  caption={Asynchrones AJAX},label={lst:content_ajax_1}]
+var http = new XMLHttpRequest();
+// Der dritte Parameter der Methode open bestimmt, ob die Anfrage asynchron sein soll.
+
+// asynchrone Anfrage
+http.open("GET", "file.php", true);
+
+// Sendet Request ab.
+http.send(null);
+
+http.onreadystatechange = function() {
+	if (http.readyState == 4) {
+		// Gibt den HTTP-Status der Antwort aus.
+		console.log(http.status);
+		// Gibt den HTTP-Körper der Antwort aus.
+		console.log(http.responseText);
+	}
+}
+\end{lstlisting}
+GET-Parameter können einfach an den Dateinamen angehängt werden.\\
+POST-Parameter sind nicht ganz so einfach mitzugeben, da diese im Körper der HTTP-Anfrage stehen, dementsprechend muss die Länge mitgesendet werden.
+\begin{lstlisting}[style=custom, language=JavaScript,  caption={Synchrones AJAX mit POST-Parameter},label={lst:content_ajax_2}]
+var http = new XMLHttpRequest();
+// Der dritte Parameter der Methode open bestimmt, ob die Anfrage asynchron sein soll.
+
+// synchrone Anfrage
+http.open("GET", "file.php", false);
+
+var parameter = "hallo=welt";
+
+// Setzen der nötigen Header.
+http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+// Länge des HTTP-Körpers.
+http.setRequestHeader("Content-length", parameter.length);
+http.setRequestHeader("Connection", "close");
+
+// Sendet Request mit Parameter ab.
+http.send(parameter);
+
+// Gibt den HTTP-Status der Antwort aus.
+console.log(http.status);
+// Gibt den HTTP-Körper der Antwort aus.
+console.log(http.responseText);
+\end{lstlisting}
