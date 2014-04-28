@@ -25,7 +25,7 @@ Connection: keep-alive\r\n
 \item[User-Agent] Der User-Agent ist jene Anwendung, die diesen Request ausgelöst hat. In diesem Fall der Browser Mozilla Firefox Version 28.0.
 \item[Accept] Dies dient zur Übermittlung der erlaubten Dateiformate. Falls der Server keinen der angegebenen Dateitypen unterstützt, muss er mit dem Fehlercode \enquote{406 Not acceptable} antworten. Wird dieses Feld nicht in den Header eingetragen, so wird jeder Typ unterstützt.
 \item[Accept-Language] Gibt an, welche Sprachen die aufgerufene Seite haben soll. Wenn auf dem Server verschiedene Sprachen vorhanden sind, wird die gewünschte ausgegeben. In diesem Fall sollte dies Deutsch oder Englisch(USA) sein. 
-\item[Accept-Encoding] Gibt die akzeptierten Kompressionsarten z.B. gzip an. Dies dient dazu, eine schnellere Übermittlung der Daten zu ermöglichen.
+\item[Accept-Encoding] Gibt die akzeptierten Kompressionsarten (z.B. gzip) an. Dies dient dazu, eine schnellere Übermittlung der Daten zu ermöglichen.
 \end{description} 
 Sobald zwei aufeinander folgende Zeilenenden (=\enquote{\textbackslash r\textbackslash n}) erreicht wurden, beginnt der Server die Anfrage zu bearbeiten.
 
@@ -44,7 +44,7 @@ Transfer-Encoding: chunked\r\n
 \item[Server] Äquivalent zu User-Agent für den Client. Gibt den verwendeten Server an. 
 \item[X-Powered-By (nicht standardisiert)] Gibt die verwendete Technologie, in diesem Fall PHP Version 4.3.10, an. 
 \item[Connection] Die bevorzugte Verbindungsart.
-\item[Transfer-Encoding] Kompressionsverfahren mit welchem die zu übertragenden Daten komprimiert bzw. aufgeteilt wurden.
+\item[Transfer-Encoding] Kompressionsverfahren, mit welchem die zu übertragenden Daten komprimiert bzw. aufgeteilt wurden.
 \end{description}
 \autoref{lst:content_http_request} und \autoref{lst:content_http_response} wurden mittels Wireshark aufgenommen.
 \subsubsection{Statuscodes}
@@ -85,7 +85,7 @@ Diese Zertifikate wurden entwickelt um eine höhere Sicherheit zu erhalten, als 
 Wenn bei einer Website ein erweitertes Zertifikat verwendet wird, wird in den meisten Browsern die Adressleiste komplett oder zumindest teilweise grün dargestellt.
 \\
 Bei der Vergabe dieser Zertifikate werden drei Kriterien besonders beachtet:
-Die Identität und die Geschäftsadresse des Auftragstellers, ob der Antragsteller der ausschließliche Eigentümer der Domain ist oder ein exklusives Nutzungsrecht besitzt, ob die antragstellende Peron überhaupt befugt ist und ob die rechtlichen Dokumente von zeichnungsberechtigten Personen unterschrieben wurden.
+Die Identität und die Geschäftsadresse des Auftragstellers, ob der Antragsteller der ausschließliche Eigentümer der Domain ist oder ein exklusives Nutzungsrecht besitzt, ob die antragstellende Person überhaupt befugt ist und ob die rechtlichen Dokumente von zeichnungsberechtigten Personen unterschrieben wurden.
 
 \subsubsection{Sicherheitsprobleme}
 Eine Schwachstelle der oben genannten Arten des Schlüsseltausches ist jedoch ein Man-in-the-Middle. Dieser müsste vor Aufbau der Verbindung von Host1 und Host2 zwischen ihnen liegen. In Folge würde er jeweils mit Host1 und Host2 eine Verschlüsselung ausmachen. Wenn er nun die gesendeten Daten von Host1 an Host2 weiterleitet und umgekehrt, können die beiden Hosts dies nicht bemerken.\\
