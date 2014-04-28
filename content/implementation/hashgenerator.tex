@@ -114,3 +114,7 @@ Auch, wenn man diese beiden Vorgänge getrennt betrachten muss, sollte man sie n
 ?>
 \end{lstlisting}
 Zu beachten ist, dass bei Verwendung der \texttt{HashGenerator}-Klasse das \texttt{method}-Attribut des Formulars auf \texttt{POST} gesetzt sein muss.
+
+\subsubsection{Hash-Check}
+Für noch bequemere Abfrage des Hashes wird in der Datei /modules/form/hashCheckFail.php eine Funktion \texttt{HashCheck(\$hashgenerator)} definiert. Diese erwartet als Parameter eine Instanz der Klasse \texttt{HashGenerator}. Im Falle, dass der Hash passt, returnt die Funktion, wenn nicht, schreibt sie einen HTTP-Header, der den Webbrowser dazu bringt, die Seite mit dem GET-Parameter \texttt{?error} neuzuladen. Danach wird die Ausführung beendet.\\
+Zusätzlich ist eine Funktion \texttt{HashFail()} definiert, die eben diesen Parameter überprüft, und eine Fehlermeldung ausgibt, sofern dieser vorhanden ist.
