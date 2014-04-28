@@ -62,6 +62,11 @@ Beim angepassten Stundenplan müssen nun der Stundenplan und der Supplierplan ko
 Dazu wird zuerst der Stundenplan, gleich wie der gewöhnliche Stundenplan, generiert. Danach werden die Supplierungen aus der Datenbank abgerufen, diese werden in eine Schleife alle einzeln überprüft. In der Schleife wird überprüft ob es sich um eine ausfallende, eine neu eingetragene, eine verschobene oder eine supplierte Stunde handelt.\\ Entsprechend des Ergebnisses dieser Überprüfung werden die Stunden ausgetragen, zusätzlich eingetragen oder verschoben.\\
 Bei allen Zellen welche von einer Supplierung betroffen sind wird ein zusätzliches Attribut gesetzt. Dabei handelt es sich um das selbst gewählte Attribut \enquote{data-substitude}, in diesem Attribut wird der Index, den die Supplierung dieser Stunde im Supplierungenarray hat, gespeichert. Diese Information wird beim öffnen der Popup-Fenster benötigt.\\
 
+\paragraph{Alle Stundenpläne}
+Für Lehrer soll es auch möglich sein, die Stundenpläne aller Klassen zu sehen. Diese Funktion ist aber ausschließlich für Lehrer gedacht und wir deshalb bei Schülern nicht angezeigt.\\
+Um die Übersichtlichkeit zu bewahren, kann der Lehrer die gewünschte Klasse mittels Dropdownmenü auswählen, diese Information wird dann an den Server gesandt und es wird der Stundenplan für die ausgewählte Klasse generiert.\\
+
+
 \paragraph{News\\}
 Bei der Newsseite handelt es sich um eine leere HTML-Seite mit der Überschrift News. Die Neuigkeiten werden gleich wie die Stundenplan- und Supplierplandaten vom Server heruntergeladen und einfach auf die Seite geschrieben. Dabei muss lediglich auf die Formatierung geachtet werden, da \enquote{$\backslash$n} durch ein \enquote{<br>} ersetzt werden muss.\\
 
