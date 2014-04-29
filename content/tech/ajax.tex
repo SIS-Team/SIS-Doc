@@ -1,10 +1,10 @@
 \subsubsection{AJAX (Buchberger)} 
 \label{sec:content_js_AJAX}
 \begin{quote}
-\enquote{Ajax steht für Asynchronous Javascript + XML. Der Name ist - geben wir es ehrlich zu - ein wenig künstlich.} \cite{ajax}[S. 317]
+\enquote{Ajax steht für Asynchronous Javascript + XML. Der Name ist - geben wir es ehrlich zu - ein wenig künstlich.} \cite[S. 317]{ajax}
 \end{quote}
 Ajax stellt eine Möglichkeit dar, zur JavsScript-Laufzeit ohne Neuladen der Seite Daten vom Server anzufragen.\\
-Technisch gesehen ist Ajax ein JavaScript Objekt (\texttt{XMLHttpRequest()}), das vom Webbrowser zur Verfügung gestellt wird. Dieses Objekt über bestimmte Methoden Anfragen senden.\\
+Technisch gesehen ist Ajax ein JavaScript Objekt (\texttt{XMLHttpRequest()}), das vom Webbrowser zur Verfügung gestellt wird. Dieses Objekt kann über bestimmte Methoden HTTP-Anfragen senden.\\
 Prinzipiell gibt es im \texttt{XMLHttpRequest()}-Objekt Möglichkeiten für synchrone Anfragen (Die JavaScript-Ausführung bleibt stehen, und wird erst fortgesetzt, wenn die Antwort ankommt.) und asynchrone Anfragen (Ausführung läuft weiter. Es wird jedoch eine Funktion angegeben, die ausgeführt wird, wenn die Antwort ankommt.).\\
 \begin{lstlisting}[style=custom, language=JavaScript,  caption={Synchrones AJAX},label={lst:content_ajax_0}]
 var http = new XMLHttpRequest();
