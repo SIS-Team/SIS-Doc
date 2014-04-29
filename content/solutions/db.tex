@@ -1,6 +1,6 @@
 \subsection{Datenbankdesign}
 \label{sec:content_solution_db}
-Bei Design der Datenbank stellten sich einige grundlegenden Fragen:
+Beim Design der Datenbank stellten sich einige grundlegenden Fragen:
 
 \begin{itemize}
 	\item Wie werden die Schulstunden gespeichert?
@@ -32,7 +32,7 @@ Es gibt Tabellen für:\\
 \begin{itemize}
 	\item Die Supplierung
 \end{itemize}
-Die Basis-Stunde verknüpft die Klasse der Stunde mit der Uhrzeit. Die Stunde verknüpft die Basis-Stunde mit dem Lehrer, dem Fach und dem Raum.\\
+Die Basis-Stunde verknüpft die Klasse der Unterrichtsstunde mit der Uhrzeit. Die Stunde verknüpft die Basis-Stunde mit dem Lehrer, dem Fach und dem Raum.\\
 \\
 Die Basis-Stunde wird benötigt, damit die Information, welche Klasse wann Unterricht hat, nicht mehrfach gespeichert werden muss.\\
 \\
@@ -46,7 +46,7 @@ Es ist möglich, mehrere Supplierungen für die gleiche Stunde einzutragen. Dies
 \fdot[]{images/dbSubstitudes}{}
 \caption{Supplierungs-Datenbank}
 \end{figure}
-Für das folgende Beispiel wird angenommen, dass eine Schulstunde 60 Minuten entspricht.\\
+Für das folgende Beispiel wird angenommen, eine Schulstunde entspräche 60 Minuten.\\
 \\
 \textit{Beispiel:} Klasse K hat am Montag um 8:00 eine Doppelstunde des Faches F mit Lehrer L in Raum R. Da der Lehrer zu spät kommen wird (ist bereits im vorhinein bekannt), soll nun die erste Stunde auf 16:00 in Raum P verschoben werden, die zweite Stunde soll aber bleiben.\\
 \\
@@ -58,10 +58,10 @@ Für das folgende Beispiel wird angenommen, dass eine Schulstunde 60 Minuten ent
 
 Eine alternative Lösung, die angedacht wurde, ist folgende:\\
 \\
-Ansatt zwei Tabellen für die Basis-Stunde und die Stunde gibt es nur eine Stunden-Tabelle.
+Anstatt zwei Tabellen für die Basis-Stunde und die Stunde gibt es nur eine Stunden-Tabelle.
 Diese verknüpft die Klasse mit der Uhrzeit, der Länge der Stunde, einem kombinierten Lehrer-Feld, einem kombinierten Fächer-Feld, einem kombinierten Raum-Feld.\\
 \\
-Die kombinierten Felden sollten den ersten Wert enthalten. Für jeden weiteren Wert wird der aktuelle Feld-Wert verodert mit dem nächsten Wert, welcher zuvor um ($x \cdot $(Anzahl der bisherigen Einträge)) Bits nach links verschoben wurde.\\
-Hierbei wurde \textit{x} noch nicht bestimmt, es müsste so gewählt werden, dass der Eintrag mit der höchsten ID nicht in den dahinterliegenden Einträg überläuft (Für die Lehrer wäre $2^{8}$ (=256) ideal, da es knapp unter 200 Lehrer an der HTL gibt).\\
+Die kombinierten Felder sollten den ersten Wert enthalten. Für jeden weiteren Wert wird der aktuelle Feld-Wert verodert mit dem nächsten Wert, welcher zuvor um ($x \cdot $(Anzahl der bisherigen Einträge)) Bits nach links verschoben wurde.\\
+Hierbei wurde \textit{x} noch nicht bestimmt, es müsste so gewählt werden, dass der Eintrag mit der höchsten ID nicht in den dahinterliegenden Eintrag überläuft (Für die Lehrer wäre $2^{8}$ (=256) ideal, da es knapp 200 Lehrer an der HTL gibt).\\
 \\
 Diese Lösungsmöglichkeit wurde allerdings verworfen, da es einiges an Aufwand ist, immer die richtigen Lehrer herauszulesen und da das Holen der Lehrer-Daten (Name, etc) nicht mehr im selben Query ausgeführt werden kann, als das Holen der Stundendaten, was bei mehr als 1 Zugriffspunkt zu Problemen mit der Daten-Konsistenz führen kann.
