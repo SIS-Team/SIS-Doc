@@ -6,29 +6,28 @@ Die Kommunikation zum Server und die Art des Anzeigens der abgerufenen Informati
 \subsubsection{Laden der Daten}
 
 Für das Laden der Daten vom Webserver wird Javascript in Verbindung mit AJAX verwendet.\\
-Dies hat gegenüber dem Neuladen der Seiten den Vorteil, dass, im Falle dessen, dass der Webserver kurzzeitig nicht erreichbar ist, das System trotzdem ohne Probleme weiter laufen kann - sieht man davon ab, dass mit der zeit, die angezeigten Daten veralten.\\
-Der einzige Zeitpunkt, an dem der Server auf alle Fälle erreichbar sein muss, ist der Start der Raspberry Pis, da hier die Website vom Server geladen werden wird. Auch diese Bedingung hätte entfernt werden können, indem man die Seite lokal abgelegt hätte. Dies hat allerdings den Nachteil, dass die Seite über ein weiteres Script hätte immer auf dem aktuellen Stand gebracht werden.
+Dies hat gegenüber dem Neuladen der Seiten den Vorteil, dass, im Falle dessen, dass der Webserver kurzzeitig nicht erreichbar ist, das System trotzdem ohne Probleme weiter laufen kann - sieht man davon ab, dass mit der Zeit die angezeigten Daten veralten.\\
+Der einzige Zeitpunkt, an dem der Server auf alle Fälle erreichbar sein muss, ist der Start der Raspberry Pis, da hier die Website vom Server geladen wird. Auch diese Bedingung hätte entfernt werden können, indem man die Seite lokal abgelegt hätte. Dies hat allerdings den Nachteil, dass die Seite über ein weiteres Script immer auf dem aktuellen Stand gebracht werden müsste.
 
 \subsection{Authentifizierung der Monitore}
-
-Es stellt sich die Frage, die die Monitore am Server registriert werden. Da alle Monitore über das Webinterface zentral administriert werden können, ist es äußerst kontraproduktiv, wenn eventuell Schüler - oder gar Außenstehende - die Datenbank-Tabelle für die registrierten Monitore fluten können.\\
+Es stellt sich die Frage, wie die Monitore am Server registriert werden. Da alle Monitore über das Webinterface zentral administriert werden können, ist es äußerst kontraproduktiv, wenn eventuell Schüler - oder gar Außenstehende - die Datenbank-Tabelle für die registrierten Monitore fluten können.\\
 \\
 Wie bereits unter \gref{sec:content_solutions_https} erwähnt, wurde von den Betreuern vorgegeben, dass HTTPS verwendet werden soll. Dies führt bei der Registrierung der Monitore zu Problemen (siehe folgendes).
 
 \subsubsection{Gewählte Lösung}
 
-Da zu anfangs nicht klar war, welches IP-Netz das W-LAN der Monitore bekommen sollte, konnte keine IP-Filterung verwendet werden.\\
+Da anfangs unklar war, welches IP-Netz das W-LAN der Monitore bekommen sollte, konnte keine IP-Filterung verwendet werden.\\
 \\
 Das Problem wurde gelöst, indem in der Datenbank für die Monitore eine Spalte für die IP-Adresse vorgesehen wurde. Die Idee bestand darin, dass jede IP-Adresse nur maximal einen Monitor registrieren darf (Vgl. \gref{sec:content_solutions_monitors_alt_reg}).\\
 \\
-Aufgrund dessen, dass für die verschlüsselte Verbindung die Packete nach außen geNATet werden und wieder durch die Firewall zurück kommen, haben alle Monitore die öffentliche IP-Adresse der Schule.\\
-Um dieses Problem zu umgehen wurde mit Betreuer Lassnig vereinbart, dass die Verbindung der Monitore unverschlüsselt sein darf, da keine sicherheitsrelavanten Daten übertragen werden, und da das W-LAN selbst schon verschlüsselt.\\
+Weil für die verschlüsselte Verbindung die Pakete nach außen geNATet werden und wieder durch die Firewall zurück kommen, haben alle Monitore die öffentliche IP-Adresse der Schule.\\
+Um dieses Problem zu umgehen, wurde mit Betreuer Dipl.-Päd.Ing. Lassnig vereinbart, dass die Verbindung der Monitore unverschlüsselt sein darf, da keine sicherheitsrelavanten Daten übertragen werden, und da das W-LAN selbst schon verschlüsselt.\\
 Als Ziel-Adresse wird also anstatt https://sis.htlinn.ac.at http://sis.clients.htlinn.ac.at eingetragen.
 
 
 \subsubsection{Alternative Lösungen}
 
-\paragraph{Registrierung}
+\paragraph{Registrierung\\}
 \label{sec:content_solutions_monitors_alt_reg}
 
 Die Registrierung der Monitor hätte manuell erfolgen können. Hier würden mehrere Möglichkeiten in Frage kommen:
@@ -37,13 +36,13 @@ Die Registrierung der Monitor hätte manuell erfolgen können. Hier würden mehr
 	\item[Registrierung nur vom Administrator-Interface aus]
 		Dies hat den Nachteil, dass es zu frustrierenden Situationen kommen kann, wenn der tatsächliche Name des Monitors (eingestellt im Raspberry Pi) mit dem in der Datenbank nicht identisch ist.\\
 	\item[Registrierung mittels Passwort]
-		Ein Nachteil dieser Variante ist, dass das Passwort direkt an den Raspberry Pis eingegeben werden muss. Was den administrativen Aufwand vergrößert.
+		Ein Nachteil dieser Variante ist, dass das Passwort direkt an den Raspberry Pis eingegeben werden muss, was den administrativen Aufwand vergrößert.
 		Weiters muss dieses Passwort für Konfiguration mehr oder weniger öffentlich zugänglich sein muss, was den Zusatzaufwand nichtig macht.
 	\item[Registrierung mittels Cookie-Hash]
-		Diese Variante hat ähnliche Nachteile, wie die Registrierung mittels Passwort.
+		Diese Variante hat ähnliche Nachteile wie die Registrierung mittels Passwort.
 \end{description}
 
-\paragraph{Verschlüsslung}
+\paragraph{Verschlüsselung\\}
 
-Als Alternative zur fehlenden Verschlüsslung hätte ein, von der HTL ausgestelltes SSL-Zertifikat für die Wild-Card-Domain *.clients.htlinn.ac.at ausgestellt werden können, den Raspberry Pis hätte man dann müssen das HTL-Root-Zertifikat importieren müssen. Dies ist allerdings mit recht viel administrativen Aufwand verbunden, daher wurde diese Idee verworfen.\\
+Als Alternative zur fehlenden Verschlüsselung hätte ein von der HTL ausgestelltes SSL-Zertifikat für die Wild-Card-Domain *.clients.htlinn.ac.at eingerichtet werden können, den Raspberry Pis hätte man dann das HTL-Root-Zertifikat importieren müssen. Dies ist mit recht viel administrativen Aufwand verbunden, daher wurde diese Idee verworfen.\\
 Als eine weitere Variante hätte man den Raspberry Pis den Server, auf dem die Website abgelegt wurde, als SSL-Ausnahme eintragen können. 
