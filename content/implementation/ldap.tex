@@ -1,24 +1,24 @@
 \subsection{LDAP-Zugriff}
 \label{sec:content_imple_ldap}
 Der Zugriff auf den LDAP-Server gehört thematisch eigentlich zu \gref{sec:content_imple_base_session}, ist allerdings recht umfangreich, weswegen er hier extra behandet werden soll.\\
-Funktionen, die mit LDAP zutun haben, sind in der Datei /modules/general/LDAP.php definiert:
+Funktionen, die mit LDAP zu tun haben, sind in der Datei /modules/general/LDAP.php definiert:
 \begin{description}
 	\item[\texttt{LDAP\_getUser(\$cn)}] benötigt als Parameter den CN, durchsucht den LDAP-Server danach unterhalb des Base-Directorys o=SIS mit Sub-Scope. Zurückgeliefert wird ein mehrdimensionales Array mit allen Einträgen.
-	\item[\texttt{LDAP\_login(\$dn, \$pass)}] benötigt als Parameter den DN und das Passwort eines LDAP-Users. Es wird ein LDAP-Bind versucht. Schlägt dieser fehl wird \texttt{false} sonst \texttt{true} zurückgegeben.
+	\item[\texttt{LDAP\_login(\$dn, \$pass)}] benötigt als Parameter den DN und das Passwort eines LDAP-Users. Es wird ein LDAP-Bind versucht. Schlägt dieser fehl, wird \texttt{false}, sonst \texttt{true} zurückgegeben.
 	\item[\texttt{LDAP\_getDN(\$ent)}] hat als Parameter ein LDAP-Entry-Array. Zurückgeliefert wird der DN des ersten Objektes im Array beziehungsweise \texttt{false} im Fall, dass der DN leer ist.
-	\item[\texttt{getFullName(\$ent)}] ließt das erste Token aus dem Vornamen und nach Nachnamen  des LDAP-Entrys aus, setzt beide Teile zusammen und gibt die resultierende Zeichenkette zurück.
+	\item[\texttt{getFullName(\$ent)}] liest das erste Token aus dem Vornamen und Nachnamen es LDAP-Entrys aus, setzt beide Teile zusammen und gibt die resultierende Zeichenkette zurück.
 	\item[\texttt{getInitials(\$ent)}] gibt die Initialen des LDAP-Entrys zurück.
-	\item[\texttt{getSection(\$ent)}] ließt die Abteilung des LDAP-Entrys (Schüler) aus.
+	\item[\texttt{getSection(\$ent)}] liest die Abteilung des LDAP-Entrys (Schüler) aus.
 	\item[\texttt{getClass(\$ent)}] gibt die Klasse des LDAP-Entrys (Schüler) zurück.
-	\item[\texttt{isTeacher(\$ent)}] gibt \texttt{true} zurück, wenn es sich um einen Lehrer handelt beziehungsweise \texttt{false} wenn nicht (gekennzeichnet durch den Container \texttt{ou=LEHRER}).
-	\item[\texttt{getRights(\$ent)}] gibt ein Array mit den Rechten des LDAP-Entrys zurück. Die Rechte sind bestimmt durch die Groupen im Container \texttt{ou=SIS,o=HTL1}. Während der Beta-Phase haben die Benutzer \texttt{20090319}, \texttt{20090334}, \texttt{20090396} und \texttt{20090359} (die vier Team-Mitglieder) Root-Rechte.
+	\item[\texttt{isTeacher(\$ent)}] gibt \texttt{true} zurück, wenn es sich um einen Lehrer handelt, beziehungsweise \texttt{false}, wenn nicht (gekennzeichnet durch den Container \texttt{ou=LEHRER}).
+	\item[\texttt{getRights(\$ent)}] gibt ein Array mit den Rechten des LDAP-Entrys zurück. Die Rechte sind bestimmt durch die Gruppen im Container \texttt{ou=SIS,o=HTL1}. Während der Beta-Phase haben die Benutzer \texttt{20090319}, \texttt{20090334}, \texttt{20090396} und \texttt{20090359} (die vier Team-Mitglieder) Root-Rechte.
 \end{description}
 
 \lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{LDAP\_getUser()}; Zeilen 31-76}, label={lst:content_imple_ldap_getuser}, firstline=31, lastline=76, firstnumber=31]{sources/ldap/LDAP.php}
 Die Datei /modules/general/LDAPpassword.php definiert die Werte \texttt{\$host} (Hostname des LDAP-Servers), \texttt{\$user} (DN des Bind-Users) und  \texttt{\$passwd} (Passwort des Bind-Users).\\
-Die Zeilen 34 bis 52 dienen eigentlich nur dazu, für den Fall, dass kein LDAP-Host eingetragen ist, für Tests einen Demo-Benutzer zur Verfügung zu stellen. Dieser hat die ID 12345678 im Container \texttt{ou=STUDENTS,o=HTLinn} (somit handelt es sich um einen Schüler), ist der Klasse 5YHELI (Absteilung Elektronik) zugeordnet und hat den Namen \enquote{Sister Anich} (als Anlehnung an die umgangssprachliche Abkürzung Sis für Sister, und den Familiennamen des Innsbrucker Kartografen Peter Anich nachdem die Anichstraße benannt ist), die Initialen werden auf \enquote{SA} festgelegt.\\
-In Zeile 55 wird versucht, mit den festgelegten Zugangsdaten ein Bind-Vorgang am LDAP-Server zu starten. Schlägt dies fehl, so wird eine Fehlermeldung in die Datei /logs/ldap-fails geschrieben, sowie eine Meldung ausgegeben, der Benutzer möge diesen Fehler bitte an das SIS-Team melden.\\
-Ist der Bind erfolgreich, so wird, wie bereits oben beschrieben, im Basis-Verzeichnis \texttt{o=SIS} mit Sub-Scope nach Objekte mit dem CN, der der Funktion als Parameter mitgeliefert wird, gesucht. Es wird ein mehrdimensionales Array mit folgenden Eigenschaften aller gefundenen Objekte zurückgeliefert: 
+Die Zeilen 34 bis 52 dienen eigentlich nur dazu, für den Fall, dass kein LDAP-Host eingetragen ist, für Tests einen Demo-Benutzer zur Verfügung zu stellen. Dieser hat die ID 12345678 im Container \texttt{ou=STUDENTS,o=HTLinn} (somit handelt es sich um einen Schüler), ist der Klasse 5YHELI (Abteilung Elektronik) zugeordnet und hat den Namen \enquote{Sister Anich} (als Anlehnung an die umgangssprachliche Abkürzung Sis für Sister, und den Familiennamen des Innsbrucker Kartografen Peter Anich, nach dem die Anichstraße benannt ist), die Initialen werden auf \enquote{SA} festgelegt.\\
+In Zeile 55 wird versucht, mit den festgelegten Zugangsdaten einen Bind-Vorgang am LDAP-Server zu starten. Schlägt dieser fehl, wird eine Fehlermeldung in die Datei /logs/ldap-fails geschrieben, sowie eine Meldung ausgegeben, der Benutzer möge diesen Fehler bitte an das SIS-Team melden.\\
+Ist der Bind erfolgreich, wird, wie bereits oben beschrieben, im Basis-Verzeichnis \texttt{o=SIS} mit Sub-Scope nach Objekte mit dem CN, der der Funktion als Parameter mitgeliefert wird, gesucht. Es wird ein mehrdimensionales Array mit folgenden Eigenschaften aller gefundenen Objekte zurückgeliefert: 
 \begin{itemize}
 	\item \texttt{groupmembership}: Dies sind üblicherweise mehrere Eigenschaften. hier kann die Klasse und die Gruppenzugehörigkeit (siehe \gref{sec:content_solutions_users}) bestimmt werden.
 	\item \texttt{ou}: Dies sind üblicherweise mehrere Eigenschaften. Hier kann die Klasse ausgelesen werden.
@@ -31,20 +31,20 @@ Der Bind wird wieder gelöst und das Daten-Array zurückgegeben, beziehungsweise
 
 \lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{LDAP\_getDN()}; Zeilen 9-15}, label={lst:content_imple_ldap_getdn}, firstline=9, lastline=15, firstnumber=9]{sources/ldap/LDAP.php}
 Die Funktion \texttt{LDAP\_getDN(\$ent)} erwartet als Parameter ein LDAP-Entry-Array und gibt den DN des ersten Objektes im Array zurück.\\
-Die Funktionen \texttt{getSection(\$ent)}, \texttt{getFullName(\$ent)} und \texttt{getInitials(\$ent)} sind ähnlich trivial und sollen nicht näher erläutert werden. Einzig bei der Funktion \texttt{getFullName(\$ent)} ist zu erwähnen, dass nur der erste Vorname zurückgegeben wird.\\
+Die Funktionen \texttt{getSection(\$ent)}, \texttt{getFullName(\$ent)} und \texttt{getInitials(\$ent)} sind sehr ähnlich und sollen nicht näher erläutert werden. Einzig bei der Funktion \texttt{getFullName(\$ent)} ist zu erwähnen, dass nur der erste Vorname zurückgegeben wird.\\
 
 \lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{getClass()}; Zeilen 129-141}, label={lst:content_imple_ldap_getclass}, firstline=129, lastline=141, firstnumber=129]{sources/ldap/LDAP.php}
-Beim Auslesen der Klasse, wird der Fakt genutzt, dass alle Klassen im Container \texttt{ou=GROUPS,ou=PUBLIC,o=HTLinn} liegen und einen CN haben, welcher länger als 3 Zeichen ist. Dieser Fakt ist sonst für keine Gruppe gegeben. Dementsprechend wird die Gruppenzugehörigkeit nach diesen Kriterien überprüft.\\
+Beim Auslesen der Klasse wird der Fakt genutzt, dass alle Klassen im Container \texttt{ou=GROUPS,ou=PUBLIC,o=HTLinn} liegen und einen CN haben, welcher länger als 3 Zeichen ist. Dieser Fakt ist sonst für keine Gruppe gegeben. Dementsprechend wird die Gruppenzugehörigkeit nach diesen Kriterien überprüft.\\
 
 \lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{isTeacher()}; Zeilen 120-127}, label={lst:content_imple_ldap_teacher}, firstline=120, lastline=127, firstnumber=120]{sources/ldap/LDAP.php}
 Alle Lehrer-Objekte liegen im Container \texttt{ou=LEHRER,o=HTLinn}. Es wird der DN zerlegt und der Container verglichen.\\
 
 \lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{getRights()}; Zeilen 78-118}, label={lst:content_imple_ldap_rights}, firstline=78, lastline=118, firstnumber=78]{sources/ldap/LDAP.php}
-In der Funktion \texttt{getRights(\$ent)} wird anfangs das Rechte-Array initialisiert (alle Rechte entzogen $ \Longrightarrow $ alle Rechte auf \texttt{false}). Danach werden alle Gruppenzugehörigkeiten durchlaufen, wenn eine Gruppe im Container \texttt{ou=SIS,o=HTL1} liegt, ist es möglich, dass es sich um eine Rechte-Gruppe handelt (Für eine Auflistung aller Gruppen siehe \gref{sec:content_solutions_users}.). Handelt es sich um die SuperAdmin-Gruppe, so wird das \texttt{root}-Flag im Rechte-Array gesetzt. Handelt es sich um die News-Gruppe, so wird das \texttt{news}-Flag gesetzt. Kommt das Wort Admin vor, so wird das jeweilige Abteilungs-Flag gesetzt.\\
+In der Funktion \texttt{getRights(\$ent)} wird anfangs das Rechte-Array initialisiert (alle Rechte entzogen $ \Longrightarrow $ alle Rechte auf \texttt{false}). Danach werden alle Gruppenzugehörigkeiten durchlaufen, wenn eine Gruppe im Container \texttt{ou=SIS,o=HTL1} liegt, ist es möglich, dass es sich um eine Rechte-Gruppe handelt (Für eine Auflistung aller Gruppen siehe \gref{sec:content_solutions_users}). Handelt es sich um die SuperAdmin-Gruppe,  wird das \texttt{root}-Flag im Rechte-Array gesetzt. Handelt es sich um die News-Gruppe, wird das \texttt{news}-Flag gesetzt. Kommt das Wort Admin vor, wird das jeweilige Abteilungs-Flag gesetzt.\\
 Für die Beta-Phase wird bei den vier Entwicklern das \texttt{root}-Flag gesetzt (Die Entwickler werden durch ihren CN identifiziert.).\\
 Das Berechtigungs-Array wird aus der Funktion zurückgegeben.\\
 
 \lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{LDAP\_login()}; Zeilen 17-29}, label={lst:content_imple_ldap_login}, firstline=17, lastline=29, firstnumber=17]{sources/ldap/LDAP.php}
 Die Login-Funktion verlangt als Parameter den DN des Benutzers (dieser muss zuvor ausgelesen werden) und das Passwort.\\
-Sollte kein LDAP-Host eingetragen sein, wird der Testbenutzer verwendet, es findet keien Bind statt. Der DN für den Testbenutzer ist \texttt{cn=123345678,ou=STUDENTS,o=HTLinn} (das entspricht dem Benutzernamen \enquote{12345678}), das Passwort ist \enquote{sister}.\\
+Sollte kein LDAP-Host eingetragen sein, wird der Testbenutzer verwendet, es findet kein Bind statt. Der DN für den Testbenutzer ist \texttt{cn=123345678,ou=STUDENTS,o=HTLinn} (das entspricht dem Benutzernamen \enquote{12345678}), das Passwort ist \enquote{sister}.\\
 Sollte ein Host eingetragen sein, so wird ein Bind versucht. Ist dieser erfolgreich wird \texttt{true} zurückgegeben, sonst \texttt{false}.
