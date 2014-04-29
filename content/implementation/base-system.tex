@@ -1,15 +1,15 @@
 \subsection{Basis-System}
-Das Basissystem ist relativ simple gehalten.\\
+Das Basissystem ist relativ simpel gehalten.\\
 \subsubsection{Konfiguration}
 Die erste - und wohl auch wichtigste - Datei des Basis-Systems ist die Datei /config.php, diese soll unter anderem das Problem des Wurzelverzeichnisses lösen (siehe \gref{sec:content_solutions_root}).
 \lstinputlisting[style=custom, language=php, caption={/config.php}, label={lst:content_imple_base_config}]{sources/base/config.php}
-In dieser werden drei Konstanten definiert:
+In dieser Datei werden drei Konstanten definiert:
 \begin{description}
 	\item[\texttt{BETA}] ist \texttt{true} solange das System im Testbetrieb ist.
-	\item[\texttt{RELATIVE\_ROOT}] beinhaltet den relativen Pfad vom Grundverzeichnis des virtuellen Hosts (vorgegeben durch den Webserver) zum Grundverzeichnis des Projektes. Hierbei ist zubachten, dass das letzte Slash-Zeichen wegzulassen ist.\\
+	\item[\texttt{RELATIVE\_ROOT}] beinhaltet den relativen Pfad vom Grundverzeichnis des virtuellen Hosts (vorgegeben durch den Webserver) zum Grundverzeichnis des Projektes. Hierbei ist zu beachten, dass das letzte Slash-Zeichen wegzulassen ist.\\
 	\textit{Beispiel:} Ist das Grundverzeichnis des virtuellen Hosts bereits das Wurzelverzeichnis des Projektes, so muss der String "'"' verwendet werden.\\
 	\textit{Beispiel:} Befindet sich das Projekt im Ordner \enquote{foobar} unterhalb des Grundverzeichnisses des virtuellen Hosts, so ist der betreffende String "'\texttt{/foobar}"'.
-	\item[\texttt{ROOT\_LOCATION}] beinhaltet den absoluten Pfad vom Grundverzeichnis des Servers zum Projektverzeichnis. Dieser wird aus dem \texttt{DOCUMENT\_ROOT}, also dem Grundverzeichnis des virtuellen Hosts, und dem relativen Pfad des Projekt-Ordners zum \texttt{DOCUMENT\_ROOT} gebildet. Dadurch ist auch geklärt, warum \texttt{RELATIVE\_ROOT} nicht mit einem \enquote{/} enden soll (Es ist zwar im Unix-Standard spezifiziert, dass ein mehrere Slashes hintereinander als eines behandelt werden sollen, allerdings kann es sein, dass das Betriebssystem dies nicht nach Standard behandelt.).
+	\item[\texttt{ROOT\_LOCATION}] beinhaltet den absoluten Pfad vom Grundverzeichnis des Servers zum Projektverzeichnis. Dieser wird aus dem \texttt{DOCUMENT\_ROOT}, also dem Grundverzeichnis des virtuellen Hosts, und dem relativen Pfad des Projekt-Ordners zum \texttt{DOCUMENT\_ROOT} gebildet. Dadurch ist auch geklärt, warum \texttt{RELATIVE\_ROOT} nicht mit einem \enquote{/} enden soll (Es ist zwar im Unix-Standard spezifiziert, dass mehrere Slashes hintereinander als eines behandelt werden sollen, allerdings kann es sein, dass das Betriebssystem dies nicht nach Standard behandelt.).
 \end{description}
 
 \subsubsection{Main-File}
@@ -37,16 +37,16 @@ Wie bereits unter \gref{sec:content_solutions_https} erwähnt, soll die Seite be
 
 \subsubsection{SessionManager}
 \label{sec:content_imple_base_session}
-Das Modul SessionManager prüft, ob eine PHP-Session mit allen nötigen Feldern existiert, erstellt bei Bedarf eine solche, erneuert die Session-ID, bindet das Modul ActionLogger ein (siehe \autoref{sec:content_imple_base_logger}) und stellt Funktionen für den Login, Logout und das Entfernen der Session zur Verfügung.\\
+Das Modul SessionManager prüft, ob eine PHP-Session mit allen nötigen Feldern existiert, erstellt bei Bedarf eine solche, erneuert die Session-ID, bindet das Modul ActionLogger ein und stellt Funktionen für den Login, Logout und das Entfernen der Session zur Verfügung.\\
 \paragraph{Initialisierung\\}
-Sollte die Session nicht aktiv sein, so wird diese mit den nötigen Feldern initalisiert.
+Sollte die Session nicht aktiv sein, wird diese mit den nötigen Feldern initialisiert.
 \lstinputlisting[style=custom, language=php, caption={/modules/general/SessionManager.php; Initialisierung; Zeilen 15-27},  label={lst:content_imple_base_session_init}, firstline=15, lastline=27, firstnumber=15]{sources/base/SessionManager.php}
 Es werden folgende Felder gesetzt:
 \begin{itemize}
 	\item \texttt{time} dient ebenso wie
 	\item \texttt{originalID} dazu, die Session später wieder zu identifizieren.
 	\item \texttt{active} ist \texttt{true} solange die Session aktiv ist.
-	\item \texttt{keep} ist \texttt{true}, wenn der Angemeldet-Bleiben-Hacken beim Login gesetzt wurde.
+	\item \texttt{keep} ist \texttt{true}, wenn der Angemeldet-Bleiben-Haken beim Login gesetzt wurde.
 	\item \texttt{loggedIn} ist \texttt{false}, wenn der Benutzer nicht angemeldet ist, sonst ist der Timestamp des Logins enthalten.
 	\item \texttt{rights} beinhaltet ein assoziatives Array, dessen Einträge, die Rechte des Benutzers widerspiegeln (siehe später).
 	\item \texttt{id} ist die eindeutige Identifikation des angemeldetet Benutzers (Initialen bei Lehrer und Nummer bei Schüler).
@@ -64,16 +64,16 @@ Wegen des Angemeldet-Bleiben-Buttons wird der Angriffsvektor für Session-Hijack
 \lstinputlisting[style=custom, language=php, caption={/modules/general/SessionManager.php; Erneuern der ID; Zeile 29},  label={lst:content_imple_base_session_regen}, firstline=29, lastline=29, firstnumber=29]{sources/base/SessionManager.php}
 
 \paragraph{killSession\\}
-Die Funktion \texttt{killSession()} setzt das Flag \texttt{active} in der Session auf \texttt{false}, als Folge daraus, wird beim nächsten Aufruf des SessionManagers die Session neu initialisiert. Damit im aktuellen Programmlauf kein Fehler auftritt, werden alle kritischen Felder ebenfalls rückgesetzt. Kritische Felder sind in dem Fall das \texttt{loggedIn}-Feld und die Rechte.
+Die Funktion \texttt{killSession()} setzt das Flag \texttt{active} in der Session auf \texttt{false}, folglich wird beim nächsten Aufruf des SessionManagers die Session neu initialisiert. Damit im aktuellen Programmlauf kein Fehler auftritt, werden alle kritischen Felder ebenfalls rückgesetzt. Kritische Felder sind in dem Fall das \texttt{loggedIn}-Feld und die Rechte.
 \lstinputlisting[style=custom, language=php, caption={/modules/general/SessionManager.php; \texttt{killSession()}; Zeilen 36-46}, label={lst:content_imple_base_session_kill}, firstline=36, lastline=46, firstnumber=36]{sources/base/SessionManager.php}
 
 \paragraph{Login\\}
-Wie der Name ja bereits andeutet, ist die Funktion \texttt{login(\$username, \$password)} für den Login zuständig. In dieser Funktion wird auf viele Funktionen der Datei /modules/general/LDAP.php zugegriffen, die Namen dieser Funktionen sind meistens selbsterklärend, für eine genauere Erklärung siehe \gref{sec:content_imple_ldap}.
+Wie der Name bereits andeutet, ist die Funktion \texttt{login(\$username, \$password)} für den Login zuständig. In dieser Funktion wird auf viele Funktionen der Datei /modules/general/LDAP.php zugegriffen, die Namen dieser Funktionen sind meistens selbsterklärend, für eine genauere Erklärung siehe \gref{sec:content_imple_ldap}.
 \lstinputlisting[style=custom, language=php, caption={/modules/general/SessionManager.php; \texttt{login()}; Zeilen 48-80}, label={lst:content_imple_base_session_login}, firstline=48, lastline=80, firstnumber=48]{sources/base/SessionManager.php}
 Zum besseren Verständnis des Codes siehe \autoref{fig:content_imple_base_session_login}:\\
-Der Punkt \enquote{lade Benutzer-Daten} besteht in Wirklichkeit aus zwei Befehlen. Zum Einen wird der Benutzer geladen (Zeile 50), zum Anderen wird DN (also quasi die eindeutige Bezeichnung des LDAP-Objektes - die ID) aus dem resultierenden mehrdimensionalen Array extrahiert.\\
-Die folgende \texttt{try-catch}-Direktive dient lediglich dazu, dass nicht so  viele \texttt{if-else}-Conditions geschrieben werden müssen. Letzten Endes wird für jeden Fehler eine Exception geworfen, der PHP-Interpreter spring in den \texttt{catch}-Block, der Fehl-Login wird geloggt und die Exception wird erneut geworfen.\\
-Der Punkt \enquote{schreibe Daten in Session} läuft folgendermaßen ab: Die Klasse wird ausgelesen und die Session geschreiben. Es wird bestimmt, ob es sich um einen Fehler handelt, auch dies wird in die Session geschrieben. Die Zeit des Logins wird in das \texttt{loggedIn}-Feld geschrieben (Dank der internen Repräsentation von \texttt{true} ist dieser Wert bool'sch wahr. $ \Longrightarrow $ Der Benutzer wird ab jetzt als angemeldet erkannt.). Der Name des Benutzers wird ausgelesen und in die Session geschrieben. Sollte es sich um einen Lehrer handeln, werden die Initialen, sonst der Benutzername in das \texttt{id}-Feld geschrieben. Nun werden nur noch die Abteilung und das Rechte-Array übernommen.
+Der Punkt \enquote{lade Benutzer-Daten} besteht in Wirklichkeit aus zwei Befehlen. Einerseits wird der Benutzer geladen (Zeile 50), andererseits wird der DN (also die eindeutige Bezeichnung des LDAP-Objektes - die ID) aus dem resultierenden, mehrdimensionalen Array extrahiert.\\
+Die folgende \texttt{try-catch}-Direktive dient lediglich dazu, dass nicht so  viele \texttt{if-else}- Conditions geschrieben werden müssen. Letzten Endes wird für jeden Fehler eine Exception geworfen, der PHP-Interpreter spring in den \texttt{catch}-Block, der Fehl-Login wird geloggt und die Exception wird erneut geworfen.\\
+Der Punkt \enquote{schreibe Daten in Session} läuft folgendermaßen ab: Die Klasse wird ausgelesen und die Session geschrieben. Es wird bestimmt, ob es sich um einen Fehler handelt, auch dies wird in die Session geschrieben. Die Zeit des Logins wird in das \texttt{loggedIn}-Feld geschrieben (Dank der internen Repräsentation von \texttt{true} ist dieser Wert bool'sch wahr. $ \Longrightarrow $ Der Benutzer wird ab jetzt als angemeldet erkannt.). Der Name des Benutzers wird ausgelesen und in die Session geschrieben. Sollte es sich um einen Lehrer handeln, werden die Initialen, sonst der Benutzername in das \texttt{id}-Feld geschrieben. Nun werden nur noch die Abteilung und das Rechte-Array übernommen.
 \begin{figure}[H]
 \centering
  \resizebox{16cm}{!}{ 
@@ -84,14 +84,13 @@ Der Punkt \enquote{schreibe Daten in Session} läuft folgendermaßen ab: Die Kla
 \end{figure}
 
 \paragraph{Logout\\}
-Die \texttt{logout()}-Funktion macht im das selbe, wie die \texttt{killSession()}-Funktion, mit dem Unterschied, dass beim Logout die Session nicht neu initialisiert wird.
-
+Die \texttt{logout()}-Funktion macht im Wesentlichen dasselbe, wie die \texttt{killSession()}-Funktion, mit dem Unterschied, dass beim Logout die Session nicht neu initialisiert wird.
 
 \subsubsection{Connect}
 \label{sec:content_imple_base_connect}
-Das Connect-Modul hat die simple Aufgabe, die Verbindung mit dem DMS aufzubauen und die Datenbank auszuwähnen.
+Das Connect-Modul hat die simple Aufgabe, die Verbindung mit dem DMS aufzubauen und die Datenbank auszuwählen.
 \lstinputlisting[style=custom, language=php, caption={/modules/general/Connect.php; Zeilen 7-10}, label={lst:content_imple_base_connect}, firstline=7, lastline=10, firstnumber=7]{sources/base/Connect.php}
-In der hier eingebundenen Datei /modules/general/MySQLpassword.php werden eigentlich nur die drei Variablen \texttt{\$host}, \texttt{\$user} und \texttt{\$passwd}. Der Name der Datenbank \enquote{sis} ist statisch in der Connect.php eingetragen, kann aber bei Bedarf geändert werden.
+In der hier eingebundenen Datei /modules/general/MySQLpassword.php werden eigentlich nur die drei Variablen \texttt{\$host}, \texttt{\$user} und \texttt{\$passwd} definiert. Der Name der Datenbank \enquote{sis} ist statisch in der Connect.php eingetragen, kann aber bei Bedarf geändert werden.
 
 \subsubsection{Site}
 \label{sec:content_imple_base_site}
@@ -101,7 +100,7 @@ Es gibt prinzipiell zwei modulinterne globale Arrays:
 \paragraph{\texttt{\$siteContents}\\}
 Hier werden drei assoziative Einträge initialisiert: 
 \begin{itemize}
-	\item \texttt{header} (Beinhaltet das Design, bis zum Content)
+	\item \texttt{header} (beinhaltet das Design, bis zum Content)
 	\item \texttt{footer} (beinhaltet das Design, ab dem Content)
 	\item \texttt{sidebar} (wurde für Standard-Menüs vorgesehen, kam jedoch nicht zum Einsatz)
 \end{itemize}
@@ -117,17 +116,17 @@ Hier werden sechs assoziative Einträge initialisiert:
 \end{itemize}
 
 \lstinputlisting[style=custom, language=php, caption={/modules/general/Site.php; \texttt{getDesignFile()}; Zeilen 25-48}, label={lst:content_imple_base_site2}, firstline=25, lastline=48, firstnumber=25]{sources/base/Site.php}
-Die Funktion \texttt{getDesignDile(\$filename)} wird nur modulintern benötigt. Sie öffnet die durch den Parameter \texttt{\$filename} identifizierte Datei und ließt sie ein. Dann werden alle Vorkommen der Variable \texttt{\$seperator['root']} durch die Konstante \texttt{RELATIVE\_ROOT} ersetzt. Dann werden, wie bereits oben beschrieben alle Vorkommen von \texttt{\$seperator['js']} im Fall dessen, dass der GET-Parameter \texttt{js} gesetzt ist, durch \texttt{true} ansonsten durch \texttt{false} ersetzt. Dies hat den Grund, dass etwaigen JavaScripts in der Design-Datei (in der kein PHP vorkommen kann) mitgeteilt werden kann, ob JavaScript laden soll, oder nicht. Selbiges gilt auch bei der Variable \texttt{\$seperator['mobile']}.\\
+Die Funktion \texttt{getDesignDile(\$filename)} wird nur modulintern benötigt. Sie öffnet die durch den Parameter \texttt{\$filename} identifizierte Datei und liest sie ein. Dann werden alle Vorkommen der Variable \texttt{\$seperator['root']} durch die Konstante \texttt{RELATIVE\_ROOT} ersetzt. Dann werden, wie bereits oben beschrieben, alle Vorkommen von \texttt{\$seperator['js']} im Fall dessen, dass der GET-Parameter \texttt{js} gesetzt ist, durch \texttt{true} ansonsten durch \texttt{false} ersetzt. Dies hat den Grund, dass etwaigen JavaScripts in der Design-Datei (in der kein PHP vorkommen kann) mitgeteilt werden kann, ob JavaScript laden soll, oder nicht. Selbiges gilt auch bei der Variable \texttt{\$seperator['mobile']}.\\
 Weiters wird noch die Position des Seperators \texttt{main} ermittelt, die Datei hier geteilt und die beiden Teile in \texttt{\$siteContents['header']} beziehungsweise \texttt{\$siteContents['footer']} gespeichert.
 
 \lstinputlisting[style=custom, language=php, caption={/modules/general/Site.php; \texttt{pageHeader()}; Zeilen 55-72}, label={lst:content_imple_base_site3}, firstline=55, lastline=72, firstnumber=55]{sources/base/Site.php}
-Die Funktion \texttt{pageHeader(\$title, \$design, \$mobile = true)} werden nun globale HTTP-Header gesetzt (Content-Type für das Charset und X-Frame-Options gegen XSRF - siehe \gref{sec:content_security_xsrf}), das ausgewählte Design geladen (mit der Funktion \texttt{getDesignFile(\$filename)}), alle Vorkommen von \texttt{\$seperators['title']}, \texttt{\$seperators['sidebar']} und \texttt{\$seperators['mobile']} in \texttt{\$siteContents['header']} durch die jeweiligen Werte ersetzt. Der resultierende String wird ausgegeben. 
+Durch die Funktion \texttt{pageHeader(\$title, \$design, \$mobile = true)} werden nun globale HTTP-Header gesetzt (Content-Type für das Charset und X-Frame-Options gegen XSRF - siehe \gref{sec:content_security_xsrf}), das ausgewählte Design geladen (mit der Funktion \texttt{getDesignFile(\$filename)}), alle Vorkommen von \texttt{\$seperators['title']}, \texttt{\$seperators['sidebar']} und \texttt{\$seperators['mobile']} in \texttt{\$siteContents['header']} durch die jeweiligen Werte ersetzt. Der resultierende String wird ausgegeben. 
 
 \lstinputlisting[style=custom, language=php, caption={/modules/general/Site.php; \texttt{pageFooter()}; Zeilen 78-82}, label={lst:content_imple_base_site4}, firstline=78, lastline=82, firstnumber=78]{sources/base/Site.php}
 Die Funktion \texttt{pageFooter()} gibt nun nur den unteren Teil der Seite aus und ersetzt den Sidebar-Placeholder.
 
 \subsubsection{Einbindung}
-Nachdem nun der Code hinter dem Basis-System besprachen wurde, soll nun erwähnt werden, wie dieser angewendet werden kann.\\
+Nachdem nun der Code hinter dem Basis-System beschrieben wurde, soll nun erwähnt werden, wie dieser angewendet werden kann.\\
 Der prinzipielle Aufbau einer normalen Seite sieht folgendermaßen aus:
 \begin{lstlisting}[style=custom, language=php, caption={Anwendung des Basis-Systems},label={lst:content_imple_base_apply}]
 <?php 
