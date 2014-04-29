@@ -1,6 +1,6 @@
 \subsection{Token-Generator}
 \label{sec:content_imple_hashgenerator}
-Bei der Implementierung der unter \gref{sec:content_draft_token} beschriebenen Klasse ist das erste Problem das auftritt, dass es nur eine PHP-Session gibt, und somit auch nur ein benutzerspezifisches Daten-Array. Dies wird dann zu einem Problem, wenn für mehrere Formulare gleichzeitig die Tokens gespeichert werden müssen.\\
+Bei der Implementierung der unter \gref{sec:content_draft_token} beschriebenen Klasse ist das erste Problem, das auftritt, dass es nur eine PHP-Session gibt, und somit auch nur ein benutzerspezifisches Daten-Array. Dies wird dann zu einem Problem, wenn für mehrere Formulare gleichzeitig die Tokens gespeichert werden müssen.\\
 Zur Lösung dieses Problems werden sogenannte virtuelle Sessions verwendet.
 
 \subsubsection{Virtuelle Sessions}
@@ -20,13 +20,13 @@ Die Klasse hat folgende Member:
 	\item[\texttt{public function deleteOldest()}] löscht die älteste virtuelle Session (siehe \autoref{lst:content_imple_vSession_oldest}).
 \end{description}
 Zu erwähnen ist noch, dass die Constructor-Methode dieser Klasse als Parameter den Namen der Session erwartet (siehe \autoref{lst:content_imple_vSession_construct}).\\
-Für alle virtuele Sessions gibt es zusätzlich noch die Eigenschaften \texttt{created} und \texttt{modified}, welche beide Timestamps enthalten. Diese sind aber nicht zur Modifikation durch den Benutzer bestimmt, sondern dienen der vSession-Klasse als Anhaltspunkt zur Bestimmung alter Elemente, die vermutlich nicht mehr gebraucht werden. Initialisiert werden diese beiden Eigenschaften durch die \texttt{init()}-Methode (siehe \autoref{lst:content_imple_vSession_init}, Zeile 46, 47). Das \texttt{modified}-Feld wird dazu noch von der \texttt{setAttribute(\$name, \$value)}-Methode modifiziert (siehe \autoref{lst:content_imple_vSession_set}, Zeile 88). Zur Bestimmung, ob die Session noch benutzt wird, wird logischerweise der \texttt{modified}-Wert verwendet (siehe \autoref{lst:content_imple_vSession_oldest}, Zeile 123).\\
+Für alle virtuellen Sessions gibt es zusätzlich noch die Eigenschaften \texttt{created} und \texttt{modified}, welche beide Timestamps enthalten. Diese sind aber nicht zur Modifikation durch den Benutzer bestimmt, sondern dienen der vSession-Klasse als Anhaltspunkt zur Bestimmung alter Elemente, die vermutlich nicht mehr gebraucht werden. Initialisiert werden diese beiden Eigenschaften durch die \texttt{init()}-Methode (siehe \autoref{lst:content_imple_vSession_init}, Zeile 46, 47). Das \texttt{modified}-Feld wird dazu noch von der \texttt{setAttribute(\$name, \$value)}-Methode modifiziert (siehe \autoref{lst:content_imple_vSession_set}, Zeile 88). Zur Bestimmung, ob die Session noch benutzt wird, wird logischerweise der \texttt{modified}-Wert verwendet (siehe \autoref{lst:content_imple_vSession_oldest}, Zeile 123).\\
 Die in den folgenden Codes sichtbare Konstante \texttt{MAX\_VSESSIONS} wird am Beginn der Datei \enquote{/modules/general/VirtualSessionManager.php} definiert. Der Standardwert ist 15.\\
 \lstinputlisting[style=custom, language=php, caption={/modules/general/VirtualSessionManager.php; Constructor; Zeilen 29-31}, label={lst:content_imple_vSession_construct}, firstline=29, lastline=31, firstnumber=29]{sources/token/VirtualSessionManager.php}
 \lstinputlisting[style=custom, language=php, caption={/modules/general/VirtualSessionManager.php; \texttt{init()}; Zeilen 38-51}, label={lst:content_imple_vSession_init}, firstline=38, lastline=51, firstnumber=38]{sources/token/VirtualSessionManager.php}
 \lstinputlisting[style=custom, language=php, caption={/modules/general/VirtualSessionManager.php; \texttt{setAttribute()}; Zeilen 84-90}, label={lst:content_imple_vSession_set}, firstline=84, lastline=90, firstnumber=84]{sources/token/VirtualSessionManager.php}
 \lstinputlisting[style=custom, language=php, caption={/modules/general/VirtualSessionManager.php; \texttt{deleteOldest()}; Zeilen 117-130}, label={lst:content_imple_vSession_oldest}, firstline=117, lastline=130, firstnumber=117]{sources/token/VirtualSessionManager.php}
-Aus Platzgründen, werden hier nur die wichtigsten Codeteile vorgestellt. Für den vollständigen Code siehe \gref{sec:content_imle_source}.
+Aus Platzgründen werden hier nur die wichtigsten Codeteile vorgestellt. Für den vollständigen Code siehe \gref{sec:content_imle_source}.
 
 \subsubsection{HashGenerator}
 Das direkte Arbeiten mit der Klasse für die virtuellen Sessions ist zwar möglich, aber nicht sehr komfortabel. Deshalb wurde eine weitere Klasse erstellt, die das Erstellen und Auswerten der Site-Tokens erleichtern soll. Diese greift dann auch auf die Methoden von \texttt{vSession} zu, um ein gewisses Maß an Abstraktion zu schaffen.\\
@@ -43,27 +43,27 @@ Die Klasse \texttt{HashGenerator} hat folgende Member:
 \end{description}
 Der Konstruktor erwartet als Parameter den Namen des Formulars und die ID. Es werden darin die jeweiligen privaten Felder gesetzt. Der Formular-Name wird zusätzlich als Initialisierungswert in das Feld \texttt{\$sessioName} geschrieben.
 \lstinputlisting[style=custom, language=php, caption={/modules/form/HashGenerator.php; \texttt{generate()}; Zeilen 24-42}, label={lst:content_imple_hash_generate}, firstline=24, lastline=42, firstnumber=24]{sources/token/HashGenerator.php}
-Wie in \autoref{lst:content_imple_hash_generate} zu sehen ist, wird zuerst mit dem bereits gesetzten Standard-Session-Namen eine \texttt{vSession}-Instanz erstellt. Der Name der Session wird solange modifiziert, bis ein unbenutzter Session-Name befunden wurde (Theoretisch hat die \texttt{for}-Schleife in Zeile 28 maximal 14 Durchläufe, da es standard-mäßig nur 15 virtuelle Sessions geben darf.).\\
-Wurde ein passender Session-Name befunden, so wird die virtuelle Session initialisiert, sprich es wird die interne Aufbau der virtuellen Session hergestellt.\\
+Wie in \autoref{lst:content_imple_hash_generate} zu sehen ist, wird zuerst mit dem bereits gesetzten Standard-Session-Namen eine \texttt{vSession}-Instanz erstellt. Der Name der Session wird solange modifiziert, bis ein unbenutzter Session-Name gefunden wurde (Theoretisch hat die \texttt{for}-Schleife in Zeile 28 maximal 14 Durchläufe, da es standardmäßig nur 15 virtuelle Sessions geben darf.).\\
+Wurde ein passender Session-Name gefunden, so wird die virtuelle Session initialisiert, sprich, es wird der interne Aufbau der virtuellen Session hergestellt.\\
 Nun wird der Hash berechnet. In diesem Fall wird der \texttt{sha256}-Hash vom Zahlenwert, des aktuellen Timestamps multipliziert mit einer zufälligen Zahl, verwendet. Diese Berechnung kann theoretisch beliebig verändert werden, es sollte nur darauf geachtet werden, dass die resultierende Zeichenkette nicht in vertretbarer Zeit erraten werden kann.\\
 Nun werden nur noch die ID des Formulars, der Hashwert und die Zeit in der virtuellen Session gespeichert.
 \lstinputlisting[style=custom, language=php, caption={/modules/form/HashGenerator.php; \texttt{printForm()}; Zeilen 43-46}, label={lst:content_imple_hash_print}, firstline=43, lastline=46, firstnumber=43]{sources/token/HashGenerator.php}
-Die Ausgabe der versteckten Formularelemente (siehe \autoref{lst:content_imple_hash_print}) ist eigentlich selsterklärend.
+Die Ausgabe der versteckten Formularelemente (siehe \autoref{lst:content_imple_hash_print}) ist eigentlich selbsterklärend.\\
 \lstinputlisting[style=custom, language=php, caption={/modules/form/HashGenerator.php; \texttt{check()}; Zeilen 47-72}, label={lst:content_imple_hash_print}, firstline=47, lastline=72, firstnumber=47]{sources/token/HashGenerator.php}
-Die \texttt{check()}-Methode ließt aus den abgesendeten Daten den Namen der Session aus, und konstruiert mit ihm eine virtuelle Session. Sollte der Name nicht im Formular angegeben sein, so wird der Name aus dem Konstruktor der \texttt{HashGenerator}-Klasse übernommen.\\
-Existiert keine virtuelle Session mit dem Namen, kann davon ausgegangen werden, dass das Formular fehlerhaft beziehungsweise nicht mehr aktuell ist. Es wird also eine Exception gewurfen.\\
-Nun werden die IDs verglichen, stimmt die ID des Konstruktors nicht mit der ID der virtuellen Session überein, so kann ist die Session nicht für dieses Formular. Es wird eine Exception geworfen.\\
-Als nächstes werden die Hashes überprüft. Stimmt der mitgesendete Hash mit dem in der Session überein, so können wir davon ausgehen, dass derselbe passt. Ansonsten wird eine Exception geworfen.\\
+Die \texttt{check()}-Methode liest aus den abgesendeten Daten den Namen der Session aus und konstruiert mit ihm eine virtuelle Session. Sollte der Name nicht im Formular angegeben sein, wird der Name aus dem Konstruktor der \texttt{HashGenerator}-Klasse übernommen.\\
+Existiert keine virtuelle Session mit dem Namen, kann davon ausgegangen werden, dass das Formular fehlerhaft, beziehungsweise nicht mehr aktuell ist. Es wird also eine Exception geworfen.\\
+Nun werden die IDs verglichen, stimmt die ID des Konstruktors nicht mit der ID der virtuellen Session überein, so passt die Session nicht auf dieses Formular. Es wird eine Exception geworfen.\\
+Als Nächstes werden die Hashes überprüft. Stimmt der mitgesendete Hash mit dem in der Session überein, so können wir davon ausgehen, dass derselbe passt. Ansonsten wird eine Exception geworfen.\\
 Ist die Session älter als 30 Minuten, so ist das Formular nicht mehr gültig. Es wird eine Exception geworfen.\\
 Die Session wird gelöscht, da sie nun nicht mehr benötigt wird.
 
 \subsubsection{Anwendung}
-Um diese Klasse anzuwenden muss man zwischen zwei Teilen unterschieden:
+Um diese Klasse anzuwenden, muss man zwischen zwei Teilen unterscheiden:
 \begin{itemize}
 	\item Das Erstellen des Formulars
 	\item und das Auswerten desselben.
 \end{itemize}
-Auch, wenn man diese beiden Vorgänge getrennt betrachten muss, sollte man sie nicht in verschiedenen Dateien verwenden.
+Auch wenn man diese beiden Vorgänge getrennt betrachten muss, sollte man sie nicht in verschiedenen Dateien verwenden.\\
 \begin{lstlisting}[style=custom, language=php, caption={Anwendung von \texttt{HashGenerator}},label={lst:content_imple_hash_example}]
 <?php
 	// Laden des Basis-Systems
@@ -116,5 +116,5 @@ Auch, wenn man diese beiden Vorgänge getrennt betrachten muss, sollte man sie n
 Zu beachten ist, dass bei Verwendung der \texttt{HashGenerator}-Klasse das \texttt{method}-Attribut des Formulars auf \texttt{POST} gesetzt sein muss.
 
 \subsubsection{Hash-Check}
-Für noch bequemere Abfrage des Hashes wird in der Datei /modules/form/hashCheckFail.php eine Funktion \texttt{HashCheck(\$hashgenerator)} definiert. Diese erwartet als Parameter eine Instanz der Klasse \texttt{HashGenerator}. Im Falle, dass der Hash passt, returnt die Funktion, wenn nicht, schreibt sie einen HTTP-Header, der den Webbrowser dazu bringt, die Seite mit dem GET-Parameter \texttt{?error} neuzuladen. Danach wird die Ausführung beendet.\\
-Zusätzlich ist eine Funktion \texttt{HashFail()} definiert, die eben diesen Parameter überprüft, und eine Fehlermeldung ausgibt, sofern dieser vorhanden ist.
+Für eine noch bequemere Abfrage des Hashes wird in der Datei /modules/form/hashCheckFail.php eine Funktion \texttt{HashCheck(\$hashgenerator)} definiert. Diese erwartet als Parameter eine Instanz der Klasse \texttt{HashGenerator}. Im Falle, dass der Hash passt, returnt die Funktion, wenn nicht, schreibt sie einen HTTP-Header, der den Webbrowser dazu bringt, die Seite mit dem GET-Parameter \texttt{?error} neuzuladen. Danach wird die Ausführung beendet.\\
+Zusätzlich ist eine Funktion \texttt{HashFail()} definiert, die eben diesen Parameter überprüft und eine Fehlermeldung ausgibt, sofern der Parameter vorhanden ist.
