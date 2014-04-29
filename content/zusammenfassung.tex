@@ -2,22 +2,22 @@
 
 \section{Kurzbeschreibung}
 Im Zuge dieser Diplomarbeit wurde SIS (School Information Service) entwickelt. \\
-Dieses System stellt über ein Webinterface den Schülern und Lehrer den Stundenplan und Supplierplan, sowie aktuelle News zur Verfügung. Zusätzlich wird ein Stundenplan generiert, in dem bereits die supplierten Stunden hervorgehoben werden.
+Dieses System stellt über ein Webinterface den Schülern und Lehrern den Stundenplan und Supplierplan, sowie aktuelle News zur Verfügung. Zusätzlich wird ein Stundenplan generiert, in dem bereits die supplierten Stunden hervorgehoben werden.
 Für diese Funktionalität wird auch eine App für die Mobilbetriebssysteme iOS, Android und Windows Phone zur Verfügung gestellt.\\
-Darüber hinaus werden auf den Monitoren, die vor den Werkstätten und manchen Klassenräumen positioniert sind, je nach Einstellung, die aktuellen schulrelaventen Neuigkeiten, die Supplierpläne der Abteilung, der Stundenplan des nächst-gelegenen Raumes, oder benutzerdefinierte Bilder angezeigt.\\
+Darüber hinaus werden auf den Monitoren, die vor den Werkstätten und manchen Klassenräumen positioniert sind, je nach Einstellung, die aktuellen schulrelevanten Neuigkeiten, die Supplierpläne der Abteilung, der Stundenplan des nächstgelegenen Raumes oder benutzerdefinierte Bilder angezeigt.\\
 Die News können von den Administratoren der Abteilungen eingetragen, sowie von den News-Beauftragten der Klassen vorgeschlagen werden.\\
 \\
 Das System wurde für alle 4 Abteilungen ausgelegt, aber die Nutzung nur in der Elektronik-Abteilung forciert.
 
 \section{Projektergebnis}
-Wir können seit langem, die ein digitales School Information Service in angriff genommen haben, behaupten, dass unser System in der Schule verwendet wird und auch eine mögliche Zukunft hat. Dies hat auch die Testphase gezeigt. (siehe \gref{sec:content_draft_log_erkenn})\\
+Als ein Projektteam, welches versucht hat ein digitales School Information Service zu implementiert, können wir das erste Mal behaupten, dass unser System verwendet wird und deine mögliche Zukunft hat. (siehe \gref{sec:content_draft_log_erkenn})\\
 Die App ist in den drei großen App-Stores (Google Play Store, Apple iTunes Store und Microsoft Store) vertreten.\\
-Von den 449 Schülern der Elektronikabteilung haben sich 232, sowie 19 Lehrer, bereits mindestens einmal angemeldet. \\
+232 von 449 Schülern, sowie 19 Lehrer, haben sich bereits mindestens einmal an unserem Service angemeldet. \\
 \\
-Die Rückmeldungen der Schüler und Lehrer sind nach dem Beseitigen anfänglicher Probleme vorwiegend positiv.
+Die Rückmeldungen der Schüler und Lehrer sind nach Beseitigung anfänglicher Probleme vorwiegend positiv.
 
 \subsection{Abschätzung des Traffics}
-Der, durch unsere Projekt verursachte Traffic, wird auf ungefähr 700 MB pro Tag geschätzt. Im folgendem wird die Berechnung ausführlich beschrieben.\\
+Der durch unser Projekt verursachte Traffic wird auf ungefähr 700 MB pro Tag geschätzt. Im Folgenden wird die Berechnung ausführlich beschrieben.\\
 
 \paragraph{Messwerte\\}
 Die für die Abschätzung herangezogenen Messwerte stammen vom 18.3.2014 9:15 Uhr - 18.3.2014 14:15.\\
@@ -34,14 +34,14 @@ Dabei wurden folgende Werte beobachtet:
 
 \paragraph{Berechnung\\}
 
-Im folgendem wird der Traffic der Monitore, App-Aufrufe und Website-Aufrufe zusammengezählt, um den gesamten Traffic zu erhalten, welcher vom Webserver verursacht wird.\\
+Im Folgenden werden der Traffic der Monitore, App-Aufrufe und Website-Aufrufe zusammengezählt um den gesamten Traffic zu erhalten, welcher vom Webserver verursacht wird.\\
 \\
-Aufrufe aus der App: $ 600 \ast 10 kB = 6MB $\\
-Aufrufe aus dem Web: $ 800 \ast 130 kB = 104 MB $\\
-Aufrufe der Monitore: $ 3400 \ast 1kB = 3,4MB $\\
+Aufrufe aus der App: $ 600 \cdot 10 kB = 6MB $\\
+Aufrufe aus dem Web: $ 800 \cdot 130 kB = 104 MB $\\
+Aufrufe der Monitore: $ 3400 \cdot 1kB = 3,4MB $\\
 \\
 Daraus ergibt sich eine Summe von 113,4MB innerhalb von 4 Stunden, dies auf 24h Stunden hochgerechnet ergibt einen Traffic von 680 MB.\\
 
 \paragraph{Interpretation\\}
-Dieses Ergebnis ist sehr stark geschätzt, da für unsere Berechnung ein Ausschnitt von 4 Stunden an einen spezifischen Tag gewählt wurde. Besser wäre gewesen, diese Aufrufe über eine längere Periode hinweg zu beobachten. Danach wäre ein korrekteres Ergebnis berechenbar.\\
-Jedoch ist dieses Ergebnis ein Anhaltspunkt, falls eine Begrenzung des Traffics durchgeführt werden soll oder ähnliche Maßnahmen getroffen werden sollen.
+Dieses Ergebnis ist sehr stark geschätzt, da für unsere Berechnung ein Ausschnitt von 4 Stunden an einem spezifischen Tag gewählt wurde.\\
+Dieses Ergebnis ist zumindest ein Anhaltspunkt, falls eine Begrenzung des Traffics durchgeführt werden soll oder ähnliche Maßnahmen getroffen werden sollen.
