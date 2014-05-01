@@ -58,7 +58,7 @@ In diesem Abschnitt wird ausschließlich der \autoref{lst:content_imple_input_fo
 In Zeile 41 ist der Beginn der \textit{foreach}-Schleife definiert. Diese Schleife spaltet das Array auf und durchläuft dieses Array Zeilenweise. Mit jedem Durchlauf springt der Pointer um eine Zeile weiter bis das Array durchlaufen ist. Dabei \enquote{kopiert} die Funktion die momentane Zeile in die Variable \texttt{\$f}, so beinhaltet diese Variable immer die momentane Zeile als eindimensionales Array. Somit muss nicht mit 2 Indizes auf den Inhalt zugegriffen werden.\\
 In Zeile 43 - 46 wird der Inhalt mit dem jeweiligen Input-Feld zusammengeführt. Zuvor wird in Zeile 43 abgefragt, ob ein Inhalt übergeben wurde. Wenn ein Inhalt übergeben wird, dann muss dieser bearbeitet werden. Mit dem Namen des Input-Feldes wird im \texttt{\$content} auf den jeweiligen Inhalt zugegriffen. Dieser wird anschließend in die dafür vorgesehene Spalte im \texttt{\$f}-Array geschrieben.\\
 Ab Zeile 48 bis Zeile 84 werden in einer \textit{If}-Abfrage alle einzelnen Typen behandelt. Trifft eine Abfrage zu, so wird dieses Input-Feld erzeugt, dabei werden alle Eigenschaften, die im \texttt{\$field} Array definiert wurden, dementsprechend berücksichtigt.\\
-Ist das Array \texttt{\$field} durchlaufen werden die Zeilen ab 86 durchlaufen. In Zeile 86 wird die aufgerufene URL in die einzelnen Teile zerlegt, dies ist notwendig, um zu bestimmen mit welche Parametern die Funktion \texttt{form\_savedelete} (siehe \autoref{}) aufgerufen werden soll, denn nicht in allen Eingaben soll Löschen möglich sein.\\
+Ist das Array \texttt{\$field} durchlaufen werden die Zeilen ab 86 durchlaufen. In Zeile 86 wird die aufgerufene URL in die einzelnen Teile zerlegt, dies ist notwendig, um zu bestimmen mit welche Parametern die Funktion \texttt{form\_savedelete} (siehe \autoref{sec:content_input_savedelete}) aufgerufen werden soll, denn nicht in allen Eingaben soll Löschen möglich sein.\\
 In den Zeilen 88 - 99 wird zwischen den Parametern entschieden, mit denen die Funktion aufgerufen werden soll.
 \lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 41 - 99}, label={lst:content_imple_input_form}, linerange={41-99},firstnumber=41 ]{sources/input/form.php}
 \paragraph{Input-Typen} \label{sec:content_imple_input_type}
@@ -126,11 +126,12 @@ Um den Code besser erklären zu können wird er in mehrere Teile zerlegt.\\
 	
 	\item \autoref{lst:content_imple_input_substitudes_4}\\
 	Ab Zeile 360 wird die zweite Zeile erstellt. Dies funktioniert nach dem selben Prinzip wie zuvor.\\
-	Die Verfügbaren Input-Typen wurden angepasst und auf die notwendigen reduziert. Außerdem wurde ein Typ neu erstellt, dieser nennt sich \texttt{checkboxJava}. Dies ist eine Check Box, die als oncklick-Event eine Funktion hinterlegt hat, welche zum Umstrukturieren nötig ist. (siehe dazu Abschnitt \nameref{sec:content_imple_input_java_supp})	
+	Die Verfügbaren Input-Typen wurden angepasst und auf die notwendigen reduziert. Außerdem wurde ein Typ neu erstellt, dieser nennt sich \texttt{checkboxJava}. Dies ist eine Check Box, die als \texttt{oncklick}-Event eine Funktion hinterlegt hat, welche zum Umstrukturieren nötig ist. (siehe dazu Abschnitt \nameref{sec:content_imple_input_java_supp})	
 	
 	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile  360 - 371},  label={lst:content_imple_input_substitudes_4}, linerange={360-371}, firstnumber=360 ]{sources/input/form.php}
 \end{enumerate}
-\paragraph{Supplierung JavaScript\\}\label{sec:content_imple_input_java_supp}
+\paragraph{Supplierung JavaScript} $ ~~ $\\
+\label{sec:content_imple_input_java_supp}
 Für die Eingabe der Supplierungen wurde ein wenig JavaScript benötigt. Dies beschränkt sich auf eine Funktion, die das ein- und ausblenden der Eingabeelemente übernimmt.\\
 Dieser Funktion werden 2 Parameter mitgegeben, zum einen um welche Eingabezeile handelt es sich (\texttt{id}) und welches Element ruft die Funktion auf (\texttt{typ}).\\
 Mit der Unterscheidung des Typs wird bestimmt, welche Elemente ein- bzw. ausgeblendet werden müssen.\\
@@ -141,11 +142,11 @@ Hier die von mir verwendeten Eigenschaften:
 	\item \texttt{value} : greift auf den Wert des Elementes zu und ändert diesen
 	\item \texttt{checked} : ändert den Zustand der CheckBox oder Radio Buttons in den aktivierten(true) oder deaktivierten(false) Zustand
 \end{itemize}
-JavaScript wird hier benötigt, da das aus- und einblenden ohne neu Laden des Browsers geschehen muss. Dies kann nur mit JavaScript realisiert werden.\\
+JavaScript wird hier benötigt, da das Aus- und Einblenden ohne neu Laden des Browsers geschehen muss. Dies kann nur mit JavaScript realisiert werden.\\
 Im folgendem Codeausschnitt ist ein Teil der \textit{If}-Abfrage zur unterscheidung zwischen den verschiedenen Typen zu sehen.
 \lstinputlisting[style=custom, language=java, caption={data/scripts/substitudes.js; Zeile 10 - 20},  label={lst:content_imple_input_substitudes_java}, firstline =10, lastline = 20, firstnumber = 10 ]{sources/input/substitudes.js}
 \subsubsection{Routine für die Eingabe der Stundenpläne}
-Die Eingabemaske der Stundenpläne wird nach einem komplett anderen Prinzip erstellt. Denn bei dieser Eingabemaske erscheint nicht nach einer Eingabe eine neue Zeile, sondern es werden alle Zeilen beim Laden der Seite erstellt. Auch die nicht sichtbaren Zeilen für die Teilungen werden erstellt, jedoch nicht dargestellt. Um diese ein zu blenden wird JavaScript benötigt. (siehe Abschnitt \nameref{sec:content_imple_input_java_lessons})\\
+Die Eingabemaske der Stundenpläne wird nach einem komplett anderen Prinzip erstellt. Denn bei dieser Eingabemaske erscheint nicht nach einer Eingabe eine neue Zeile, sondern es werden alle Zeilen beim Laden der Seite erstellt. Auch die nicht sichtbaren Zeilen für die Teilungen werden erstellt, jedoch nicht dargestellt. Um diese einzublenden wird JavaScript benötigt. (siehe Abschnitt \nameref{sec:content_imple_input_java_lessons})\\
 Die Funktion, die für das Erstellen der Eingabemaske zuständig ist, heißt \texttt{form\_lesson} und benötigt 3 Parameter. Der \texttt{\$field} Parameter ist gleich aufgebaut wie in den anderen Routinen. Der zweite Paramter ist der \texttt{\$content} Parameter, diese Variable unterscheidet sich, von den anderen Routinen. Die letzte Variable ist, wie auch zuvor, für die Sicherheit notwendig.
 \paragraph{Parameter \texttt{\$content}\\}
 Dieser Parameter wird hier als einziges behandelt, da sich dieser Aufbau wesentlich geändert hat. Bei den anderen Routinen wurde jede einzelne Tabellenzeile an die Funktion übergeben, dies ist durch den veränderten Aufbau der Eingabemaske nicht mehr möglich, deshalb werden hier zuerst alle Zeilen in ein mehrdimensionales Array geschrieben, anschließend wird dieses Array an die Funktion übergeben. Wie auch in den anderen Routinen werden die einzelnen Rückgabewerte mit einer \textit{while}-Schleife abgearbeitet, dies ist in den Zeilen 101 - 116 im \autoref{lst:content_imple_input_lessons} zu sehen. In dieser Schleife werden noch einige Dinge zusätzlich abgefragt.\\
@@ -153,7 +154,7 @@ Um Teilungen aus den Rückgabewerten besser zu erkennen, wird hier mit der SQL-A
 \lstinputlisting[style=custom, language=php, caption={/backend/administration/lessons/lessons.php; Zeile 96 - 118},  label={lst:content_imple_input_lessons}, firstline =96, lastline = 118, firstnumber = 96 ]{sources/input/lessons.php}
 \paragraph{Routine\\}
 Da alle Zeilen für alle Stunden und Teilungen von beginn an erstellt werden, wird die Erstellroutine insgesamt (7 Teilungen \'{a} 16 Stunden ergibt 112) 112 mal durchlaufen. Dabei werden die Zeilen für die Teilungen, bei einem leeren Tag nicht sichtbar und bei einem schon eingetragenen Tag dementsprechend sichtbar oder unsichtbar erstellt. Bei den zusätzlichen Teilungszeilen werden die Informationen über Länge der Stunde, Startstunde und Anzahl der Teilungen nicht angezeigt. Da sie für das Eintragen in der Datenbank benötigt werden, werden diese Daten in \textit{hidden}-Felder gespeichert.\\
-Um zwischen der ersten Zeile und der zusätzlichen 6 Teilungszeilen zu unterscheiden wird die Moduldivision verwendet, dazu später mehr. Die Moduldivision dividiert eine Zahl und gibt den Rest bei der Division als Ergebnis zurück. Da im \texttt{\$content} unter Umständen die Einträge nicht in der richtigen Reihenfolge enthalten sind, muss immer der gesamte Inhalt durchlaufen werden. Wird die richtige Stunde gefunden, dann wird aus der \texttt{\$content} Variable ein neues Array erstellt, welches genau dem Inhalt entspricht, der in die Input-Felder geschrieben werden muss.\\
+Um zwischen der ersten Zeile und der zusätzlichen 6 Teilungszeilen zu unterscheiden wird die Moduldivision verwendet. Die Moduldivision dividiert eine Zahl und gibt den Rest bei der Division als Ergebnis zurück. Da im \texttt{\$content} unter Umständen die Einträge nicht in der richtigen Reihenfolge enthalten sind, muss immer der gesamte Inhalt durchlaufen werden. Wird die richtige Stunde gefunden, dann wird aus der \texttt{\$content} Variable ein neues Array erstellt, welches genau dem Inhalt entspricht, der in die Input-Felder geschrieben werden muss.\\
 Auch bei der Eingabemaske der Stundenpläne muss mittels JavaScript auf die Zeilen zugegriffen werden können, dazu braucht jede Zeile eine eindeutige ID. Diese wird hier mittels der Nummer der Teilung (1-7) und der Stunde gebildet.\\ 
 Zum Beispiel:
 \begin{itemize}
@@ -264,18 +265,18 @@ In den nächsten Punkten werden die Codezeilen in einzelnen Teilen zerlegt und g
 	\item \autoref{lst:content_imple_input_form_lessons_5}\\
 	Da immer nur eine Stunde mit deren Teilungen gelöscht werden kann, wird nur in der ersten Zeilen jeder Stunde eine Lösch-Funktion eingefügt. Dies wird mit den Zeilen 198 - 203 unterschieden.\\
 	Am Ende jeder Stunde wird die JavaScript-Funktion \texttt{Visibility} ausgeführt. (siehe Abschnitt \nameref{sec:content_imple_input_java_lessons}).\\
-	In der Zeile 208 wird die Zeilenanzahl um 1 erhöht. Am Ende der Funktion wird die Abbruchbedingung der \textit{Do-While}-Schleife definiert. Wie schon erwähnt werden 112 Zeilen Benötigt, da die Zählung der Zeilenzahl bei 0 beginnt, bricht die Bedingung ab wenn die Zeilennummer 111 übersteigt.\\
+	In der Zeile 208 wird die Zeilenanzahl um 1 erhöht. Am Ende der Funktion wird die Abbruchbedingung der \textit{Do-While}-Schleife definiert. Wie schon erwähnt werden 112 Zeilen benötigt, da die Zählung der Zeilenzahl bei 0 beginnt, bricht die Bedingung ab wenn die Zeilennummer 111 übersteigt.\\
 	
 	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 198 - 209},  label={lst:content_imple_input_form_lessons_5}, firstline =198, lastline = 209, firstnumber = 198 ]{sources/input/form.php}
 	
 \end{enumerate}
 
-\paragraph{Stundenplan JavaScript\\} \label{sec:content_imple_input_java_lessons}
+\paragraph{Stundenplan JavaScript} $ ~~ $\\ \label{sec:content_imple_input_java_lessons}
 Für die Eingabemaske der Stundenpläne werden 4 JavaScript Funktionen benötigt.
 \begin{enumerate}
 	\item \texttt{visibility()}\\
-	Diese Funktion übernimmt die Aufgabe, die zusätzlichen Zeilen für die Teilungen ein- bzw. aus zu blenden. Dieser Funktion muss als Parameter die Stunde mitgegeben werden.\\
-	Um sich nur auf die 7 Teilungen zu beschränken und Fehleingaben ab zu wehren, wird mit dem Eingegebenen Text ein \textit{Switch-Case} durchlaufen. Wird die eingegebene Zahl gefunden, so wird diese übernommen, wird sie nicht gefunden, wird als Teilung 1 angenommen.\\
+	Diese Funktion übernimmt die Aufgabe, die zusätzlichen Zeilen für die Teilungen ein- bzw. auszublenden. Dieser Funktion muss als Parameter die Stunde mitgegeben werden.\\
+	Um sich nur auf die 7 Teilungen zu beschränken und Fehleingaben abzuwehren, wird mit dem eingegebenen Text ein \textit{Switch-Case} durchlaufen. Wird die eingegebene Zahl gefunden, so wird diese übernommen, wird sie nicht gefunden, wird als Teilung 1 angenommen.\\
 	Anschließend werden zuerst alle Zeilen ausgeblendet und dann nach der Reihe wieder eingeblendet.
 	
 	\lstinputlisting[style=custom, language=java, caption={/data/scripts/lesson.js; Zeile 8 - 49},  label={lst:content_imple_input_form_lessons_java_1}, firstline =8, lastline = 49, firstnumber = 8 ]{sources/input/lessons.js}
@@ -298,7 +299,7 @@ Für die Eingabemaske der Stundenpläne werden 4 JavaScript Funktionen benötigt
 	
 \end{enumerate}
 
-\subsubsection{Erstellen des Übernehmen Buttons}
+\subsubsection{Erstellen des Übernehmen Buttons} \label{sec:content_input_savedelete}
 Die Funktion \texttt{form\_savedelete} erstellt, je nach mitgegebenen Parameter, eine Check Box fürs Löschen und einen Übernehmen-Button oder nur einen Übernehmen-Button.\\
 Als Parameter wird dieser Funktion \texttt{\$new} mitgegeben. Dieser Parameter kann den Wert \texttt{false} oder \texttt{true} annehmen. Bei \texttt{false} wird beides erstellt, bei \texttt{true} nur der Übernehmen-Button.
 \lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 386 - 396},  label={lst:content_imple_input_form_saveDelete}, firstline =386, lastline = 396, firstnumber = 386 ]{sources/input/form.php}
@@ -348,25 +349,25 @@ In der Datei \textit{/modules/other/dateFunctions.php} sind einige Funktionen de
 \subparagraph{\texttt{date\_increase()}\\}
 Diese Funktion inkrementiert das, über den Parameter \texttt{\$d} mitgegebene, Datum um einen Tag. Sollte das inkrementierte Datum auf ein Wochenende fallen, so wird es solange inkrementiert, bis das Datum auf kein Wochenende fällt.
 
-\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 52 - 61},  label={lst:content_imple_input_change_fun}, firstline =52, lastline = 61, firstnumber = 52 ]{sources/input/dateFunctions.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 52 - 61},  label={lst:content_imple_input_increase}, firstline =52, lastline = 61, firstnumber = 52 ]{sources/input/dateFunctions.php}
 
 \subparagraph{\texttt{date\_decrease()}\\}
 Diese Funktion dekrementiert das, über den Parameter \texttt{\$d} mitgegebene, Datum um einen Tag. Sollte das dekrementierte Datum auf ein Wochenende fallen, so wird es solange dekrementiert, bis das Datum auf kein Wochenende fällt.
 
-\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 64 - 73},  label={lst:content_imple_input_change_fun}, firstline =64, lastline = 73, firstnumber = 64 ]{sources/input/dateFunctions.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 64 - 73},  label={lst:content_imple_input_decrease}, firstline =64, lastline = 73, firstnumber = 64 ]{sources/input/dateFunctions.php}
 
 \subparagraph{\texttt{no\_weekend()}\\}
 Diese Funktion prüft, ob das, über den Parameter \texttt{\$d} mitgegebene, Datum  auf einen Wochentag fällt. Fällt es auf ein Wochenende, so wird das Datum solange inkrementiert bis es nicht mehr auf ein Wochenende fällt.
 
-\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 76 - 84},  label={lst:content_imple_input_change_fun}, firstline =76, lastline = 84, firstnumber = 76 ]{sources/input/dateFunctions.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 76 - 84},  label={lst:content_imple_input_weekend}, firstline =76, lastline = 84, firstnumber = 76 ]{sources/input/dateFunctions.php}
 
 \subparagraph{\texttt{prevNextDay()}\\}
 Diese Funktion wird in dem Formular für die Stundenpläne benötigt. Dabei wird von einem Wochentag der vorherige und der nächste zurückgegeben. Dabei endet die Woche mit Freitag und startet mit Montag.\\
 Mit der \textit{If}-Abfrage wird zwischen den 3 Varianten unterscheiden. Die erste trifft zu, wenn der Wochentag Di - Do ist. Die zweite Abfrage, wenn der Wochentag der Montag ist und die letzte für den Freitag. Am Ende der Funktion wird ein Array mit den beiden Wochentagen zurück.
 
-\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 26 - 49},  label={lst:content_imple_input_change_fun}, firstline =26, lastline = 49, firstnumber = 26 ]{sources/input/dateFunctions.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 26 - 49},  label={lst:content_imple_input_nextday}, firstline =26, lastline = 49, firstnumber = 26 ]{sources/input/dateFunctions.php}
 
 \subparagraph{\texttt{weekday}\\}
 Diese Funktion gibt für das, über den Parameter \texttt{\$d} mitgegebene, Datum  den Wochentag in Kurzform zurück. Die möglichen Wochentage sind Mo - So.
 
-\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 12 - 17},  label={lst:content_imple_input_change_fun}, firstline =12, lastline = 17, firstnumber = 12 ]{sources/input/dateFunctions.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/other/dateFunctions.php; Zeile 12 - 17},  label={lst:content_imple_input_weekday}, firstline =12, lastline = 17, firstnumber = 12 ]{sources/input/dateFunctions.php}
