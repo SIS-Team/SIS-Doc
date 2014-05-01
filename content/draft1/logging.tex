@@ -19,7 +19,7 @@ Nun kommt es zum eigentlichen Logging-Prozess: Es braucht eine weitere Tabelle, 
 \\
 Durch diesen eigentlich recht simplen Aufbau können bereits alle Bewegungen der einzelnen Benutzer auf der Seite (auch, wenn sich ein User in mehreren Webbrowsern zur selben Zeit angemeldet hat) nachvollzogen werden.\\
 \\
-Der größte Nachteil an diesen Überlegungen ist, dass zwar die Bewegungen der Benutzer, die bereits angemeldet sind, gespeichert werden können, aber die Login-Versuche in keiner Weise irgendwie gespeichert werden. Um dies zu lösen, wird eine weitere Tabelle eingeführt, die nur dazu da ist, zu speichern, welche IP-Adresse, um welche Zeit, mit welchem userAgent, mit welchem Benutzernamen sich versucht hat anzumelden, und ob der Anmeldevorgang erfolgreich war, oder nicht. Alle diese Daten müssen deshalb hier alle nocheinmal gespeichert werden, da in den anderen Tabellen möglicherweise noch gar keine Einträge für die jetzige Session existieren.\\
+Der größte Nachteil an diesen Überlegungen ist, dass zwar die Bewegungen der Benutzer, die bereits angemeldet sind, gespeichert werden können, aber die Login-Versuche in keiner Weise irgendwie gespeichert werden. Um dies zu lösen, wird eine weitere Tabelle eingeführt, die nur dazu da ist, zu speichern, welche IP-Adresse, um welche Zeit, mit welchem userAgent, mit welchem Benutzernamen sich versucht hat anzumelden, und ob der Anmeldevorgang erfolgreich war, oder nicht. Alle diese Daten müssen deshalb hier alle nocheinmal gespeichert werden, da in den anderen Tabellen möglicherweise noch gar keine Einträge für die jetzige Session pexistieren.\\
 \\
 \begin{figure}[H]
 \centering
