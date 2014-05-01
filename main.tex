@@ -25,6 +25,7 @@ Prof.Mag.Dr. Michael \textsc{Weiss}
 \begin{document}
 
 \frontmatter
+\pagenumbering{Roman}
 
 \maketitle
 
@@ -59,13 +60,24 @@ Prof.Mag.Dr. Michael \textsc{Weiss}
 \input{attachments/klotz}
 \input{attachments/weiland}
 
-\listoffigures
-\lstlistoflistings
-\listoftables
+\backmatter
+\pagenumbering{alph}
 
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\newpage
+
+\addcontentsline{toc}{chapter}{\lstlistlistingname}
+\lstlistoflistings
+\newpage
+
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+\listoftables
+\newpage
+
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
 \nocite{*}
 \bibliography{content/lit}{}
 \bibliographystyle{alpha}
 
-\backmatter 
 \end{document}
