@@ -1,15 +1,15 @@
 \subsection{LDAP-Zugriff}
 \label{sec:content_imple_ldap}
-Der Zugriff auf den LDAP-Server gehört thematisch eigentlich zu \gref{sec:content_imple_base_session}, ist allerdings recht umfangreich, weswegen er hier extra behandet werden soll.\\
+Der Zugriff auf den LDAP-Server gehört thematisch eigentlich zu \gref{sec:content_imple_base_session}, ist allerdings recht umfangreich, weswegen er hier extra behandelt werden soll.\\
 Funktionen, die mit LDAP zu tun haben, sind in der Datei /modules/general/LDAP.php definiert:
 \begin{description}
 	\item[\texttt{LDAP\_getUser(\$cn)}] benötigt als Parameter den CN, durchsucht den LDAP-Server danach unterhalb des Base-Directorys o=SIS mit Sub-Scope. Zurückgeliefert wird ein mehrdimensionales Array mit allen Einträgen.
 	\item[\texttt{LDAP\_login(\$dn, \$pass)}] benötigt als Parameter den DN und das Passwort eines LDAP-Users. Es wird ein LDAP-Bind versucht. Schlägt dieser fehl, wird \texttt{false}, sonst \texttt{true} zurückgegeben.
 	\item[\texttt{LDAP\_getDN(\$ent)}] hat als Parameter ein LDAP-Entry-Array. Zurückgeliefert wird der DN des ersten Objektes im Array beziehungsweise \texttt{false} im Fall, dass der DN leer ist.
 	\item[\texttt{getFullName(\$ent)}] liest das erste Token aus dem Vornamen und Nachnamen es LDAP-Entrys aus, setzt beide Teile zusammen und gibt die resultierende Zeichenkette zurück.
-	\item[\texttt{getInitials(\$ent)}] gibt die Initialen des LDAP-Entrys zurück.
-	\item[\texttt{getSection(\$ent)}] liest die Abteilung des LDAP-Entrys (Schüler) aus.
-	\item[\texttt{getClass(\$ent)}] gibt die Klasse des LDAP-Entrys (Schüler) zurück.
+	\item[\texttt{getInitials(\$ent)}] gibt die Initialen des LDAP-Entries zurück.
+	\item[\texttt{getSection(\$ent)}] liest die Abteilung des LDAP-Entries (Schüler) aus.
+	\item[\texttt{getClass(\$ent)}] gibt die Klasse des LDAP-Entries (Schüler) zurück.
 	\item[\texttt{isTeacher(\$ent)}] gibt \texttt{true} zurück, wenn es sich um einen Lehrer handelt, beziehungsweise \texttt{false}, wenn nicht (gekennzeichnet durch den Container \texttt{ou=LEHRER}).
 	\item[\texttt{getRights(\$ent)}] gibt ein Array mit den Rechten des LDAP-Entrys zurück. Die Rechte sind bestimmt durch die Gruppen im Container \texttt{ou=SIS,o=HTL1}. Während der Beta-Phase haben die Benutzer \texttt{20090319}, \texttt{20090334}, \texttt{20090396} und \texttt{20090359} (die vier Team-Mitglieder) Root-Rechte.
 \end{description}
