@@ -49,7 +49,7 @@ Nun wird der Hash berechnet. In diesem Fall wird der \texttt{sha256}-Hash vom Za
 Nun werden nur noch die ID des Formulars, der Hashwert und die Zeit in der virtuellen Session gespeichert.
 \lstinputlisting[style=custom, language=php, caption={/modules/form/HashGenerator.php; \texttt{printForm()}; Zeilen 43-46}, label={lst:content_imple_hash_print}, firstline=43, lastline=46, firstnumber=43]{sources/token/HashGenerator.php}
 Die Ausgabe der versteckten Formularelemente (siehe \autoref{lst:content_imple_hash_print}) ist eigentlich selbsterklärend.\\
-\lstinputlisting[style=custom, language=php, caption={/modules/form/HashGenerator.php; \texttt{check()}; Zeilen 47-72}, label={lst:content_imple_hash_print}, firstline=47, lastline=72, firstnumber=47]{sources/token/HashGenerator.php}
+\lstinputlisting[style=custom, language=php, caption={/modules/form/HashGenerator.php; \texttt{check()}; Zeilen 47-72}, label={lst:content_imple_hash_check}, firstline=47, lastline=72, firstnumber=47]{sources/token/HashGenerator.php}
 Die \texttt{check()}-Methode liest aus den abgesendeten Daten den Namen der Session aus und konstruiert mit ihm eine virtuelle Session. Sollte der Name nicht im Formular angegeben sein, wird der Name aus dem Konstruktor der \texttt{HashGenerator}-Klasse übernommen.\\
 Existiert keine virtuelle Session mit dem Namen, kann davon ausgegangen werden, dass das Formular fehlerhaft, beziehungsweise nicht mehr aktuell ist. Es wird also eine Exception geworfen.\\
 Nun werden die IDs verglichen, stimmt die ID des Konstruktors nicht mit der ID der virtuellen Session überein, so passt die Session nicht auf dieses Formular. Es wird eine Exception geworfen.\\
