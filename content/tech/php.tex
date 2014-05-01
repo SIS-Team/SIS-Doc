@@ -74,7 +74,7 @@ user=20091234&password=passwort&send=1	//POST-Parameter
 \end{lstlisting}
 \subparagraph{GET\\}
 Bei GET werden die mitgegebenen Parameter direkt an die URL angehängt. Um dies trennen zu können, wird die Parameterliste mit einem ? eingeleitet. Einzelne Parameter werden mit einem \& getrennt. Diese Methode ist die Standardmethode, wenn man ein HTML-Formular erstellt. Dies wird bei kleinen Daten verwendet. Der Vorteil liegt darin, dass der User die Seite neu laden kann. Die Parameter werden übernommen. Auch kann der User die URL samt den Parametern als Lesezeichen abspeichern, um beispielsweise bei einer Webseite, welche die Parameter zur Navigation auf der Seite verwendet, genau die gewünschte Seite zu erhalten. Eine Beispiel-URL sieht wie folgt aus: \url{sis.htlinn.ac.at/index.php?text=hallo\&send=Speichern}. Dies wäre die URL, die beim Absenden des Beispiels \ref{lst:content_php_GET} entstehen würde, sofern die Datei des Beispiels \textit{index.php} heißt. Im Prinzip läuft die Auswertung der mitgelieferten Parametern gleich ab, wie bei POST Parametern.\\
-Die Datenlänge bi GET besteht darin, dass die URL eine maximale Länge, die Browser und Server abhängig ist, nicht überschreiten darf.
+Die Datenlänge bei GET besteht darin, dass die URL eine maximale Länge, die Browser und Server abhängig ist, nicht überschreiten darf.
 Die Datenlänge ist bei GET durch die maximal mögliche Länger der URL limitiert. Diese ist abhängig vom verwendeten Client und vom verwendeten Server. Als Standard-Wert werden oft 2000 Zeichen genannt.
 \begin{lstlisting}[style=custom, language=PHP,  caption={Beispiel GET},label={lst:content_php_GET}]
 <html>
@@ -136,7 +136,7 @@ Der Konstructor ist die Methode \texttt{\_\_construct()}, der Konstruktor der Su
 Für den Destruktor verhält es sich analog zum Konstruktor, nur dass die dementsprechende Methode \texttt{\_\_destruct()} ist. Bemerkenswert ist, dass die Destruktoren auch ausgeführt werden, wenn das Script durch den Befehl \texttt{exit()} beendet wurde. Wird dieser Befehl in einem Destruktor aufgerufen, so werden die verbleibenden Shutdown-Routinen nicht mehr ausgeführt. Wirft ein Destruktor während des Beendens des Scripts eine Exception, so wird ein \enquote{Fatal Error} erzeugt.\\
 Wie auch bei den meisten anderen OOP-Sprachen, gibt es auch in PHP die Sichtbarkeits-Schlüsselwörter \texttt{private} und \texttt{public}, um private beziehungsweise publike Eigenschaften und Methoden zu kennzeichnen. Zusätzlich gibt es die Sichtbarkeit \texttt{protected}, der Zugriff auf diese Eigenschaften und Methoden ist nur der eigenen, beziehungsweise ihrer Sub-Klassen gestattet. Das Schlüsselwort \texttt{var} ist bis PHP5 equivalent mit \texttt{public}, in späteren Versionen generiert es eine \texttt{E\_STRICT}-Warnung. Funktionen, die nicht \textit{zusätzlich} eine Sichtbarkeit angegeben haben, sind \texttt{public}.\\
 Die Instanzierung erfolgt mit dem \texttt{new}-Schlüsselwort.\\
-Der Zugriff auf die Obejekte erfolgt mit dem unter C++ für Objekt-Pointer verwendeten \texttt{->} Operator. Innerhalb des eigenen Objektes, kann dasselbe mit \texttt{this} aufgerufen werden.
+Der Zugriff auf die Objekte erfolgt mit dem unter C++ für Objekt-Pointer verwendeten \texttt{->} Operator. Innerhalb des eigenen Objektes, kann dasselbe mit \texttt{this} aufgerufen werden.
 \begin{lstlisting}[style=custom, language=PHP,  caption={Beispiel: OOP in PHP},label={lst:content_php_php}]
 <?php 
 	class Frucht {
