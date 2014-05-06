@@ -1,10 +1,10 @@
 \subsubsection{AJAX (Buchberger)} 
 \label{sec:content_js_AJAX}
 \begin{quote}
-\enquote{Ajax steht für Asynchronous Javascript + XML. Der Name ist - geben wir es ehrlich zu - ein wenig künstlich.} \cite{ajax}[S. 317]
+\enquote{Ajax steht für Asynchronous Javascript + XML. Der Name ist - geben wir es ehrlich zu - ein wenig künstlich.} \cite[S. 317]{ajax}
 \end{quote}
 Ajax stellt eine Möglichkeit dar, zur JavsScript-Laufzeit ohne Neuladen der Seite Daten vom Server anzufragen.\\
-Technisch gesehen ist Ajax ein JavaScript Objekt (\texttt{XMLHttpRequest()}), das vom Webbrowser zur Verfügung gestellt wird. Dieses Objekt über bestimmte Methoden Anfragen senden.\\
+Technisch gesehen ist Ajax ein JavaScript Objekt (\texttt{XMLHttpRequest()}), das vom Webbrowser zur Verfügung gestellt wird. Dieses Objekt kann über bestimmte Methoden HTTP-Anfragen senden.\\
 Prinzipiell gibt es im \texttt{XMLHttpRequest()}-Objekt Möglichkeiten für synchrone Anfragen (Die JavaScript-Ausführung bleibt stehen, und wird erst fortgesetzt, wenn die Antwort ankommt.) und asynchrone Anfragen (Ausführung läuft weiter. Es wird jedoch eine Funktion angegeben, die ausgeführt wird, wenn die Antwort ankommt.).\\
 \begin{lstlisting}[style=custom, language=JavaScript,  caption={Synchrones AJAX},label={lst:content_ajax_0}]
 var http = new XMLHttpRequest();
@@ -30,8 +30,8 @@ Holds the status of the XMLHttpRequest. Changes from 0 to 4:\\
 1: server connection established\\
 2: request received\\
 3: processing request\\ 
-4: request finished and response is ready} \cite{readyState}
-}
+4: request finished and response is ready}}\\
+\cite[\url{http://www.w3schools.com/ajax/ajax_xmlhttprequest_onreadystatechange.asp}]{w3schools}
 \end{quote}
 \begin{lstlisting}[style=custom, language=JavaScript,  caption={Asynchrones AJAX},label={lst:content_ajax_1}]
 var http = new XMLHttpRequest();

@@ -1,6 +1,6 @@
 \subsection{Datenbank}
 % Implementierung der Datenbank
-Die Implementierung der Datenbank wurde mit dem gratis erhältlichen Tool \textit{phpMyAdmin} vorgenommen. Unsere Wahl viel auf dieses Tool, da es einfach zu verwenden ist und nicht installiert werden muss. Die andere Möglichkeit wäre gewesen, dass wir die Datenbank mittels \textit{PHP} erstelle, dies hätte jedoch wesentlich mehr Zeit benötigt. Eine andere Möglichkeit wäre gewesen, dass wir mittels SSH und dem Kommandozeilen-Tool für MySQL die Datenbank erstellt hätten, dies war uns jedoch nicht möglich, da wir keinen SSH-Zugriff bekamen.
+Die Implementierung der Datenbank wurde mit dem gratis erhältlichen Tool \textit{phpMyAdmin} vorgenommen. Unsere Wahl fiel auf dieses Tool, da es einfach zu verwenden ist und nicht installiert werden muss. Die andere Möglichkeit wäre gewesen, dass wir die Datenbank mittels \textit{PHP} erstellen, dies hätte jedoch wesentlich mehr Zeit benötigt. Eine andere Möglichkeit wäre gewesen, dass wir mittels SSH und dem Kommandozeilen-Tool für MySQL die Datenbank erstellt hätten, dies war uns jedoch nicht möglich, da wir keinen SSH-Zugriff zur Verfügung hatten.
 \subsubsection{Aufbau} \label{sec:content_imple_db_aufbau}
 % Genaue Auflistung der Tabellen, Spalten, Kommentare, etc.
 %
@@ -49,7 +49,7 @@ In dieser Tabelle sind die Modi für die Ein- und Ausschaltzeiten für die Monit
 \end{table}
 
 \paragraph{Stunden\\}
-In dieser Tabelle werden alle Stunden gespeichert, mit deren Anfangs- und Endzeiten. Um nicht zusätzlich die Wochentage speichern zu müssen, werden dise zu den Stunden gespeichert. Deshalb ist eine gewisse Redundanz der Zeiten gegeben, diese nahmen wir jedoch in kauf. Zu einem Problem wird dies dann, wenn sich zum Beispiel eine Uhrzeit ändern sollte. Der Tabellenname lautet \textit{hours}. Diese Tabelle umfasst insgesamt 6 Spalten.
+In dieser Tabelle werden alle Stunden gespeichert, mit deren Anfangs- und Endzeiten. Um nicht zusätzlich die Wochentage speichern zu müssen, werden dise zu den Stunden gespeichert. Deshalb ist eine gewisse Redundanz der Zeiten gegeben, diese nahmen wir jedoch in Kauf. Zu einem Problem wird dies dann, wenn sich zum Beispiel eine Uhrzeit ändern sollte. Der Tabellenname lautet \textit{hours}. Diese Tabelle umfasst insgesamt 6 Spalten.
 \begin{table}[H]
 \centering
 \begin{tabular}{p{2.5 cm}p{2.5 cm}p{10 cm}}
@@ -502,7 +502,7 @@ Diese Funktion ist im \autoref{lst:content_imple_select_all} zu sehen. In der Ze
 \lstinputlisting[style=custom, language=php, caption={/modules/database/selects.php; Zeile 18 - 26},  label={lst:content_imple_select_all}, firstline =18, lastline = 26, firstnumber = 18 ]{sources/database/selects.php}
 
 \paragraph{Standard-Select\\}
-Alle anderen Select-Funktionen sind gleich aufgebaut, sie unterscheiden sich jeweils nur am Stamm-SQL-Befehl. Diesen Funktionen muss der Tabellennam nicht mehr als Parameter übergeben werden. Die 2 anderen Parameter erfüllen die selbe Funktion wie in der \texttt{selectAll}-Funktion.\\
+Alle anderen Select-Funktionen sind gleich aufgebaut, sie unterscheiden sich jeweils nur am Stamm-SQL-Befehl. Diesen Funktionen muss der Tabellenname nicht mehr als Parameter übergeben werden. Die 2 anderen Parameter erfüllen die selbe Funktion wie in der \texttt{selectAll}-Funktion.\\
 Der Aufbau der Funktion entspricht exakt, dem der \texttt{selectAll}-Funktion. Lediglich der Stamm-SQL-Befehl ist nicht mehr von der Tabelle abhängig, denn diese ist einprogrammiert. (siehe \autoref{lst:content_imple_select_std})
 
 \lstinputlisting[style=custom, language=php, caption={/modules/database/selects.php; Zeile 76 - 86},  label={lst:content_imple_select_std}, firstline =76, lastline = 86, firstnumber = 76 ]{sources/database/selects.php}
@@ -522,7 +522,7 @@ Dabei gibt es zwei verschiedene Varianten:
 	In Zeile 36 ist die Abfrage für die ID zu sehen. In Zeile 38 wird der Rückgabewert mit der Funktion \texttt{control()} überprüft, dieser Rückgabewert wird in eine Variable gespeichert. Anschließend wird in Zeile 40 der Wert in das Array geschrieben. (Funktion \texttt{control} siehe Abschnitt \nameref{sec:content_imple_control})
 \end{itemize}
 In diesem Formular gibt es eine Check Box, bei dieser kann nicht einfach der Wert in das Array geschrieben werden, da in die Datenbank ein True oder False geschrieben werden muss. Bei aktivierter Check Box wird jedoch der Name der Check Box zurückgegeben. Darum muss in Zeile 49 geprüft werden, ob das Array-Element leer ist. Ist es nicht leer muss dem Array True zugewiesen werden.\\
-In der Zeile 53 wird geprüft, ob bei Löschen ein Hacken im Formular gesetzt wurde und ob bei allen Überprüfungen 1 in die Variablen geschrieben wurde. Ist die Multiplikation der Kontroll-Variablen 1, dann ist alles korrekt abgelaufen und der Datensatz kann in der Zeile 54 eingefügt werden. (Funktion \texttt{saveupdate} siehe Abschnitt \nameref{sec:content_imple_saveupdate})
+In der Zeile 53 wird geprüft, ob bei Löschen ein Haken im Formular gesetzt wurde und ob bei allen Überprüfungen 1 in die Variablen geschrieben wurde. Ist die Multiplikation der Kontroll-Variablen 1, dann ist alles korrekt abgelaufen und der Datensatz kann in der Zeile 54 eingefügt werden. (Funktion \texttt{saveupdate} siehe Abschnitt \nameref{sec:content_imple_saveupdate})
 
 \lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 14 - 55},  label={lst:content_imple_insert_std}, firstline =14, lastline = 55, firstnumber = 14 ]{sources/database/inserts.php}
 
@@ -535,7 +535,7 @@ Bei der Insert-Funktion der Supplierungen werden keine vorhandenen Einträge, be
 \lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 295 - 302},  label={lst:content_imple_insert_suppl_1}, firstline =295, lastline = 302, firstnumber = 295 ]{sources/database/inserts.php}
 
 \item \autoref{lst:content_imple_insert_suppl_2}\\
-Ist bei Löschen im Formular ein Hacken gesetzt worden, dann wird der restliche Code in der Funktion übersprungen. Dies wird mit der \textit{If}-Bedingung in der Zeile 304 durchgeführt.\\
+Ist bei Löschen im Formular ein Haken gesetzt worden, dann wird der restliche Code in der Funktion übersprungen. Dies wird mit der \textit{If}-Bedingung in der Zeile 304 durchgeführt.\\
 In den Zeilen 306 - 308 entscheidet sich um welche Eingabemethode es sich handelt. Dafür sind \textit{If}-Abfragen zuständig, die weiteren Abfragen für die restlichen Eingabemethoden sind hier nicht dargestellt.
 
 \lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 304 - 308},  label={lst:content_imple_insert_suppl_2}, firstline =304, lastline = 308, firstnumber = 304 ]{sources/database/inserts.php}
@@ -606,7 +606,7 @@ Diese Funktion übernimmt die Aufgabe das, in den Insert-Funktionen, definierte 
 	\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 560 - 580},  label={lst:content_imple_saveupdate_1}, firstline =560, lastline = 580, firstnumber = 560 ]{sources/database/inserts.php}
 
 	\item \autoref{lst:content_imple_saveupdate_2}\\
-	Dieser Teil funktioniert im wesentlichen gleich wie der schon oben beschriebene Teil. Die einzige Ausnahme ist, dass der Update Befehl anders aufgebaut ist als der Insert-Befehl. Deshalb gibt es hier nur mehr einen String. Diesem String wird in der Zeile 593 die Daten zugewiesen. Der Aufbau dieses Strings ist wie folgt:
+	Dieser Teil funktioniert im wesentlichen gleich wie der schon oben beschriebene Teil. Die einzige Ausnahme ist, dass der Update-Befehl anders aufgebaut ist als der Insert-Befehl. Deshalb gibt es hier nur mehr einen String. Diesem String wird in der Zeile 593 die Daten zugewiesen. Der Aufbau dieses Strings ist wie folgt:
 	
 	\begin{itemize}
 		\item  \texttt{\$dat}\\

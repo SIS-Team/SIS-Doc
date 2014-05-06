@@ -42,7 +42,7 @@ Als nächstes müssen die Daten in die Stundenplantabelle eingetragen werden. Da
 					ID = 23\\
 \end{description}
 
-Nach dem zusammensetzen der ID wird das Fach der entsprechenden Stunde in die Zelle mit der entsprechenden ID eingetragen. Die IDs werden den Zellen direkt beim Erstellen der Tabelle fix zugewiesen\\.
+Nach dem zusammensetzen der ID wird das Fach der entsprechenden Stunde in die Zelle mit der entsprechenden ID eingetragen. Die ID's werden den Zellen direkt beim Erstellen der Tabelle fix zugewiesen.\\
 Da bei unserer Datenbankstruktur für eine Doppel-, oder Mehrfachstunde nur ein Eintrag besteht und nicht für jede Stunde ein einzelner Eintrag erstellt wird, muss für diesen Fall noch eine Extraroutine durchgeführt werden.\\
 Deshalb werden die einzelnen Stunden mit Hilfe einer Schleife eingetragen, dabei wird bei jedem Durchlauf der Schleife überprüft ob die Endstunde(die letzte Stunde die noch zum jetzigen Element gehört)mit der aktuell eingetragenen Stunde übereinstimmt und wenn nicht wird die Schleife wiederholt und der Wert in der ID, der für die Stunde steht, wird inkrementiert. Bei einer Einzelstunde würden gleich beim ersten Durchlauf die aktuelle und Endstunde übereinstimmen, da die erste zugleich auch die letzte Unterrichtsstunde dieses Elements ist.\\
 Bei einer Doppelstunde braucht es hingegen zwei Durchläufe bis eine Übereinstimmung vorliegt, dadurch wird das Fach auch in zwei Zellen eingetragen.\\
@@ -60,10 +60,10 @@ Diese ID wird aber anders zusammengesetzt als die ID beim Stundenplan. In diesem
 \paragraph{Angepasster Stundenplan\\}
 Beim angepassten Stundenplan müssen nun der Stundenplan und der Supplierplan kombiniert werden. So sollen zum Beispiel entfallene Stunden aus dem Stundenplan ausgetragen und supplierte Stunden markiert werden.\\
 Dazu wird zuerst der Stundenplan, gleich wie der gewöhnliche Stundenplan, generiert. Danach werden die Supplierungen aus der Datenbank abgerufen, diese werden in eine Schleife alle einzeln überprüft. In der Schleife wird überprüft ob es sich um eine ausfallende, eine neu eingetragene, eine verschobene oder eine supplierte Stunde handelt.\\ Entsprechend des Ergebnisses dieser Überprüfung werden die Stunden ausgetragen, zusätzlich eingetragen oder verschoben.\\
-Bei allen Zellen welche von einer Supplierung betroffen sind wird ein zusätzliches Attribut gesetzt. Dabei handelt es sich um das selbst gewählte Attribut \enquote{data-substitude}, in diesem Attribut wird der Index, den die Supplierung dieser Stunde im Supplierungenarray hat, gespeichert. Diese Information wird beim öffnen der Popup-Fenster benötigt.\\
+Bei allen Zellen welche von einer Supplierung betroffen sind wird ein zusätzliches Attribut gesetzt. Dabei handelt es sich um das selbst gewählte Attribut \enquote{data-substitude}, in diesem Attribut wird der Index, den die Supplierung dieser Stunde im Supplierungenarray hat, gespeichert. Diese Information wird beim Öffnen der Popup-Fenster benötigt.\\
 
 \paragraph{Alle Stundenpläne}
-Für Lehrer soll es auch möglich sein, die Stundenpläne aller Klassen zu sehen. Diese Funktion ist aber ausschließlich für Lehrer gedacht und wir deshalb bei Schülern nicht angezeigt.\\
+Für Lehrer soll es auch möglich sein, die Stundenpläne aller Klassen zu sehen. Diese Funktion ist aber ausschließlich für Lehrer gedacht und wird deshalb bei Schülern nicht angezeigt.\\
 Um die Übersichtlichkeit zu bewahren, kann der Lehrer die gewünschte Klasse mittels Dropdownmenü auswählen, diese Information wird dann an den Server gesandt und es wird der Stundenplan für die ausgewählte Klasse generiert.\\
 
 
@@ -74,6 +74,6 @@ Bei der Newsseite handelt es sich um eine leere HTML-Seite mit der Überschrift 
 Bei den Popup-Fenstern handelt es sich um ein kleines Fenster, welches erscheint wenn auf eine Zeile der Stundenplan- oder Supplierplantabelle gedrückt wird. Darin werden weitere Informationen zu der ausgewählten Unterrichtsstunde oder Supplierung angegeben.\\
 Um die richtigen Informationen in das Popup zu schreiben, müssen diese zuerst aus dem Stundenplandatenobjekt, welches beim laden der Daten aus der Datenbank erzeugt wurde, herausgefiltert werden. Um nur die relevanten Daten zu bekommen, wird das Objekt in einer Schleife durchgearbeitet und wenn die ID der Zelle mit der Variable \enquote{cellid} aus dem Objekt übereinstimmt werden die Daten in das Fenster geschrieben.\\
 Der gleiche Vorgang wird auf das Popup beim Supplierplan angewandt.\\
-Bei den Popups beim angepassten Stundenplan muss zusätzlich noch überprüft werden, ob es sich um eine supplierte Stunde handelt, dazu wird einfach überprüft ob das Attribut \enquote{data-substitude} in der ausgewählten Zelle gesetzt ist. Handelt es sich nicht um eine supplierte Stunde wird das Popup gleich generiert wie beim normalen Stundenplan. Ist aber das Attribut \enquote{data-substitude} gesetzt wird zuerst das normale Popup generiert, danach werden noch die Supplierungsdaten aus dem Supplierplandatenobjekt (Indes ist im Attribut gespeichert) gelesen und der Inhalt des Popup-Fensters wird dementsprechend verändert.\\
+Bei den Popups beim angepassten Stundenplan muss zusätzlich noch überprüft werden, ob es sich um eine supplierte Stunde handelt, dazu wird einfach überprüft ob das Attribut \enquote{data-substitude} in der ausgewählten Zelle gesetzt ist. Handelt es sich nicht um eine supplierte Stunde wird das Popup gleich generiert wie beim normalen Stundenplan. Ist aber das Attribut \enquote{data-substitude} gesetzt wird zuerst das normale Popup generiert, danach werden noch die Supplierungsdaten aus dem Supplierplandatenobjekt (Index ist im Attribut gespeichert) gelesen und der Inhalt des Popup-Fensters wird dementsprechend verändert.\\
 
 

@@ -1,0 +1,105 @@
+
+\begin{tikzpicture}[>=latex,line join=bevel,scale=0.8]
+  \pgfsetlinewidth{1bp}
+%%
+\pgfsetcolor{black}
+  % Edge: head -> title
+  \draw [->] (54bp,156.28bp) .. controls (54bp,152.26bp) and (54bp,148.06bp)  .. (54bp,133.63bp);
+  % Edge: body -> a
+  \draw [->] (180bp,156.28bp) .. controls (180bp,152.26bp) and (180bp,148.06bp)  .. (180bp,133.63bp);
+  % Edge: a -> att
+  \draw [->] (234.37bp,106bp) .. controls (236.7bp,106bp) and (239.2bp,106bp)  .. (251.86bp,106bp);
+  % Edge: a -> txttext0
+  \draw [->] (180bp,78.28bp) .. controls (180bp,74.257bp) and (180bp,70.059bp)  .. (180bp,55.63bp);
+  % Edge: root -> head
+  \draw [->] (94.611bp,234.28bp) .. controls (90.805bp,229.57bp) and (86.804bp,224.61bp)  .. (76.317bp,211.63bp);
+  % Edge: body -> h1
+  \draw [->] (234.16bp,169.67bp) .. controls (280.85bp,157.32bp) and (343.7bp,140.69bp)  .. (377.76bp,130.11bp);
+  % Edge: h1 -> txttext1
+  \draw [->] (432bp,78.28bp) .. controls (432bp,74.257bp) and (432bp,70.059bp)  .. (432bp,55.63bp);
+  % Edge: root -> body
+  \draw [->] (139.39bp,234.28bp) .. controls (143.2bp,229.57bp) and (147.2bp,224.61bp)  .. (157.68bp,211.63bp);
+  % Edge: Document -> root
+  \draw [->] (117bp,319.1bp) .. controls (117bp,313.17bp) and (117bp,306.54bp)  .. (117bp,289.71bp);
+  % Edge: title -> txttitle
+  \draw [->] (54bp,78.28bp) .. controls (54bp,74.257bp) and (54bp,70.059bp)  .. (54bp,55.63bp);
+  % Node: a
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (234bp,134bp) -- (126bp,134bp) -- (126bp,79bp) -- (234bp,79bp) -- cycle;
+  \draw (180bp,106bp) node {\parbox{3cm}{\begin{center}Element:\\<a>\end{center}}};
+\end{scope}
+  % Node: body
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (234bp,212bp) -- (126bp,212bp) -- (126bp,157bp) -- (234bp,157bp) -- cycle;
+  \draw (180bp,184bp) node {\parbox{3cm}{\begin{center}Element:\\<body>\end{center}}};
+\end{scope}
+  % Node: head
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (108bp,212bp) -- (0bp,212bp) -- (0bp,157bp) -- (108bp,157bp) -- cycle;
+  \draw (54bp,184bp) node {\parbox{3cm}{\begin{center}Element:\\<head>\end{center}}};
+\end{scope}
+  % Node: txttext1
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (486bp,55bp) -- (378bp,56bp) -- (378bp,1bp) -- (486bp,1bp) -- cycle;
+  \draw (432bp,28bp) node {\parbox{3cm}{\begin{center}Text:\\\enquote{My Text}\end{center}}};
+\end{scope}
+  % Node: title
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (108bp,134bp) -- (0bp,134bp) -- (0bp,79bp) -- (108bp,79bp) -- cycle;
+  \draw (54bp,106bp) node {\parbox{3cm}{\begin{center}Element:\\<title>\end{center}}};
+\end{scope}
+  % Node: h1
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (486bp,134bp) -- (378bp,134bp) -- (378bp,79bp) -- (486bp,79bp) -- cycle;
+  \draw (432bp,106bp) node {\parbox{3cm}{\begin{center}Element:\\<h1>\end{center}}};
+\end{scope}
+  % Node: txttitle
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (108bp,55bp) -- (0bp,56bp) -- (0bp,1bp) -- (108bp,1bp) -- cycle;
+  \draw (54bp,28bp) node {\parbox{3cm}{\begin{center}Text:\\\enquote{My Title}\end{center}}};
+\end{scope}
+  % Node: txttext0
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (234bp,55bp) -- (126bp,56bp) -- (126bp,1bp) -- (234bp,1bp) -- cycle;
+  \draw (180bp,28bp) node {\parbox{3cm}{\begin{center}Text:\\\enquote{My Link}\end{center}}};
+\end{scope}
+  % Node: att
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (306bp,106bp) ellipse (54bp and 27bp);
+  \draw (306bp,106bp) node {\parbox{3cm}{\begin{center}Attribut:\\\enquote{href}\end{center}}};
+\end{scope}
+  % Node: Document
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (171bp,361bp) -- (63bp,361bp) -- (63bp,320bp) -- (171bp,320bp) -- cycle;
+  \draw (117bp,340bp) node {\parbox{3cm}{\begin{center}Document\\\end{center}}};
+\end{scope}
+  % Node: root
+\begin{scope}
+  \definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  \pgfsetstrokecolor{strokecol}
+  \draw (171bp,290bp) -- (63bp,290bp) -- (63bp,235bp) -- (171bp,235bp) -- cycle;
+  \draw (117bp,262bp) node {\parbox{3cm}{\begin{center}Root Element:\\<html>\end{center}}};
+\end{scope}
+%
+\end{tikzpicture}
+

@@ -9,7 +9,7 @@ Dazu wird ein Bild vom SIS-Server geladen, dieses wird dann aber ausgeblendet, d
 
 \subsubsection{Login}
 
-\paragraph{Datenübermittleung\\}
+\paragraph{Datenübermittlung\\}
 Beim Login müssen als erstes die Anmeldedaten an den Server übertragen werden. Da in der App kein PHP verwendet werden kann werden die Daten über ein iFrame an den Server gesandt.\\
 
 \lstinputlisting[style=custom, language=html, caption={/index.html; Login-Formular; Zeilen 69-81}, label={lst:widget}, firstline=69, lastline=81, firstnumber=69]{sources/app/index.html}
@@ -33,9 +33,9 @@ window.location.href=\grq menu.html\grq;
 
 \paragraph{Automatische Wiederanmeldung\\}
 	
-Um die Bedienung der App zu erleichtern, wurde die Funktion \enquote{Angemeldet bleiben} integriert. Dadurch wird der Benutzer, falls er diese Funktion bei der letzten Anmeldung ausgewählt hat, beim öffnen der App automatisch angemeldet.\\
+Um die Bedienung der App zu erleichtern, wurde die Funktion \enquote{Angemeldet bleiben} integriert. Dadurch wird der Benutzer, falls er diese Funktion bei der letzten Anmeldung ausgewählt hat, beim Öffnen der App automatisch angemeldet.\\
 
-Damit das Funktioniert müssen der Benutzername und das Passwort des Nutzers gespeichert werden, diese werden aber nur lokal auf dem Gerät gespeichert und können nicht ausgelesen werden.\\
+Damit das funktioniert müssen der Benutzername und das Passwort des Nutzers gespeichert werden, diese werden aber nur lokal auf dem Gerät gespeichert und können nicht ausgelesen werden.\\
 
 Um die Daten zu speichern wurde die Funktion saveLogin() erstellt.\\
 
@@ -43,7 +43,7 @@ Um die Daten zu speichern wurde die Funktion saveLogin() erstellt.\\
 
 
 Mit der Funktion window.localStorage.setItem() können Variablen oder sonstige Daten auf dem lokalen Speicher des Smartphones gespeichert werden.\\
- Die Funktion saveLogin() wird nach jedem Anmeldeversuch ausgeführt, falls der Benutzer bei Angemeldet bleiben einen Hacken gesetzt hat. Sollte die Anmeldung fehlschlagen, weil ein falscher Benutzername oder ein falsches Passwort eingegeben wurden, werden die Daten sofort wieder gelöscht.\\
+ Die Funktion saveLogin() wird nach jedem Anmeldeversuch ausgeführt, falls der Benutzer bei Angemeldet bleiben einen Haken gesetzt hat. Sollte die Anmeldung fehlschlagen, weil ein falscher Benutzername oder ein falsches Passwort eingegeben wurden, werden die Daten sofort wieder gelöscht.\\
 Wenn der Benutzer nicht mehr angemeldet bleiben möchte, muss er sich (durch klicken auf den logout-Button) abmelden. Wenn das gemacht wird, wird die Funktion logout() ausgeführt diese leitet den Benutzer zurück auf die Anmeldeseite und löscht Benuzternamen und Passwort.\\
 
 \lstinputlisting[style=custom, language=html, caption={/logout.html; Funktion logout(); Zeilen 8-13}, label={lst:widget}, firstline=8, lastline=13, firstnumber=8]{sources/app/logout.html}
@@ -80,7 +80,7 @@ Wenn die ID der Zellen des Stundenplans und die cellid des Elements verglichen w
 
 
 
-\subsubsection{Eintragen der Inhlate}
+\subsubsection{Eintragen}
 
 Die Inhalte des Stunden- oder Supplierplans, müssen nachträglich mittles JavaScript, eingetragen werden. Dazu wird jQuery verwendet. Mit Hilfe von jQuery und dem HTML-DOM können Inhalte der Webseite einfach ausgelesen oder geändert werden.
 
@@ -173,7 +173,7 @@ Weiters wurde mit den Preferences noch eingestellt, dass die App im Fullscreen-M
 
 \subsubsection{Debugging}
 Anfangs wurde die Applikation während der Entwicklung nur auf dem PC getestet. Da die App rein aus Webtechnologien aufgebaut wird, kann diese auch im Webbrowser ausgeführt werden.\\
-Das betreiben der App auf dem PC zieht einige Vorteile mit sich. Die App muss nicht nach jeder Änderung neu gebuildet und auf das Smartphone geladen werden, sondern kann direkt nach der Änderung des Codes im Webbrowser neu geladen und getestet werden. Des Weiteren hat man im Webbrowser sehr mächtige Werkzeuge um Fehler im Code zu finden, zum Beispiel die Entwicklerkonsole.\\
+Das betreiben der App auf dem PC zieht einige Vorteile mit sich. Die App muss nicht nach jeder Änderung neu \enquote{gebuildet} und auf das Smartphone geladen werden, sondern kann direkt nach der Änderung des Codes im Webbrowser neu geladen und getestet werden. Des Weiteren hat man im Webbrowser sehr mächtige Werkzeuge um Fehler im Code zu finden, zum Beispiel die Entwicklerkonsole.\\
 Als die Entwicklung der App weiter fortgeschritten war, muss sie natürlich auch auf dem Smartphone getestet werden, da Probleme die am Smartphone auftreten am PC oft nicht auftreten. Dabei wurde darauf geachtet, dass die App möglichst auf mehreren verschiedenen Geräten getestet wird, um auszuschließen das, die Applikation nur auf einem Gerät funktioniert.\\
 \subsubsection{Erstellen einer App mit PhoneGap}
 Um die App zu erstellen wurde die Onlinevariante von PhoneGap, PhoneGap Build, verwendet. Dazu muss man sich zuerst bei AdobeSystems registrien, das kann man aber kostenlos machen.\\
@@ -185,16 +185,16 @@ Danach meldet man sich unter \href{https://build.phonegap.com}{https://build.pho
 \end{figure}
 
 Hier muss man nun den Reiter \enquote{private} auswählen, damit man die Appdaten in Form eines Zipfiles hochladen kann.
-Um Fortzufahren, muss man nun das Zipfile, in welchem die Daten für die App(alle HTML, CSS und JavaScript-Files) gespeichert sind, hochladen.\\
+Um fortzufahren, muss man nun das Zip-File, in welchem die Daten für die App(alle HTML, CSS und JavaScript-Files) gespeichert sind, hochladen.\\
 Ist das geschehen, versucht die Webseite die Apps für Android, WindowsPhone und iOS zu compilieren. Für Android und WindowsPhone funktioniert das auch, falls der Code und vor allem die Konfigurationsdatei korrekt sind, aber bei iOS kommt eine Fehlermeldung. Denn um Apps für iOS zu erstellen benötigt man Zertifikate, welche man nur als Apple-Developer bekommt.\\
-Nach dem ersten Build sieht man, dass für den Appnamen das Appsymbol und weitere Einstellungen die Einstellungen aus der config.xml übernommen wurden.\\
+Nach dem ersten Build sieht man, dass für den Appnamen das Appsymbol und weitere Einstellungen aus der config.xml übernommen wurden.\\
 
 \begin{figure}[H]
 \includegraphics[keepaspectratio=true, width=14cm]{images/phoneGap/PhoneGap2.png}
 \caption{PhoneGapwebsite vom 21.04.2014}
 \end{figure}
 
-Um die Applikation zu updaten, müssen alle Dateien die verändert wurden in der ZIP-Datei ausgetauscht werden und die ZIP-Datei muss neu hochgeladen werden. Dazu klickt man einfach auf \enquote{Update code} und wählt dann die gewünschte ZIP-Datei aus.\\
+Um die Applikation upzudaten, müssen alle Dateien die verändert wurden in der ZIP-Datei ausgetauscht werden und die ZIP-Datei muss neu hochgeladen werden. Dazu klickt man einfach auf \enquote{Update code} und wählt dann die gewünschte ZIP-Datei aus.\\
 Die Android-App und die App für WindowsPhone kann man jetzt bereits testen. Bei Android muss man dazu nur zuerst in den Einstellungen, im Untermenü Anwendungen, die Option \enquote{Unbekannte Quellen} aktivieren. Dann kann man einfach das APK-File auf das Gerät laden(entweder direkt mit dem Gerät downloaden oder via USB, Bluetooth, etc. auf das Gerät laden) und ausführen, und die Applikation wird wie jede andere App installiert. Nun kann man die App nutzen.\\
 Die App auf dem WindowsPhone zu nutzen ist etwas umständlicher. Entweder man stellt die App direkt in den Store oder wenn man sie nur testen möchte, kann man die App auch mit Hilfe von Developer Tools direkt auf das Smartphone laden und testen.\\
 Damit die Android-App in den Play-Store von Google geladen werden kann, muss diese zuerst noch signiert werden. Dazu muss eine Keystore-Datei erzeugt werden, mit welcher die App signiert werden kann.\\
@@ -214,7 +214,7 @@ Wenn man nun das Dropdownmenü neben dem Androidsymbol öffnet,\\
 erscheint ein Punkt \enquote{add a key…}. Wenn man diesen Punkt auswählt wird man aufgefordert eine Datei hochzuladen, dabei handelt es sich um die Keystore-Datei, welche zuvor erzeugt wurde. Dann muss man dem Schlüssel noch einen Namen geben und bestätigen.\\
 Nun kann man in diesem Dropdownmenü den hochgeladenen Schlüssel auswählen, um ihn zu nutzen muss man zuerst noch ein Passwort eingeben, das ist jenes Passwort welches zuvor beim erstellen des Keystore-Files angegeben wurde. Wenn man nun einen Rebuild macht, bekommt man eine Android-Release-App, welche auch im Play-Store veröffentlicht werden kann.
 Bei iOS benötigt es bereits ein Entwicklerzertifikat, um eine Debug-App zu erstellen. Um ein solches Zertifikat zu erstellen muss man bei Apple als Developer angemeldet sein und 99\$ im Jahr bezahlen.\\
-Für dieses Projekt wurde der Apple-Enterprise-Account der Schule genutzt. Man benötigt nur eine Apple ID (Registrierung unter \href{https://developer.apple.com/register/}{https://developer.apple.com/register/} ), mit dieser kann man dann von einem Administrator (in unserem Fall Direktor Laner) zum Account hinzugefügt werden.\\
+Für dieses Projekt wurde der Apple-Enterprise-Account der Schule genutzt. Man benötigt nur eine Apple ID (Registrierung unter \href{https://developer.apple.com/register/}{https://developer.apple.com/register/} ), mit dieser kann man dann von einem Administrator (in unserem Fall Direktor Mag. Laner) zum Account hinzugefügt werden.\\
 Nachdem man zum Enterprise-Programm hinzugefügt wurde, muss man das MemberCenter (https://developer.apple.com/membercenter/ ) öffnen.\\
 
 \begin{figure}[H]
@@ -247,7 +247,7 @@ Wenn man nun das Dropdownmenü neben dem Apple-Logo öffnet,
 
 erscheint ein Punkt \enquote{add a key…}. Wenn man diesen Punkt auswählt wird man aufgefordert zwei Dateien hochzuladen, eine P12-Datei und ein Provisioning-File, dabei handelt es sich um die beiden Dateien die gerad erstellt wurden. Wenn diese Dateien hochgeladen wurden kann die Applikation erstellt werden.\\
 Hat man ein Developer-Zertifikat erstellt, kann die erstellte App nur auf den in dem Zertifikat bestimmten Geräten betrieben werden, wurde aber ein Distribution Zertifikat erstellt, kann die App nun auf allen iOS-Geräten verwendet werden.\\
-Um die App für den App-Store zu builden, wurden uns die Zertifikate von Direktor Günther Laner zur Verfügung gestellt, da die Applikation über den Developer Account des Direktors veröffentlicht wird.\\
+Um die App für den App-Store zu builden, wurden uns die Zertifikate von Direktor Mag. Günther Laner zur Verfügung gestellt, da die Applikation über den Developer Account des Direktors veröffentlicht wird.\\
 
 
 

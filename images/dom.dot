@@ -1,0 +1,31 @@
+digraph database {
+	rankdir=TB;
+	splines=ortho;
+	ranksep="0.3 equally";
+	
+	node [shape=box];
+
+	Document [label="\\parbox{3cm}{\\begin{center}Document\\\\\\end{center}}"];
+	root [label="\\parbox{3cm}{\\begin{center}Root Element:\\\\<html>\\end{center}}"];
+	head [label="\\parbox{3cm}{\\begin{center}Element:\\\\<head>\\end{center}}"];
+	body [label="\\parbox{3cm}{\\begin{center}Element:\\\\<body>\\end{center}}"];
+	title [label="\\parbox{3cm}{\\begin{center}Element:\\\\<title>\\end{center}}"];
+	a [label="\\parbox{3cm}{\\begin{center}Element:\\\\<a>\\end{center}}"];
+	h1 [label="\\parbox{3cm}{\\begin{center}Element:\\\\<h1>\\end{center}}"];
+	att [shape=oval, label="\\parbox{3cm}{\\begin{center}Attribut:\\\\\\enquote{href}\\end{center}}"];
+	txttitle [label="\\parbox{3cm}{\\begin{center}Text:\\\\\\enquote{My Title}\\end{center}}"];
+	txttext0 [label="\\parbox{3cm}{\\begin{center}Text:\\\\\\enquote{My Link}\\end{center}}"];
+	txttext1 [label="\\parbox{3cm}{\\begin{center}Text:\\\\\\enquote{My Text}\\end{center}}"];
+	
+	Document -> root;
+	root -> head;
+		head -> title;
+			title -> txttitle;
+	root -> body;
+		body -> a;
+			a -- att;
+			{rank=same; a att}
+			a -> txttext0;
+		body -> h1;
+			h1 -> txttext1;
+}

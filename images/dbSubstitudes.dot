@@ -10,6 +10,7 @@ digraph database {
 	Supplierungen -> {Stunden Lehrer Zeiten Zeiten Fächer Räume};
 	"fehlende Lehrer" -> Lehrer;
 	"fehlende Klassen" -> Klassen;
+	News -> Abteilungen;
 
 	{rank=same; News}
 	{rank=same; Lehrer Räume Zeiten Fächer Abteilungen}

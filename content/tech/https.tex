@@ -1,5 +1,5 @@
 \subsection{HTTP (Weiland)}
-
+\label{sec:content_tech_https}
 Das "'Hypertext Transfer Protocol"' ist ein Protokoll des Application Layers des OSI-Layer-Modells.
 \\
 HTTP ist ein zustandsloses Protokoll. Anfragen werden stets getrennt behandelt, auch wenn sie vom selben Client stammen. Dies kann durch eine Session geändert werden.
@@ -68,7 +68,7 @@ Diese unterscheiden sich insofern, dass bei HTTP/1.0 für jede Anfrage eine neue
 \subsection{HTTPS (Weiland)}
 HTTPS (= Hypertext Transfer Protocol Secure) dient zur Verschlüsselung der Verbindung von Client zu Server. Dies geschieht mittels SSL/TLS. Diese Möglichkeit der Herstellung einer sicheren Verbindung besitzt den Vorteil, dass hierfür auf dem Client keine Installation einer speziellen Software nötig ist.
 \subsubsection{Verbindungsaufbau}
-Zuerst wird eine Authentifizierung und eine Identifizierung der Kommunikationspartner durchgeführt. Dann wird ein symmetrischer Schlüssel \enquote{ausgemacht}. Für diesen Vorgang kann entweder eine asymmetrische Verschlüsselung oder der \enquote{Diffie-Hellman-Merkle-Schlüsselabtauch} verwendet werden. Dies soll gewährleisten, dass nur die beiden Kommunikationspartner die Verschlüsselung kennen.
+Zuerst wird eine Authentifizierung und eine Identifizierung der Kommunikationspartner durchgeführt. Dann wird ein symmetrischer Schlüssel \enquote{ausgemacht}. Für diesen Vorgang kann entweder eine asymmetrische Verschlüsselung oder der \enquote{Diffie-Hellman-Merkle-Schlüsselabtausch} verwendet werden. Dies soll gewährleisten, dass nur die beiden Kommunikationspartner die Verschlüsselung kennen.
 \subsubsection{Zertifikate}
 Für SSL wird ein digitales Zertifikat benötigt, welches von einer Zertifizierungsstelle ausgestellt wird.
 \paragraph{Erhalten eines Zertifikats}

@@ -8,8 +8,8 @@ In der Schule sind im Wesentlichen 4 Berechtigungsstufen vorhanden.
 	\item Administratoren
 \end{itemize}
 Diese Gliederung wird 1:1 in SIS übertragen, allerdings wird zusätzlich eine Gruppe für die \enquote{Newsbeauftragten}, welche gegenüber den Schülern/Lehrern zusätzlich die Berechtigung haben, den Abteilungsvorständen News vorzuschlagen, vorgesehen.\\
-Da die Benutzer-Authentifizierung über den LDAP-Server läuft, liegt der Gedanke nahe, dass auch die Autorisierung über LDAP laufen könnte.\\
-Da alle Lehrer automatisch im eDirectory-Container ou=LEHRER,o=HTLinn und die Schüler automatisch im eDirectory-Container ou=STUDENTS,o=HTLinn liegen, lässt sich anhand des DN des Benutzers ausgelesen werden, ob es sich um einen Lehrer oder um einen Schüler handelt.\\
+Da die Benutzer-Authentifizierung über den LDAP-Server läuft, ist es naheliegend, dass auch die Autorisierung über LDAP laufen könnte.\\
+Weil alle Lehrer-Objekte automatisch im eDirectory-Container ou=LEHRER,o=HTLinn und die Schüler-Objekte automatisch im eDirectory-Container ou=STUDENTS,o=HTLinn liegen, lässt sich anhand des DN des Benutzers auslesen, ob es sich um einen Lehrer oder um einen Schüler handelt.\\
 \subsubsection{eDirectory-Gruppen}
 Für alle weiteren logischen Gruppen werden vom eDirectory-Administrator auch dementsprechende eDirectory-Gruppen erstellt:
 \begin{itemize}
