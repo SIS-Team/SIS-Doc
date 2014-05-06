@@ -522,7 +522,7 @@ Dabei gibt es zwei verschiedene Varianten:
 	In Zeile 36 ist die Abfrage für die ID zu sehen. In Zeile 38 wird der Rückgabewert mit der Funktion \texttt{control()} überprüft, dieser Rückgabewert wird in eine Variable gespeichert. Anschließend wird in Zeile 40 der Wert in das Array geschrieben. (Funktion \texttt{control} siehe Abschnitt \nameref{sec:content_imple_control})
 \end{itemize}
 In diesem Formular gibt es eine Check Box, bei dieser kann nicht einfach der Wert in das Array geschrieben werden, da in die Datenbank ein True oder False geschrieben werden muss. Bei aktivierter Check Box wird jedoch der Name der Check Box zurückgegeben. Darum muss in Zeile 49 geprüft werden, ob das Array-Element leer ist. Ist es nicht leer muss dem Array True zugewiesen werden.\\
-In der Zeile 53 wird geprüft, ob bei Löschen ein Hacken im Formular gesetzt wurde und ob bei allen Überprüfungen 1 in die Variablen geschrieben wurde. Ist die Multiplikation der Kontroll-Variablen 1, dann ist alles korrekt abgelaufen und der Datensatz kann in der Zeile 54 eingefügt werden. (Funktion \texttt{saveupdate} siehe Abschnitt \nameref{sec:content_imple_saveupdate})
+In der Zeile 53 wird geprüft, ob bei Löschen ein Haken im Formular gesetzt wurde und ob bei allen Überprüfungen 1 in die Variablen geschrieben wurde. Ist die Multiplikation der Kontroll-Variablen 1, dann ist alles korrekt abgelaufen und der Datensatz kann in der Zeile 54 eingefügt werden. (Funktion \texttt{saveupdate} siehe Abschnitt \nameref{sec:content_imple_saveupdate})
 
 \lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 14 - 55},  label={lst:content_imple_insert_std}, firstline =14, lastline = 55, firstnumber = 14 ]{sources/database/inserts.php}
 
