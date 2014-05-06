@@ -1,7 +1,7 @@
 \subsection{PHP}
 Für die serverseitige Programmierung gibt es viele Lösungsansätze. 
 \subsubsection{Gewählte Lösung}
-Wir wählten für unser Projekt PHP, da diese Sprache quasi die Standard-Programmiersprache für serverseitige Webprogrammierung darstellt. Ein weiterer Grund ist, dass der Server, auf welchem unsere Seite laufen sollte, bereits Apache 2 als Webserver, mit dem dazugehörigen PHP-Modul und der MySQL-Datenbank-Server installiert waren. Es musste daher nur noch das LDAP-Modul für PHP installiert werden.
+Wir wählten für unser Projekt PHP, da diese Sprache quasi die Standard-Programmier-sprache für serverseitige Webprogrammierung darstellt. Ein weiterer Grund ist, dass der Server, auf welchem unsere Seite laufen sollte, bereits Apache 2 als Webserver, mit dem dazugehörigen PHP-Modul und der MySQL-Datenbank-Server installiert waren. Es musste daher nur noch das LDAP-Modul für PHP installiert werden.
 \subsubsection{Alternative Lösungen}
 \paragraph{CGI} (Common Gateway Interface) ist eine Schnittstelle zwischen Webserver und dem eigentlich Programm, dass die Website zur Verfügung stellt. CGI ist dabei schon lange in Verwendung um Webseiten interaktiv zu gestalten. Als Programmiersprache hinter CGI sind viele verschiedene möglich. Es sind kaum Grenzen für die Programmiersprache vorhanden.\\
 Ein großer Nachteil besteht darin, dass für jede Anfrage auf den Webserver ein eigener CGI Prozess gestartet wir. Dies ist natürlich nicht sehr ressourcensparend. Um dies zu umgehen gibt es mittlerweile verschiedene Module, die direkt mit dem Apache geladen werden, dadurch wird der Interpreter für die jeweilige Sprache nur einmal als Prozess gestartet.\\

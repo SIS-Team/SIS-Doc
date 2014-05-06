@@ -44,6 +44,7 @@ Der Aufbau ist recht simpel. Jede Zeile entspricht einem Input-Feld und jede Spa
 Mit diesen Eigenschaften können beliebige Eingabemasken erstellt werden, die einzige Voraussetzung ist, dass sich alle Input-Felder in einer Zeile  befinden müssen.\\
 Für eine bessere Darstellung befindet sich jede Zeile in einer eigenen Tabelle. Jedes Input-Feld in einer eigenen Zelle. Jede Tabelle wird mit einem Formular umschlossen. Somit entspricht jede Zeile einem eigenen Formular. Dies hat zur Folge, dass jede Zeile eigens bearbeitet werden kann.\\
 Eine Idee war, dass alle Zeilen in einer Tabelle sind, dies ist jedoch nicht so einfach realisierbar, da die leere Zeile keine Löschfunktion hat und somit auch weniger Spalten. Dies mit ein zu beziehen würde es unnötig verkomplizieren. Somit wurde diese Möglichkeit nicht verwendet.
+\newpage
 \paragraph{Parameter \$content\\}
 Mit diesem Funktionsparameter werden die Inhalte der Input-Felder mitgegeben. Wird diesem Parameter ein \texttt{false} mitgegeben, so wird eine leere Zeile erstellt. Soll jedoch die Zeile mit Inhalt befüllt werden, so wird dieser Variable ein eindimensionales Array mitgegeben. Diese Routine wurde so konzipiert, dass dieser Inhalt einem Datensatz des MySQL-Querys, der mit der Funktion \texttt{mysql\_fetch\_array} verarbeitet wurde, entspricht. (siehe \autoref{lst:content_imple_input_bsp} Zeile 56)\\
 Mit der \textit{While-Schleife}, in Zeile 56-58 im \autoref{lst:content_imple_input_bsp}, werden alle zurückgegebenen Datensätze einzeln verarbeitet und der Funktion \texttt{form\_new} mitgegeben. Dadurch wird für jeden einzelnen Datensatz eine Zeile erstellt.\\
@@ -106,6 +107,9 @@ Um den Code besser erklären zu können wird er in mehrere Teile zerlegt.\\
 	\end{itemize}
 	Da diese Werte abhängig von der ausgewählten Eingabeart der Supplierungen sind, muss die Zuweisung der Variablen unter Umständen abgeändert werden.\\
 	In den Zeilen 241 - 244 wird die Farbe des Striches unter jeder Eingabezeile definiert. Diese wird rot eingefärbt, wenn ein Fehler aufgetreten ist. Ist ein Fehler aufgetreten, ist der Inhalt nicht aus einer MySQL Abfrage, sondern wird direkt aus den Werten entnommen, welche über POST der Webseite übergeben werden. Wird der Inhalt aus den POST-Variablen entnommen, dann gibt es eine Variable mit dem Namen \texttt{hash}, daraus kann geschlossen werden, dass es eine Fehleingabe ist und der Strich rot eingefärbt werden muss, sonst wird er weiß eingefärbt.\\
+	
+\newpage
+
 	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile  221 - 244},  label={lst:content_imple_input_substitudes_1}, linerange={221-244}, firstnumber=221 ]{sources/input/form.php}
 	
 	\item \autoref{lst:content_imple_input_substitudes_2}\\
@@ -253,6 +257,8 @@ In den nächsten Punkten werden die Codezeilen in einzelnen Teilen zerlegt und g
 	\item \autoref{lst:content_imple_input_form_lessons_3}\\
 	In dieser Codesequenz werden die einzelnen Input-Typen für eine Zeile erstellt. Dabei wird, wie in den anderen Routinen auch, das \texttt{\$field}-Array durchlaufen. Mittels \textit{If}-Abfrage wird der Input-Typ ausgewählt.\\
 	In den Zeilen 159 - 165 wird geprüft, ob Inhalt eingefügt werden muss oder nicht. Dies wird mittels der Variable \texttt{\$index} überprüft, ist diese Variable gesetzt, dann muss ein Inhalt eingefügt werden. Außerdem wird auch die Variable \texttt{\$edit} auf \texttt{readonly} gesetzt, diese wird später benötigt, um die Felder Länge und Teilung zu sperren. Dies hat den Hintergrund, dass es zu Problemen kommen kann, wenn diese 2 Parameter geändert werden, wenn schon Daten vorhanden sind.\\
+
+\newpage
 	
 	\lstinputlisting[style=custom, language=php, caption={/modules/form/form.php; Zeile 159 - 167},  label={lst:content_imple_input_form_lessons_3}, firstline =159, lastline = 167, firstnumber = 159 ]{sources/input/form.php}
 	
@@ -285,7 +291,9 @@ Für die Eingabemaske der Stundenpläne werden 4 JavaScript Funktionen benötigt
 	Mit dieser Funktion wird ein Text, der mit dem Parameter \texttt{text} der Funktion übergeben wird, in alle Zeilen einer Stunde geschrieben. Die Stunde wird mit dem Parameter \texttt{hour} mitgegeben.
 	
 	\lstinputlisting[style=custom, language=java, caption={/data/scripts/lesson.js; Zeile 51 - 62},  label={lst:content_imple_input_form_lessons_java_2}, firstline =51, lastline = 62, firstnumber = 51 ]{sources/input/lessons.js}
-	
+
+\newpage
+
 	\item \texttt{changeText()}\\
 	Diese Funktion schreibt den, in das Teilungsfeld, eingegebenen Text in alle anderen Zeilen der Stunde. Die Stunde wird mit dem Parameter \texttt{hour} übergeben.
 	

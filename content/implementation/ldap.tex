@@ -44,6 +44,7 @@ In der Funktion \texttt{getRights(\$ent)} wird anfangs das Rechte-Array initiali
 Für die Beta-Phase wird bei den vier Entwicklern das \texttt{root}-Flag gesetzt (Die Entwickler werden durch ihren CN identifiziert.).\\
 Das Berechtigungs-Array wird aus der Funktion zurückgegeben.\\
 
+\newpage
 \lstinputlisting[style=custom, language=php, caption={/modules/general/LDAP.php; \texttt{LDAP\_login()}; Zeilen 17-29}, label={lst:content_imple_ldap_login}, firstline=17, lastline=29, firstnumber=17]{sources/ldap/LDAP.php}
 Die Login-Funktion verlangt als Parameter den DN des Benutzers (dieser muss zuvor ausgelesen werden) und das Passwort.\\
 Sollte kein LDAP-Host eingetragen sein, wird der Testbenutzer verwendet, es findet kein Bind statt. Der DN für den Testbenutzer ist \texttt{cn=123345678,ou=STUDENTS,o=HTLinn} (das entspricht dem Benutzernamen \enquote{12345678}), das Passwort ist \enquote{sister}.\\

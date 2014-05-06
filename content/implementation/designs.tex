@@ -1,3 +1,5 @@
+\newpage
+
 \subsection{Designs}
 \subsubsection{Menü}
 Die Generierung des Menüs erfolgt in der Datei /modules/menu/Main.php.\\
@@ -86,6 +88,7 @@ Die Einträge im Array \texttt{\$buttons} haben folgende Schlüssel:\\
 \end{table}
 Diese gloabel Konfigurationsfelder können/müssen durch den Benutzer verändert werden, um das Menü anzupassen.\\
 Die zwei Konstanten \texttt{BASE\_RL} und \texttt{BASE\_LR} referenzieren absolut auf zwei Graphiken (siehe später).
+\newpage
 \paragraph{Ausgabe\\}
 Die Ausgabe des Menüs ist eigentlich ziemlich trivial, es sollen hier nur die interessanten Teile näher betrachtet werden.\\
 Um die HTML-Struktur der unter logischen und numerischen Identifizierung der Menüteile anzupassen, wurde vereinfacht gesprochen folgender Aufbau verwendet (es wird nur Knoten unterhalb des \texttt{body}-Tags berücksichtigt):
@@ -138,6 +141,7 @@ Um die HTML-Struktur der unter logischen und numerischen Identifizierung der Men
 \end{lstlisting}
 Das Beispiel unter \autoref{lst:content_imple_design_htmlstruct} ist natürlich nicht vollständig. Allerdings soll es den prinzipiellen Aufbau zeigen. An der Stelle des Kommentares über die untere Hälfte, steht nochmal der Code der oberen Hälfte, nur, dass die ID des Divs nun \texttt{menuDown} lauten würde und die Punkte haben selbstverständlich andere Nummern.\\
 \\
+\newpage
 Bei der Betrachtung fällt auf, dass der obere und der untere Teil des Logos getrennt eingebunden ist. Dies ist begründet dadurch, dass, wie bereits unter \gref{sec:content_draft_design_web} erwähnt wurde, das Logo bei Klick auf einen Menüpunkt in einer Animation auseinanderfahren soll. Dies ist am leichtesten möglich, indem man das Bild in zwei Sub-Bilder aufteilt. Das Logo wurde allerdings nicht willkürlich zerteilt, sondern wurde anhand der Kanten zerschnitten, was bei den Animationen dann letzten Endes schöner wirkt (siehe \autoref{fig:content_impl_design_logo-down} und \autoref{fig:content_impl_design_logo-down}).\\
 \begin{figure}[H]
 	\centering
@@ -166,6 +170,9 @@ Bei der Betrachtung fällt auf, dass der obere und der untere Teil des Logos get
 	\end{minipage}
 \end{figure}
 Die Ausgabe der Menüpunkte (\autoref{lst:content_imple_design_htmlstruct}) soll nun am Beispiel des Punktes 2 (dies entspricht dem ORL1) näher erläutert werden.\\
+
+\newpage
+
 \lstinputlisting[style=custom, language=php, caption={/modules/menu/Main.php; Bespiel: Menüpunkt 2; Zeilen 65-78}, label={lst:content_imple_menu_2}, firstline=65, lastline=78, firstnumber=65]{sources/menu/Main.php}
 Der Div, der den Menüpunkt umschließt, bekommt die HTML-Klasse \texttt{notUsed} angehängt, im Fall, dass der Wert des \texttt{display}-Schlüssels für den Punkt 2 \texttt{false} ist. Diese Klasse blendet im Grund den Div aus.\\
 Kann der Button verwendet werden - also wenn sein \texttt{enabled}-Schlüssel auf \texttt{true} (technisch gesehen ist hier jeder Wert außer 0 gültig, aber logisch ist es entweder \texttt{true} oder \texttt{false}) gesetzt ist - so wird die Ziel-URL des Links in einen Div-Tag der Klasse \texttt{linkAdr} (Elemente dieser Klasse sind nicht sichtbar) geschrieben. Später wird via JavaScript der Link aus diesem Div ausgelesen und die \texttt{onclick}-Events für das Bild und den Text darunter neu gesetzt.\\

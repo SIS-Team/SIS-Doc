@@ -1,0 +1,72 @@
+\subsubsection{Überlegungen}
+
+Die Software zum regelmäßigen Anfragen am Server muss bereits beim Systemstart mitgestartet werden. Es bietet sich an, die Scripts über die Datei /etc/rc.local zu starten, da diese Datei relativ unkompliziert verwendet werden kann (siehe  \autoref{lst:report_attachment_rclocal} Zeilen 20 und 22, Seite \pageref{lst:report_attachment_rclocal}).\\
+
+\subsubsection{Darstellung}
+
+Damit kein Tool für den automatischen Login installiert werden muss, wird der Default-Runlevel auf 2 gesetzt (Dies kann durch Modifikation des Schlüssels \enquote{initdefault} in der Datei /etc/inittab erreicht werden. Siehe \autoref{lst:report_attachment_inittab} Zeile 5, Seite \pageref{lst:report_attachment_inittab}.) und der X-Server manuell gestartet.\\
+Das Starten des X-Servers wird durch das Script /usr/bin/sis-x initialisiert.
+
+\lstinputlisting[style=custom, language=sh, caption={/usr/bin/sis-x}, label={lst:report_software_sis-x}]{sources/raspberry/sis-x.x}
+
+Wie in \autoref{lst:report_software_sis-x} ersichtlich ist, wird überprüft, ob das Script als root gestartet wurde. Wenn dies der Fall sein sollte, dann startet das Script sich selbst mit Benutzerkennung \enquote{pi} neu, wechselt in das Heimverzeichnis des Benutzers (statisch eingetragen als /home/pi) und initialisiert mit dem Befehl \enquote{startx} einen neuen X-Server.\\
+\\
+X11 führt beim Starten die Datei .xinitrc im Heimverzeichnis des Benutzers (also /home/pi/.xinitrc) aus. Siehe dazu \autoref{lst:report_attachment_xinitrc}, Seite \pageref{lst:report_attachment_xinitrc}.\\
+In dieser passiert folgendes:
+\begin{itemize}
+	\item Es wird verhindert, dass der Bildschirm abgedunkelt wird.
+	\item Es wird ein Hintergrundbild gesetzt.
+	\item Das Programm unclutter wird gestartet, welches den Mauszeiger automatisch ausblendet.
+	\item Der Name des Monitors wird aus der Datei /etc/sis.conf ausgelesen.
+	\item Nun wird die Session des Webbrowsers initialisiert (Chromium im App-Modus mit der Startseite http://sis.clients.htlinn.ac.at/monitors/?[Inhalt der /etc/sis.conf]).
+	\item Eine Session des Display-Managers \enquote{blackbox} wird gestartet.
+	\item Nach einer Verzögerungszeit von einer Sekunde wird das Hintergrundbild von Blackbox gesetzt.
+	\item Nach weiteren 19 Sekunden wird mit dem Tool \enquote{xdotool} ein Tastendruck auf F11 simuliert, wodurch der Webbrowser in den Vollbild-Modus geschaltet wird.
+\end{itemize}
+\subsubsection{GPIO}
+Für die Ansteuerung der GPIO Pins werden zwei Shell-Scripts verwendet.
+
+\lstinputlisting[style=custom, language=sh, caption={/usr/bin/monitorOn}, label={lst:report_software_monitorsOn}]{sources/raspberry/monitorOn.x}
+
+\lstinputlisting[style=custom, language=sh, caption={/usr/bin/monitorOff}, label={lst:report_software_monitorsOff}]{sources/raspberry/monitorOff.x}
+
+Zuerst wird geprüft, ob derausführende Benutzer root ist. Dies hat den Grund, dass nur root auf das GPIO-System schreiben darf.\\
+Danach wird mit der Zeile 8 der GPIO-Pin 4 aktiviert. Der Pipe-Operator \enquote{2>\&1} dient dazu, dass etwaige Fehlermeldungen nicht ausgegeben werden (diese entstehen, wenn der Pin bereits als GPIO-Pin verwendet wird).\\
+Nun (Zeile 9) wird der GPIO-Pin als Ausgang konfiguriert.\\
+Also letztes wird nur noch der jeweilige Wert auf die Datei \enquote{value} geschrieben. Hierbei symbolisiert 1 das logische \textit{true}, und damit das Verhandensein der Steuerspannung (3.3 V) am Pin, und 0 das logische \textit{false}, also 0 V.
+
+\subsubsection{Verteilung}
+
+\paragraph{Clientseitig}
+wird für die Verteilung der Befehle ein Script erstellt, das beim Systemstart mitgestartet wird (über /etc/rc.local) und danach regelmäßig Anfragen an den Server schickt.
+Dieses Script wird unter /usr/bin/sis-monitors gespeichert.\\
+Für den Inhalt siehe \autoref{lst:report_attachment_sis-monitors}, Seite \pageref{lst:report_attachment_sis-monitors} (Flußdiagramm siehe \autoref{fig:report_software_sis-monitors}).\\
+
+\paragraph{Serverseitig} werden im API-Ordner der Monitore (/monitors/api/) zwei PHP-Scripts erstellt.\\
+Das Script display.php gibt \enquote{true}, für eingeschaltenen Monitor, beziehungsweise \enquote{false}, für ausgeschaltenen Monitor, zurück (siehe \autoref{fig:report_software_sis-display} und \autoref{lst:report_attachment_display}).\\
+Das Script restart.php dient dazu den X-Server des Raspberrys neuzustarten. Da dieses Verhalten nicht so häufig benötigt wird, wird dazu das Vorhandensein der Datei /tmp/restartx.ex geprüft (siehe \autoref{fig:report_software_sis-restart} und \autoref{lst:report_attachment_restart}). Für die Abarbeitung am Raspberry siehe \autoref{fig:report_software_sis-monitors}.
+\\
+\begin{figure}[H]
+\centering
+\resizebox{16cm}{!}{
+	\fdot[scale=0.9]{images/flowcharts/sis-monitors}
+}
+\caption{Programm-Ablauf sis-monitors}
+\label{fig:report_software_sis-monitors}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\resizebox{17cm}{!}{
+	\fdot[scale=0.9]{images/flowcharts/display}
+}
+\caption{Programm-Ablauf display.php}
+\label{fig:report_software_sis-display}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\fdot[scale=0.9]{images/flowcharts/restart}
+\caption{Programm-Ablauf restart.php}
+\label{fig:report_software_sis-restart}
+\end{figure}

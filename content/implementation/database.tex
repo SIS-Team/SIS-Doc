@@ -72,6 +72,7 @@ In dieser Tabelle werden alle Stunden gespeichert, mit deren Anfangs- und Endzei
 \caption{Stunden-Tabelle}
 \end{table}
 
+\newpage
 \paragraph{Stundenplan\\}
 Für den Stundenplan sind 2 Tabellen notwendig. In einer Tabelle werden die Basisstunden einer Klasse gespeichert. In der anderen Tabelle werden die Baisstunden mit den anderen Informationen verknüpft. (siehe \autoref{sec:content_solution_db})
 
@@ -195,6 +196,7 @@ Da ein User mehrere Sessions und eine Session hintereinander mehrere User haben 
 \caption{User-Session-Tabelle}
 \end{table}
 
+\newpage
 \subparagraph{Session-Log\\}
 Alle eröffneten Sessions mit dem Server werden hier gespeichert. Diese werden später in der Tabelle \textit{logsUSConn} mit dem User zusammengeführt. Der Tabellenname lautet \textit{logsSessions}. Die Tabelle umfasst insgesamt 5 Spalten.
 
@@ -532,6 +534,7 @@ Für den Supplierplan musste eine sehr aufwendige Funktion geschrieben werden, d
 \item \autoref{lst:content_imple_insert_suppl_1}\\
 Bei der Insert-Funktion der Supplierungen werden keine vorhandenen Einträge, bei einem aktualisieren eines Eintrages, verändert, sondern der Eintrag wird gelöscht und anschließend neu erstellt. In Zeile 295 wird abgefragt, ob der Eintrag eine ID hat, wenn ja, wird ein bestehender Eintrag aktualisiert. Wenn nicht, dann ist es ein neuer Eintrag. Bei einem bestehendem Eintrag wird diese in dn Zeilen 298 - 299 gelöscht. Anschließend muss noch die alte ID aus dem Array gelöscht werden, dies wird in Zeile 300 durchgeführt. 
 
+\newpage
 \lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 295 - 302},  label={lst:content_imple_insert_suppl_1}, firstline =295, lastline = 302, firstnumber = 295 ]{sources/database/inserts.php}
 
 \item \autoref{lst:content_imple_insert_suppl_2}\\
@@ -546,6 +549,7 @@ Diese Abfrage ist in Zeile 359 zu sehen. Der erste Teil wird abgearbeitet wenn k
 Im zweiten Teil wird eine Supplierung für einen bestimmten Lehrer eingetragen. In den Zeilen 380 - 383 wird die Stunde des Lehrers abgefragt. In den Zeilen 385 - 388 wird eine Supplierung für diesen Lehrer eingetragen. Dies geschieht nur, wenn eine Stunde zu diesem Lehrer gefunden wurde, dies wird in der Zeile 385 überprüft. Ist keine gefunden worden, so wird ein False zurückgegeben.\\
 Dieser Teil ist ebenfalls bei der Verschiebung vorhanden.
 
+\newpage
 \lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 359 - 389},  label={lst:content_imple_insert_suppl_3}, firstline =359, lastline = 389, firstnumber = 359 ]{sources/database/inserts.php}
 
 \item \autoref{lst:content_imple_insert_suppl_4}\\
@@ -577,6 +581,8 @@ Diese Funktion unterscheidet sich von den anderen dadurch, dass bei den Stundenp
 	
 	\item \autoref{lst:content_imple_insert_stund_3}\\
 	Dieser Codeteil übernimmt das Löschen und das Speichern der Stunden. Mit der \textit{If}-Abfrage in der Zeile 127 wird überprüft, ob gespeichert oder gelöscht werden soll. Beim Speichern muss nur die Funktion aufgerufen werden. Beim Löschen werden alle Stunden und Basisstunden gelöscht. Dazu wird in den Zeilen 133 - 137 ein Delete-SQL-Befehl ausgeführt.
+
+\newpage
 	
 	\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 118 - 124},  label={lst:content_imple_insert_stund_3}, firstline =127, lastline = 138, firstnumber = 127 ]{sources/database/inserts.php}	
 	
@@ -602,6 +608,8 @@ Diese Funktion übernimmt die Aufgabe das, in den Insert-Funktionen, definierte 
 	\end{itemize}
 	
 	In der Zeile 580 werden alle Daten zu einem Insert-Befehl zusammengefügt.
+	
+\newpage
 	
 	\lstinputlisting[style=custom, language=php, caption={/modules/database/inserts.php; Zeile 560 - 580},  label={lst:content_imple_saveupdate_1}, firstline =560, lastline = 580, firstnumber = 560 ]{sources/database/inserts.php}
 

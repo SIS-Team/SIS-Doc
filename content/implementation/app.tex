@@ -97,6 +97,7 @@ Um die Inhalte einzutragen muss die HTML-Seite zuerst vollständig geladen sein,
 
 Die Stundenpläne aller Klassen zu sehen ist nur Lehrern erlaubt, deshalb wird nach  dem Laden der Seite überprüft, ob es sich bei dem Benutzer um einen Lehrer handelt. Ist der angemeldete Benutzer ein Lehrer dann wird mittles jQuery der Link mit der ID \enquote{linkForTeacher} eingeblendet.\\
 
+\newpage
 \lstinputlisting[style=custom, language=html, caption={/stundenplan.html; Einblenden eines Links ; Zeilen 29-33}, label={lst:widget}, firstline=29, lastline=33, firstnumber=23]{sources/app/stundenplan.html}
 
 Wenn die Seite \enquote{alle Stundenpläne} geöffnet wird, wird eine Seite geladen auf der ein leeres Dropdownfeld und eine Stundenplantabelle sind. Anfangs wird die Stundenplantabelle ausgeblendet. Nun müssen alle Unterrichtsklassen, welche in der Datenbank eingetragen sind, in das Dropdownfeld eingetragen werden. Dazu wird wieder ein PHP-File über das Source-Attribut eines Script-Tags eingebunden. In dieser Datei werden alle Unterrichtsklassen aus der Datenbank ausgelesen und in ein JSON-Objekt gespeichert.\\
@@ -111,6 +112,8 @@ Zwei DIV-Bereiche wurden ineinander erzeugt, der äußere um die Position des Po
 
 \lstinputlisting[style=custom, language=html, caption={/stundenplan.html; Popup-Container ; Zeilen 204-210}, label={lst:widget}, firstline=204, lastline=210, firstnumber=204]{sources/app/stundenplan.html}
 
+\newpage
+
 \lstinputlisting[style=custom, language=html, caption={/popup.css; CSS des Popups ; Zeilen 1-19}, label={lst:widget}, firstline=1, lastline=19, firstnumber=1]{sources/app/popup.css}
 
 Der dritte Bereich wird benötigt um die restliche Seite auszugrauen, während das Popup geöffnet ist. Dazu werden die Höhe und die Breite dieses DIV-Bereiches auf einen Wert gesetzt, der größer als 100\% ist. Dadurch erstreckt sich der Bereich über die gesamte Seite.\\
@@ -123,6 +126,8 @@ Die Daten die in das Popup-Fenster geschrieben werden, werden aus dem JSON-Objek
 \subsubsection{Dynamische Anpassung des Designs}
 
 Da die Oberfläche der App bei Androidgeräten anders dargestellt wurde, als bei iOS oder WindowsPhone-Geräten, wird nun für Androidgeräte eine andere CSS-Datei als bei anderen Geräten geladen. Dazu wird mit dem BOM-Objekt navigator zuerst überprüft ob es sich um ein Gerät mit Android handelt, ist das der Fall, dann wir mit Hilfe von jQuery im Header des Dokuments ein link-Tag generiert mit dem das gewünschte CSS-File eingebunden wird.
+
+\newpage
 
 \lstinputlisting[style=custom, language=html, caption={/js/osDetection.js; Laden des richtigen CSS; Zeilen 2-10}, label={lst:widget}, firstline=2, lastline=10, firstnumber=2]{sources/app/osDetection.js}
 
@@ -138,6 +143,8 @@ Dazu wird das Menü in zwei Varianten erstellt, einmal im Hochformat und einmal 
 Um die Metadaten der App zu konfigurieren, um bestimmte Einstellungen zu treffen oder um Plugins zu laden wird die Datei config.xml benötigt. Diese Konfigurationsdatei wird zusammen mit allen anderen Dateien in das ZIP-Paket gespeichert und für den PhoneGap build hochgeladen.\\
 Die config.xml besteht grundsätzlich aus XML-Code.\\
 Am Anfang der Datei steht ein Widget-Tag in welchem die ID der Applikation und die Versionsnummer angegeben werden.\\
+ 
+\newpage
  
 \lstinputlisting[style=custom, language=xml, caption={/config.xml; App-Basisinformationen; Zeilen 2-6}, label={lst:widget}, firstline=2, lastline=6, firstnumber=2]{sources/app/config.xml}
 
@@ -175,11 +182,14 @@ Weiters wurde mit den Preferences noch eingestellt, dass die App im Fullscreen-M
 Anfangs wurde die Applikation während der Entwicklung nur auf dem PC getestet. Da die App rein aus Webtechnologien aufgebaut wird, kann diese auch im Webbrowser ausgeführt werden.\\
 Das betreiben der App auf dem PC zieht einige Vorteile mit sich. Die App muss nicht nach jeder Änderung neu \enquote{gebuildet} und auf das Smartphone geladen werden, sondern kann direkt nach der Änderung des Codes im Webbrowser neu geladen und getestet werden. Des Weiteren hat man im Webbrowser sehr mächtige Werkzeuge um Fehler im Code zu finden, zum Beispiel die Entwicklerkonsole.\\
 Als die Entwicklung der App weiter fortgeschritten war, muss sie natürlich auch auf dem Smartphone getestet werden, da Probleme die am Smartphone auftreten am PC oft nicht auftreten. Dabei wurde darauf geachtet, dass die App möglichst auf mehreren verschiedenen Geräten getestet wird, um auszuschließen das, die Applikation nur auf einem Gerät funktioniert.\\
+
+\newpage
 \subsubsection{Erstellen einer App mit PhoneGap}
 Um die App zu erstellen wurde die Onlinevariante von PhoneGap, PhoneGap Build, verwendet. Dazu muss man sich zuerst bei AdobeSystems registrien, das kann man aber kostenlos machen.\\
 Danach meldet man sich unter \href{https://build.phonegap.com}{https://build.phonegap.com} an und kommt es erscheint folgende Seite.\\
 
 \begin{figure}[H]
+\centering
 \includegraphics[keepaspectratio=true, width=14cm]{images/phoneGap/PhoneGap1.png}
 \caption{PhoneGapwebsite vom 21.04.2014}
 \end{figure}
@@ -190,6 +200,7 @@ Ist das geschehen, versucht die Webseite die Apps für Android, WindowsPhone und
 Nach dem ersten Build sieht man, dass für den Appnamen das Appsymbol und weitere Einstellungen aus der config.xml übernommen wurden.\\
 
 \begin{figure}[H]
+\centering
 \includegraphics[keepaspectratio=true, width=14cm]{images/phoneGap/PhoneGap2.png}
 \caption{PhoneGapwebsite vom 21.04.2014}
 \end{figure}
@@ -209,7 +220,11 @@ Nachdem dieser Befehl eingegeben wurde, wird man noch aufgefordert, den Namen de
 Nun wird eine Datei, in diesem Fall mit dem Namen my-release-key.keystore, erstellt.\\
 Wenn man nun das Dropdownmenü neben dem Androidsymbol öffnet,\\
 
+\begin{figure}[H]
+\centering
 \includegraphics[keepaspectratio=true, width=7cm]{images/phoneGap/PhoneGap3.png}
+\caption{Android - \enquote{No key selected}; PhoneGapwebsite vom 21.04.2014}
+\end{figure}
 
 erscheint ein Punkt \enquote{add a key…}. Wenn man diesen Punkt auswählt wird man aufgefordert eine Datei hochzuladen, dabei handelt es sich um die Keystore-Datei, welche zuvor erzeugt wurde. Dann muss man dem Schlüssel noch einen Namen geben und bestätigen.\\
 Nun kann man in diesem Dropdownmenü den hochgeladenen Schlüssel auswählen, um ihn zu nutzen muss man zuerst noch ein Passwort eingeben, das ist jenes Passwort welches zuvor beim erstellen des Keystore-Files angegeben wurde. Wenn man nun einen Rebuild macht, bekommt man eine Android-Release-App, welche auch im Play-Store veröffentlicht werden kann.
@@ -218,6 +233,7 @@ Für dieses Projekt wurde der Apple-Enterprise-Account der Schule genutzt. Man b
 Nachdem man zum Enterprise-Programm hinzugefügt wurde, muss man das MemberCenter (https://developer.apple.com/membercenter/ ) öffnen.\\
 
 \begin{figure}[H]
+\centering
 \includegraphics[keepaspectratio=true, width=14cm]{images/phoneGap/AppleMemberCenter1.png}
 \caption{Applewebsite vom 21.04.2014}
 \end{figure}
@@ -225,6 +241,7 @@ Nachdem man zum Enterprise-Programm hinzugefügt wurde, muss man das MemberCente
 Unter \enquote{Certificates, Indentifiers \& Profiles} kann man nun die benötigten Zertifikate erstellen und downloaden.\\
 
 \begin{figure}[H]
+\centering
 \includegraphics[keepaspectratio=true, width=14cm]{images/phoneGap/AppleMemberCenter2.png}
 \caption{Applewebsite vom 21.04.2014}
 \end{figure}
@@ -243,7 +260,11 @@ Da für PhoneGap aber ein privater Schlüssel in Form eines P12-Files benötigt 
 \\
 Wenn man nun das Dropdownmenü neben dem Apple-Logo öffnet,
 
+\begin{figure}[H]
+\centering
 \includegraphics[keepaspectratio=true, width=7cm]{images/phoneGap/PhoneGap4.png}
+\caption{iOS - \enquote{No key selected}; PhoneGapwebsite vom 21.04.2014}
+\end{figure}
 
 erscheint ein Punkt \enquote{add a key…}. Wenn man diesen Punkt auswählt wird man aufgefordert zwei Dateien hochzuladen, eine P12-Datei und ein Provisioning-File, dabei handelt es sich um die beiden Dateien die gerad erstellt wurden. Wenn diese Dateien hochgeladen wurden kann die Applikation erstellt werden.\\
 Hat man ein Developer-Zertifikat erstellt, kann die erstellte App nur auf den in dem Zertifikat bestimmten Geräten betrieben werden, wurde aber ein Distribution Zertifikat erstellt, kann die App nun auf allen iOS-Geräten verwendet werden.\\
@@ -260,6 +281,7 @@ Um die Applikation in dem gewünschten Store zu veröffentlichen muss zuerst ein
 Um Apps im Play-Store zu veröffentlichen, muss man bei Google als Developer registriert sein. Dazu benötigt man nur einen normalen Google-Account (z.B. eine GMail-Adresse), unter \href{https://developer.android.com}{https://developer.android.com} wählt man dann den Reiter Distribution aus.\\
 
 \begin{figure}[H]
+\centering
 \includegraphics[keepaspectratio=true, width=14cm]{images/appstores/AndroidDeveloper1.png}
 \caption{Android Developer Webseite vom 21.04.2014}
 \end{figure}
@@ -269,6 +291,7 @@ Für dieses Projekt wurde der Google Account von Professor Stecher verwendet und
 Wenn man als Developer registriert ist muss man wieder auf \enquote{Go to Developer Console >>} klicken, dann kommt man zur Developer Konsole, wo man Apps hochladen und bearbeiten kann.\\
 
 \begin{figure}[H]
+\centering
 \includegraphics[keepaspectratio=true, width=14cm]{images/appstores/AndroidDeveloper2.png}
 \caption{Android Developer Webseite vom 21.04.2014}
 \end{figure}
@@ -287,45 +310,55 @@ Nun wählt man auf der Seite \href{https://dev.windowsphone.com/}{https://dev.wi
 Bei iOS wurde auch eine Möglichkeit gefunden den iTunes App Store anfangs zu umgehen und die App über einen anderen Weg zu veröffentlichen bis die App im App Store ist. PhoneGap bietet die Möglichkeit, die App direkt auf dem iPhone zu installieren. Dazu muss man nur die Downloadseite (QR-Code-Link) mit dem iPhone laden und PhoneGap fragt automatisch nach ob die App installiert werden soll.\\
 Die Veröffentlichung der App im iTunes-Store wurde von der Tochter des Direktors, Frau Karin Laner übernommen, daher sind mir nur die Anforderungen an die Applikation bekannt welche von Apple gestellt werden damit diese veröffentlicht werden kann.\\
 Folgende Informationen werden benötigt um die Applikation in den iTunes Store hochzuladen:\\
-• die Installationsdatei welch von PhoneGap heruntergeladen wurde (IPA-Datei)\\
-text:\\
-• App Name\\
-• bundle display name (name below icon on the iPhone)\\
-• version number\\
-• copyright\\
-• primary category\\
-• secondary category (optional)\\
-• rating (any offensive material that requires 12+ rating?, see below)\\
-• free or paid app?\\
-• available in all territories or only certain ones (which countries?)\\
-• available in only German or other languages as well?\\
-• description (in all languages)\\
-• keywords (for search in app store)\\
-• support URL\\
-• contact information\\
-• any encryption within the app?\\
-• any 3rd party content within the app?\\
-files for app store:\\
-• app icon for app store (1024 x 1024 px)\\
-• screenshots:\\
-• 1-5 screenshots for 3,5 inch iPhone: 640 x 960 px\\
-• 1-5 screenshots for 4 inch iPhone: 640 x 1136 px\\
-files within xcode project folder:\\
-• all referenced libraries / frameworks if externals used\\
-• icon\\
-• 57 x 57 px - Icon.png\\
-• 114 x 114 px - Icon@2x.png\\
-• 120 x 120 px - Icon-60@2x.png\\
-• 29 x 29 px - Icon-Small.png\\
-• 58 x 58 px - Icon-Small@2x.png\\
-• 80 x 80 px - Icon-Small-40@2x.png\\
-• Default (loading) asset:\\
-• 320 x 480 px - Default.png\\
-• 640 x 960 px - Default@2x.png\\
-• 640 x 1136 px - Default-568h@2x.png\\
-• 640 x 960 px - iOS7-Default@2x.png\\
-• 640 x 1136 px - iOS7-Default-568h@2x.png\\
-\\
+\begin{itemize}
+\item die Installationsdatei welche von PhoneGap heruntergeladen wurde (IPA-Datei)
+\item App Name
+\item bundle display name (name below icon on the iPhone)
+\item version number
+\item copyright
+\item primary category
+\item secondary category (optional)
+\item rating (any offensive material that requires 12+ rating?, see below)
+\item free or paid app?
+\item available in all territories or only certain ones (which countries?)
+\item available in only German or other languages as well?
+\item description (in all languages)
+\item keywords (for search in app store)
+\item support URL
+\item contact information
+\item any encryption within the app?
+\item any 3rd party content within the app?
+\item files for app store:
+	\begin{itemize}
+		\item app icon for app store (1024 x 1024 px)
+		\item screenshots:
+			\begin{itemize}
+				\item 1-5 screenshots for 3,5 inch iPhone: 640 x 960 px
+				\item 1-5 screenshots for 4 inch iPhone: 640 x 1136 px
+			\end{itemize}
+		\item files within xcode project folder:
+			\begin{itemize}
+				\item all referenced libraries / frameworks if externals used icon
+			\end{itemize}
+		\item icons
+			\begin{itemize}
+				\item 57 x 57 px - Icon.png
+				\item 114 x 114 px - Icon@2x.png
+				\item 120 x 120 px - Icon-60@2x.png
+				\item 29 x 29 px - Icon-Small.png
+				\item 58 x 58 px - Icon-Small@2x.png
+				\item 80 x 80 px - Icon-Small-40@2x.png
+			\end{itemize}
+		\item Default (loading) asset:
+			\begin{itemize}
+				\item 320 x 480 px - Default.png
+				\item 640 x 960 px - Default@2x.png
+				\item 640 x 1136 px - Default-568h@2x.png
+				\item 640 x 960 px - iOS7-Default@2x.png
+				\item 640 x 1136 px - iOS7-Default-568h@2x.png
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
 All diese Informationen und Daten wurden an Frau Karin Laner weitergeleitet, welche sich dann um die weiteren Schritte der Veröffentlichung kümmerte.\\
 
 % Hier dürfen auch auch Sourcecode-Teile vorkommen.

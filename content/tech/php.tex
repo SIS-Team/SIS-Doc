@@ -54,18 +54,23 @@ HOST sis.htlinn.ac.at	//Host
 	//leere Zeile - Trennt Header von Body ab
 user=20091234&password=passwort&send=1	//POST-Parameter
 \end{lstlisting}
+\newpage
 \begin{lstlisting}[style=custom, language=PHP, caption={Beispiel POST},label={lst:content_php_POST}]
 <html>
 	<head>
 	</head>
 	<body>
 		<?php
-			if(!empty($_POST['text']))	//Wenn die Variable text nicht leer ist
-				echo $_POST['text'];	//Soll der Text ausgegeben werden
+			if(!empty($_POST['text']))	
+			//Wenn die Variable text nicht leer ist
+				echo $_POST['text'];	
+				//Soll der Text ausgegeben werden
 			else	//Wenn sie leer ist
-				echo "nichts eingegeben";	//Soll eine Warnung ausgegeben werden
+				echo "nichts eingegeben";	
+				//Soll eine Warnung ausgegeben werden
 		?>
-		<form method="post">	//method="post" --> Parameter werden mit POST mitgegeben
+		<form method="post">	
+		<!-- method="post": Parameter werden mit POST mitgegeben -->
 			<textarea name="text"></textarea>
 			<input type="submit" name="save" value="Speichern" />
 		</form>
@@ -76,18 +81,23 @@ user=20091234&password=passwort&send=1	//POST-Parameter
 Bei GET werden die mitgegebenen Parameter direkt an die URL angehängt. Um dies trennen zu können, wird die Parameterliste mit einem ? eingeleitet. Einzelne Parameter werden mit einem \& getrennt. Diese Methode ist die Standardmethode, wenn man ein HTML-Formular erstellt. Dies wird bei kleinen Daten verwendet. Der Vorteil liegt darin, dass der User die Seite neu laden kann. Die Parameter werden übernommen. Auch kann der User die URL samt den Parametern als Lesezeichen abspeichern, um beispielsweise bei einer Webseite, welche die Parameter zur Navigation auf der Seite verwendet, genau die gewünschte Seite zu erhalten. Eine Beispiel-URL sieht wie folgt aus: \url{sis.htlinn.ac.at/index.php?text=hallo\&send=Speichern}. Dies wäre die URL, die beim Absenden des Beispiels \ref{lst:content_php_GET} entstehen würde, sofern die Datei des Beispiels \textit{index.php} heißt. Im Prinzip läuft die Auswertung der mitgelieferten Parametern gleich ab, wie bei POST Parametern.\\
 Die Datenlänge bei GET besteht darin, dass die URL eine maximale Länge, die Browser und Server abhängig ist, nicht überschreiten darf.
 Die Datenlänge ist bei GET durch die maximal mögliche Länger der URL limitiert. Diese ist abhängig vom verwendeten Client und vom verwendeten Server. Als Standard-Wert werden oft 2000 Zeichen genannt.
+\newpage
 \begin{lstlisting}[style=custom, language=PHP,  caption={Beispiel GET},label={lst:content_php_GET}]
 <html>
 	<head>
 	</head>
 	<body>
 		<?php
-			if(!empty($_GET['text']))	//Wenn die Variable text nicht leer ist
-				echo $_GET['text'];	//Soll der Text ausgegeben werden
+			if(!empty($_GET['text']))	
+			//Wenn die Variable text nicht leer ist
+				echo $_GET['text'];	
+				//Soll der Text ausgegeben werden
 			else	//Wenn sie leer ist
-				echo "nichts eingegeben";	//Soll eine Warnung ausgegeben werden
+				echo "nichts eingegeben";	
+				//Soll eine Warnung ausgegeben werden
 		?>
-		<form method="get">	//method="get" --> Parameter werden mit GET mitgegeben
+		<form method="get">	
+		<!-- method="get": Parameter werden mit GET mitgegeben -->
 			<input type="text" name="text" />
 			<input type="submit" name="save" value="Speichern"/>
 		</form>
@@ -105,6 +115,7 @@ eine Zeichenkette, oder ein Array neu zugewiesen werden. \\
 Manche Standard-Funktionen in PHP haben numerische Rückgabewerte und geben den bool'schen Wert false zurück, 
 wenn ein Fehler auftritt. Da alle Werte, die nicht 0 sind, laut Definition gleich dem bool'schen true sind, 
 kann es zu Fehlinterpretation des Rückgabewertes kommen. Um solche Situationen so vermeiden, sollte statt auf Wertegleichheit (==) auf Äquivalenz (===), das bedeutet in diesem Zusammenhang Werte- und Typgleichheit (Bool != Integer, trotz dynamischer Typisierung), geprüft werden (Beispiel: siehe \autoref{lst:content_php_false}).
+\newpage
 \begin{lstlisting}[style=custom, language=PHP,  caption={Typisierungsproblem},label={lst:content_php_false}]
 <?php 
 	$string = "Hallo Welt";

@@ -19,15 +19,15 @@ Hier die wichtigsten Befehle die verwendet wurden.\\
 		    		Damit werden alle Datensätze von Klassen ausgelesen, bei denen der Name mit 2 beginnt. So erhält man alle Klassen des 2. Jahrgangs.
 		    	\item \texttt{SELECT * FROM substitudes ORDER BY time ASC}\\
 		    		Damit werden alle Supplierungen in aufsteigender Reihenfolge(\texttt{ASC}) ausgelesen. Sollen die Supplierungen absteigend ausgelesen werden verwendet man statt \texttt{ASC DESC}.
-		    	\item \texttt{SELECT teachers.name FROM classes LEFT JOIN teachers ON teachers.ID = classes.teacherFK}\\
+		    	\item \texttt{SELECT teachers.name FROM classes LEFT JOIN teachers ON \\teachers.ID = classes.teacherFK}\\
 		    		Mit dieser Abfrage können alle KV's der Klassen abgefragt werden. Da im Datenbankdesign auf Redundanzvermeidung geachtet wurde, wird in der classes Tabelle auf die teachers Tabelle verwiesen. Dort stehen die Namen der KV's. In der classes Tabelle steht nur die eindeutige ID des Lehrers.\\\\
-		    		\textbf{\texttt{SELECT teachers.name FROM classes LEFT JOIN teachers ON teachers.ID = classes.teacherFK}}\\
+		    		\textbf{\texttt{SELECT teachers.name FROM classes LEFT JOIN teachers ON \\teachers.ID = classes.teacherFK}}\\
 		    			Gibt alle Einträge der Tabelle classes zurück, jedoch nur die Einträge von der teachers Tabelle, welche die \texttt{ON} Bedingung erfüllen.\\\\
-		    		\textbf{\texttt{SELECT teachers.name FROM classes INNER JOIN teachers ON teachers.ID = classes.teacherFK}}\\
+		    		\textbf{\texttt{SELECT teachers.name FROM classes INNER JOIN teachers ON \\teachers.ID = classes.teacherFK}}\\
 		    			Gibt nur diejenigen Datensätze zurück, welche die \texttt{ON} Bedingung erfüllen.\\\\
-		    		\textbf{\texttt{SELECT teachers.name FROM classes RIGHT JOIN teachers ON teachers.ID = classes.teacherFK}}\\
+		    		\textbf{\texttt{SELECT teachers.name FROM classes RIGHT JOIN teachers ON \\teachers.ID = classes.teacherFK}}\\
 		    			Gibt alle Einträge der Tabelle teachers zurück sowie nur die Einträge der Tabelle classes welche die ON Bedingung erfüllen.\\\\
-		    		\textbf{\texttt{SELECT teachers.name FROM classes OUTER JOIN teachers ON teachers.ID = classes.teacherFK}}\\
+		    		\textbf{\texttt{SELECT teachers.name FROM classes OUTER JOIN teachers ON \\teachers.ID = classes.teacherFK}}\\
 		    			Gibt alle Einträge aus beiden Tabellen zurück. Die Einträge, welche die \texttt{ON} Bedingung erfüllen, werden zusammengefügt, und die anderen werden jeweils als einzelner Datensatz angezeigt.\\
 		    	\item \texttt{SELECT name as Klassenname FROM classes}\\
 		    		Mit as können die Spaltennamen der Tabelle in besser lesbare oder besser identifizierbare Spaltennamen umbenannt werden.
@@ -37,7 +37,7 @@ Hier die wichtigsten Befehle die verwendet wurden.\\
 	    \begin{itemize}
 		   	\item Mit dem INSERT Befehl können neue Datensätze in eine Tabelle eingefügt werden.
 		   	\begin{itemize}
-			   	\item \texttt{INSERT INTO sections (name, short, teacherFK) VALUES ('TestAbteilung', 'T', '2')}\\
+			   	\item \texttt{INSERT INTO sections (name, short, teacherFK) VALUES \\('TestAbteilung', 'T', '2')}\\
 			   		Damit wird eine neue Abteilung in der Tabelle sections erstellt. Dabei werden die angegebenen Spalten auf die in der Klammer stehenden Werte gesetzt. Hier muss die Spalte ID nicht angegeben werden, da sie auf \textit{auto increment} gesetzt ist.
 		   	\end{itemize}
 	    \end{itemize}
@@ -45,7 +45,7 @@ Hier die wichtigsten Befehle die verwendet wurden.\\
 		\begin{itemize}
 			\item Mit dem UPDATE Befehl können Datensätze in einer Tabelle verändert werden.
 			\begin{itemize}
-				\item \texttt{UPDATE sections SET name = 'TestAbteilung2' WHERE name = 'TestAbteilung'}\\
+				\item \texttt{UPDATE sections SET name = \\'TestAbteilung2' WHERE name = 'TestAbteilung'}\\
 					Mit diesem UPDATE Befehl wird jeder Datensatz, der in der Spalte name \enquote{TestAbteilung} stehen hat, abgeändert. Dabei wird \enquote{TestAbteilung} in \enquote{TestAbteilung2} geändert.
 				\item \texttt{UPDATE sections SET name = 'TestAbteilung123',short = 'T123' WHERE name = 'TestAbteilung2'}\\
 					Dies Funktioniert im Prinzip gleich wie der Befehl zuvor. Mit dem Unterschied, dass dabei 2 Spalten geändert werden.

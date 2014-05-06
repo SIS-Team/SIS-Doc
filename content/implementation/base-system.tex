@@ -69,6 +69,7 @@ Die Funktion \texttt{killSession()} setzt das Flag \texttt{active} in der Sessio
 
 \paragraph{Login\\}
 Wie der Name bereits andeutet, ist die Funktion \texttt{login(\$username, \$password)} für den Login zuständig. In dieser Funktion wird auf viele Funktionen der Datei /modules/general/LDAP.php zugegriffen, die Namen dieser Funktionen sind meistens selbsterklärend, für eine genauere Erklärung siehe \gref{sec:content_imple_ldap}.
+\newpage
 \lstinputlisting[style=custom, language=php, caption={/modules/general/SessionManager.php; \texttt{login()}; Zeilen 48-80}, label={lst:content_imple_base_session_login}, firstline=48, lastline=80, firstnumber=48]{sources/base/SessionManager.php}
 Zum besseren Verständnis des Codes siehe \autoref{fig:content_imple_base_session_login}:\\
 Der Punkt \enquote{lade Benutzer-Daten} besteht in Wirklichkeit aus zwei Befehlen. Einerseits wird der Benutzer geladen (Zeile 50), andererseits wird der DN (also die eindeutige Bezeichnung des LDAP-Objektes - die ID) aus dem resultierenden, mehrdimensionalen Array extrahiert.\\
@@ -125,9 +126,11 @@ Durch die Funktion \texttt{pageHeader(\$title, \$design, \$mobile = true)} werde
 \lstinputlisting[style=custom, language=php, caption={/modules/general/Site.php; \texttt{pageFooter()}; Zeilen 78-82}, label={lst:content_imple_base_site4}, firstline=78, lastline=82, firstnumber=78]{sources/base/Site.php}
 Die Funktion \texttt{pageFooter()} gibt nun nur den unteren Teil der Seite aus und ersetzt den Sidebar-Placeholder.
 
+\newpage
 \subsubsection{Einbindung}
 Nachdem nun der Code hinter dem Basis-System beschrieben wurde, soll nun erwähnt werden, wie dieser angewendet werden kann.\\
 Der prinzipielle Aufbau einer normalen Seite sieht folgendermaßen aus:
+
 \begin{lstlisting}[style=custom, language=php, caption={Anwendung des Basis-Systems},label={lst:content_imple_base_apply}]
 <?php 
 	// Zuerst wird relativ die config.php eingebunden.

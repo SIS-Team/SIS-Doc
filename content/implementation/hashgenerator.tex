@@ -81,10 +81,8 @@ Auch wenn man diese beiden Vorgänge getrennt betrachten muss, sollte man sie ni
 	//   - Auswertung
 	if (isset($_POST['sent'])) {
 		// Auswertung
-		
 		try {
 			$hashGenerator->check();
-			
 			// Wenn die Ausführung hier ankommt, ist kein Fehler aufgetreten,
 			// wir können mit der Verarbeitung fortfahren.
 		} catch (Exception $e) {
@@ -93,7 +91,6 @@ Auch wenn man diese beiden Vorgänge getrennt betrachten muss, sollte man sie ni
 		}
 	} else {
 		// Erstellung
-		
 		// Generiere des Hashes
 		$hashGenerator->generate();
 		
