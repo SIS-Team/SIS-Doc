@@ -75,7 +75,7 @@ user=20091234&password=passwort&send=1	//POST-Parameter
 \subparagraph{GET\\}
 Bei GET werden die mitgegebenen Parameter direkt an die URL angehängt. Um dies trennen zu können, wird die Parameterliste mit einem ? eingeleitet. Einzelne Parameter werden mit einem \& getrennt. Diese Methode ist die Standardmethode, wenn man ein HTML-Formular erstellt. Dies wird bei kleinen Daten verwendet. Der Vorteil liegt darin, dass der User die Seite neu laden kann. Die Parameter werden übernommen. Auch kann der User die URL samt den Parametern als Lesezeichen abspeichern, um beispielsweise bei einer Webseite, welche die Parameter zur Navigation auf der Seite verwendet, genau die gewünschte Seite zu erhalten. Eine Beispiel-URL sieht wie folgt aus: \url{sis.htlinn.ac.at/index.php?text=hallo\&send=Speichern}. Dies wäre die URL, die beim Absenden des Beispiels \ref{lst:content_php_GET} entstehen würde, sofern die Datei des Beispiels \textit{index.php} heißt. Im Prinzip läuft die Auswertung der mitgelieferten Parametern gleich ab, wie bei POST Parametern.\\
 Die Datenlänge bei GET besteht darin, dass die URL eine maximale Länge, die Browser und Server abhängig ist, nicht überschreiten darf.
-Die Datenlänge ist bei GET durch die maximal mögliche Länger der URL limitiert. Diese ist abhängig vom verwendeten Client und vom verwendeten Server. Als Standard-Wert werden oft 2000 Zeichen genannt.
+Die Datenlänge ist bei GET durch die maximal mögliche Länge der URL limitiert. Diese ist abhängig vom verwendeten Client und vom verwendeten Server. Als Standard-Wert werden oft 2000 Zeichen genannt.
 \begin{lstlisting}[style=custom, language=PHP,  caption={Beispiel GET},label={lst:content_php_GET}]
 <html>
 	<head>
