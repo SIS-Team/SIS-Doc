@@ -132,7 +132,8 @@ CREATE TABLE `logsMain` (
   `connFK` int(11) NOT NULL,
   `site` text NOT NULL,
   `params` text,
-  PRIMARY KEY  (`ID`)
+  PRIMARY KEY  (`ID`),
+  KEY `logsMain_time_IDX` (`time`)
 ) ENGINE=InnoDB AUTO_INCREMENT=419 DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
