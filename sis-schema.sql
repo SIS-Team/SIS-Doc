@@ -182,11 +182,12 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `logsUsers` (
   `ID` int(11) NOT NULL auto_increment,
-  `LDAP` text NOT NULL,
+  `LDAP` VARCHAR(128) NOT NULL,
   `classesFK` int(11) NOT NULL,
   `sectionsFK` int(11) NOT NULL,
   `isTeacher` tinyint(1) NOT NULL,
-  PRIMARY KEY  (`ID`)
+  PRIMARY KEY  (`ID`),
+  KEY `logsUsers_LDAP_IDX` (`LDAP`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 SET character_set_client = @saved_cs_client;
 
